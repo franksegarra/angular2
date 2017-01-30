@@ -1,0 +1,155 @@
+[
+    {
+        "grade": 9,
+        "className": "Algebra I",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 9,
+        "className": "Global History I",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 9,
+        "className": "Earth Science",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 9,
+        "className": "English",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 9,
+        "className": "French III",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },    {
+        "grade": 9,
+        "className": "Design and Drawing I",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 9,
+        "className": "World of Technology",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 10,
+        "className": "Geometry",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 10,
+        "className": "Global History II",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 10,
+        "className": "Biology",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 10,
+        "className": "English 10",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 10,
+        "className": "French IV",
+        "letterGrade": "A"
+    },    {
+        "grade": 10,
+        "className": "PLTW - Introduction to Engineering",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 10,
+        "className": "Architecture",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 11,
+        "className": "Algebra II",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 11,
+        "className": "US History",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 11,
+        "className": "Chemistry",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 11,
+        "className": "AP English Language",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 11,
+        "className": "*PLTW - Principals of Engineering",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 11,
+        "className": "*PLTW - Civil Engineering",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 12,
+        "className": "Pre Calculus",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 12,
+        "className": "Economics",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 12,
+        "className": "Physics",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 12,
+        "className": "**DCC English",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 12,
+        "className": "*PLTW - Project",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    },
+    {
+        "grade": 12,
+        "className": "Health",
+        "finalAverage": "92",
+        "letterGrade": "A"
+    }
+]
