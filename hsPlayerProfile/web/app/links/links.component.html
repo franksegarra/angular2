@@ -5,23 +5,14 @@
 
     <div class='panel-body'>
         <div class="table-responsive">
-            <table class="table" *ngIf="products && products.length">
-                <thead>
-                    <tr>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-
+            <table class="table" *ngIf="links && links.length">
                 <tbody>
                     <tr *ngFor='let link of links'>
                         <td>
-                            <a {{ link.linkUrl}}>
-                            {{ link.linkDescription }}
-                            </a>
+                            <a href="{{ link.linkUrl }}" target="_blank">{{ link.linkDescription }}</a>                            
                         </td>
                     </tr>
                 </tbody>
-
             </table>
         </div>
     </div>

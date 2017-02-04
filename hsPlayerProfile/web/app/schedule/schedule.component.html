@@ -1,0 +1,54 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+
+    <div class='panel-body'>
+
+        <!--<div class="row">
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)] = 'listFilter' />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Filtered by: {{listFilter}} </h3>
+            </div>
+        </div>
+        
+        | schedFilter: listFilter'
+        -->
+
+
+        <div class="table-responsive">
+            <table class="table" *ngIf="schedItems && schedItems.length">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Day of Week</th>
+                        <th>Event</th>
+                        <th>Type</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let schedItem of schedItems' >   
+                        <td>{{ schedItem.Date }}</td>
+                        <td>{{ schedItem.Time }}</td>
+                        <td>{{ schedItem.DayofWeek }}</td>
+                        <td>{{ schedItem.Event }}</td>
+                        <td>{{ schedItem.Type }}</td>
+                        <td>{{ schedItem.Location }}</td>
+                        <!--<td>
+                            <sebm-google-map  [latitude]="lat" [longitude]="lng">
+                            <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+                            </sebm-google-map>                            
+                        </td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

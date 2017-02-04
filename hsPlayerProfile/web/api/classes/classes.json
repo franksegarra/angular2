@@ -67,8 +67,10 @@
     {
         "grade": 10,
         "className": "French IV",
+        "finalAverage": "92",
         "letterGrade": "A"
-    },    {
+    },    
+    {
         "grade": 10,
         "className": "PLTW - Introduction to Engineering",
         "finalAverage": "92",

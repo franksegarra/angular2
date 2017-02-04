@@ -9,25 +9,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var shared_module_1 = require("../shared/shared.module");
+var forms_1 = require("@angular/forms");
 //Feature components and objects
-var academics_component_1 = require("./academics.component");
+var contactme_component_1 = require("./contactme.component");
 //Services
 var data_service_1 = require("../services/data.service");
 //Module declaration
-var AcademicsModule = (function () {
-    function AcademicsModule() {
+var ContactMeModule = (function () {
+    function ContactMeModule() {
     }
-    return AcademicsModule;
+    return ContactMeModule;
 }());
-AcademicsModule = __decorate([
+ContactMeModule = __decorate([
     core_1.NgModule({
         imports: [
             shared_module_1.SharedModule,
-            router_1.RouterModule.forChild([{ path: 'academics', component: academics_component_1.AcademicsComponent }])
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,
+            router_1.RouterModule.forChild([{ path: 'contactme', component: contactme_component_1.ContactMeComponent }])
         ],
-        declarations: [academics_component_1.AcademicsComponent],
+        declarations: [contactme_component_1.ContactMeComponent],
         providers: [data_service_1.DataService]
     })
-], AcademicsModule);
-exports.AcademicsModule = AcademicsModule;
-//# sourceMappingURL=academics.module.js.map
+], ContactMeModule);
+exports.ContactMeModule = ContactMeModule;
+//# sourceMappingURL=contactme.module.js.map

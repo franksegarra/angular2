@@ -10,7 +10,14 @@ import { Component } from '@angular/core';
                 <ul class = 'nav navbar-nav'>
                     <li><a [routerLink]="['/welcome']">Home</a></li>
                     <li><a [routerLink]="['/products']">Products</a></li>
+                    <li><a [routerLink]="['/photos']">Photo Galleries</a></li>
+                    <li><a [routerLink]="['/videos']">Video Galleries</a></li>
+                    <li><a [routerLink]="['/stats']">Stats</a></li>
+                    <li><a [routerLink]="['/academics']">Academics</a></li>
                     <li><a [routerLink]="['/links']">Links</a></li>
+                    <li><a [routerLink]="['/contactme']">Contact Me</a></li>
+                    <li><a [routerLink]="['/schedule']">Schedule</a></li>
+                    <li><a [routerLink]="['/profile']">My Profile</a></li>
                 </ul>
             </div>
         </nav>
@@ -21,5 +28,5 @@ import { Component } from '@angular/core';
     `
 })
 export class AppComponent {
-    pageTitle: string = 'Acme Product Management'
+    pageTitle: string = 'High School Player Profiles'
 }

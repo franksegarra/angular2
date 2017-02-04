@@ -9,25 +9,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var shared_module_1 = require("../shared/shared.module");
+//Google Maps
+//import { AgmCoreModule } from 'angular2-google-maps/core';
 //Feature components and objects
-var academics_component_1 = require("./academics.component");
+var schedule_component_1 = require("./schedule.component");
 //Services
 var data_service_1 = require("../services/data.service");
 //Module declaration
-var AcademicsModule = (function () {
-    function AcademicsModule() {
+var ScheduleModule = (function () {
+    function ScheduleModule() {
     }
-    return AcademicsModule;
+    return ScheduleModule;
 }());
-AcademicsModule = __decorate([
+ScheduleModule = __decorate([
     core_1.NgModule({
         imports: [
             shared_module_1.SharedModule,
-            router_1.RouterModule.forChild([{ path: 'academics', component: academics_component_1.AcademicsComponent }])
+            router_1.RouterModule.forChild([{ path: 'schedule', component: schedule_component_1.ScheduleComponent }])
         ],
-        declarations: [academics_component_1.AcademicsComponent],
+        declarations: [schedule_component_1.ScheduleComponent],
         providers: [data_service_1.DataService]
     })
-], AcademicsModule);
-exports.AcademicsModule = AcademicsModule;
-//# sourceMappingURL=academics.module.js.map
+], ScheduleModule);
+exports.ScheduleModule = ScheduleModule;
+//# sourceMappingURL=schedule.module.js.map

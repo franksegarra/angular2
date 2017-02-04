@@ -11,6 +11,8 @@ var router_1 = require("@angular/router");
 var shared_module_1 = require("../shared/shared.module");
 //Feature components and objects
 var links_component_1 = require("./links.component");
+//Services
+var data_service_1 = require("../services/data.service");
 //Module declaration
 var LinksModule = (function () {
     function LinksModule() {
@@ -23,7 +25,8 @@ LinksModule = __decorate([
             shared_module_1.SharedModule,
             router_1.RouterModule.forChild([{ path: 'links', component: links_component_1.LinksComponent }])
         ],
-        declarations: [links_component_1.LinksComponent]
+        declarations: [links_component_1.LinksComponent],
+        providers: [data_service_1.DataService]
     })
 ], LinksModule);
 exports.LinksModule = LinksModule;

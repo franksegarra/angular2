@@ -12,10 +12,14 @@ var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 //Main startup Component
 var app_component_1 = require("./app.component");
-//Application components and objects
+//To Remove
 var welcome_component_1 = require("./home/welcome.component");
 var product_module_1 = require("./products/product.module");
+//Application components and objects
+var academics_module_1 = require("./academics/academics.module");
 var links_module_1 = require("./links/links.module");
+var contactme_module_1 = require("./contactme/contactme.module");
+var schedule_module_1 = require("./schedule/schedule.module");
 //Module declaration
 var AppModule = (function () {
     function AppModule() {
@@ -33,7 +37,10 @@ AppModule = __decorate([
                 { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
             ]),
             product_module_1.ProductModule,
-            links_module_1.LinksModule
+            academics_module_1.AcademicsModule,
+            links_module_1.LinksModule,
+            contactme_module_1.ContactMeModule,
+            schedule_module_1.ScheduleModule
         ],
         declarations: [
             app_component_1.AppComponent,

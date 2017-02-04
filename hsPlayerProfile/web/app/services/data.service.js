@@ -17,10 +17,27 @@ require("rxjs/add/operator/catch");
 var DataService = (function () {
     function DataService(_http) {
         this._http = _http;
-        this._linktUrl = 'api/links/links.json';
+        this._linksUrl = 'api/links/links.json';
+        this._schedUrl = 'api/schedule/schedule.json';
+        this._classesUrl = 'api/classes/classes.json';
     }
+    //Get Classes
+    DataService.prototype.getClasses = function () {
+        return this._http.get(this._classesUrl)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    // Get Links
     DataService.prototype.getLinks = function () {
-        return this._http.get(this._linktUrl)
+        return this._http.get(this._linksUrl)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    //Get Schedule
+    DataService.prototype.getSchedule = function () {
+        return this._http.get(this._schedUrl)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);

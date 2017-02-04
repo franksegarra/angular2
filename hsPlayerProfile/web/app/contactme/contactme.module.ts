@@ -2,9 +2,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Feature components and objects
-import { LinksComponent } from './links.component'
+import { ContactMeComponent } from './contactme.component'
 
 //Services
 import { DataService } from '../services/data.service';
@@ -13,9 +14,11 @@ import { DataService } from '../services/data.service';
 @NgModule({
   imports: [ 
     SharedModule,
-      RouterModule.forChild([{path: 'links', component: LinksComponent}])
+    FormsModule, 
+    ReactiveFormsModule,
+    RouterModule.forChild([{path: 'contactme', component: ContactMeComponent}])
     ],
-  declarations: [ LinksComponent ],
+  declarations: [ ContactMeComponent ],
   providers: [ DataService ]
 })
-export class LinksModule { }
+export class ContactMeModule { }

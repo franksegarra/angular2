@@ -1,0 +1,4 @@
+1.  Add side menu
+2.  Add breadcrumbs
+3.  Add Login/Register Link
+4.  Add Player name to header

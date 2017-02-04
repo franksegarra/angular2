@@ -1,0 +1,2 @@
+1.  Hook up Email
+2.  Add Validations

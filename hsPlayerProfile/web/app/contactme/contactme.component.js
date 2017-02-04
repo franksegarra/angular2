@@ -10,27 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var data_service_1 = require("../services/data.service");
-var AcademicsComponent = (function () {
-    function AcademicsComponent(_dataService) {
+var ContactMeComponent = (function () {
+    function ContactMeComponent(_dataService) {
         this._dataService = _dataService;
-        this.pageTitle = "Academics";
+        this.pageTitle = "Contact Me";
     }
-    AcademicsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._dataService.getClasses()
-            .subscribe(function (classes) { return _this.classes = classes; }, function (error) { return _this.errorMessage = error; });
+    ContactMeComponent.prototype.onSubmit = function (form) {
+        console.log('you submitted value:', form);
     };
-    ;
-    return AcademicsComponent;
+    return ContactMeComponent;
 }());
-AcademicsComponent = __decorate([
+ContactMeComponent = __decorate([
     core_1.Component({
-        selector: 'pp-academics',
+        selector: 'pp-contactme',
         moduleId: module.id,
-        templateUrl: 'academics.component.html',
-        styleUrls: ['academics.component.css']
+        templateUrl: 'contactme.component.html',
+        styleUrls: ['contactme.component.css']
     }),
     __metadata("design:paramtypes", [data_service_1.DataService])
-], AcademicsComponent);
-exports.AcademicsComponent = AcademicsComponent;
-//# sourceMappingURL=academics.component.js.map
+], ContactMeComponent);
+exports.ContactMeComponent = ContactMeComponent;
+//# sourceMappingURL=contactme.component.js.map

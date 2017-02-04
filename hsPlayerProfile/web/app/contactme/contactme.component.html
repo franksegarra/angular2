@@ -1,0 +1,35 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+
+    <div class='panel-body'>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr><td><div class="col-sm-12">  
+                            <input type="text" id="nameInput" placeholder="Enter Your Name" name="name" required style="width:100%; padding: 6px 12px;" ngModel >  
+                        </div></td></tr>
+
+                        <tr><td><div class="col-sm-12">  
+                                    <input type="text" id="phoneInput" placeholder="Enter Phone Number" name="phone" required style="width:100%; padding: 6px 12px;" ngModel>  
+                        </div></td></tr>
+
+                        <tr><td><div class="col-sm-12">  
+                                    <input type="text" id="emailInput" placeholder="Enter Email Address" name="email" required style="width:100%; padding: 6px 12px;" ngModel>  
+                        </div></td></tr>
+
+                        <tr><td><div class="col-sm-12">  
+                            <textarea rows="5" class="form-control" id="messageInput" name="message" placeholder="Type your message here" required style="width:100%; padding: 6px 12px;" ngModel></textarea>	
+                        </div></td></tr>
+
+                        <tr><td><div class="col-sm-12">
+                                <button type="submit" class="ui button">Submit</button>  
+                        </div></td></tr>
+                    </tbody>
+                </table> 
+            </div> 
+        </form>  
+    </div>
+</div>

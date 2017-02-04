@@ -7,10 +7,15 @@ import { RouterModule } from '@angular/router';
 //Main startup Component
 import { AppComponent }  from './app.component';
 
-//Application components and objects
+//To Remove
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products/product.module'
+
+//Application components and objects
+import { AcademicsModule } from './academics/academics.module'
 import { LinksModule } from './links/links.module'
+import { ContactMeModule } from './contactme/contactme.module'
+import { ScheduleModule } from './schedule/schedule.module'
 
 //Module declaration
 @NgModule({
@@ -23,7 +28,10 @@ import { LinksModule } from './links/links.module'
           {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
       ]),
       ProductModule,
-      LinksModule
+      AcademicsModule,
+      LinksModule,
+      ContactMeModule,
+      ScheduleModule
   ],
   declarations: [ 
       AppComponent,
