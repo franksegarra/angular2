@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { IClass } from '../academics/class';
 import { ILink } from '../links/link';
 import { IScheduleItem } from '../schedule/scheduleItem';
+import { IProfile } from '../profiles/profile';
+
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -14,6 +16,7 @@ export class DataService {
     private _linksUrl = 'api/links/links.json';
     private _schedUrl = 'api/schedule/schedule.json';
     private _classesUrl = 'api/classes/classes.json';
+    private _profilesUrl = 'api/profile/profile.json';
 
     constructor(private _http: Http) {
     }
@@ -45,8 +48,21 @@ export class DataService {
                     .catch(this.handleError) ;
     }
 
+    //Get Schedule
+    getMyProfile(): Observable<IProfile[]> {
+
+        return this._http.get(this._profilesUrl)
+                    .map((response: Response) => <IProfile[]>response.json())
+                    .do(data => console.log('All: ' + JSON.stringify(data)))
+                    .catch(this.handleError) ;
+    }
+
+
     private handleError(error: Response) {
         console.error(error);
+
+        console.error('error in service');
+
         return Observable.throw(error.json().error || 'Server error');
     }
 }

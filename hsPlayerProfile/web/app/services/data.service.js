@@ -20,6 +20,7 @@ var DataService = (function () {
         this._linksUrl = 'api/links/links.json';
         this._schedUrl = 'api/schedule/schedule.json';
         this._classesUrl = 'api/classes/classes.json';
+        this._profilesUrl = 'api/profile/profile.json';
     }
     //Get Classes
     DataService.prototype.getClasses = function () {
@@ -42,8 +43,16 @@ var DataService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    //Get Schedule
+    DataService.prototype.getMyProfile = function () {
+        return this._http.get(this._profilesUrl)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     DataService.prototype.handleError = function (error) {
         console.error(error);
+        console.error('error in service');
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
     return DataService;

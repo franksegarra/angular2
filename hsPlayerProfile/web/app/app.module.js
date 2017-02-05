@@ -20,6 +20,7 @@ var academics_module_1 = require("./academics/academics.module");
 var links_module_1 = require("./links/links.module");
 var contactme_module_1 = require("./contactme/contactme.module");
 var schedule_module_1 = require("./schedule/schedule.module");
+var myprofile_module_1 = require("./profiles/myprofile.module");
 //Module declaration
 var AppModule = (function () {
     function AppModule() {
@@ -40,7 +41,8 @@ AppModule = __decorate([
             academics_module_1.AcademicsModule,
             links_module_1.LinksModule,
             contactme_module_1.ContactMeModule,
-            schedule_module_1.ScheduleModule
+            schedule_module_1.ScheduleModule,
+            myprofile_module_1.MyProfileModule
         ],
         declarations: [
             app_component_1.AppComponent,

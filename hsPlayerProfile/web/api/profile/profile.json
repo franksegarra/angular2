@@ -1,0 +1,22 @@
+[
+    {
+        "profileid": 1,
+        "profileName": "francissegarra",
+        "firstName": "Francis",
+        "lastName": "Segarra",
+        "email": "segarraf18@gmail.com",
+        "highSchool": "Carmel High School",
+        "graduationYear": 2018,
+        "additionalInfo": "I am PITA"
+    },
+    {
+        "profileid": 2,
+        "profileName": "francissegarra",
+        "firstName": "Francis",
+        "lastName": "Segarra",
+        "email": "segarraf18@gmail.com",
+        "highSchool": "Carmel High School",
+        "graduationYear": 2018,
+        "additionalInfo": "I am PITA"
+    }    
+]

@@ -10,28 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var data_service_1 = require("../services/data.service");
-var LinksComponent = (function () {
-    function LinksComponent(_dataService) {
+var MyProfileComponent = (function () {
+    function MyProfileComponent(_dataService) {
         this._dataService = _dataService;
-        this.pageTitle = "Links";
+        this.pageTitle = "My Profile";
     }
     ;
-    LinksComponent.prototype.ngOnInit = function () {
+    MyProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._dataService.getLinks()
-            .subscribe(function (links) { return _this.links = links; }, function (error) { return _this.errorMessage = error; });
+        this._dataService.getMyProfile()
+            .subscribe(function (myprofile) { return _this.myprofile = myprofile; }, function (error) { return _this.errorMessage = error; });
     };
     ;
-    return LinksComponent;
+    MyProfileComponent.prototype.onSubmit = function (form) {
+        console.log('you submitted value:', form);
+    };
+    ;
+    return MyProfileComponent;
 }());
-LinksComponent = __decorate([
+MyProfileComponent = __decorate([
     core_1.Component({
-        selector: 'pp-links',
+        selector: 'pp-myprofile',
         moduleId: module.id,
-        templateUrl: 'links.component.html',
-        styleUrls: ['links.component.css']
+        templateUrl: 'myprofile.component.html',
+        styleUrls: ['myprofile.component.css']
     }),
     __metadata("design:paramtypes", [data_service_1.DataService])
-], LinksComponent);
-exports.LinksComponent = LinksComponent;
-//# sourceMappingURL=links.component.js.map
+], MyProfileComponent);
+exports.MyProfileComponent = MyProfileComponent;
+//# sourceMappingURL=myprofile.component.js.map

@@ -1,0 +1,51 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+
+    <div class='panel-body'>
+           <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
+               <div class="table-responsive">
+                   <table class="table">
+                       <tbody>
+                           <tr><td><div class="col-sm-12">
+                               {{ myprofile.profileid }}
+                           </div></td></tr>
+                           <!--<tr><td><div class="col-sm-12">
+                               <input type="text" id="profileNameInput" name="profileName" required style="width:100%; padding: 6px 12px;" [(ngModel)]='myprofile.profileName' >
+                           </div></td></tr>
+
+                           <tr><td><div class="col-sm-12">
+                               <input type="text" id="firstNameInput" name="firstName" required style="width:100%; padding: 6px 12px;" [(ngModel)]='myprofile.firstName' >
+                           </div></td></tr>
+
+                           <tr><td><div class="col-sm-12">
+                               <input type="text" id="lastNameInput" name="lastName" required style="width:100%; padding: 6px 12px;" [(ngModel)]='myprofile.lastName' >
+                           </div></td></tr>
+
+                           <tr><td><div class="col-sm-12">
+                                       <input type="text" id="emailInput" placeholder="Enter Email Address" name="email" required style="width:100%; padding: 6px 12px;" [(ngModel)]='myprofile.email'>
+                           </div></td></tr>
+
+                           <tr><td><div class="col-sm-12">
+                                       <input type="text" id="highSchoolInput" placeholder="Enter Your High School" name="highSchool" required style="width:100%; padding: 6px 12px;" [(ngModel)]='myprofile.highSchool'>
+                           </div></td></tr>
+
+                           <tr><td><div class="col-sm-12">
+                                       <input type="text" id="graduationYearInput" placeholder="Enter Your Graduation Year" name="graduationYear" required style="width:100%; padding: 6px 12px;" [(ngModel)]='myprofile.graduationYear'>
+                           </div></td></tr>
+
+                           <tr><td><div class="col-sm-12">
+                               <textarea rows="5" class="form-control" id="additionalInfoInput" name="additionalInfo" placeholder="Type any additional information here" required style="width:100%; padding: 6px 12px;" [(ngModel)]='myprofile.additionalInfo'></textarea>
+                           </div></td></tr>-->
+
+                           <tr><td><div class="col-sm-12">
+                                   <button type="submit" class="ui button">Submit</button>
+                           </div></td></tr>
+                       </tbody>
+                   </table>
+               </div>
+           </form>
+    </div>
+
+</div>
