@@ -12,14 +12,14 @@ export class AcademicsComponent implements OnInit {
     
     pageTitle: string = "Academics";
     errorMessage: string;
-    classes: IClass[];
+    parclasses: IClass[];
 
     constructor(private _dataService: DataService) {
     }
 
     ngOnInit(): void {
         this._dataService.getClasses()
-            .subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
+            .subscribe(classes => this.parclasses = classes, error => this.errorMessage = <any>error);
     };
 
 }

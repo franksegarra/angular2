@@ -5,7 +5,16 @@
 
     <div class='panel-body'>
 
-        <div class="table-responsive">
+        <pp-grade [classes]='parclasses' [grade]=12 ></pp-grade>
+
+        <pp-grade [classes]='parclasses' [grade]=11 ></pp-grade>
+
+        <pp-grade [classes]='parclasses' [grade]=10 ></pp-grade>
+
+        <pp-grade [classes]='parclasses' [grade]=9 ></pp-grade>
+
+        <!--<div class="table-responsive">
+            <h2>9th Grade</h2>  
             <table class="table" *ngIf="classes && classes.length">
                 <thead>
                     <tr>
@@ -16,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let class of classes'>
+                    <tr *ngFor='let class of classes  | gradeFilter: 9'  >
                         <td>{{ class.grade }}</td>
                         <td>{{ class.className }}</td>
                         <td>{{ class.finalAverage }}</td>
@@ -24,6 +33,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>-->
+
     </div>
 </div>

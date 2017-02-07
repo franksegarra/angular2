@@ -9,28 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var data_service_1 = require("../services/data.service");
-var AcademicsComponent = (function () {
-    function AcademicsComponent(_dataService) {
-        this._dataService = _dataService;
-        this.pageTitle = "Academics";
+var GradeComponent = (function () {
+    function GradeComponent() {
     }
-    AcademicsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._dataService.getClasses()
-            .subscribe(function (classes) { return _this.parclasses = classes; }, function (error) { return _this.errorMessage = error; });
-    };
-    ;
-    return AcademicsComponent;
+    return GradeComponent;
 }());
-AcademicsComponent = __decorate([
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], GradeComponent.prototype, "classes", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], GradeComponent.prototype, "grade", void 0);
+GradeComponent = __decorate([
     core_1.Component({
-        selector: 'pp-academics',
+        selector: 'pp-grade',
         moduleId: module.id,
-        templateUrl: 'academics.component.html',
+        templateUrl: 'grade.component.html',
         styleUrls: ['academics.component.css']
-    }),
-    __metadata("design:paramtypes", [data_service_1.DataService])
-], AcademicsComponent);
-exports.AcademicsComponent = AcademicsComponent;
-//# sourceMappingURL=academics.component.js.map
+    })
+], GradeComponent);
+exports.GradeComponent = GradeComponent;
+//# sourceMappingURL=grade.component.js.map

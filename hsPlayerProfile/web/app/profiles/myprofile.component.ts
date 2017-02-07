@@ -12,7 +12,7 @@ export class MyProfileComponent implements OnInit {
     
     pageTitle: string = "My Profile";
     errorMessage: string;
-    myprofile: IProfile[];
+    myprofile: IProfile;
 
     constructor(private _dataService: DataService) {
     };

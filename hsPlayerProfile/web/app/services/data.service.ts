@@ -49,7 +49,7 @@ export class DataService {
     }
 
     //Get Schedule
-    getMyProfile(): Observable<IProfile[]> {
+    getMyProfile(): Observable<IProfile> {
 
         return this._http.get(this._profilesUrl)
                     .map((response: Response) => <IProfile[]>response.json())

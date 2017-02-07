@@ -11,8 +11,11 @@ var router_1 = require("@angular/router");
 var shared_module_1 = require("../shared/shared.module");
 //Feature components and objects
 var academics_component_1 = require("./academics.component");
+var grade_component_1 = require("./grade.component");
 //Services
 var data_service_1 = require("../services/data.service");
+//Grade Filter
+var grade_filter_pipe_1 = require("./grade-filter.pipe");
 //Module declaration
 var AcademicsModule = (function () {
     function AcademicsModule() {
@@ -25,7 +28,7 @@ AcademicsModule = __decorate([
             shared_module_1.SharedModule,
             router_1.RouterModule.forChild([{ path: 'academics', component: academics_component_1.AcademicsComponent }])
         ],
-        declarations: [academics_component_1.AcademicsComponent],
+        declarations: [academics_component_1.AcademicsComponent, grade_component_1.GradeComponent, grade_filter_pipe_1.GradeFilterPipe],
         providers: [data_service_1.DataService]
     })
 ], AcademicsModule);
