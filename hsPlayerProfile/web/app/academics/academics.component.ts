@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { IClass } from './class';
-import { DataService } from '../services/data.service';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'pp-academics',
@@ -8,18 +6,6 @@ import { DataService } from '../services/data.service';
     templateUrl: 'academics.component.html',
     styleUrls: ['academics.component.css']
 })
-export class AcademicsComponent implements OnInit { 
-    
+export class AcademicsComponent { 
     pageTitle: string = "Academics";
-    errorMessage: string;
-    parclasses: IClass[];
-
-    constructor(private _dataService: DataService) {
-    }
-
-    ngOnInit(): void {
-        this._dataService.getClasses()
-            .subscribe(classes => this.parclasses = classes, error => this.errorMessage = <any>error);
-    };
-
 }

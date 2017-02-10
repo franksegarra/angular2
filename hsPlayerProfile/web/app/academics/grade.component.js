@@ -12,12 +12,13 @@ var core_1 = require("@angular/core");
 var GradeComponent = (function () {
     function GradeComponent() {
     }
+    GradeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._dataService.getClasses()
+            .subscribe(function (classes) { return _this.classes = classes; }, function (error) { return _this.errorMessage = error; });
+    };
     return GradeComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], GradeComponent.prototype, "classes", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)

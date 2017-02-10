@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IClass } from './class';
 import { DataService } from '../services/data.service';
 
@@ -8,8 +8,17 @@ import { DataService } from '../services/data.service';
     templateUrl: 'grade.component.html',
     styleUrls: ['academics.component.css']
 })
-export class GradeComponent { 
-    errorMessage: string;
-    @Input() classes: IClass[];
+export class GradeComponent implements OnInit { 
     @Input() grade: number;
+    classes: IClass[];
+    errorMessage: string;
+   
+    constructor(private _dataService: DataService) {
+    }
+
+    ngOnInit() {
+        this._dataService.getClasses()
+            .subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
+    }  
+   
 }
