@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Feature components and objects
 import { MyProfileComponent } from './myprofile.component'
@@ -14,9 +14,7 @@ import { DataService } from '../services/data.service';
 @NgModule({
   imports: [ 
     SharedModule,
-    FormsModule, 
-    ReactiveFormsModule,
-    RouterModule.forChild([{path: 'profiles', component: MyProfileComponent}])
+    RouterModule.forChild([{path: 'profile', component: MyProfileComponent}])
     ],
   declarations: [ MyProfileComponent ],
   providers: [ DataService ]

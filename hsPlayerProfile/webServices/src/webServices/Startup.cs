@@ -55,9 +55,11 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<ActivityType>, EntityBaseRepository<ActivityType>>();
             services.AddScoped<EntityBaseRepository<HighSchool>, EntityBaseRepository<HighSchool>>();
             services.AddScoped<EntityBaseRepository<Student>, EntityBaseRepository<Student>>();
-            services.AddScoped<EntityBaseRepository<StudentActivities>, EntityBaseRepository<StudentActivities>>();
             services.AddScoped<EntityBaseRepository<StudentClasses>, EntityBaseRepository<StudentClasses>>();
             services.AddScoped<EntityBaseRepository<StudentSchedules>, EntityBaseRepository<StudentSchedules>>();
+            services.AddScoped<EntityBaseRepository<StudentLinks>, EntityBaseRepository<StudentLinks>>();
+
+            services.AddScoped<EntityBaseRepository<StudentActivities>, EntityBaseRepository<StudentActivities>>();
             services.AddScoped<EntityBaseRepository<StudentProfile>, EntityBaseRepository<StudentProfile>>();
 
             #endregion Repositories

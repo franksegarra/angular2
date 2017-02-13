@@ -1,22 +1,24 @@
 [
     {
-        "profileid": 1,
+        "id": 1,
         "profileName": "francissegarra",
         "firstName": "Francis",
         "lastName": "Segarra",
-        "email": "segarraf18@gmail.com",
+        "primaryEmail": "segarraf18@gmail.com",
+        "highSchoolid": 1,
         "highSchool": "Carmel High School",
         "graduationYear": 2018,
-        "additionalInfo": "I am PITA"
+        "additionalInfo": "I am offspring #2"
     },
     {
-        "profileid": 2,
-        "profileName": "francissegarra",
-        "firstName": "Francis",
+        "id": 2,
+        "profileName": "katherinesegarra",
+        "firstName": "Katherine",
         "lastName": "Segarra",
-        "email": "segarraf18@gmail.com",
+        "primaryEmail": "krsegarra@gmail.com",
+        "highSchoolid": 1,
         "highSchool": "Carmel High School",
-        "graduationYear": 2018,
-        "additionalInfo": "I am PITA"
+        "graduationYear": 2015,
+        "additionalInfo": "I am offspring #1"
     }    
 ]

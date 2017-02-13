@@ -15,16 +15,10 @@ var MyProfileComponent = (function () {
         this._dataService = _dataService;
         this.pageTitle = "My Profile";
     }
-    ;
     MyProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._dataService.getMyProfile()
-            .subscribe(function (p) { return _this.profiles = p; }, function (error) { return _this.errorMessage = error; });
-        this.myprofile = this.profiles[0];
-    };
-    ;
-    MyProfileComponent.prototype.onSubmit = function (form) {
-        console.log('you submitted value:', form);
+            .subscribe(function (p) { return _this.myprofiles = p; }, function (error) { return _this.errorMessage = error; });
     };
     ;
     return MyProfileComponent;

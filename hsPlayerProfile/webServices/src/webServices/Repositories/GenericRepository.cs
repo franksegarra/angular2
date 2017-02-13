@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using webServices.Entities;
 using webServices.Infrastructure;
@@ -84,6 +85,18 @@ namespace webServices.Repositories
         {
             _context.SaveChanges();
         }
+
+        public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
+        {
+            return DbSet.Where(predicate);
+        }
+
+        public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+        {
+            //TODO: Convert to dbset
+            return await _context.Set<T>().Where(predicate).ToListAsync();
+        }
+
 
         #endregion
     }

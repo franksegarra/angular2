@@ -1,10 +1,11 @@
 export interface IProfile {
-	profileid: number;
+	id: number;
         profileName: string;
         firstName: string;
         lastName: string;
-        email: string;
-        highSchool: string;
+        primaryEmail: string;
+        highSchoolId: number;
+        highSchoolName: string;
         graduationYear: number;
         additionalInfo: string;
 }

@@ -1,0 +1,23 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+
+    <div class='panel-body'>
+        <div class='table-responsive'>
+            <table class='table' *ngIf='myprofiles && myprofiles.length'>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let profile of myprofiles' >   
+                        <td>{{ profile.id }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

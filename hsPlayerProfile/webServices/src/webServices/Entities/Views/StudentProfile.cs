@@ -12,11 +12,14 @@ namespace webServices.Entities
         }
 
         public int id { get; set; }
-        public string lastName { get; set; }
-        public string firstName { get; set; }
         public string profileName { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
         public string primaryEmail { get; set; }
         public int highSchoolId { get; set; }
         public string highSchoolName { get; set; }
+        public int graduationYear { get; set; }
+        public string additionalInfo { get; set; }
+
     }
 }

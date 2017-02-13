@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace webServices.Entities
 {
-    public class StudentActivities : IEntityBase
+    public class StudentActivities : IEntityBase, IStudentEntityBase
     {
         public StudentActivities()
         {

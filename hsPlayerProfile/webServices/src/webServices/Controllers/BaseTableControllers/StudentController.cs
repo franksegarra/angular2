@@ -5,9 +5,9 @@ using webServices.Entities;
 namespace webServices.Controllers
 {
     [Route("api/[controller]")]
-    public class StudentActivitiesController : GenericTableController<StudentActivities>
+    public class StudentController : ReadWriteControllerBase<Student>
     {
-        public StudentActivitiesController(EntityBaseRepository<StudentActivities> items) : base(items)
+        public StudentController(EntityBaseRepository<Student> items) : base(items)
         {
         }
     }

@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var data_service_1 = require("../services/data.service");
 var GradeComponent = (function () {
-    function GradeComponent() {
+    function GradeComponent(_dataService) {
+        this._dataService = _dataService;
     }
     GradeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -29,7 +31,8 @@ GradeComponent = __decorate([
         moduleId: module.id,
         templateUrl: 'grade.component.html',
         styleUrls: ['academics.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [data_service_1.DataService])
 ], GradeComponent);
 exports.GradeComponent = GradeComponent;
 //# sourceMappingURL=grade.component.js.map

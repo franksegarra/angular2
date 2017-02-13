@@ -1,9 +1,10 @@
 export interface IScheduleItem {
-    id: string;
-    date: string;
-    time: string;
-    dayOfWeek: string;
-    title: string;
-    type: string;
+    id: number;
+    studentid: number;
+    activitydate: Date;
+    starttime: Date;
+    activityid: number; 
+    activitydesc: string;
+    activitytypeid: number; 
     location: string;
 }

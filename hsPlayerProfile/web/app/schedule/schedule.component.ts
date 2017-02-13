@@ -19,6 +19,7 @@ export class ScheduleComponent implements OnInit {
 
     ngOnInit(): void {
         this._dataService.getSchedule()
-            .subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
+            .subscribe(schedItems => this.schedItems = schedItems, 
+            error => this.errorMessage = <any>error);
     };
 }

@@ -11,12 +11,12 @@ using System.Linq.Expressions;
 namespace webServices.Controllers
 {
     //[Route("api/[controller]")]
-    public class GenericViewController<T> : Controller, IGenericViewController<T>
+    public class ReadOnlyControllerBase<T> : Controller, IReadOnlyControllerBase<T>
             where T : class, IEntityBase, new()
     {
         public EntityBaseRepository<T> _Items { get; set; }
 
-        public GenericViewController(EntityBaseRepository<T> items)
+        public ReadOnlyControllerBase(EntityBaseRepository<T> items)
         {
             _Items = items;
         }
@@ -63,28 +63,5 @@ namespace webServices.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-
-        // GET {id}   
-        [HttpGet("{studentid:int}")]
-        public IActionResult GetByStudentId(int studentid)
-        {
-            IEnumerable<T> items = null;
-            try
-            {
-                //TODO:  Need to have student id here
-                items = _Items.FindBy(s => s.id == studentid);
-                if (items == null)
-                {
-                    return NotFound();
-                }
-                return Ok(items);
-            }
-            catch (Exception ex)
-            {
-                //logger.Error(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
-
     }
 }

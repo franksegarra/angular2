@@ -17,10 +17,11 @@ require("rxjs/add/operator/catch");
 var DataService = (function () {
     function DataService(_http) {
         this._http = _http;
-        this._linksUrl = 'api/links/links.json';
-        this._schedUrl = 'api/schedule/schedule.json';
-        this._classesUrl = 'api/classes/classes.json';
-        this._profilesUrl = 'api/profile/profile.json';
+        //private baseUrl = 'http://localhost:64425/api/';
+        this._classesUrl = 'http://localhost:64425/api/studentclasses/GetByStudentId/1'; //'api/classes/classes.json';
+        this._schedUrl = 'http://localhost:64425/api/studentschedules/GetByStudentId/1'; //'api/schedule/schedule.json';
+        this._linksUrl = 'http://localhost:64425/api/studentlinks/GetByStudentId/1'; //'api/links/links.json';
+        this._profilesUrl = 'http://localhost:64425/api/studentprofile/1'; // 'api/profile/profile.json';
     }
     //Get Classes
     DataService.prototype.getClasses = function () {
@@ -43,7 +44,7 @@ var DataService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    //Get Schedule
+    //Get profile
     DataService.prototype.getMyProfile = function () {
         return this._http.get(this._profilesUrl)
             .map(function (response) { return response.json(); })

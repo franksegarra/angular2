@@ -15,7 +15,9 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'pm-app',
-        template: "\n    <div>\n        <nav class='navbar navbar-default'>\n            <div class='container-fluid'>\n                <a class='navbar-brand'>{{pageTitle}}</a>\n                <ul class = 'nav navbar-nav'>\n                    <li><a [routerLink]=\"['/welcome']\">Home</a></li>\n                    <li><a [routerLink]=\"['/products']\">Products</a></li>\n                    <li><a [routerLink]=\"['/photos']\">Photo Galleries</a></li>\n                    <li><a [routerLink]=\"['/videos']\">Video Galleries</a></li>\n                    <li><a [routerLink]=\"['/stats']\">Stats</a></li>\n                    <li><a [routerLink]=\"['/academics']\">Academics</a></li>\n                    <li><a [routerLink]=\"['/links']\">Links</a></li>\n                    <li><a [routerLink]=\"['/contactme']\">Contact Me</a></li>\n                    <li><a [routerLink]=\"['/schedule']\">Schedule</a></li>\n                    <li><a [routerLink]=\"['/profiles']\">My Profile</a></li>\n                </ul>\n            </div>\n        </nav>\n        <div class='container'>\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    "
+        moduleId: module.id,
+        templateUrl: 'app.component.html',
+        styleUrls: ['app.component.css']
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

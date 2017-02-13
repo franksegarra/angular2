@@ -9,15 +9,6 @@ var core_1 = require("@angular/core");
 var AcademicsComponent = (function () {
     function AcademicsComponent() {
         this.pageTitle = "Academics";
-        //	errorMessage: string;
-        //	parclasses: IClass[];
-        //    constructor(private _dataService: DataService) {
-        //    }
-        //
-        //    ngOnInit(): void {
-        //        this._dataService.getClasses()
-        //            .subscribe(classes => this.parclasses = classes, error => this.errorMessage = <any>error);
-        //    };
     }
     return AcademicsComponent;
 }());

@@ -11,9 +11,9 @@ var GradeFilterPipe = (function () {
     }
     GradeFilterPipe.prototype.transform = function (value, filterBy) {
         filterBy = filterBy ? filterBy : null;
-        return filterBy ?
-            value.filter(function (aClass) { return aClass.grade == filterBy; }) :
-            value;
+        return value;
+        //        filterBy ? value.filter((aclass: IClass) => aclass.grade == filterBy) : 
+        //value;
     };
     return GradeFilterPipe;
 }());

@@ -3,17 +3,19 @@
     <table class="table" *ngIf="classes && classes.length">
         <thead>
             <tr>
+                <th>Grade</th>
                 <th>Class</th>
                 <th>Final Average</th>
                 <th>Letter Grade</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let class of classes  | gradeFilter: {{grade}}'  >
+            <tr *ngFor='let class of classes' >
                 <td>{{ class.grade }}</td>
                 <td>{{ class.className }}</td>
                 <td>{{ class.finalAverage }}</td>
                 <td>{{ class.letterGrade }}</td>
+                
             </tr>
         </tbody>
     </table>

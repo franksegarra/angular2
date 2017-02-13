@@ -5,12 +5,13 @@ import { IClass } from './class';
     name: 'gradeFilter'
 })
 export class GradeFilterPipe implements PipeTransform {
+
     transform(value: IClass[], filterBy: number): IClass[] {
 
         filterBy = filterBy ? filterBy : null;
 
-        return filterBy ? 
-        value.filter((aClass: IClass) => aClass.grade == filterBy) : 
-        value;
+        return value;
+//        filterBy ? value.filter((aclass: IClass) => aclass.grade == filterBy) : 
+            //value;
     }
 }

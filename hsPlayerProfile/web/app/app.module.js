@@ -20,7 +20,7 @@ var academics_module_1 = require("./academics/academics.module");
 var links_module_1 = require("./links/links.module");
 var contactme_module_1 = require("./contactme/contactme.module");
 var schedule_module_1 = require("./schedule/schedule.module");
-var myprofile_module_1 = require("./profiles/myprofile.module");
+var myprofile_module_1 = require("./profile/myprofile.module");
 //Module declaration
 var AppModule = (function () {
     function AppModule() {

@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{2e0ec428-710c-4507-be0e-04aecebca344}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -63,6 +63,7 @@
     <Folder Include="Scripts\Post-Deployment" />
     <Folder Include="Tables" />
     <Folder Include="Views" />
+    <Folder Include="Scripts\Pre-Deployment" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment1.sql" />
@@ -72,12 +73,13 @@
     <Build Include="Tables\student.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="Database.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
     <Build Include="Tables\studentActivities.sql" />
     <Build Include="Tables\studentClasses.sql" />
     <Build Include="Tables\studentSchedules.sql" />
     <Build Include="Views\StudentProfile.sql" />
+    <Build Include="Tables\studentLinks.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment1.sql" />
   </ItemGroup>
 </Project>

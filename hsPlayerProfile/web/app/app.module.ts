@@ -16,7 +16,7 @@ import { AcademicsModule } from './academics/academics.module'
 import { LinksModule } from './links/links.module'
 import { ContactMeModule } from './contactme/contactme.module'
 import { ScheduleModule } from './schedule/schedule.module'
-import { MyProfileModule } from './profiles/myprofile.module'
+import { MyProfileModule } from './profile/myprofile.module'
 
 //Module declaration
 @NgModule({

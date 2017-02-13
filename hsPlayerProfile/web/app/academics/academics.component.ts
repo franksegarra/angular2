@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GradeComponent } from './grade.component';
 
 @Component({
     selector: 'pp-academics',

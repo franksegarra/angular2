@@ -17,5 +17,7 @@ namespace webServices.Entities
         public int highSchoolId { get; set; }
         public string profileName { get; set; }
         public string primaryEmail { get; set; }
+        public int graduationYear { get; set; }
+        public string additionalInfo { get; set; }
     }
 }
