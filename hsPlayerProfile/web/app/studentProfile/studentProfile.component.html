@@ -1,0 +1,29 @@
+<!--<div>-->
+    Student Profile
+    <nav class='navbar'>
+        <div class='container-fluid'>
+            <ul class = 'nav navbar-nav'>                                
+                <li><a [routerLink]="['/academics']">Academics</a></li>
+                <li><a [routerLink]="['/links']">Links</a></li>
+                <li><a [routerLink]="['/contactme']">Contact Me</a></li>
+                <li><a [routerLink]="['/schedule']">Schedule</a></li>
+                <li><a [routerLink]="['/profile']">My Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+<div class="panel panel-primary">
+    <div class="panel-body"  >
+        <router-outlet></router-outlet>
+    </div>    
+
+
+    <!--<div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <div class='container'>
+    <div class="panel-body"  >
+        Home page
+    </div>-->
+</div>

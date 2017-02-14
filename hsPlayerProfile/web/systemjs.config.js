@@ -26,6 +26,9 @@
       // other libraries
       'rxjs': 'npm:rxjs',
 
+      //UI Controls
+      'primeng': 'npm:primeng',
+
       //Google Maps      
       'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js'
 
@@ -38,6 +41,9 @@
       },
       rxjs: {
         defaultExtension: 'js'
+      },
+      primeng: {
+          defaultExtension: 'js'
       },
       'angular2-google-maps': { 
         defaultExtension: 'js' 

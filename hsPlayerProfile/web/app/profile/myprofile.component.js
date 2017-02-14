@@ -17,10 +17,8 @@ var MyProfileComponent = (function () {
     }
     MyProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._dataService.getMyProfile()
-            .subscribe(function (p) { return _this.myprofiles = p; }, function (error) { return _this.errorMessage = error; });
+        this._dataService.getStudent().subscribe(function (p) { return _this.myprofile = p; }, function (error) { return _this.errorMessage = error; });
     };
-    ;
     return MyProfileComponent;
 }());
 MyProfileComponent = __decorate([

@@ -1,2 +1,3 @@
-1.  Add groupings by academic year
-2.  Add section for extra curricular activities
+1.  Add section for extra curricular activities
+2.  Add section for comments
+4.  Add GPA and test scores

@@ -1,3 +1,4 @@
 1.  Add google Maps
 2.  Add Filter 
-3.  Look at possible grid utility
+3.  Display as calander
+4.  Add filtering

@@ -38,7 +38,6 @@ namespace webServices.Controllers
             catch (Exception ex)
             {
                 //logger.Error(ex.Message);
-                return null;
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

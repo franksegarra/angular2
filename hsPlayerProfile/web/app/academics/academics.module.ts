@@ -2,10 +2,12 @@
 import { NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module'
+import { AccordionModule } from 'primeng/primeng';
 
 //Feature components and objects
 import { AcademicsComponent } from './academics.component'
 import { GradeComponent } from './grade.component';
+import { TestScoresComponent } from './testscores.component';
 
 //Services
 import { DataService } from '../services/data.service';
@@ -18,9 +20,10 @@ import { GradeFilterPipe } from './grade-filter.pipe';
 @NgModule({
   imports: [ 
     SharedModule,
+    AccordionModule,
       RouterModule.forChild([{path: 'academics', component: AcademicsComponent}])
     ],
-  declarations: [ AcademicsComponent, GradeComponent, GradeFilterPipe ],
-  providers: [ DataService ]
+  declarations: [ AcademicsComponent, GradeComponent, GradeFilterPipe, TestScoresComponent ],
+  providers: [ DataService ],
 })
 export class AcademicsModule { }

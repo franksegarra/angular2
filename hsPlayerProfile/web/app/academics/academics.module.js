@@ -9,9 +9,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var shared_module_1 = require("../shared/shared.module");
+var primeng_1 = require("primeng/primeng");
 //Feature components and objects
 var academics_component_1 = require("./academics.component");
 var grade_component_1 = require("./grade.component");
+var testscores_component_1 = require("./testscores.component");
 //Services
 var data_service_1 = require("../services/data.service");
 //Grade Filter
@@ -26,10 +28,11 @@ AcademicsModule = __decorate([
     core_1.NgModule({
         imports: [
             shared_module_1.SharedModule,
+            primeng_1.AccordionModule,
             router_1.RouterModule.forChild([{ path: 'academics', component: academics_component_1.AcademicsComponent }])
         ],
-        declarations: [academics_component_1.AcademicsComponent, grade_component_1.GradeComponent, grade_filter_pipe_1.GradeFilterPipe],
-        providers: [data_service_1.DataService]
+        declarations: [academics_component_1.AcademicsComponent, grade_component_1.GradeComponent, grade_filter_pipe_1.GradeFilterPipe, testscores_component_1.TestScoresComponent],
+        providers: [data_service_1.DataService],
     })
 ], AcademicsModule);
 exports.AcademicsModule = AcademicsModule;

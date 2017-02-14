@@ -9,11 +9,15 @@ var core_1 = require("@angular/core");
 var GradeFilterPipe = (function () {
     function GradeFilterPipe() {
     }
-    GradeFilterPipe.prototype.transform = function (value, filterBy) {
-        filterBy = filterBy ? filterBy : null;
-        return value;
-        //        filterBy ? value.filter((aclass: IClass) => aclass.grade == filterBy) : 
-        //value;
+    GradeFilterPipe.prototype.transform = function (classes, conditions) {
+        return classes.filter(function (aclass) {
+            for (var field in conditions) {
+                if (aclass[field] !== conditions[field]) {
+                    return false;
+                }
+            }
+            return true;
+        });
     };
     return GradeFilterPipe;
 }());

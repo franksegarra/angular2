@@ -17,5 +17,6 @@ namespace webServices.Entities
         public string className { get; set; }
         public short finalAverage { get; set; }
         public string letterGrade { get; set; }
+        public short collegeCredit { get; set; }
     }
 }

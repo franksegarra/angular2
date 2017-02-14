@@ -1,0 +1,2 @@
+1.  Add description field.  Need to get opinions on this.
+2.  Add Google maps

@@ -2,20 +2,34 @@
     <div class='panel-heading'>
         {{pageTitle}}
     </div>
-
     <div class='panel-body'>
+        Table
         <div class='table-responsive'>
             <table class='table' *ngIf='myprofiles && myprofiles.length'>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor='let profile of myprofiles' >   
-                        <td>{{ profile.id }}</td>
-                    </tr>
-                </tbody>
+                <tr *ngFor='let profile of myprofiles' >  
+                    <div class='table-responsive'>
+                        <table>
+                            <tbody>
+                                <tr>   
+                                    <td style="width: 120px">Profile Id</td><td>{{ profile.id }}</td>
+                                </tr>
+                                <tr>   
+                                    <td style="width: 120px">Name</td><td>{{ profile.firstName + ' ' + profile.lastName }}</td>
+                                </tr>
+                                <tr>   
+                                    <td style="width: 120px">Primary Email</td><td>{{ profile.primaryEmail }}</td>
+                                </tr>
+                                <tr>   
+                                    <td style="width: 120px">High School</td><td>{{ profile.highSchoolId }}</td>
+                                </tr>
+                                <tr>   
+                                    <td style="width: 120px">Graduation Year</td><td>{{ profile.graduationYear }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                </tr>
             </table>
         </div>
     </div>

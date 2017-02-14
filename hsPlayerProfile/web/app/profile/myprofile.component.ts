@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IProfile } from './profile';
+import { IProfile } from './IProfile';
+import { IStudent } from './IStudent';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -12,18 +13,12 @@ export class MyProfileComponent implements OnInit {
     
     pageTitle: string = "My Profile";
     errorMessage: string;
-    myprofiles: IProfile[];
+    myprofile: IStudent[];
 
     constructor(private _dataService: DataService) {
     }
 
     ngOnInit(): void {
-        this._dataService.getMyProfile()
-            .subscribe(p => this.myprofiles = p, 
-            error => this.errorMessage = <any>error);
-    };
-
-    // onSubmit(form: any): void {  
-    //     console.log('you submitted value:', form);  
-    // };
+        this._dataService.getStudent().subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
+    }
 }

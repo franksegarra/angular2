@@ -1,2 +1,8 @@
 "use strict";
-//# sourceMappingURL=profile.js.map
+var Profile = (function () {
+    function Profile() {
+    }
+    return Profile;
+}());
+exports.Profile = Profile;
+//# sourceMappingURL=Profile.js.map

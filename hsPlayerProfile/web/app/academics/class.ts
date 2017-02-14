@@ -3,4 +3,5 @@ export interface IClass {
     className: string;
     finalAverage: number;
     letterGrade: string;
+    collegeCredit: number;
 }

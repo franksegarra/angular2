@@ -6,9 +6,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var config_service_1 = require("./config.service");
 var AppComponent = (function () {
     function AppComponent() {
-        this.pageTitle = 'High School Player Profiles';
+        this.pageTitle = config_service_1.Config.MAIN_HEADING;
     }
     return AppComponent;
 }());

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Config } from './config.service';
+import { StudentProfileComponent } from './studentprofile/studentprofile.component';
 
 @Component({
     selector: 'pm-app',
@@ -7,5 +9,5 @@ import { Component } from '@angular/core';
     styleUrls: ['app.component.css']
 })
 export class AppComponent {
-    pageTitle: string = 'High School Player Profiles'
+    pageTitle: string = Config.MAIN_HEADING;
 }

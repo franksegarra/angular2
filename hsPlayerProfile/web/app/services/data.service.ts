@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+//Global settings
+import { Config } from '../config.service';
+
+//Our Objects
 import { IClass } from '../academics/class';
 import { ILink } from '../links/link';
 import { IScheduleItem } from '../schedule/scheduleItem';
-import { IProfile } from '../profile/profile';
+import { IProfile } from '../profile/IProfile';
+import { IStudent } from '../profile/IStudent';
 
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class DataService {
-    
-    //private baseUrl = 'http://localhost:64425/api/';
-    private _classesUrl = 'http://localhost:64425/api/studentclasses/GetByStudentId/1';             //'api/classes/classes.json';
-    private _schedUrl = 'http://localhost:64425/api/studentschedules/GetByStudentId/1';             //'api/schedule/schedule.json';
-    private _linksUrl = 'http://localhost:64425/api/studentlinks/GetByStudentId/1';                 //'api/links/links.json';
-    private _profilesUrl = 'http://localhost:64425/api/studentprofile/1';                           // 'api/profile/profile.json';
+    private _classesUrl: string = Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/1';             //'api/classes/classes.json';
+    private _schedUrl: string  = Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/1';             //'api/schedule/schedule.json';
+    private _linksUrl: string  = Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/1';                 //'api/links/links.json';
+    private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile';                           //'api/profile/profile.json';                           
+    private _studentsUrl: string  = Config.WEBSERVICESURL + 'student';                           //'api/profile/profile.json';                           
     
     constructor(private _http: Http) {
     }
@@ -49,6 +54,14 @@ export class DataService {
                     .catch(this.handleError) ;
     }
 
+    //Get Schedule
+    getStudent(): Observable<IStudent[]> {
+        return this._http.get(this._studentsUrl)
+                    .map((response: Response) => <IStudent[]>response.json())
+                    .do(data => console.log('All: ' + JSON.stringify(data)))
+                    .catch(this.handleError) ;
+    }
+
     //Get profile
     getMyProfile(): Observable<IProfile[]> {
 
@@ -57,6 +70,22 @@ export class DataService {
                     .do(data => console.log('All: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
+
+    getMyProfilePromise(): Promise<IProfile> {
+        return new Promise((resolve, reject) => {
+            return this._http.get(this._profilesUrl)
+                .map((response: Response) => <IProfile>response.json())
+                .do(data => console.log('All: ' + JSON.stringify(data)))
+                .subscribe(p => {resolve(p);}, error => reject(error));
+                //.catch(this.handleError) ;
+        });
+
+        // return this._http.get(this._profilesUrl)
+        //             .map((response: Response) => <IProfile>response.json())
+        //             .do(data => console.log('All: ' + JSON.stringify(data)))
+        //             .catch(this.handleError) ;
+    }
+
 
     private handleError(error: Response) {
         console.error(error);

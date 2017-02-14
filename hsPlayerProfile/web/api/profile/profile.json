@@ -6,7 +6,7 @@
         "lastName": "Segarra",
         "primaryEmail": "segarraf18@gmail.com",
         "highSchoolid": 1,
-        "highSchool": "Carmel High School",
+        "highSchoolName": "Carmel High School",
         "graduationYear": 2018,
         "additionalInfo": "I am offspring #2"
     },
@@ -17,7 +17,7 @@
         "lastName": "Segarra",
         "primaryEmail": "krsegarra@gmail.com",
         "highSchoolid": 1,
-        "highSchool": "Carmel High School",
+        "highSchoolName": "Carmel High School",
         "graduationYear": 2015,
         "additionalInfo": "I am offspring #1"
     }    

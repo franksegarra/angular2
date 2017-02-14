@@ -9,7 +9,7 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
+/*
 INSERT INTO highSchool (highSchoolName) VALUES ('Carmel High School')
 GO
 
@@ -30,32 +30,32 @@ INSERT INTO activityType (activitytype) VALUES ('Tournament')
 INSERT INTO activityType (activitytype) VALUES ('Showcase')
 GO
 
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,9,'Algebra I',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,9,'Global History I',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,9,'Earth Science',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,9,'English',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,9,'French III',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,9,'Design and Drawing I',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,9,'World of Technology',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,10,'Geometry',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,10,'Global History II',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,10,'Biology',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,10,'English 10',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,10,'French IV',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,10,'PLTW - Introduction to Engineering',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,10,'Architecture',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,11,'Algebra II',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,11,'US History',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,11,'Chemistry',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,11,'AP English Language',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,11,'*PLTW - Principals of Engineering',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,11,'*PLTW - Civil Engineering',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,12,'Pre Calculus',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,12,'Economics',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,12,'Physics',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,12,'**DCC English',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,12,'*PLTW - Project',92,'A')
-insert into studentClasses (studentid,grade,className,finalAverage,letterGrade) values (1,12,'Health',92,'A')
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,9,'Algebra I',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,9,'Global History I',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,9,'Earth Science',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,9,'English',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,9,'French III',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,9,'Design and Drawing I',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,9,'World of Technology',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,10,'Geometry',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,10,'Global History II',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,10,'Biology',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,10,'English 10',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,10,'French IV',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,10,'PLTW - Introduction to Engineering',92,'A', 1)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,10,'Architecture',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,11,'Algebra II',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,11,'US History',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,11,'Chemistry',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,11,'AP English Language',92,'A', 1)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,11,'PLTW - Principals of Engineering',92,'A', 1)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,11,'PLTW - Civil Engineering',92,'A', 1)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,12,'Pre Calculus',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,12,'Economics',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,12,'Physics',92,'A', 0)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,12,'DCC English',92,'A', 1)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,12,'PLTW - Project',92,'A', 1)
+insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,12,'Health',92,'A', 0)
 GO
 
 Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'03/25/2017','11:00 AM',1,'@Briarcliff High School',1,'Briarcliff High School, 444 Pleasantville Rd, Briarcliff Manor, NY 10510, USA') 
@@ -96,3 +96,4 @@ GO
 
 insert into studentActivities (studentid, activityid) values (1, 1)
 GO
+*/

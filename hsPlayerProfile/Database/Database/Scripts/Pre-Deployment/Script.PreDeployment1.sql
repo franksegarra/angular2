@@ -9,6 +9,7 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+/*
 if exists(select name from sysobjects where name = 'studentSchedules')
 drop table [dbo].[studentSchedules]
 go
@@ -40,7 +41,7 @@ go
 if exists(select name from sysobjects where name = 'activity')
 drop table [dbo].[activity]
 go
-
+*/
 
 
 
