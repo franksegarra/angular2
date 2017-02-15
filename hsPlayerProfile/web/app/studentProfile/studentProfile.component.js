@@ -21,4 +21,4 @@ StudentProfileComponent = __decorate([
     })
 ], StudentProfileComponent);
 exports.StudentProfileComponent = StudentProfileComponent;
-//# sourceMappingURL=studentProfile.component.js.map
+//# sourceMappingURL=studentprofile.component.js.map

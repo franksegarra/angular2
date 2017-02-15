@@ -26,7 +26,7 @@ import { MyProfileModule } from './profile/myprofile.module'
       BrowserModule, 
       HttpModule,
       RouterModule.forRoot([
-          {path: 'welcome', component: StudentProfileComponent},
+          {path: 'welcome', component: WelcomeComponent},
           {path: '', redirectTo: 'welcome', pathMatch: 'full'},
           {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
       ]),

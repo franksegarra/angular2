@@ -19,7 +19,7 @@ import { DataService } from '../services/data.service';
 export class AcademicsComponent implements OnInit { 
     pageTitle: string = "Academics";
     classes: IClass[];
-    myprofile: IProfile;
+    myprofile: IProfile[];
     errorMessage: string;
 
     constructor(private _dataService: DataService) {
