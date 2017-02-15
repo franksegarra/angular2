@@ -9,20 +9,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
+//routing setup
+var app_routes_1 = require("./app.routes");
 //Main startup Component
 var app_component_1 = require("./app.component");
+//Student Profile
 var studentprofile_component_1 = require("./studentprofile/studentprofile.component");
-//To Remove
-var welcome_component_1 = require("./home/welcome.component");
-var product_module_1 = require("./products/product.module");
-//Application components and objects
-//import { StudentProfileModule } from './studentprofile/studentprofile.module'
-var academics_module_1 = require("./academics/academics.module");
-var links_module_1 = require("./links/links.module");
-var contactme_module_1 = require("./contactme/contactme.module");
-var schedule_module_1 = require("./schedule/schedule.module");
-var myprofile_module_1 = require("./profile/myprofile.module");
+var studentprofile_module_1 = require("./studentprofile/studentprofile.module");
 //Module declaration
 var AppModule = (function () {
     function AppModule() {
@@ -34,22 +27,11 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             http_1.HttpModule,
-            router_1.RouterModule.forRoot([
-                { path: 'welcome', component: welcome_component_1.WelcomeComponent },
-                { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-            ]),
-            //StudentProfileModule
-            product_module_1.ProductModule,
-            academics_module_1.AcademicsModule,
-            links_module_1.LinksModule,
-            contactme_module_1.ContactMeModule,
-            schedule_module_1.ScheduleModule,
-            myprofile_module_1.MyProfileModule
+            app_routes_1.Routing,
+            studentprofile_module_1.StudentProfileModule
         ],
         declarations: [
             app_component_1.AppComponent,
-            welcome_component_1.WelcomeComponent,
             studentprofile_component_1.StudentProfileComponent
         ],
         bootstrap: [app_component_1.AppComponent]

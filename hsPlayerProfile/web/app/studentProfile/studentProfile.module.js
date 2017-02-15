@@ -6,16 +6,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-//Feature components and objects
-var studentprofile_component_1 = require("./studentprofile.component");
-//Application components and objects
-// import { AcademicsModule } from '../academics/academics.module'
-// import { AcademicsComponent } from '../academics/academics.component'
-// import { LinksModule } from '../links/links.module'
-// import { ContactMeModule } from '../contactme/contactme.module'
-// import { ScheduleModule } from '../schedule/schedule.module'
-// import { MyProfileModule } from '../profile/myprofile.module'
+//Feature components
+var academics_module_1 = require("../academics/academics.module");
+var links_module_1 = require("../links/links.module");
+var contactme_module_1 = require("../contactme/contactme.module");
+var schedule_module_1 = require("../schedule/schedule.module");
+var myprofile_module_1 = require("../profile/myprofile.module");
 //Module declaration
 var StudentProfileModule = (function () {
     function StudentProfileModule() {
@@ -25,10 +21,14 @@ var StudentProfileModule = (function () {
 StudentProfileModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forRoot([{ path: 'studentprofile', component: studentprofile_component_1.StudentProfileComponent }])
+            academics_module_1.AcademicsModule,
+            links_module_1.LinksModule,
+            contactme_module_1.ContactMeModule,
+            schedule_module_1.ScheduleModule,
+            myprofile_module_1.MyProfileModule
         ],
-        declarations: [studentprofile_component_1.StudentProfileComponent]
+        declarations: []
     })
 ], StudentProfileModule);
 exports.StudentProfileModule = StudentProfileModule;
-//# sourceMappingURL=studentProfile.module.js.map
+//# sourceMappingURL=studentprofile.module.js.map

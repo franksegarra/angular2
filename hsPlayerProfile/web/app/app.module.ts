@@ -4,44 +4,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+//routing setup
+import { Routing } from "./app.routes";
+
 //Main startup Component
 import { AppComponent }  from './app.component';
+
+//Student Profile
 import { StudentProfileComponent } from './studentprofile/studentprofile.component';
-
-//To Remove
-import { WelcomeComponent } from './home/welcome.component';
-import { ProductModule } from './products/product.module'
-
-//Application components and objects
-//import { StudentProfileModule } from './studentprofile/studentprofile.module'
-import { AcademicsModule } from './academics/academics.module'
-import { LinksModule } from './links/links.module'
-import { ContactMeModule } from './contactme/contactme.module'
-import { ScheduleModule } from './schedule/schedule.module'
-import { MyProfileModule } from './profile/myprofile.module'
+import { StudentProfileModule } from './studentprofile/studentprofile.module';
 
 //Module declaration
 @NgModule({
   imports: [ 
       BrowserModule, 
       HttpModule,
-      RouterModule.forRoot([
-          {path: 'welcome', component: WelcomeComponent},
-          {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-          {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
-      ]),
-      //StudentProfileModule
-      ProductModule,
-      AcademicsModule,
-      LinksModule,
-      ContactMeModule,
-      ScheduleModule,
-      MyProfileModule
+      Routing,
+      StudentProfileModule
   ],
   declarations: [ 
-      AppComponent,
-      WelcomeComponent,
-      StudentProfileComponent 
+      AppComponent
+      ,StudentProfileComponent 
   ],
   bootstrap: [ AppComponent ]
 })
