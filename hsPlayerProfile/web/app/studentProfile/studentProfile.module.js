@@ -6,6 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+//routing setup
+var app_routes_1 = require("../app.routes");
 //Feature components
 var academics_module_1 = require("../academics/academics.module");
 var links_module_1 = require("../links/links.module");
@@ -21,6 +23,7 @@ var StudentProfileModule = (function () {
 StudentProfileModule = __decorate([
     core_1.NgModule({
         imports: [
+            app_routes_1.Routing,
             academics_module_1.AcademicsModule,
             links_module_1.LinksModule,
             contactme_module_1.ContactMeModule,

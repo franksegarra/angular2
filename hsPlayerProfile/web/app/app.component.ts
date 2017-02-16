@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Config } from './config.service';
-import { StudentProfileComponent } from './studentprofile/studentprofile.component';
 
 @Component({
     selector: 'pm-app',

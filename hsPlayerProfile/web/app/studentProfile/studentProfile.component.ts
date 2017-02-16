@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
     styleUrls: ['studentprofile.component.css']
 })
 export class StudentProfileComponent {
-    public pageTitle: string = 'Welcome';
+    public pageTitle: string = 'Francis Segarra - 2018';
 }

@@ -10,7 +10,12 @@ import { Routing } from "./app.routes";
 //Main startup Component
 import { AppComponent }  from './app.component';
 
+//Main Menu features
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+
 //Student Profile
+import { StudentProfileMenuComponent } from './studentprofile/studentprofilemenu.component';
 import { StudentProfileComponent } from './studentprofile/studentprofile.component';
 import { StudentProfileModule } from './studentprofile/studentprofile.module';
 
@@ -24,7 +29,10 @@ import { StudentProfileModule } from './studentprofile/studentprofile.module';
   ],
   declarations: [ 
       AppComponent
-      ,StudentProfileComponent 
+      ,AboutComponent
+      ,HomeComponent
+      ,StudentProfileComponent
+      ,StudentProfileMenuComponent 
   ],
   bootstrap: [ AppComponent ]
 })

@@ -6,19 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var StudentProfileComponent = (function () {
-    function StudentProfileComponent() {
-        this.pageTitle = 'Francis Segarra - 2018';
+var AboutComponent = (function () {
+    function AboutComponent() {
+        this.pageTitle = 'About Us';
     }
-    return StudentProfileComponent;
+    return AboutComponent;
 }());
-StudentProfileComponent = __decorate([
+AboutComponent = __decorate([
     core_1.Component({
-        selector: 'pp-studentprofile',
-        moduleId: module.id,
-        templateUrl: 'studentprofile.component.html',
-        styleUrls: ['studentprofile.component.css']
+        templateUrl: 'app/about/about.component.html'
     })
-], StudentProfileComponent);
-exports.StudentProfileComponent = StudentProfileComponent;
-//# sourceMappingURL=studentprofile.component.js.map
+], AboutComponent);
+exports.AboutComponent = AboutComponent;
+//# sourceMappingURL=about.component.js.map

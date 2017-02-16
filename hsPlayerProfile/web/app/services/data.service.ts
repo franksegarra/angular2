@@ -19,11 +19,11 @@ import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class DataService {
-    private _classesUrl: string = Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/1';             //'api/classes/classes.json';
-    private _schedUrl: string  = Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/1';             //'api/schedule/schedule.json';
+    private _classesUrl: string = Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/1';              //'api/classes/classes.json';
+    private _schedUrl: string  = Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/1';             // 'api/schedule/schedule.json'; 
     private _linksUrl: string  = Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/1';                 //'api/links/links.json';
-    private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile';                           //'api/profile/profile.json';                           
-    private _studentsUrl: string  = Config.WEBSERVICESURL + 'student';                           //'api/profile/profile.json';                           
+    private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile/1';                           //'api/profile/profile.json';                           
+    private _studentsUrl: string  = Config.WEBSERVICESURL + 'student';                                    //'api/profile/profile.json';                           
     
     constructor(private _http: Http) {
     }

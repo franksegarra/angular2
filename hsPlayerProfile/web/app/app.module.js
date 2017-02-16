@@ -13,7 +13,11 @@ var http_1 = require("@angular/http");
 var app_routes_1 = require("./app.routes");
 //Main startup Component
 var app_component_1 = require("./app.component");
+//Main Menu features
+var about_component_1 = require("./about/about.component");
+var home_component_1 = require("./home/home.component");
 //Student Profile
+var studentprofilemenu_component_1 = require("./studentprofile/studentprofilemenu.component");
 var studentprofile_component_1 = require("./studentprofile/studentprofile.component");
 var studentprofile_module_1 = require("./studentprofile/studentprofile.module");
 //Module declaration
@@ -32,7 +36,10 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
-            studentprofile_component_1.StudentProfileComponent
+            about_component_1.AboutComponent,
+            home_component_1.HomeComponent,
+            studentprofile_component_1.StudentProfileComponent,
+            studentprofilemenu_component_1.StudentProfileMenuComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })
