@@ -4,9 +4,7 @@ var router_1 = require("@angular/router");
 var home_component_1 = require("./home/home.component");
 var studentprofile_component_1 = require("./studentprofile/studentprofile.component");
 var about_component_1 = require("./about/about.component");
-//Side menu
-var studentprofilemenu_component_1 = require("./studentprofile/studentprofilemenu.component");
-//Student Profile menu
+//Student Profile menu compenents
 var academics_component_1 = require("./academics/academics.component");
 var links_component_1 = require("./links/links.component");
 var contactme_component_1 = require("./contactme/contactme.component");
@@ -18,7 +16,6 @@ var appRoutes = [
         path: 'studentprofile',
         component: studentprofile_component_1.StudentProfileComponent,
         children: [
-            { path: '', outlet: 'sidemenu', component: studentprofilemenu_component_1.StudentProfileMenuComponent },
             { path: '', component: academics_component_1.AcademicsComponent },
             { path: 'academics', component: academics_component_1.AcademicsComponent },
             { path: 'links', component: links_component_1.LinksComponent },

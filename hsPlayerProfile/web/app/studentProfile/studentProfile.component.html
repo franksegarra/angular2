@@ -1,36 +1,35 @@
-<!--<div class="panel panel-primary">
-    <nav class='navbar'>
-        <div class='container-fluid'>
-            <a class='navbar-brand' [routerLink]="['/studentprofile']">Francis Segarra - 2018</a>            
-            <ul class = 'nav navbar-nav'>                                
-                <li><a [routerLink]="['/academics']">Academics</a></li>
-                <li><a [routerLink]="['/links']">Links</a></li>
-                <li><a [routerLink]="['/contactme']">Contact Me</a></li>
-                <li><a [routerLink]="['/schedule']">Schedule</a></li>
-                <li><a [routerLink]="['/profile']">My Profile</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>-->
+<div class="panel panel-primary">
+    <div class="wrapper">
+        <div class="row row-offcanvas row-offcanvas-left">
 
-<main>
-    <div class="container">
-        <div class="row row-offcanvas row-offcanvas-right">
-            <router-outlet name="sidemenu"></router-outlet>
-            <div class="col-xs-12 col-sm-9">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-                    <li class="breadcrumb-item active">{{pageTitle}}</li>
-                </ol>
-                <div class='panel panel-primary'>
-                    <div class='panel-heading'>
-                        {{pageTitle}}
-                    </div>
-                    <div class='panel-body'>
-                        <router-outlet></router-outlet>
-                    </div>
+            <!-- sidebar -->
+            <div class="column col-sm-3 col-xs-1 sidebar-offcanvas" id="sidebar">
+                <ul class="nav" id="menu">
+                    <li><a [routerLink]="['/studentprofile/videos']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Videos</span></a></li>
+                    <li><a [routerLink]="['/studentprofile/picture']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Pictures</span></a></li>
+                    <li><a [routerLink]="['/studentprofile/academics']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Academics</span></a></li>
+                    <li><a [routerLink]="['/studentprofile/schedule']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Schedule</span></a></li>
+                    <li><a [routerLink]="['/studentprofile/links']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Links</span></a></li>
+                    <li><a [routerLink]="['/studentprofile/profile']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">My Profile</span></a></li>
+                    <li><a [routerLink]="['/studentprofile/contactme']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Contact Me</span></a></li>
+                </ul>
+            </div>
+            <!-- /sidebar -->
+
+            <!-- main right col -->
+            <div class="column col-sm-9 col-xs-11" id="main">
+
+                <!--<p><a href="#" data-toggle="offcanvas"><i class="fa fa-navicon fa-2x"></i></a></p>-->
+
+                <div class='panel-heading'>
+                    {{pageTitle}}
+                </div>
+
+                <div class='panel-body'>
+                    <router-outlet></router-outlet>
                 </div>
             </div>
+            <!-- /main -->
         </div>
     </div>
-</main>
+</div>

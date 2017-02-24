@@ -18,7 +18,7 @@ var StudentProfileMenuComponent = (function () {
 }());
 StudentProfileMenuComponent = __decorate([
     core_1.Component({
-        selector: 'app-categories-menu',
+        selector: 'studentprofilemenu',
         templateUrl: './studentprofilemenu.component.html',
         styleUrls: ['./studentprofile.component.css']
     }),

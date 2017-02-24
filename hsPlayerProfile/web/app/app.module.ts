@@ -15,7 +15,6 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 
 //Student Profile
-import { StudentProfileMenuComponent } from './studentprofile/studentprofilemenu.component';
 import { StudentProfileComponent } from './studentprofile/studentprofile.component';
 import { StudentProfileModule } from './studentprofile/studentprofile.module';
 
@@ -32,7 +31,6 @@ import { StudentProfileModule } from './studentprofile/studentprofile.module';
       ,AboutComponent
       ,HomeComponent
       ,StudentProfileComponent
-      ,StudentProfileMenuComponent 
   ],
   bootstrap: [ AppComponent ]
 })

@@ -22,6 +22,6 @@ import { MyProfileModule } from '../profile/myprofile.module'
       ScheduleModule,
       MyProfileModule
   ],
-  declarations: [ ]
+  declarations: []
 })
 export class StudentProfileModule { }

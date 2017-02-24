@@ -6,23 +6,19 @@ import { HomeComponent } from './home/home.component';
 import { StudentProfileComponent } from './studentprofile/studentprofile.component';
 import { AboutComponent } from './about/about.component';
 
-//Side menu
-import { StudentProfileMenuComponent } from './studentprofile/studentprofilemenu.component';
-
-//Student Profile menu
+//Student Profile menu compenents
 import { AcademicsComponent } from './academics/academics.component'
 import { LinksComponent } from './links/links.component'
 import { ContactMeComponent } from './contactme/contactme.component'
 import { ScheduleComponent } from './schedule/schedule.component'
 import { MyProfileComponent } from './profile/myprofile.component'
 
-const appRoutes: Routes  = [
+const appRoutes: Routes = [
         {path: 'home', component: HomeComponent},
         {
                 path: 'studentprofile', 
-                component: StudentProfileComponent,
-                children: [
-                        {path: '', outlet: 'sidemenu', component: StudentProfileMenuComponent },
+                component: StudentProfileComponent
+                ,children: [
                         {path: '', component: AcademicsComponent },
                         {path: 'academics', component: AcademicsComponent},
                         {path: 'links', component: LinksComponent},
