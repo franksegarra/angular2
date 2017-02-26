@@ -9,12 +9,8 @@ import { AcademicsComponent } from './academics.component'
 import { GradeComponent } from './grade.component';
 import { TestScoresComponent } from './testscores.component';
 
-//Services
-import { DataService } from '../services/data.service';
-
 //Grade Filter
 import { GradeFilterPipe } from './grade-filter.pipe';
-
 
 //Module declaration
 @NgModule({
@@ -23,7 +19,6 @@ import { GradeFilterPipe } from './grade-filter.pipe';
     AccordionModule,
       RouterModule.forChild([{path: 'academics', component: AcademicsComponent}])
     ],
-  declarations: [ AcademicsComponent, GradeComponent, GradeFilterPipe, TestScoresComponent ],
-  providers: [ DataService ],
+  declarations: [ AcademicsComponent, GradeComponent, GradeFilterPipe, TestScoresComponent ]
 })
 export class AcademicsModule { }

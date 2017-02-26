@@ -5,11 +5,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require("@angular/core");
+var Student_1 = require("../profile/Student");
+var data_service_1 = require("../services/data.service");
+//import { AcademicsComponent } from '../academics/academics.component'
 var StudentProfileComponent = (function () {
-    function StudentProfileComponent() {
-        this.pageTitle = 'Francis Segarra - 2018';
+    function StudentProfileComponent(_dataService) {
+        this._dataService = _dataService;
+        this.studentId = '1';
     }
+    StudentProfileComponent.prototype.ngOnInit = function () {
+        this.studentprofile = new Student_1.Student();
+        this.studentprofile.firstName = 'Francis';
+        this.studentprofile.lastName = 'Segarra';
+        this.studentprofile.graduationYear = 2018;
+        //this._dataService.getStudent(this.studentId).subscribe(p => this.studentprofile = p, error => this.errorMessage = <any>error);
+    };
     return StudentProfileComponent;
 }());
 StudentProfileComponent = __decorate([
@@ -18,7 +32,8 @@ StudentProfileComponent = __decorate([
         moduleId: module.id,
         templateUrl: 'studentprofile.component.html',
         styleUrls: ['studentprofile.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [data_service_1.DataService])
 ], StudentProfileComponent);
 exports.StudentProfileComponent = StudentProfileComponent;
 //# sourceMappingURL=studentprofile.component.js.map

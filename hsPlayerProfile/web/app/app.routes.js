@@ -7,7 +7,7 @@ var about_component_1 = require("./about/about.component");
 //Student Profile menu compenents
 var academics_component_1 = require("./academics/academics.component");
 var links_component_1 = require("./links/links.component");
-var contactme_component_1 = require("./contactme/contactme.component");
+var contactme_component_1 = require("./studentprofile/contactme/contactme.component");
 var schedule_component_1 = require("./schedule/schedule.component");
 var myprofile_component_1 = require("./profile/myprofile.component");
 var appRoutes = [

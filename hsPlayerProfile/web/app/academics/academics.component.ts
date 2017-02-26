@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IClass } from './class';
-import { IProfile } from '../profile/IProfile';
+import { IStudent } from '../profile/IStudent';
 
 //Nested components
 import { GradeComponent } from './grade.component';
@@ -19,14 +19,14 @@ import { DataService } from '../services/data.service';
 export class AcademicsComponent implements OnInit { 
     pageTitle: string = "Academics";
     classes: IClass[];
-    myprofile: IProfile[];
     errorMessage: string;
+    studentprofile: IStudent;
 
     constructor(private _dataService: DataService) {
     }
 
     ngOnInit() {
         this._dataService.getClasses().subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
-        this._dataService.getMyProfile().subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
+        //this._dataService.getMyProfile('1').subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
     }  
 }

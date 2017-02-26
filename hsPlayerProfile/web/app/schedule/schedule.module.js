@@ -13,8 +13,6 @@ var shared_module_1 = require("../shared/shared.module");
 //import { AgmCoreModule } from 'angular2-google-maps/core';
 //Feature components and objects
 var schedule_component_1 = require("./schedule.component");
-//Services
-var data_service_1 = require("../services/data.service");
 //Module declaration
 var ScheduleModule = (function () {
     function ScheduleModule() {
@@ -28,7 +26,6 @@ ScheduleModule = __decorate([
             router_1.RouterModule.forChild([{ path: 'schedule', component: schedule_component_1.ScheduleComponent }])
         ],
         declarations: [schedule_component_1.ScheduleComponent],
-        providers: [data_service_1.DataService]
     })
 ], ScheduleModule);
 exports.ScheduleModule = ScheduleModule;

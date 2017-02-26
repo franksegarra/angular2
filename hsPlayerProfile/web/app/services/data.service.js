@@ -23,7 +23,7 @@ var DataService = (function () {
         this._classesUrl = config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/1'; //'api/classes/classes.json';
         this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/1'; // 'api/schedule/schedule.json'; 
         this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/1'; //'api/links/links.json';
-        this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/1'; //'api/profile/profile.json';                           
+        this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile'; //'api/profile/profile.json';                           
         this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student'; //'api/profile/profile.json';                           
     }
     //Get Classes
@@ -48,32 +48,18 @@ var DataService = (function () {
             .catch(this.handleError);
     };
     //Get Schedule
-    DataService.prototype.getStudent = function () {
-        return this._http.get(this._studentsUrl)
+    DataService.prototype.getStudent = function (id) {
+        return this._http.get(this._studentsUrl + '/' + id)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get profile
-    DataService.prototype.getMyProfile = function () {
-        return this._http.get(this._profilesUrl)
+    DataService.prototype.getMyProfile = function (id) {
+        return this._http.get(this._profilesUrl + '/' + id)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
-    };
-    DataService.prototype.getMyProfilePromise = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            return _this._http.get(_this._profilesUrl)
-                .map(function (response) { return response.json(); })
-                .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
-                .subscribe(function (p) { resolve(p); }, function (error) { return reject(error); });
-            //.catch(this.handleError) ;
-        });
-        // return this._http.get(this._profilesUrl)
-        //             .map((response: Response) => <IProfile>response.json())
-        //             .do(data => console.log('All: ' + JSON.stringify(data)))
-        //             .catch(this.handleError) ;
     };
     DataService.prototype.handleError = function (error) {
         console.error(error);

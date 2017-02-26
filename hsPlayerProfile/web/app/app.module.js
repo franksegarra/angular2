@@ -9,6 +9,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
+//Services
+var data_service_1 = require("./services/data.service");
 //routing setup
 var app_routes_1 = require("./app.routes");
 //Main startup Component
@@ -39,6 +41,7 @@ AppModule = __decorate([
             home_component_1.HomeComponent,
             studentprofile_component_1.StudentProfileComponent
         ],
+        providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

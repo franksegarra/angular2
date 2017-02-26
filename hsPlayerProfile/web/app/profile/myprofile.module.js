@@ -12,8 +12,6 @@ var shared_module_1 = require("../shared/shared.module");
 //import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Feature components and objects
 var myprofile_component_1 = require("./myprofile.component");
-//Services
-var data_service_1 = require("../services/data.service");
 //Module declaration
 var MyProfileModule = (function () {
     function MyProfileModule() {
@@ -27,7 +25,6 @@ MyProfileModule = __decorate([
             router_1.RouterModule.forChild([{ path: 'profile', component: myprofile_component_1.MyProfileComponent }])
         ],
         declarations: [myprofile_component_1.MyProfileComponent],
-        providers: [data_service_1.DataService]
     })
 ], MyProfileModule);
 exports.MyProfileModule = MyProfileModule;

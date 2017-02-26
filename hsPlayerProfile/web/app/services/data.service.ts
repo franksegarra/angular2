@@ -22,7 +22,7 @@ export class DataService {
     private _classesUrl: string = Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/1';              //'api/classes/classes.json';
     private _schedUrl: string  = Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/1';             // 'api/schedule/schedule.json'; 
     private _linksUrl: string  = Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/1';                 //'api/links/links.json';
-    private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile/1';                           //'api/profile/profile.json';                           
+    private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile';                           //'api/profile/profile.json';                           
     private _studentsUrl: string  = Config.WEBSERVICESURL + 'student';                                    //'api/profile/profile.json';                           
     
     constructor(private _http: Http) {
@@ -55,37 +55,20 @@ export class DataService {
     }
 
     //Get Schedule
-    getStudent(): Observable<IStudent[]> {
-        return this._http.get(this._studentsUrl)
-                    .map((response: Response) => <IStudent[]>response.json())
+    getStudent(id:string): Observable<IStudent> {
+        return this._http.get(this._studentsUrl + '/' + id)
+                    .map((response: Response) => <IStudent>response.json())
                     .do(data => console.log('All: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
     //Get profile
-    getMyProfile(): Observable<IProfile[]> {
-
-        return this._http.get(this._profilesUrl)
-                    .map((response: Response) => <IProfile[]>response.json())
+    getMyProfile(id:string): Observable<IProfile> {
+        return this._http.get(this._profilesUrl + '/' + id)
+                    .map((response: Response) => <IProfile>response.json())
                     .do(data => console.log('All: ' + JSON.stringify(data)))
-                    .catch(this.handleError) ;
+                    .catch(this.handleError);
     }
-
-    getMyProfilePromise(): Promise<IProfile> {
-        return new Promise((resolve, reject) => {
-            return this._http.get(this._profilesUrl)
-                .map((response: Response) => <IProfile>response.json())
-                .do(data => console.log('All: ' + JSON.stringify(data)))
-                .subscribe(p => {resolve(p);}, error => reject(error));
-                //.catch(this.handleError) ;
-        });
-
-        // return this._http.get(this._profilesUrl)
-        //             .map((response: Response) => <IProfile>response.json())
-        //             .do(data => console.log('All: ' + JSON.stringify(data)))
-        //             .catch(this.handleError) ;
-    }
-
 
     private handleError(error: Response) {
         console.error(error);

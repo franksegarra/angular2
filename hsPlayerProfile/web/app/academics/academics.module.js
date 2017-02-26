@@ -14,8 +14,6 @@ var primeng_1 = require("primeng/primeng");
 var academics_component_1 = require("./academics.component");
 var grade_component_1 = require("./grade.component");
 var testscores_component_1 = require("./testscores.component");
-//Services
-var data_service_1 = require("../services/data.service");
 //Grade Filter
 var grade_filter_pipe_1 = require("./grade-filter.pipe");
 //Module declaration
@@ -31,8 +29,7 @@ AcademicsModule = __decorate([
             primeng_1.AccordionModule,
             router_1.RouterModule.forChild([{ path: 'academics', component: academics_component_1.AcademicsComponent }])
         ],
-        declarations: [academics_component_1.AcademicsComponent, grade_component_1.GradeComponent, grade_filter_pipe_1.GradeFilterPipe, testscores_component_1.TestScoresComponent],
-        providers: [data_service_1.DataService],
+        declarations: [academics_component_1.AcademicsComponent, grade_component_1.GradeComponent, grade_filter_pipe_1.GradeFilterPipe, testscores_component_1.TestScoresComponent]
     })
 ], AcademicsModule);
 exports.AcademicsModule = AcademicsModule;

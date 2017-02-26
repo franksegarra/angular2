@@ -9,7 +9,7 @@ import { AboutComponent } from './about/about.component';
 //Student Profile menu compenents
 import { AcademicsComponent } from './academics/academics.component'
 import { LinksComponent } from './links/links.component'
-import { ContactMeComponent } from './contactme/contactme.component'
+import { ContactMeComponent } from './studentprofile/contactme/contactme.component'
 import { ScheduleComponent } from './schedule/schedule.component'
 import { MyProfileComponent } from './profile/myprofile.component'
 

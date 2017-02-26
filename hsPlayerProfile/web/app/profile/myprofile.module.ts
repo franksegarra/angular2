@@ -7,9 +7,6 @@ import { SharedModule } from '../shared/shared.module'
 //Feature components and objects
 import { MyProfileComponent } from './myprofile.component'
 
-//Services
-import { DataService } from '../services/data.service';
-
 //Module declaration
 @NgModule({
   imports: [ 
@@ -17,6 +14,5 @@ import { DataService } from '../services/data.service';
     RouterModule.forChild([{path: 'profile', component: MyProfileComponent}])
     ],
   declarations: [ MyProfileComponent ],
-  providers: [ DataService ]
 })
 export class MyProfileModule { }

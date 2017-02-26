@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+//Services
+import { DataService } from './services/data.service';
+
 //routing setup
 import { Routing } from "./app.routes";
 
@@ -32,6 +35,7 @@ import { StudentProfileModule } from './studentprofile/studentprofile.module';
       ,HomeComponent
       ,StudentProfileComponent
   ],
+  providers: [ DataService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

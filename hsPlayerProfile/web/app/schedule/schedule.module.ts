@@ -9,9 +9,6 @@ import { SharedModule } from '../shared/shared.module'
 //Feature components and objects
 import { ScheduleComponent } from './schedule.component'
 
-//Services
-import { DataService } from '../services/data.service';
-
 //Module declaration
 @NgModule({
   imports: [ 
@@ -20,6 +17,5 @@ import { DataService } from '../services/data.service';
       //,AgmCoreModule.forRoot({apiKey: 'AIzaSyDVPxsV9KbsjSv-W-gV1khDZNnc3csLTVs' })
     ],
   declarations: [ ScheduleComponent ],
-  providers: [ DataService ]
 })
 export class ScheduleModule { }

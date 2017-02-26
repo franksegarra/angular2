@@ -13,12 +13,12 @@ export class MyProfileComponent implements OnInit {
     
     pageTitle: string = "My Profile";
     errorMessage: string;
-    myprofile: IStudent[];
+    myprofile: IStudent;
 
     constructor(private _dataService: DataService) {
     }
 
     ngOnInit(): void {
-        this._dataService.getStudent().subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
+        this._dataService.getStudent('1').subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
     }
 }
