@@ -25,7 +25,7 @@ export class VideoService {
   public isDragging:boolean = false;
   public showDetails:boolean = false;
   public currentDesc:string = "A very nice video...";
-  public playlist:Array<any> = [];
+  public playlist:Array<IVideo> = [];
   public categorylist:Array<VideoCategory> = [];
 
   constructor(private http:Http) {}
@@ -50,23 +50,27 @@ export class VideoService {
   };
 
   createVideoCategories() {
-    console.log('Playlist: ' + JSON.stringify(this.playlist))
+    //console.log('Playlist: ' + JSON.stringify(this.playlist))
 
     //This is working.  Gets me all categories
     var categories:Array<string> = this.uniqueCategories();
-    console.log('Categories: ' + JSON.stringify(categories))
+    //console.log('Categories: ' + JSON.stringify(categories))
+
+    var p:Array<IVideo> = this.playlist;
+    var c:Array<VideoCategory> = [];
 
     categories.forEach(function(item) {
         //I see the category here
-        console.log('Category: ' + item)
+        //console.log('Category: ' + item)
 
         //But this fails
-        var files = this.playlist.filter(function(e){return e.category == item;});
-        console.log('Files: ' + JSON.stringify(this.files))
+        var files = p.filter(function(e){return e.category == item;});
 
-        // var vidcategory: VideoCategory = new VideoCategory(item, files);
-        // this.categorylist.push(vidcategory);
+        var vidcategory: VideoCategory = new VideoCategory(item, files);
+        c.push(vidcategory);
     });
+
+    this.categorylist = c;
     //console.log('Categories: ' + JSON.stringify(this.categorylist))
   }
 

@@ -18,6 +18,5 @@ export class VideosComponent  implements OnInit {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Videos';
         this.videoService.appSetup("videoDisplay");
         this.videoService.gatherJSON( this.myprofile.id );
-        //this.videoService.createVideoCategories();
     }
 }

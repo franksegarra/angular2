@@ -10,7 +10,7 @@ import { VideoCategory } from './VideoCategory';
                 <span (click)="category.toggle()">{{ category.category }}</span>
                 <div *ngIf="category.expanded">
                     <ul >
-                        <li *ngFor="let file of category.files">{{file}}</li>
+                        <li *ngFor="let file of category.files">{{filename}}</li>
                     </ul>
                 </div>
             </li>

@@ -21,7 +21,7 @@ __decorate([
 TreeViewComponent = __decorate([
     core_1.Component({
         selector: 'tree-view',
-        template: "\n        <ul>\n            <li *ngFor=\"let category of categories\">\n                <span><input type=\"checkbox\" [checked]=\"category.checked\" (click)=\"category.check()\"    /></span> \n                <span (click)=\"category.toggle()\">{{ category.category }}</span>\n                <div *ngIf=\"category.expanded\">\n                    <ul >\n                        <li *ngFor=\"let file of category.files\">{{file}}</li>\n                    </ul>\n                </div>\n            </li>\n        </ul>\n    "
+        template: "\n        <ul>\n            <li *ngFor=\"let category of categories\">\n                <span><input type=\"checkbox\" [checked]=\"category.checked\" (click)=\"category.check()\"    /></span> \n                <span (click)=\"category.toggle()\">{{ category.category }}</span>\n                <div *ngIf=\"category.expanded\">\n                    <ul >\n                        <li *ngFor=\"let file of category.files\">{{filename}}</li>\n                    </ul>\n                </div>\n            </li>\n        </ul>\n    "
     })
 ], TreeViewComponent);
 exports.TreeViewComponent = TreeViewComponent;

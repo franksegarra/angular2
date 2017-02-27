@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var VideoCategory_1 = require("./VideoCategory");
 require("rxjs/add/operator/map");
 //Global settings
 var config_service_1 = require("../../config.service");
@@ -83,19 +84,21 @@ var VideoService = (function () {
     };
     ;
     VideoService.prototype.createVideoCategories = function () {
-        console.log('Playlist: ' + JSON.stringify(this.playlist));
+        //console.log('Playlist: ' + JSON.stringify(this.playlist))
         //This is working.  Gets me all categories
         var categories = this.uniqueCategories();
-        console.log('Categories: ' + JSON.stringify(categories));
+        //console.log('Categories: ' + JSON.stringify(categories))
+        var p = this.playlist;
+        var c = [];
         categories.forEach(function (item) {
             //I see the category here
-            console.log('Category: ' + item);
+            //console.log('Category: ' + item)
             //But this fails
-            var files = this.playlist.filter(function (e) { return e.category == item; });
-            console.log('Files: ' + JSON.stringify(this.files));
-            // var vidcategory: VideoCategory = new VideoCategory(item, files);
-            // this.categorylist.push(vidcategory);
+            var files = p.filter(function (e) { return e.category == item; });
+            var vidcategory = new VideoCategory_1.VideoCategory(item, files);
+            c.push(vidcategory);
         });
+        this.categorylist = c;
         //console.log('Categories: ' + JSON.stringify(this.categorylist))
     };
     VideoService.prototype.getFiles = function (vidcategory) {
