@@ -96,4 +96,24 @@ GO
 
 insert into studentActivities (studentid, activityid) values (1, 1)
 GO
+
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Backhand.mp4', 'Backhand.mp4', 'Backhand.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day1Ab1.mp4',	'Day1Ab1.mp4',	'Day1Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day1Ab2.mp4',	'Day1Ab2.mp4',	'Day1Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day1Ab3.mp4',	'Day1Ab3.mp4',	'Day1Ab3.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab1.mp4',	'Day2Ab1.mp4',	'Day2Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab2.mp4',	'Day2Ab2.mp4',	'Day2Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab3.mp4',	'Day2Ab3.mp4',	'Day2Ab3.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab4.mp4',	'Day2Ab4.mp4',	'Day2Ab4.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab1.mp4',	'Day3Ab1.mp4',	'Day3Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab2.mp4',	'Day3Ab2.mp4',	'Day3Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab3.mp4',	'Day3Ab3.mp4',	'Day3Ab3.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab4.mp4',	'Day3Ab4.mp4',	'Day3Ab4.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day4Ab1.mp4',	'Day4Ab1.mp4',	'Day4Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day4Ab2.mp4',	'Day4Ab2.mp4',	'Day4Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab1.m4v',	'Day5Ab1.m4v',	'Day5Ab1.m4v')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab2.m4v',	'Day5Ab2.m4v',	'Day5Ab2.m4v')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab3.m4v',	'Day5Ab3.m4v',	'Day5Ab3.m4v')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab4.m4v',	'Day5Ab4.m4v',	'Day5Ab4.m4v')
+GO
 */

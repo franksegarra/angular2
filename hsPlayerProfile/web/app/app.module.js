@@ -9,7 +9,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
-//Services
+var forms_1 = require("@angular/forms");
+var primeng_1 = require("primeng/primeng");
+//Google Maps
+//import { AgmCoreModule } from 'angular2-google-maps/core';
+//Data Services
 var data_service_1 = require("./services/data.service");
 //routing setup
 var app_routes_1 = require("./app.routes");
@@ -18,9 +22,25 @@ var app_component_1 = require("./app.component");
 //Main Menu features
 var about_component_1 = require("./about/about.component");
 var home_component_1 = require("./home/home.component");
-//Student Profile
+//Student Profile Features
 var studentprofile_component_1 = require("./studentprofile/studentprofile.component");
-var studentprofile_module_1 = require("./studentprofile/studentprofile.module");
+var videos_component_1 = require("./studentprofile/videos/videos.component");
+var progress_component_1 = require("./studentprofile/videos/progress.component");
+var toolbar_component_1 = require("./studentprofile/videos/toolbar.component");
+var options_component_1 = require("./studentprofile/videos/options.component");
+var video_service_1 = require("./studentprofile/videos/video.service");
+var treeview_component_1 = require("./studentprofile/videos/treeview.component");
+var pictures_component_1 = require("./studentprofile/pictures/pictures.component");
+var academics_component_1 = require("./studentprofile/academics/academics.component");
+var grade_component_1 = require("./studentprofile/academics/grade.component");
+var testscores_component_1 = require("./studentprofile/academics/testscores.component");
+var schedule_component_1 = require("./studentprofile/schedule/schedule.component");
+var links_component_1 = require("./studentprofile/links/links.component");
+var profile_component_1 = require("./studentprofile/profile/profile.component");
+var contactme_component_1 = require("./studentprofile/contactme/contactme.component");
+//Grade Filter
+var grade_filter_pipe_1 = require("./studentprofile/academics/grade-filter.pipe");
+var timedisplay_pipe_1 = require("./studentprofile/videos//timedisplay.pipe");
 //Module declaration
 var AppModule = (function () {
     function AppModule() {
@@ -33,15 +53,32 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             http_1.HttpModule,
             app_routes_1.Routing,
-            studentprofile_module_1.StudentProfileModule
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,
+            primeng_1.AccordionModule
         ],
         declarations: [
             app_component_1.AppComponent,
             about_component_1.AboutComponent,
             home_component_1.HomeComponent,
-            studentprofile_component_1.StudentProfileComponent
+            studentprofile_component_1.StudentProfileComponent,
+            videos_component_1.VideosComponent,
+            progress_component_1.ProgressComponent,
+            toolbar_component_1.ToolbarComponent,
+            options_component_1.OptionsComponent,
+            treeview_component_1.TreeViewComponent,
+            timedisplay_pipe_1.TimeDisplayPipe,
+            pictures_component_1.PicturesComponent,
+            academics_component_1.AcademicsComponent,
+            grade_component_1.GradeComponent,
+            grade_filter_pipe_1.GradeFilterPipe,
+            testscores_component_1.TestScoresComponent,
+            schedule_component_1.ScheduleComponent,
+            links_component_1.LinksComponent,
+            profile_component_1.ProfileComponent,
+            contactme_component_1.ContactMeComponent
         ],
-        providers: [data_service_1.DataService],
+        providers: [data_service_1.DataService, video_service_1.VideoService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

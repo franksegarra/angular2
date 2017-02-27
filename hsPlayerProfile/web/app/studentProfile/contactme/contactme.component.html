@@ -4,7 +4,7 @@
     </div>
 
     <div class='panel-body'>
-        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
+        <form #ngIf="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
             <div class="table-responsive">
                 <table class="table">
                     <tbody>

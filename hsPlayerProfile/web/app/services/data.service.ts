@@ -6,11 +6,11 @@ import { Observable } from 'rxjs/Observable';
 import { Config } from '../config.service';
 
 //Our Objects
-import { IClass } from '../academics/class';
-import { ILink } from '../links/link';
-import { IScheduleItem } from '../schedule/scheduleItem';
-import { IProfile } from '../profile/IProfile';
-import { IStudent } from '../profile/IStudent';
+import { IClass } from '../models/IClass';
+import { ILink } from '../models/ILink';
+import { IScheduleItem } from '../models/IScheduleItem';
+import { IProfile } from '../models/IProfile';
+import { IStudent } from '../models/IStudent';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';

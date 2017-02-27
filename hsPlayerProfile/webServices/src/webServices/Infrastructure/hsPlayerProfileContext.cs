@@ -16,6 +16,7 @@ namespace webServices.Infrastructure
 
         public DbSet<StudentActivities> StudentActivities { get; set; }
         public DbSet<StudentProfile> StudentProfile { get; set; }
+        public DbSet<StudentVideos> StudentVideos { get; set; }
 
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {
@@ -85,8 +86,16 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentActivities>().Property(p => p.studentid).IsRequired();
             modelBuilder.Entity<StudentActivities>().Property(p => p.activityid).IsRequired();
 
-
-
+            //StudentVideos
+            modelBuilder.Entity<StudentVideos>().Property(p => p.category).HasMaxLength(50);
+            modelBuilder.Entity<StudentVideos>().Property(p => p.title).HasMaxLength(100);
+            modelBuilder.Entity<StudentVideos>().Property(p => p.filename).HasMaxLength(100);
+            modelBuilder.Entity<StudentVideos>().Property(p => p.description).HasMaxLength(255);
+            modelBuilder.Entity<StudentVideos>().Property(p => p.id).IsRequired();
+            modelBuilder.Entity<StudentVideos>().Property(p => p.studentid).IsRequired();
+            modelBuilder.Entity<StudentVideos>().Property(p => p.category).IsRequired();
+            modelBuilder.Entity<StudentVideos>().Property(p => p.title).IsRequired();
+            modelBuilder.Entity<StudentVideos>().Property(p => p.filename).IsRequired();
         }
     }
 }

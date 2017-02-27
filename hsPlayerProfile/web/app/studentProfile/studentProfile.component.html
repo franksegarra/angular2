@@ -1,39 +1,85 @@
-<div class="panel panel-primary">
-    <div class="wrapper">
-        <div class="row row-offcanvas row-offcanvas-left">
+<div class="wrapper">
+    <div class="row row-offcanvas row-offcanvas-left">
 
-            <!-- sidebar -->
-            <div class="column col-sm-3 col-xs-1 sidebar-offcanvas" id="sidebar">
-                <ul class="nav" id="menu">
-                    <li><a [routerLink]="['/studentprofile/videos']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Videos</span></a></li>
-                    <li><a [routerLink]="['/studentprofile/picture']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Pictures</span></a></li>
-                    <li><a [routerLink]="['/studentprofile/academics']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Academics</span></a></li>
-                    <li><a [routerLink]="['/studentprofile/schedule']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Schedule</span></a></li>
-                    <li><a [routerLink]="['/studentprofile/links']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Links</span></a></li>
-                    <li><a [routerLink]="['/studentprofile/profile']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">My Profile</span></a></li>
-                    <li><a [routerLink]="['/studentprofile/contactme']"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Contact Me</span></a></li>
-                </ul>
-            </div>
-            <!-- /sidebar -->
+        <!-- sidebar -->
+        <div class="column col-sm-1 col-xs-1 sidebar-offcanvas" id="sidebar">
+            <ul class="nav" id="menu">
 
-            <!-- main right col -->
-            <div class="column col-sm-9 col-xs-11" id="main">
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('videos')">
+                        <i class="fa fa-list"></i> <span class="collapse in hidden-xs">Videos</span>
+                    </button>
+                </li>
 
-                <!--<p><a href="#" data-toggle="offcanvas"><i class="fa fa-navicon fa-2x"></i></a></p>-->
-                <!--<div class='panel-heading'>
-                    {{pageTitle}}
-                    <pp-academics></pp-academics>
-                    <pp-schedule></pp-schedule>
-                    <pp-contactme>Loading...</pp-contactme>
-                </div>-->
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('pictures')">
+                        <i class="fa fa-list"></i> <span class="collapse in hidden-xs">Pictures</span>
+                    </button>
+                </li>
 
-                <div class='panel-body'>
-                    <router-outlet></router-outlet>
-                    Body
-                </div>
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('academics')">
+                        <i class="fa fa-list"></i> <span class="collapse in hidden-xs">Academics</span>
+                    </button>
+                </li>
 
-            </div>
-            <!-- /main -->
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('schedule')">
+                        <i class="fa fa-list"></i> <span class="collapse in hidden-xs">Schedule</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('links')">
+                        <i class="fa fa-list"></i> <span class="collapse in hidden-xs">Links</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('profile')">
+                        <i class="fa fa-list"></i> <span class="collapse in hidden-xs">Profile</span>
+                    </button>
+                </li>
+                
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('contactme')">
+                        <i class="fa fa-list"></i> <span class="collapse in hidden-xs">Contact Me</span>
+                    </button>
+                </li>
+            </ul>
         </div>
+        <!-- /sidebar -->
+
+        <!-- main right col -->
+        <div class="column col-sm-11 col-xs-11" id="main">
+            <div *ngIf="componentToShow === 'videos'">
+                <pp-videos [myprofile]='myprofile'>Loading...</pp-videos>
+            </div>
+
+            <div *ngIf="componentToShow === 'pictures'">
+                <pp-pictures [myprofile]='myprofile'>Loading...</pp-pictures>
+            </div>
+
+            <div *ngIf="componentToShow === 'academics'">
+                <pp-academics [myprofile]='myprofile'>Loading...</pp-academics>
+            </div>
+
+            <div *ngIf="componentToShow === 'schedule'">
+                <pp-schedule [myprofile]='myprofile'>Loading...</pp-schedule>
+            </div>
+
+            <div *ngIf="componentToShow === 'links'">
+                <pp-links [myprofile]='myprofile'>Loading...</pp-links>
+            </div>
+
+            <div *ngIf="componentToShow === 'profile'">
+                <pp-profile [myprofile]='myprofile'>Loading...</pp-profile>
+            </div>
+
+            <div *ngIf="componentToShow === 'contactme'">
+                <pp-contactme [myprofile]='myprofile'>Loading...</pp-contactme>
+            </div>
+        </div>
+        <!-- /main -->
     </div>
 </div>

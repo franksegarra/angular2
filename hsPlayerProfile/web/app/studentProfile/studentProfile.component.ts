@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IStudent } from '../profile/IStudent';
-import { Student } from '../profile/Student';
-import { DataService } from '../services/data.service';
+import { IProfile } from '../models/IProfile';
+import { Profile } from '../models/Profile';
 
-//Nested components
-import { ContactMeComponent } from './contactme/contactme.component'
-//import { AcademicsComponent } from '../academics/academics.component'
+//Data service
+import { DataService } from '../services/data.service';
 
 @Component({
     selector: 'pp-studentprofile',
@@ -17,17 +15,27 @@ export class StudentProfileComponent implements OnInit {
     studentId: string = '1';
     pageTitle: string;
     errorMessage: string;
-    studentprofile: Student;
+    myprofile: Profile;
+
+    componentToShow: string = 'videos';
 
     constructor(private _dataService: DataService) {
     }
     
     ngOnInit(): void {
-        this.studentprofile = new Student();
-        this.studentprofile.firstName = 'Francis';
-        this.studentprofile.lastName = 'Segarra';
-        this.studentprofile.graduationYear =2018;
+        this.myprofile = new Profile();
+        this.myprofile.id = 1;
+        this.myprofile.firstName = 'Francis';
+        this.myprofile.lastName = 'Segarra';
+        this.myprofile.primaryEmail = 'segarraf18@gmail.com';
+        this.myprofile.graduationYear =2018;
+        this.myprofile.highSchoolName = 'Carmel High School';
 
         //this._dataService.getStudent(this.studentId).subscribe(p => this.studentprofile = p, error => this.errorMessage = <any>error);
+    }
+
+    //Controls which component is visible by setting componentToShow variable
+    setVisibleComponent(visibleItem: string){
+        this.componentToShow = visibleItem;
     }
 }

@@ -40,7 +40,8 @@ ProductListComponent = __decorate([
         templateUrl: 'product-list.component.html',
         styleUrls: ['product-list.component.css']
     }),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __metadata("design:paramtypes", [typeof (_a = typeof product_service_1.ProductService !== "undefined" && product_service_1.ProductService) === "function" && _a || Object])
 ], ProductListComponent);
 exports.ProductListComponent = ProductListComponent;
+var _a;
 //# sourceMappingURL=product-list.component.js.map

@@ -9,25 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var data_service_1 = require("../../services/data.service");
 var ContactMeComponent = (function () {
-    function ContactMeComponent(_dataService) {
-        this._dataService = _dataService;
-        this.pageTitle = "Contact Me";
+    function ContactMeComponent() {
     }
+    // errorMessage: string;
+    // cinfo: IContactMe;
+    // Bring this back when we implement the post
+    // constructor(private _dataService: DataService) {
+    // };
+    ContactMeComponent.prototype.ngOnInit = function () {
+        this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Contact Me';
+    };
     ContactMeComponent.prototype.onSubmit = function (form) {
         console.log('you submitted value:', form);
     };
+    ;
     return ContactMeComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], ContactMeComponent.prototype, "myprofile", void 0);
 ContactMeComponent = __decorate([
     core_1.Component({
         selector: 'pp-contactme',
         moduleId: module.id,
-        templateUrl: 'contactme.component.html',
-        styleUrls: ['contactme.component.css'] //../studentprofile/contactme/
-    }),
-    __metadata("design:paramtypes", [data_service_1.DataService])
+        templateUrl: 'contactme.component.html'
+    })
 ], ContactMeComponent);
 exports.ContactMeComponent = ContactMeComponent;
 //# sourceMappingURL=contactme.component.js.map

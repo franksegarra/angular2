@@ -6,6 +6,10 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.mov
+*.mp4
+*.m4v
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -240,3 +244,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+#Typescript
+**/wwwroot/app/**/*.map
+**/wwwroot/app/**/*.js
