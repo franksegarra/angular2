@@ -16,6 +16,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/first';
 
 @Injectable()
 export class DataService {
@@ -66,6 +67,7 @@ export class DataService {
     getProfile(id:string): Observable<IProfile> {
         return this._http.get(this._profilesUrl + '/' + id)
                     .map((response: Response) => <IProfile>response.json())
+                    .first()
                     .do(data => console.log('getProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }

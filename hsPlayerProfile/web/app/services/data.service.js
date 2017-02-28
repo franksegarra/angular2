@@ -17,6 +17,7 @@ require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/do");
 require("rxjs/add/operator/filter");
+require("rxjs/add/operator/first");
 var DataService = (function () {
     function DataService(_http) {
         this._http = _http;
@@ -58,6 +59,7 @@ var DataService = (function () {
     DataService.prototype.getProfile = function (id) {
         return this._http.get(this._profilesUrl + '/' + id)
             .map(function (response) { return response.json(); })
+            .first()
             .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
