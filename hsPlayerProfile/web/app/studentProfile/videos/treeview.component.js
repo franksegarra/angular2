@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var TreeViewComponent = (function () {
-    function TreeViewComponent() {
+var video_service_1 = require("./video.service");
+var VideoTreeViewComponent = (function () {
+    function VideoTreeViewComponent() {
     }
-    return TreeViewComponent;
+    return VideoTreeViewComponent;
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Array)
-], TreeViewComponent.prototype, "categories", void 0);
-TreeViewComponent = __decorate([
+    __metadata("design:type", video_service_1.VideoService)
+], VideoTreeViewComponent.prototype, "videoservice", void 0);
+VideoTreeViewComponent = __decorate([
     core_1.Component({
-        selector: 'tree-view',
-        template: "\n        <ul>\n            <li *ngFor=\"let category of categories\">\n                <span><input type=\"checkbox\" [checked]=\"category.checked\" (click)=\"category.check()\"    /></span> \n                <span (click)=\"category.toggle()\">{{ category.category }}</span>\n                <div *ngIf=\"category.expanded\">\n                    <ul >\n                        <li *ngFor=\"let file of category.files\">{{filename}}</li>\n                    </ul>\n                </div>\n            </li>\n        </ul>\n    "
+        selector: 'video-tree-view',
+        template: "\n        <ul>\n            <li *ngFor=\"let category of videoservice.categorylist\">\n                <span (click)=\"category.toggle()\">{{ category.category }}</span>\n                <div *ngIf=\"category.expanded\">\n                    <ul >\n                        <li class=\"list-group-item\" *ngFor=\"let file of category.files\" (click)=\"videoservice.selectedVideoById(file.id)\"> {{ file.title }} </li>\n                    </ul>\n                </div>\n            </li>\n        </ul>\n    "
     })
-], TreeViewComponent);
-exports.TreeViewComponent = TreeViewComponent;
+], VideoTreeViewComponent);
+exports.VideoTreeViewComponent = VideoTreeViewComponent;
 //# sourceMappingURL=treeview.component.js.map

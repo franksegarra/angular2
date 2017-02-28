@@ -29,6 +29,15 @@ var VideoService = (function () {
         this.currentDesc = "A very nice video...";
         this.playlist = [];
         this.categorylist = [];
+        this.selectedVideoById = function (id) {
+            var file = _this.playlist.filter(function (e) { return e.id == id; });
+            _this.currentTitle = file[0]['title'];
+            _this.currentDesc = file[0]['description'];
+            _this.videoElement.src = config_service_1.Config.VIDEOFOLDER + file[0]['filename'];
+            _this.videoElement.pause();
+            _this.isPlaying = false;
+            console.log('Video: ' + _this.videoElement.src);
+        };
         this.selectedVideo = function (i) {
             _this.currentTitle = _this.playlist[i]['title'];
             _this.currentDesc = _this.playlist[i]['description'];
@@ -72,7 +81,7 @@ var VideoService = (function () {
         this.videoElement.addEventListener("timeupdate", this.updateTime);
         window.setInterval(this.timerFired, 500);
     };
-    VideoService.prototype.gatherJSON = function (id) {
+    VideoService.prototype.getPlaylist = function (id) {
         var _this = this;
         this.http.get(config_service_1.Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id.toString())
             .map(function (res) { return res.json(); })
@@ -84,27 +93,16 @@ var VideoService = (function () {
     };
     ;
     VideoService.prototype.createVideoCategories = function () {
-        //console.log('Playlist: ' + JSON.stringify(this.playlist))
-        //This is working.  Gets me all categories
         var categories = this.uniqueCategories();
-        //console.log('Categories: ' + JSON.stringify(categories))
         var p = this.playlist;
         var c = [];
         categories.forEach(function (item) {
-            //I see the category here
-            //console.log('Category: ' + item)
-            //But this fails
             var files = p.filter(function (e) { return e.category == item; });
             var vidcategory = new VideoCategory_1.VideoCategory(item, files);
             c.push(vidcategory);
         });
         this.categorylist = c;
-        //console.log('Categories: ' + JSON.stringify(this.categorylist))
     };
-    VideoService.prototype.getFiles = function (vidcategory) {
-        return this.playlist.filter(function (e) { return e.category == vidcategory; });
-    };
-    ;
     VideoService.prototype.uniqueCategories = function () {
         return this.playlist.map(function (e) { return e['category']; }).filter(function (e, i, a) {
             return i === a.indexOf(e);

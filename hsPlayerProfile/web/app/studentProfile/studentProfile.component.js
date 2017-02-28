@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var Profile_1 = require("../models/Profile");
 //Data service
 var data_service_1 = require("../services/data.service");
 var StudentProfileComponent = (function () {
@@ -19,14 +18,15 @@ var StudentProfileComponent = (function () {
         this.componentToShow = 'videos';
     }
     StudentProfileComponent.prototype.ngOnInit = function () {
-        this.myprofile = new Profile_1.Profile();
-        this.myprofile.id = 1;
-        this.myprofile.firstName = 'Francis';
-        this.myprofile.lastName = 'Segarra';
-        this.myprofile.primaryEmail = 'segarraf18@gmail.com';
-        this.myprofile.graduationYear = 2018;
-        this.myprofile.highSchoolName = 'Carmel High School';
-        //this._dataService.getStudent(this.studentId).subscribe(p => this.studentprofile = p, error => this.errorMessage = <any>error);
+        var _this = this;
+        // this.myprofile = new Profile();
+        // this.myprofile.id = 1;
+        // this.myprofile.firstName = 'Francis';
+        // this.myprofile.lastName = 'Segarra';
+        // this.myprofile.primaryEmail = 'segarraf18@gmail.com';
+        // this.myprofile.graduationYear =2018;
+        // this.myprofile.highSchoolName = 'Carmel High School';
+        this._dataService.getProfile(this.studentId).subscribe(function (p) { return _this.myprofile = p; }, function (error) { return _this.errorMessage = error; });
     };
     //Controls which component is visible by setting componentToShow variable
     StudentProfileComponent.prototype.setVisibleComponent = function (visibleItem) {

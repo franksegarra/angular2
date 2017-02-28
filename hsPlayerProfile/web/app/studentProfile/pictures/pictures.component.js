@@ -9,16 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var picture_service_1 = require("./picture.service");
 var PicturesComponent = (function () {
-    function PicturesComponent() {
+    function PicturesComponent(pictureService) {
+        this.pictureService = pictureService;
     }
-    // errorMessage: string;
-    // cinfo: IContactMe;
-    // Bring this back when we implement the post
-    // constructor(private _dataService: DataService) {
-    // };
     PicturesComponent.prototype.ngOnInit = function () {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Pictures';
+        this.pictureService.appSetup("imageDisplay");
+        this.pictureService.getPlaylist(this.myprofile.id);
     };
     return PicturesComponent;
 }());
@@ -30,8 +29,10 @@ PicturesComponent = __decorate([
     core_1.Component({
         selector: 'pp-pictures',
         moduleId: module.id,
-        templateUrl: 'pictures.component.html'
-    })
+        templateUrl: 'pictures.component.html',
+        styleUrls: ['pictures.component.css']
+    }),
+    __metadata("design:paramtypes", [picture_service_1.PictureService])
 ], PicturesComponent);
 exports.PicturesComponent = PicturesComponent;
 //# sourceMappingURL=pictures.component.js.map

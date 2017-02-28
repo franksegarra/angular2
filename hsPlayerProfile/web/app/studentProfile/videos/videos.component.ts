@@ -8,7 +8,7 @@ import { VideoService } from './video.service';
     templateUrl: 'videos.component.html',
     styleUrls: ['videos.component.css']
 })
-export class VideosComponent  implements OnInit { 
+export class VideosComponent implements OnInit { 
     @Input() myprofile: IProfile;
     pageTitle: string;
 
@@ -17,6 +17,6 @@ export class VideosComponent  implements OnInit {
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Videos';
         this.videoService.appSetup("videoDisplay");
-        this.videoService.gatherJSON( this.myprofile.id );
+        this.videoService.getPlaylist( this.myprofile.id );
     }
 }

@@ -17,6 +17,7 @@ namespace webServices.Infrastructure
         public DbSet<StudentActivities> StudentActivities { get; set; }
         public DbSet<StudentProfile> StudentProfile { get; set; }
         public DbSet<StudentVideos> StudentVideos { get; set; }
+        public DbSet<StudentPictures> StudentPictures { get; set; }
 
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {
@@ -96,6 +97,17 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentVideos>().Property(p => p.category).IsRequired();
             modelBuilder.Entity<StudentVideos>().Property(p => p.title).IsRequired();
             modelBuilder.Entity<StudentVideos>().Property(p => p.filename).IsRequired();
+
+            //StudentVideos
+            modelBuilder.Entity<StudentPictures>().Property(p => p.category).HasMaxLength(50);
+            modelBuilder.Entity<StudentPictures>().Property(p => p.title).HasMaxLength(100);
+            modelBuilder.Entity<StudentPictures>().Property(p => p.filename).HasMaxLength(100);
+            modelBuilder.Entity<StudentPictures>().Property(p => p.description).HasMaxLength(255);
+            modelBuilder.Entity<StudentPictures>().Property(p => p.id).IsRequired();
+            modelBuilder.Entity<StudentPictures>().Property(p => p.studentid).IsRequired();
+            modelBuilder.Entity<StudentPictures>().Property(p => p.category).IsRequired();
+            modelBuilder.Entity<StudentPictures>().Property(p => p.title).IsRequired();
+            modelBuilder.Entity<StudentPictures>().Property(p => p.filename).IsRequired();
         }
     }
 }

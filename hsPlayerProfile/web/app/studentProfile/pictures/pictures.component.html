@@ -1,8 +1,15 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        {{pageTitle}}
+        {{ pageTitle }}
     </div>
     <div class="panel-body"  >
-        Pictures
+        <div class="column col-sm-3 col-xs-3">
+            <picture-tree-view [pictureservice]='pictureService' > </picture-tree-view>
+        </div>
+        <div class="column col-sm-9 col-xs-9">
+            <div class="embed-responsive embed-responsive-4by3" >
+                <img class="img-responsive" id="imageDisplay" alt="Smiley face"  >
+            </div>
+        </div>
     </div>
 </div>

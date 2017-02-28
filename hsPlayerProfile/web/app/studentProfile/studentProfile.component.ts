@@ -21,17 +21,15 @@ export class StudentProfileComponent implements OnInit {
 
     constructor(private _dataService: DataService) {
     }
-    
     ngOnInit(): void {
-        this.myprofile = new Profile();
-        this.myprofile.id = 1;
-        this.myprofile.firstName = 'Francis';
-        this.myprofile.lastName = 'Segarra';
-        this.myprofile.primaryEmail = 'segarraf18@gmail.com';
-        this.myprofile.graduationYear =2018;
-        this.myprofile.highSchoolName = 'Carmel High School';
-
-        //this._dataService.getStudent(this.studentId).subscribe(p => this.studentprofile = p, error => this.errorMessage = <any>error);
+        // this.myprofile = new Profile();
+        // this.myprofile.id = 1;
+        // this.myprofile.firstName = 'Francis';
+        // this.myprofile.lastName = 'Segarra';
+        // this.myprofile.primaryEmail = 'segarraf18@gmail.com';
+        // this.myprofile.graduationYear =2018;
+        // this.myprofile.highSchoolName = 'Carmel High School';
+        this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
     }
 
     //Controls which component is visible by setting componentToShow variable

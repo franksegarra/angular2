@@ -116,4 +116,15 @@ INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES
 INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab3.m4v',	'Day5Ab3.m4v',	'Day5Ab3.m4v')
 INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab4.m4v',	'Day5Ab4.m4v',	'Day5Ab4.m4v')
 GO
+
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Hitting', 'FrancisAtBat.JPG', 'FrancisAtBat.JPG', 'FrancisAtBat.JPG')
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Hitting', 'FrancisFoxLaneAtRenegades.JPG', 'FrancisFoxLaneAtRenegades.JPG', 'FrancisFoxLaneAtRenegades.JPG')
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Hitting', 'JustBeforeImpact.JPG', 'JustBeforeImpact.JPG', 'JustBeforeImpact.JPG')
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Hitting', 'TakingSigns.JPG', 'TakingSigns.JPG', 'TakingSigns.JPG')
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Boy Scount', 'FrancisBoyScoutsAtPodium.JPG',	'FrancisBoyScoutsAtPodium.JPG',	'FrancisBoyScoutsAtPodium.JPG')
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Cooperstown', 'FrancisCooperstownGrandSlam.JPG',	'FrancisCooperstownGrandSlam.JPG',	'FrancisCooperstownGrandSlam.JPG')
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Pitching', 'Pitching.JPG',	'Pitching.JPG',	'Pitching.JPG')
+INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'On the bases', 'ReadyToSteal.JPG',	'ReadyToSteal.JPG',	'ReadyToSteal.JPG')
+GO
+
 */

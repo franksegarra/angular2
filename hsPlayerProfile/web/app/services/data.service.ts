@@ -33,7 +33,7 @@ export class DataService {
 
         return this._http.get(this._classesUrl)
                     .map((response: Response) => <IClass[]>response.json())
-                    .do(data => console.log('All: ' + JSON.stringify(data)))
+                    .do(data => console.log('getClasses: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
@@ -42,7 +42,7 @@ export class DataService {
 
         return this._http.get(this._linksUrl)
                     .map((response: Response) => <ILink[]>response.json())
-                    .do(data => console.log('All: ' + JSON.stringify(data)))
+                    .do(data => console.log('getLinks: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
@@ -50,7 +50,7 @@ export class DataService {
     getSchedule(): Observable<IScheduleItem[]> {
         return this._http.get(this._schedUrl)
                     .map((response: Response) => <IScheduleItem[]>response.json())
-                    .do(data => console.log('All: ' + JSON.stringify(data)))
+                    .do(data => console.log('getSchedule: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
@@ -58,15 +58,15 @@ export class DataService {
     getStudent(id:string): Observable<IStudent> {
         return this._http.get(this._studentsUrl + '/' + id)
                     .map((response: Response) => <IStudent>response.json())
-                    .do(data => console.log('All: ' + JSON.stringify(data)))
+                    .do(data => console.log('getStudent: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
     //Get profile
-    getMyProfile(id:string): Observable<IProfile> {
+    getProfile(id:string): Observable<IProfile> {
         return this._http.get(this._profilesUrl + '/' + id)
                     .map((response: Response) => <IProfile>response.json())
-                    .do(data => console.log('All: ' + JSON.stringify(data)))
+                    .do(data => console.log('getProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 

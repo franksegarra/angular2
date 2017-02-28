@@ -37,7 +37,7 @@ export class VideoService {
     window.setInterval(this.timerFired, 500);
   }
 
-  gatherJSON(id:number) {
+  getPlaylist(id:number) {
       this.http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id.toString())
           .map((res:Response) => <IVideo[]>res.json())
           .subscribe(
@@ -50,38 +50,33 @@ export class VideoService {
   };
 
   createVideoCategories() {
-    //console.log('Playlist: ' + JSON.stringify(this.playlist))
-
-    //This is working.  Gets me all categories
     var categories:Array<string> = this.uniqueCategories();
-    //console.log('Categories: ' + JSON.stringify(categories))
-
     var p:Array<IVideo> = this.playlist;
     var c:Array<VideoCategory> = [];
 
     categories.forEach(function(item) {
-        //I see the category here
-        //console.log('Category: ' + item)
-
-        //But this fails
         var files = p.filter(function(e){return e.category == item;});
-
         var vidcategory: VideoCategory = new VideoCategory(item, files);
         c.push(vidcategory);
     });
 
     this.categorylist = c;
-    //console.log('Categories: ' + JSON.stringify(this.categorylist))
   }
-
-  getFiles(vidcategory: string):Array<IVideo> {
-    return this.playlist.filter(function(e){return e.category == vidcategory;});
-  };
 
   uniqueCategories() {
     return this.playlist.map(function(e) { return e['category']; }).filter(function(e,i,a){
         return i === a.indexOf(e);
     });
+  };
+
+  selectedVideoById = (id:number) => {
+      var file =  this.playlist.filter(function(e){return e.id == id;}) ;
+      this.currentTitle = file[0]['title'];
+      this.currentDesc = file[0]['description'];
+      this.videoElement.src = Config.VIDEOFOLDER + file[0]['filename'];
+      this.videoElement.pause();
+      this.isPlaying = false;
+      console.log('Video: ' + this.videoElement.src);
   };
 
   selectedVideo = (i:number) => {

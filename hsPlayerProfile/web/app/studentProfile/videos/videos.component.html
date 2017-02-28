@@ -4,13 +4,7 @@
     </div>
     <div class="panel-body"  >
         <div class="column col-sm-3 col-xs-3">
-            <div>
-                <tree-view [categories]='videoService.categorylist' > </tree-view>
-                <!--<ul class="list-group">
-                    <h2>Playlist:</h2>
-                    <li class="list-group-item" *ngFor="let playlistItem of videoService.playlist; let i = index" (click)="videoService.selectedVideo(i)">{{playlistItem.title}}</li>
-                </ul>-->
-            </div>
+            <video-tree-view [videoservice]='videoService' > </video-tree-view>
         </div>
         <div class="column col-sm-9 col-xs-9">
 

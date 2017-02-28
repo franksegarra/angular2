@@ -17,7 +17,7 @@ var VideosComponent = (function () {
     VideosComponent.prototype.ngOnInit = function () {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Videos';
         this.videoService.appSetup("videoDisplay");
-        this.videoService.gatherJSON(this.myprofile.id);
+        this.videoService.getPlaylist(this.myprofile.id);
     };
     return VideosComponent;
 }());

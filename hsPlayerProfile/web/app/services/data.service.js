@@ -30,35 +30,35 @@ var DataService = (function () {
     DataService.prototype.getClasses = function () {
         return this._http.get(this._classesUrl)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('getClasses: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     // Get Links
     DataService.prototype.getLinks = function () {
         return this._http.get(this._linksUrl)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('getLinks: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get Schedule
     DataService.prototype.getSchedule = function () {
         return this._http.get(this._schedUrl)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('getSchedule: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get Schedule
     DataService.prototype.getStudent = function (id) {
         return this._http.get(this._studentsUrl + '/' + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('getStudent: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get profile
-    DataService.prototype.getMyProfile = function (id) {
+    DataService.prototype.getProfile = function (id) {
         return this._http.get(this._profilesUrl + '/' + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     DataService.prototype.handleError = function (error) {
