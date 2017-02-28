@@ -12,7 +12,7 @@ import { DataService } from '../services/data.service';
     styleUrls: ['studentprofile.component.css']
 })
 export class StudentProfileComponent implements OnInit {
-    studentId: string = '1';
+    studentId: number = 1;
     pageTitle: string;
     errorMessage: string;
     myprofile: Profile;

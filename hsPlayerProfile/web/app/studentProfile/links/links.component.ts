@@ -23,7 +23,7 @@ export class LinksComponent implements OnInit {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Links';
         
         //Get data
-        this._dataService.getLinks().subscribe(links => this.links = links, error => this.errorMessage = <any>error);
+        this._dataService.getLinks( this.myprofile.id ).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
     };
 
 }

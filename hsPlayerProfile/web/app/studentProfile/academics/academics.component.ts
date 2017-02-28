@@ -26,6 +26,6 @@ export class AcademicsComponent {
 
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Academics';
-        this._dataService.getClasses().subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
+        this._dataService.getClasses( this.myprofile.id ).subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
     }
 }

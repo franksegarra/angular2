@@ -23,6 +23,6 @@ export class ScheduleComponent implements OnInit {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + "Where I'll be";
 
         //Get data
-        this._dataService.getSchedule().subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
+        this._dataService.getSchedule( this.myprofile.id ).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
     };
 }
