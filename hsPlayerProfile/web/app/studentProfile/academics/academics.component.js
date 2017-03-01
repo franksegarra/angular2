@@ -18,7 +18,7 @@ var AcademicsComponent = (function () {
     AcademicsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Academics';
-        this._dataService.getClasses().subscribe(function (classes) { return _this.classes = classes; }, function (error) { return _this.errorMessage = error; });
+        this._dataService.getClasses(this.myprofile.id).subscribe(function (classes) { return _this.classes = classes; }, function (error) { return _this.errorMessage = error; });
     };
     return AcademicsComponent;
 }());

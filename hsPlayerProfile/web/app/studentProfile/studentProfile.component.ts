@@ -17,7 +17,7 @@ export class StudentProfileComponent implements OnInit {
     errorMessage: string;
     myprofile: Profile;
 
-    componentToShow: string = 'videos';
+    componentToShow: string = 'pictures';
 
     constructor(private _dataService: DataService) {
     }

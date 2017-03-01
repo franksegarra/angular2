@@ -60,7 +60,8 @@ AppModule = __decorate([
             app_routes_1.Routing,
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
-            primeng_1.AccordionModule
+            primeng_1.AccordionModule,
+            primeng_1.GalleriaModule
         ],
         declarations: [
             app_component_1.AppComponent,

@@ -15,18 +15,20 @@ export class PictureService {
   public picturelist:Array<IPicture> = [];
   public categorylist:Array<PictureCategory> = [];
   public pictureElement:any;
+  public images: any[];
 
-  public currentPath:string = "";
-  public currentTitle:string = "loading...";
-  public currentTime:number = 0;
-  public totalTime:number = 0;
-  public calculatedWidth:number;
-  public calculatedScrubY:number;
-  public isMuted:boolean = false;
-  public isPlaying:boolean = false;
-  public isDragging:boolean = false;
   public showDetails:boolean = false;
+  public currentTitle:string = "loading...";
   public currentDesc:string = "A very nice video...";
+
+  //public currentPath:string = "";
+  //public currentTime:number = 0;
+  //public totalTime:number = 0;
+  //public calculatedWidth:number;
+  //public calculatedScrubY:number;
+  //public isMuted:boolean = false;
+  //public isPlaying:boolean = false;
+  //public isDragging:boolean = false;
 
   constructor(private http:Http) {}
 
@@ -43,6 +45,7 @@ export class PictureService {
                   this.picturelist = data;
                   this.selectedPicture(1);
                   this.createPictureCategories();
+                  this.createImageList();
               }
           );
   };
@@ -75,6 +78,15 @@ export class PictureService {
 
     this.categorylist = c;
   }
+
+  createImageList(){
+    var imgs: any[] = [];
+    this.picturelist.forEach(function(item) {
+        imgs.push({source: Config.PICTUREFOLDER + item.filename, alt: item.description, title: item.title});
+    });
+
+    this.images = imgs;
+  };
 
   uniqueCategories() {
     return this.picturelist.map(function(e) { return e['category']; }).filter(function(e,i,a){

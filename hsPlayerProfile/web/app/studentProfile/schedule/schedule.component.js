@@ -19,7 +19,7 @@ var ScheduleComponent = (function () {
         //Set page title
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + "Where I'll be";
         //Get data
-        this._dataService.getSchedule().subscribe(function (schedItems) { return _this.schedItems = schedItems; }, function (error) { return _this.errorMessage = error; });
+        this._dataService.getSchedule(this.myprofile.id).subscribe(function (schedItems) { return _this.schedItems = schedItems; }, function (error) { return _this.errorMessage = error; });
     };
     ;
     return ScheduleComponent;

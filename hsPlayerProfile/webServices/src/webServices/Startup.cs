@@ -9,6 +9,7 @@ using webServices.Repositories;
 using Newtonsoft.Json.Serialization;
 using System.IO;
 using webServices.Entities;
+using System;
 
 namespace webServices
 {
@@ -30,8 +31,16 @@ namespace webServices
         public void ConfigureServices(IServiceCollection services)
         {
             #region Database Connection
+            string sqlConnectionString;
 
-            string sqlConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            if (Environment.MachineName == "FRSTOSHIBA17")
+                sqlConnectionString = Configuration["ConnectionStrings:FRSConnection"];
+            else if (Environment.MachineName == "CRP -IT - PF00W8DJ") 
+                sqlConnectionString = Configuration["ConnectionStrings:IMConnection"];
+            else
+                sqlConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
+
+
             bool useInMemoryProvider = bool.Parse(Configuration["Data:PhotoGalleryConnection:InMemoryProvider"]);
 
             services.AddDbContext<hsPlayerProfileContext>(options =>

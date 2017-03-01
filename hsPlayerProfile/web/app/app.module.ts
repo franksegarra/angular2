@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule } from 'primeng/primeng';
-
+import { AccordionModule, GalleriaModule } from 'primeng/primeng';
 //Google Maps
 //import { AgmCoreModule } from 'angular2-google-maps/core';
 
@@ -60,7 +59,8 @@ import { ContactMeComponent } from './studentprofile/contactme/contactme.compone
       Routing,
       FormsModule, 
       ReactiveFormsModule,
-      AccordionModule
+      AccordionModule,
+      GalleriaModule
   ],
   declarations: [ 
       AppComponent

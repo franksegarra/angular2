@@ -21,43 +21,43 @@ require("rxjs/add/operator/first");
 var DataService = (function () {
     function DataService(_http) {
         this._http = _http;
-        this._classesUrl = config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/1'; //'api/classes/classes.json';
-        this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/1'; // 'api/schedule/schedule.json'; 
-        this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/1'; //'api/links/links.json';
-        this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile'; //'api/profile/profile.json';                           
-        this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student'; //'api/profile/profile.json';                           
+        this._classesUrl = config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/'; //'api/classes/classes.json';
+        this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/'; // 'api/schedule/schedule.json'; 
+        this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/'; //'api/links/links.json';
+        this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/'; //'api/profile/profile.json';                           
+        this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student/'; //'api/profile/profile.json';                           
     }
     //Get Classes
-    DataService.prototype.getClasses = function () {
-        return this._http.get(this._classesUrl)
+    DataService.prototype.getClasses = function (id) {
+        return this._http.get(this._classesUrl + id)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('getClasses: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     // Get Links
-    DataService.prototype.getLinks = function () {
-        return this._http.get(this._linksUrl)
+    DataService.prototype.getLinks = function (id) {
+        return this._http.get(this._linksUrl + id)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('getLinks: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get Schedule
-    DataService.prototype.getSchedule = function () {
-        return this._http.get(this._schedUrl)
+    DataService.prototype.getSchedule = function (id) {
+        return this._http.get(this._schedUrl + id)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('getSchedule: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get Schedule
     DataService.prototype.getStudent = function (id) {
-        return this._http.get(this._studentsUrl + '/' + id)
+        return this._http.get(this._studentsUrl + id)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('getStudent: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get profile
     DataService.prototype.getProfile = function (id) {
-        return this._http.get(this._profilesUrl + '/' + id)
+        return this._http.get(this._profilesUrl + id)
             .map(function (response) { return response.json(); })
             .first()
             .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })

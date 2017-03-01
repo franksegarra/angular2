@@ -14,8 +14,8 @@ var data_service_1 = require("../services/data.service");
 var StudentProfileComponent = (function () {
     function StudentProfileComponent(_dataService) {
         this._dataService = _dataService;
-        this.studentId = '1';
-        this.componentToShow = 'videos';
+        this.studentId = 1;
+        this.componentToShow = 'pictures';
     }
     StudentProfileComponent.prototype.ngOnInit = function () {
         var _this = this;

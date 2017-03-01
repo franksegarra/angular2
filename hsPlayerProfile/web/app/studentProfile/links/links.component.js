@@ -20,7 +20,7 @@ var LinksComponent = (function () {
         //Set page title
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Links';
         //Get data
-        this._dataService.getLinks().subscribe(function (links) { return _this.links = links; }, function (error) { return _this.errorMessage = error; });
+        this._dataService.getLinks(this.myprofile.id).subscribe(function (links) { return _this.links = links; }, function (error) { return _this.errorMessage = error; });
     };
     ;
     return LinksComponent;

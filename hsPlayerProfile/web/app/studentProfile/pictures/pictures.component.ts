@@ -17,6 +17,6 @@ export class PicturesComponent implements OnInit {
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Pictures';
         this.pictureService.appSetup("imageDisplay");
-        this.pictureService. getPlaylist( this.myprofile.id );       
+        this.pictureService.getPlaylist( this.myprofile.id );       
     }
 }

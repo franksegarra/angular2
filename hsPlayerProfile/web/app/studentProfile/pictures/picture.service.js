@@ -15,19 +15,21 @@ require("rxjs/add/operator/map");
 //Global settings
 var config_service_1 = require("../../config.service");
 var PictureService = (function () {
+    //public currentPath:string = "";
+    //public currentTime:number = 0;
+    //public totalTime:number = 0;
+    //public calculatedWidth:number;
+    //public calculatedScrubY:number;
+    //public isMuted:boolean = false;
+    //public isPlaying:boolean = false;
+    //public isDragging:boolean = false;
     function PictureService(http) {
         var _this = this;
         this.http = http;
         this.picturelist = [];
         this.categorylist = [];
-        this.currentPath = "";
-        this.currentTitle = "loading...";
-        this.currentTime = 0;
-        this.totalTime = 0;
-        this.isMuted = false;
-        this.isPlaying = false;
-        this.isDragging = false;
         this.showDetails = false;
+        this.currentTitle = "loading...";
         this.currentDesc = "A very nice video...";
         this.selectedPicture = function (i) {
             _this.currentTitle = _this.picturelist[i]['title'];
@@ -55,6 +57,7 @@ var PictureService = (function () {
             _this.picturelist = data;
             _this.selectedPicture(1);
             _this.createPictureCategories();
+            _this.createImageList();
         });
     };
     ;
@@ -69,6 +72,14 @@ var PictureService = (function () {
         });
         this.categorylist = c;
     };
+    PictureService.prototype.createImageList = function () {
+        var imgs = [];
+        this.picturelist.forEach(function (item) {
+            imgs.push({ source: config_service_1.Config.PICTUREFOLDER + item.filename, alt: item.description, title: item.title });
+        });
+        this.images = imgs;
+    };
+    ;
     PictureService.prototype.uniqueCategories = function () {
         return this.picturelist.map(function (e) { return e['category']; }).filter(function (e, i, a) {
             return i === a.indexOf(e);

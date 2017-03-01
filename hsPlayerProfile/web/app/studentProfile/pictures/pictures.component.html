@@ -7,8 +7,12 @@
             <picture-tree-view [pictureservice]='pictureService' > </picture-tree-view>
         </div>
         <div class="column col-sm-9 col-xs-9">
-            <div class="embed-responsive embed-responsive-4by3" >
-                <img class="img-responsive" id="imageDisplay" alt="Smiley face"  >
+            <!--<div class="embed-responsive embed-responsive-4by3" >
+                <p-galleria [images]="pictureService.images" [showCaption]="true" transitionInterval="4000" ></p-galleria>
+                <img class="img-responsive" id="imageDisplay" alt="Smiley face" style='height: 100%; width: 100%; object-fit: contain'>
+            </div>-->
+            <div class="embed-responsive embed-responsive-4by3">
+                <img class="img-responsive" id="imageDisplay" alt="Smiley face" >
             </div>
         </div>
     </div>
