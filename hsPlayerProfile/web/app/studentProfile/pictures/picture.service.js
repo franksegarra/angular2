@@ -10,27 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var PictureCategory_1 = require("./PictureCategory");
 require("rxjs/add/operator/map");
 //Global settings
 var config_service_1 = require("../../config.service");
 var PictureService = (function () {
-    //public currentPath:string = "";
-    //public currentTime:number = 0;
-    //public totalTime:number = 0;
-    //public calculatedWidth:number;
-    //public calculatedScrubY:number;
-    //public isMuted:boolean = false;
-    //public isPlaying:boolean = false;
-    //public isDragging:boolean = false;
     function PictureService(http) {
         var _this = this;
         this.http = http;
         this.picturelist = [];
-        this.categorylist = [];
-        this.showDetails = false;
         this.currentTitle = "loading...";
         this.currentDesc = "A very nice video...";
+        this.showDetails = false;
         this.selectedPicture = function (i) {
             _this.currentTitle = _this.picturelist[i]['title'];
             _this.currentDesc = _this.picturelist[i]['description'];
@@ -57,29 +47,35 @@ var PictureService = (function () {
             _this.picturelist = data;
             _this.selectedPicture(1);
             _this.createPictureCategories();
-            _this.createImageList();
         });
     };
     ;
     PictureService.prototype.createPictureCategories = function () {
         var categories = this.uniqueCategories();
         var p = this.picturelist;
-        var c = [];
+        var rootnodes = [];
+        //For each category
         categories.forEach(function (item) {
+            var parent = [];
             var files = p.filter(function (e) { return e.category == item; });
-            var piccategory = new PictureCategory_1.PictureCategory(item, files);
-            c.push(piccategory);
+            parent.label = item;
+            parent.data = "";
+            parent.expandedIcon = "";
+            parent.collapsedIcon = "";
+            parent.children = [];
+            files.forEach(function (file) {
+                var childnode = [];
+                childnode.label = file.title;
+                childnode.data = file.id;
+                childnode.expandedIcon = "";
+                childnode.collapsedIcon = "";
+                parent.children.push(childnode);
+            });
+            rootnodes.push(parent);
         });
-        this.categorylist = c;
+        this.pictureData = rootnodes;
+        console.log(rootnodes);
     };
-    PictureService.prototype.createImageList = function () {
-        var imgs = [];
-        this.picturelist.forEach(function (item) {
-            imgs.push({ source: config_service_1.Config.PICTUREFOLDER + item.filename, alt: item.description, title: item.title });
-        });
-        this.images = imgs;
-    };
-    ;
     PictureService.prototype.uniqueCategories = function () {
         return this.picturelist.map(function (e) { return e['category']; }).filter(function (e, i, a) {
             return i === a.indexOf(e);

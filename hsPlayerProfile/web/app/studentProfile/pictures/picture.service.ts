@@ -3,6 +3,7 @@ import {Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { IPicture } from './IPicture';
 import { PictureCategory } from './PictureCategory';
+import { TreeNode } from 'primeng/primeng';
 
 import 'rxjs/add/operator/map';
 
@@ -13,22 +14,12 @@ import { Config } from '../../config.service';
 export class PictureService {
 
   public picturelist:Array<IPicture> = [];
-  public categorylist:Array<PictureCategory> = [];
-  public pictureElement:any;
-  public images: any[];
-
-  public showDetails:boolean = false;
   public currentTitle:string = "loading...";
   public currentDesc:string = "A very nice video...";
-
-  //public currentPath:string = "";
-  //public currentTime:number = 0;
-  //public totalTime:number = 0;
-  //public calculatedWidth:number;
-  //public calculatedScrubY:number;
-  //public isMuted:boolean = false;
-  //public isPlaying:boolean = false;
-  //public isDragging:boolean = false;
+  public pictureElement:any;
+  public pictureData: TreeNode[];
+  public selectedFile: TreeNode;
+  public showDetails:boolean = false;
 
   constructor(private http:Http) {}
 
@@ -45,10 +36,43 @@ export class PictureService {
                   this.picturelist = data;
                   this.selectedPicture(1);
                   this.createPictureCategories();
-                  this.createImageList();
               }
           );
   };
+
+  createPictureCategories() {
+
+    var categories:Array<string> = this.uniqueCategories();
+    var p:Array<IPicture> = this.picturelist;
+    var rootnodes:Array<TreeNode> = [];
+
+    //For each category
+    categories.forEach(function(item) {
+        var parent: TreeNode = [];
+        var files = p.filter(function(e){return e.category == item;});
+
+        parent.label = item;
+        parent.data = "";
+        parent.expandedIcon = "";
+        parent.collapsedIcon = "";
+        parent.children = [];
+    
+        files.forEach(function(file) {
+            var childnode: TreeNode = [];
+            childnode.label = file.title
+            childnode.data = file.id
+            childnode.expandedIcon = "";
+            childnode.collapsedIcon = "";
+            parent.children.push(childnode);
+        });
+
+        rootnodes.push(parent);
+    });
+
+    this.pictureData = rootnodes;
+
+    console.log(rootnodes);
+  }
 
   selectedPicture = (i:number) => {
       this.currentTitle = this.picturelist[i]['title'];
@@ -65,28 +89,6 @@ export class PictureService {
       console.log('Video: ' + this.pictureElement.src);
   };
 
-  createPictureCategories() {
-    var categories:Array<string> = this.uniqueCategories();
-    var p:Array<IPicture> = this.picturelist;
-    var c:Array<PictureCategory> = [];
-
-    categories.forEach(function(item) {
-        var files = p.filter(function(e){return e.category == item;});
-        var piccategory: PictureCategory = new PictureCategory(item, files);
-        c.push(piccategory);
-    });
-
-    this.categorylist = c;
-  }
-
-  createImageList(){
-    var imgs: any[] = [];
-    this.picturelist.forEach(function(item) {
-        imgs.push({source: Config.PICTUREFOLDER + item.filename, alt: item.description, title: item.title});
-    });
-
-    this.images = imgs;
-  };
 
   uniqueCategories() {
     return this.picturelist.map(function(e) { return e['category']; }).filter(function(e,i,a){

@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var VideoCategory_1 = require("./VideoCategory");
 require("rxjs/add/operator/map");
 //Global settings
 var config_service_1 = require("../../config.service");
@@ -18,17 +17,16 @@ var VideoService = (function () {
     function VideoService(http) {
         var _this = this;
         this.http = http;
-        this.currentPath = "";
+        this.playlist = [];
         this.currentTitle = "loading...";
+        this.currentDesc = "A very nice video...";
+        this.currentPath = "";
         this.currentTime = 0;
         this.totalTime = 0;
         this.isMuted = false;
         this.isPlaying = false;
         this.isDragging = false;
         this.showDetails = false;
-        this.currentDesc = "A very nice video...";
-        this.playlist = [];
-        this.categorylist = [];
         this.selectedVideoById = function (id) {
             var file = _this.playlist.filter(function (e) { return e.id == id; });
             _this.currentTitle = file[0]['title'];
@@ -95,13 +93,26 @@ var VideoService = (function () {
     VideoService.prototype.createVideoCategories = function () {
         var categories = this.uniqueCategories();
         var p = this.playlist;
-        var c = [];
+        var rootnodes = [];
         categories.forEach(function (item) {
+            var parent = [];
             var files = p.filter(function (e) { return e.category == item; });
-            var vidcategory = new VideoCategory_1.VideoCategory(item, files);
-            c.push(vidcategory);
+            parent.label = item;
+            parent.data = "";
+            parent.expandedIcon = "";
+            parent.collapsedIcon = "";
+            parent.children = [];
+            files.forEach(function (file) {
+                var childnode = [];
+                childnode.label = file.title;
+                childnode.data = file.id;
+                childnode.expandedIcon = "";
+                childnode.collapsedIcon = "";
+                parent.children.push(childnode);
+            });
+            rootnodes.push(parent);
         });
-        this.categorylist = c;
+        this.videoData = rootnodes;
     };
     VideoService.prototype.uniqueCategories = function () {
         return this.playlist.map(function (e) { return e['category']; }).filter(function (e, i, a) {

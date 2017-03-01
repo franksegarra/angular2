@@ -2,10 +2,9 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { IVideo } from './IVideo';
-import { VideoCategory } from './VideoCategory';
+import { TreeNode } from 'primeng/primeng';
 
 import 'rxjs/add/operator/map';
-
 
 //Global settings
 import { Config } from '../../config.service';
@@ -13,9 +12,14 @@ import { Config } from '../../config.service';
 @Injectable()
 export class VideoService {
 
-  public videoElement:any;
-  public currentPath:string = "";
+  public playlist:Array<IVideo> = [];
   public currentTitle:string = "loading...";
+  public currentDesc:string = "A very nice video...";
+  public videoElement:any;
+  public videoData: TreeNode[];
+  public selectedFile: TreeNode;
+
+  public currentPath:string = "";
   public currentTime:number = 0;
   public totalTime:number = 0;
   public calculatedWidth:number;
@@ -24,9 +28,6 @@ export class VideoService {
   public isPlaying:boolean = false;
   public isDragging:boolean = false;
   public showDetails:boolean = false;
-  public currentDesc:string = "A very nice video...";
-  public playlist:Array<IVideo> = [];
-  public categorylist:Array<VideoCategory> = [];
 
   constructor(private http:Http) {}
 
@@ -50,17 +51,34 @@ export class VideoService {
   };
 
   createVideoCategories() {
+
     var categories:Array<string> = this.uniqueCategories();
     var p:Array<IVideo> = this.playlist;
-    var c:Array<VideoCategory> = [];
+    var rootnodes:Array<TreeNode> = [];
 
     categories.forEach(function(item) {
+        var parent: TreeNode = [];
         var files = p.filter(function(e){return e.category == item;});
-        var vidcategory: VideoCategory = new VideoCategory(item, files);
-        c.push(vidcategory);
+
+        parent.label = item;
+        parent.data = "";
+        parent.expandedIcon = "";
+        parent.collapsedIcon = "";
+        parent.children = [];
+
+        files.forEach(function(file) {
+            var childnode: TreeNode = [];
+            childnode.label = file.title
+            childnode.data = file.id
+            childnode.expandedIcon = "";
+            childnode.collapsedIcon = "";
+            parent.children.push(childnode);
+        });
+
+        rootnodes.push(parent);
     });
 
-    this.categorylist = c;
+    this.videoData = rootnodes;
   }
 
   uniqueCategories() {

@@ -1,19 +1,21 @@
-"use strict";
-var VideoCategory = (function () {
-    function VideoCategory(category, files) {
-        this.category = category;
-        this.files = files;
-        this.expanded = false;
-        this.checked = false;
-    }
-    VideoCategory.prototype.toggle = function () {
-        this.expanded = !this.expanded;
-    };
-    VideoCategory.prototype.check = function () {
-        var newState = !this.checked;
-        this.checked = newState;
-    };
-    return VideoCategory;
-}());
-exports.VideoCategory = VideoCategory;
+// import { IVideo } from './IVideo';
+// export class VideoCategory{
+//     category: string;
+//     files: Array<IVideo>;
+//     expanded:boolean;
+//     checked:boolean;
+//     constructor(category: string, files: Array<IVideo>) {
+//         this.category = category;
+//         this.files = files;
+//         this.expanded = false;
+//         this.checked = false;
+//     }
+//     toggle(){
+//         this.expanded = !this.expanded;
+//     }
+//     check(){
+//         let newState = !this.checked;
+//         this.checked = newState;
+//     }
+// } 
 //# sourceMappingURL=VideoCategory.js.map

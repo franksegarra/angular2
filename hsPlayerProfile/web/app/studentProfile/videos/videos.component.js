@@ -19,6 +19,10 @@ var VideosComponent = (function () {
         this.videoService.appSetup("videoDisplay");
         this.videoService.getPlaylist(this.myprofile.id);
     };
+    VideosComponent.prototype.nodeSelect = function (event) {
+        if (this.videoService.selectedFile.data != "")
+            this.videoService.selectedVideoById(this.videoService.selectedFile.data);
+    };
     return VideosComponent;
 }());
 __decorate([

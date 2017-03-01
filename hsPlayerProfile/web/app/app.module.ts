@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, GalleriaModule } from 'primeng/primeng';
+import { AccordionModule, GalleriaModule, TreeModule, TreeNode } from 'primeng/primeng';
+
 //Google Maps
 //import { AgmCoreModule } from 'angular2-google-maps/core';
 
@@ -27,7 +28,6 @@ import { StudentProfileComponent } from './studentprofile/studentprofile.compone
 //Video components
 import { VideosComponent } from './studentprofile/videos/videos.component'
 import { VideoService } from './studentprofile/videos/video.service';
-import { VideoTreeViewComponent } from './studentprofile/videos/videotreeview.component';
 import { ProgressComponent } from './studentprofile/videos/progress.component';
 import { ToolbarComponent } from './studentprofile/videos/toolbar.component';
 import { OptionsComponent } from './studentprofile/videos/options.component';
@@ -36,7 +36,6 @@ import { TimeDisplayPipe } from "./studentprofile/videos//timedisplay.pipe";
 //Picture components
 import { PicturesComponent } from './studentprofile/pictures/pictures.component'
 import { PictureService } from './studentprofile/pictures/picture.service';
-import { PictureTreeViewComponent } from './studentprofile/pictures/picturetreeview.component';
 
 //Academic components
 import { AcademicsComponent } from './studentprofile/academics/academics.component'
@@ -60,7 +59,8 @@ import { ContactMeComponent } from './studentprofile/contactme/contactme.compone
       FormsModule, 
       ReactiveFormsModule,
       AccordionModule,
-      GalleriaModule
+      GalleriaModule,
+      TreeModule
   ],
   declarations: [ 
       AppComponent
@@ -71,10 +71,8 @@ import { ContactMeComponent } from './studentprofile/contactme/contactme.compone
       ,ProgressComponent
       ,ToolbarComponent
       ,OptionsComponent
-      ,VideoTreeViewComponent
       ,TimeDisplayPipe
       ,PicturesComponent
-      ,PictureTreeViewComponent
       ,AcademicsComponent
       ,GradeComponent
       ,GradeFilterPipe

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
 import { VideoService } from './video.service';
+import { TreeNode } from 'primeng/primeng';
 
 @Component({
     selector: 'pp-videos',
@@ -18,5 +19,10 @@ export class VideosComponent implements OnInit {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Videos';
         this.videoService.appSetup("videoDisplay");
         this.videoService.getPlaylist( this.myprofile.id );
+    }
+
+    nodeSelect(event: any) {
+        if (this.videoService.selectedFile.data != "")
+            this.videoService.selectedVideoById(this.videoService.selectedFile.data);
     }
 }

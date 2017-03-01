@@ -4,15 +4,14 @@
     </div>
     <div class="panel-body"  >
         <div class="column col-sm-3 col-xs-3">
-            <picture-tree-view [pictureservice]='pictureService' > </picture-tree-view>
+            <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
         </div>
         <div class="column col-sm-9 col-xs-9">
             <!--<div class="embed-responsive embed-responsive-4by3" >
-                <p-galleria [images]="pictureService.images" [showCaption]="true" transitionInterval="4000" ></p-galleria>
-                <img class="img-responsive" id="imageDisplay" alt="Smiley face" style='height: 100%; width: 100%; object-fit: contain'>
+				<button onclick="resize('img4');">Update Image 4</button>
             </div>-->
             <div class="embed-responsive embed-responsive-4by3">
-                <img class="img-responsive" id="imageDisplay" alt="Smiley face" >
+                <img class="img-responsive" id="imageDisplay" alt="No pictures to show" >
             </div>
         </div>
     </div>

@@ -19,6 +19,10 @@ var PicturesComponent = (function () {
         this.pictureService.appSetup("imageDisplay");
         this.pictureService.getPlaylist(this.myprofile.id);
     };
+    PicturesComponent.prototype.nodeSelect = function (event) {
+        if (this.pictureService.selectedFile.data != "")
+            this.pictureService.selectedPictureById(this.pictureService.selectedFile.data);
+    };
     return PicturesComponent;
 }());
 __decorate([

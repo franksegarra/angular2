@@ -35,7 +35,7 @@ namespace webServices
 
             if (Environment.MachineName == "FRSTOSHIBA17")
                 sqlConnectionString = Configuration["ConnectionStrings:FRSConnection"];
-            else if (Environment.MachineName == "CRP -IT - PF00W8DJ") 
+            else if (Environment.MachineName == "CRP-IT-PF00W8DJ") 
                 sqlConnectionString = Configuration["ConnectionStrings:IMConnection"];
             else
                 sqlConnectionString = Configuration["ConnectionStrings:DefaultConnection"];

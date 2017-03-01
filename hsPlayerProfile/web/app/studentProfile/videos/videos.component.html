@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body"  >
         <div class="column col-sm-3 col-xs-3">
-            <video-tree-view [videoservice]='videoService' > </video-tree-view>
+            <p-tree [value]="videoService.videoData" selectionMode="single" [(selection)]="videoService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
         </div>
         <div class="column col-sm-9 col-xs-9">
 

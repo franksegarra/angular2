@@ -27,7 +27,6 @@ var studentprofile_component_1 = require("./studentprofile/studentprofile.compon
 //Video components
 var videos_component_1 = require("./studentprofile/videos/videos.component");
 var video_service_1 = require("./studentprofile/videos/video.service");
-var videotreeview_component_1 = require("./studentprofile/videos/videotreeview.component");
 var progress_component_1 = require("./studentprofile/videos/progress.component");
 var toolbar_component_1 = require("./studentprofile/videos/toolbar.component");
 var options_component_1 = require("./studentprofile/videos/options.component");
@@ -35,7 +34,6 @@ var timedisplay_pipe_1 = require("./studentprofile/videos//timedisplay.pipe");
 //Picture components
 var pictures_component_1 = require("./studentprofile/pictures/pictures.component");
 var picture_service_1 = require("./studentprofile/pictures/picture.service");
-var picturetreeview_component_1 = require("./studentprofile/pictures/picturetreeview.component");
 //Academic components
 var academics_component_1 = require("./studentprofile/academics/academics.component");
 var grade_component_1 = require("./studentprofile/academics/grade.component");
@@ -61,7 +59,8 @@ AppModule = __decorate([
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
             primeng_1.AccordionModule,
-            primeng_1.GalleriaModule
+            primeng_1.GalleriaModule,
+            primeng_1.TreeModule
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -72,10 +71,8 @@ AppModule = __decorate([
             progress_component_1.ProgressComponent,
             toolbar_component_1.ToolbarComponent,
             options_component_1.OptionsComponent,
-            videotreeview_component_1.VideoTreeViewComponent,
             timedisplay_pipe_1.TimeDisplayPipe,
             pictures_component_1.PicturesComponent,
-            picturetreeview_component_1.PictureTreeViewComponent,
             academics_component_1.AcademicsComponent,
             grade_component_1.GradeComponent,
             grade_filter_pipe_1.GradeFilterPipe,
