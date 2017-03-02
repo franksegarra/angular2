@@ -30,7 +30,8 @@ AcademicsComponent = __decorate([
     core_1.Component({
         selector: 'pp-academics',
         moduleId: module.id,
-        templateUrl: 'academics.component.html'
+        templateUrl: 'academics.component.html',
+        styleUrls: ['academics.component.css']
     }),
     __metadata("design:paramtypes", [data_service_1.DataService])
 ], AcademicsComponent);

@@ -20,5 +20,5 @@ export interface IProfile {
         state: string;
         zip: string;
         displayAddrAndPhone: number;
-        highSchoolName: string;
+        highschoolname: string;
 }

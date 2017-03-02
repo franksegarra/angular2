@@ -22,5 +22,5 @@ export class Profile implements IProfile {
     public state: string;
     public zip: string;
     public displayAddrAndPhone: number;
-    public highSchoolName: string;
+    public highschoolname: string;
 }

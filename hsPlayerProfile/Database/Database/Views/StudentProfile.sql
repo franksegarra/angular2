@@ -6,9 +6,8 @@ SELECT
 	s.lastName, 
 	s.primaryEmail, 
 	s.highSchoolId,
-	s.graduationYear
-/*
-	,s.additionalInfo, 
+	s.graduationYear,
+	s.additionalInfo, 
 	s.gpa, 
 	s.satTestDate, 
 	s.satScore, 
@@ -23,5 +22,4 @@ SELECT
 	s.zip, 
 	s.displayAddrAndPhone, 
 	h.highSchoolName
-*/
 FROM student s left outer join highSchool h on s.highSchoolId = h.id

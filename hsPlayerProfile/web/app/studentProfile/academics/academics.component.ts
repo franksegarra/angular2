@@ -13,9 +13,10 @@ import { DataService } from '../../services/data.service';
 @Component({
     selector: 'pp-academics',
     moduleId: module.id,
-    templateUrl: 'academics.component.html'
+    templateUrl: 'academics.component.html',
+    styleUrls: ['academics.component.css']
 })
-export class AcademicsComponent { 
+export class AcademicsComponent implements OnInit { 
     @Input() myprofile: IProfile;
     pageTitle: string;
     classes: IClass[];

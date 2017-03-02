@@ -1,3 +1,10 @@
 1.  Create studentprofile.module and move appropriate stuff there
 2.  Add breadcrumbs
 3.  Add Login/Register Link
+
+
+Notes:
+Database modification to make
+1.  Add description to links table
+2.  Add profile picture to student table
+3.  modify gpa field to have 2 decimal places

@@ -15,7 +15,7 @@ var StudentProfileComponent = (function () {
     function StudentProfileComponent(_dataService) {
         this._dataService = _dataService;
         this.studentId = 1;
-        this.componentToShow = 'pictures';
+        this.componentToShow = 'academics';
     }
     StudentProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
