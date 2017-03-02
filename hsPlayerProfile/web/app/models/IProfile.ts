@@ -21,4 +21,6 @@ export interface IProfile {
         zip: string;
         displayAddrAndPhone: number;
         highschoolname: string;
+        profilePictureId: number;
+        profilepicturefilename: string;
 }

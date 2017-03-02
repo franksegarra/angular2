@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { IPicture } from './IPicture';
-import { PictureCategory } from './PictureCategory';
 import { TreeNode } from 'primeng/primeng';
 
 import 'rxjs/add/operator/map';
@@ -70,15 +69,12 @@ export class PictureService {
     });
 
     this.pictureData = rootnodes;
-
-    console.log(rootnodes);
   }
 
   selectedPicture = (i:number) => {
       this.currentTitle = this.picturelist[i]['title'];
       this.currentDesc = this.picturelist[i]['description'];
       this.pictureElement.src = Config.PICTUREFOLDER + this.picturelist[i]['filename'];
-      console.log('Video: ' + this.pictureElement.src)
   };
 
   selectedPictureById = (id:number) => {
@@ -86,7 +82,6 @@ export class PictureService {
       this.currentTitle = file[0]['title'];
       this.currentDesc = file[0]['description'];
       this.pictureElement.src = Config.PICTUREFOLDER + file[0]['filename'];
-      console.log('Video: ' + this.pictureElement.src);
   };
 
 

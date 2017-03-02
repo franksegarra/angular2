@@ -9,9 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var config_service_1 = require("../../config.service");
 var TestScoresComponent = (function () {
     function TestScoresComponent() {
     }
+    TestScoresComponent.prototype.ngOnInit = function () {
+        this.profilePicUrl = config_service_1.Config.PICTUREFOLDER + this.myprofile.profilepicturefilename;
+    };
     return TestScoresComponent;
 }());
 __decorate([

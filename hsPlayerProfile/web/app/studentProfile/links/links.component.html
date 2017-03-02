@@ -2,14 +2,16 @@
     <div class='panel-heading'>
         {{pageTitle}}
     </div>
-
     <div class='panel-body'>
         <div class="table-responsive">
             <table class="table" *ngIf="links && links.length">
                 <tbody>
                     <tr *ngFor='let link of links'>
+                        <td style="width: 30%">
+                            <a href="{{ link.linkUrl }}" target="_blank">{{ link.linkName }}</a>
+                        </td>
                         <td>
-                            <a href="{{ link.linkUrl }}" target="_blank">{{ link.linkDescription }}</a>                            
+                            {{ link.linkDescription }}                            
                         </td>
                     </tr>
                 </tbody>

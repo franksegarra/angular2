@@ -1,3 +1,2 @@
 1.  Add section for extra curricular activities
-2.  Add section for comments
-4.  Add profile picture to student table
+2.  Calculate overall average for each grade

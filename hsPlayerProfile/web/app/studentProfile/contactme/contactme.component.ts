@@ -10,8 +10,6 @@ import { IContactMe } from '../../models/IContactme';
 export class ContactMeComponent { 
     @Input() myprofile: IProfile;
     pageTitle: string;
-    // errorMessage: string;
-    // cinfo: IContactMe;
 
     // Bring this back when we implement the post
     // constructor(private _dataService: DataService) {

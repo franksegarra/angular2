@@ -72,6 +72,7 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<StudentProfile>, EntityBaseRepository<StudentProfile>>();
             services.AddScoped<EntityBaseRepository<StudentVideos>, EntityBaseRepository<StudentVideos>>();
             services.AddScoped<EntityBaseRepository<StudentPictures>, EntityBaseRepository<StudentPictures>>();
+            services.AddScoped<EntityBaseRepository<StudentSchedWithActivity>, EntityBaseRepository<StudentSchedWithActivity>>();
 
             #endregion Repositories
 

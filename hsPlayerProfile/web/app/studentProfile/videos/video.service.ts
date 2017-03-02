@@ -94,7 +94,6 @@ export class VideoService {
       this.videoElement.src = Config.VIDEOFOLDER + file[0]['filename'];
       this.videoElement.pause();
       this.isPlaying = false;
-      console.log('Video: ' + this.videoElement.src);
   };
 
   selectedVideo = (i:number) => {
@@ -103,7 +102,6 @@ export class VideoService {
       this.videoElement.src = Config.VIDEOFOLDER + this.playlist[i]['filename'];
       this.videoElement.pause();
       this.isPlaying = false;
-      console.log('Video: ' + this.videoElement.src)
   };
 
   seekVideo(e:any) {

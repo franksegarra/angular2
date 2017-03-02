@@ -2,50 +2,27 @@
     <div class='panel-heading'>
         {{pageTitle}}
     </div>
-
     <div class='panel-body'>
-
-        <!--<div class="row">
-            <div class="col-md-2">Filter by:</div>
-            <div class="col-md-4">
-                <input type="text" [(ngModel)] = 'listFilter' />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Filtered by: {{listFilter}} </h3>
-            </div>
-        </div>
-        
-        | schedFilter: listFilter'
-        -->
-
-
         <div class="table-responsive">
             <table class="table" *ngIf="schedItems && schedItems.length">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <!--<th>Day of Week</th>-->
-                        <th>Event</th>
+                        <th style="width: 5%">DoW</th>
+                        <th style="width: 10%">Date</th>
+                        <th style="width: 10%">Time</th>
+                        <th style="width: 20%">Event</th>
                         <th>Type</th>
                         <th>Location</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor='let schedItem of schedItems' >   
-                        <td>{{ schedItem.activitydate }}</td>
-                        <td>{{ schedItem.starttime }}</td>
-                        <!--<td>{{ schedItem.DayofWeek }}</td>-->
+                        <td>{{ schedItem.activitydate | date: 'EEE' }}</td>
+                        <td>{{ schedItem.activitydate | date: 'M/d/yyyy' }}</td>
+                        <td>{{ schedItem.starttime | timeFormat }}</td>
                         <td>{{ schedItem.activitydesc }}</td>
-                        <td>{{ schedItem.activitytypeid }}</td>
-                        <td>{{ schedItem.location }}</td>
-                        <!--<td>
-                            <sebm-google-map  [latitude]="lat" [longitude]="lng">
-                            <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
-                            </sebm-google-map>                            
-                        </td>-->
+                        <td>{{ schedItem.activitytype }}</td>
+                        <td><a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.linkText }}</a></td>
                     </tr>
                 </tbody>
             </table>

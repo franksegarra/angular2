@@ -1,3 +1,2 @@
-1.  Add google Maps
-2.  Add Filter 
-3.  Display as calander
+1.  Display as calander
+2.  Only show events in the future

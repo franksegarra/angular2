@@ -21,10 +21,10 @@ import 'rxjs/add/operator/first';
 @Injectable()
 export class DataService {
     private _classesUrl: string = Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/';              //'api/classes/classes.json';
-    private _schedUrl: string  = Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/';             // 'api/schedule/schedule.json'; 
+    private _schedUrl: string  = Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/';     // 'api/schedule/schedule.json'; 
     private _linksUrl: string  = Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/';                 //'api/links/links.json';
     private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile/';                           //'api/profile/profile.json';                           
-    private _studentsUrl: string  = Config.WEBSERVICESURL + 'student/';                                    //'api/profile/profile.json';                           
+    private _studentsUrl: string  = Config.WEBSERVICESURL + 'student/';                                  //'api/profile/profile.json';                           
     
     constructor(private _http: Http) {
     }

@@ -10,6 +10,14 @@
 --------------------------------------------------------------------------------------
 */
 /*
+if exists(select name from sysobjects where name = 'studentVideos')
+drop table [dbo].[studentVideos]
+go
+
+if exists(select name from sysobjects where name = 'studentPictures')
+drop table [dbo].[studentPictures]
+go
+
 if exists(select name from sysobjects where name = 'studentSchedules')
 drop table [dbo].[studentSchedules]
 go

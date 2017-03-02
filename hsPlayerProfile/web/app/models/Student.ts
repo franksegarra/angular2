@@ -22,4 +22,5 @@ export class Student implements IStudent {
     public state: string;
     public zip: string;
     public displayAddrAndPhone: number;
+    public profilePictureId: number;
 }

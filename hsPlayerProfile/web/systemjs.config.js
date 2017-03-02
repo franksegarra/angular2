@@ -28,10 +28,6 @@
 
       //UI Controls
       'primeng': 'npm:primeng',
-
-      //Google Maps      
-      'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js'
-
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -44,9 +40,6 @@
       },
       primeng: {
           defaultExtension: 'js'
-      },
-      'angular2-google-maps': { 
-        defaultExtension: 'js' 
       }
     }
   });

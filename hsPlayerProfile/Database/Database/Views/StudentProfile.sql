@@ -21,5 +21,9 @@ SELECT
 	s.state, 
 	s.zip, 
 	s.displayAddrAndPhone, 
-	h.highSchoolName
-FROM student s left outer join highSchool h on s.highSchoolId = h.id
+	h.highSchoolName,
+	s.profilePictureId,
+	p.filename as profilePicturefilename
+FROM student s 
+	left outer join highSchool h on s.highSchoolId = h.id
+	left outer join studentPictures p on s.profilePictureId = p.id

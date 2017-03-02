@@ -18,7 +18,8 @@ namespace webServices.Infrastructure
         public DbSet<StudentProfile> StudentProfile { get; set; }
         public DbSet<StudentVideos> StudentVideos { get; set; }
         public DbSet<StudentPictures> StudentPictures { get; set; }
-
+        public DbSet<StudentSchedWithActivity> StudeStudentSchedWithActivityntPictures { get; set; }
+        
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {
         }

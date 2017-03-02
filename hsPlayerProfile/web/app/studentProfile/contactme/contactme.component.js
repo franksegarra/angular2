@@ -12,8 +12,6 @@ var core_1 = require("@angular/core");
 var ContactMeComponent = (function () {
     function ContactMeComponent() {
     }
-    // errorMessage: string;
-    // cinfo: IContactMe;
     // Bring this back when we implement the post
     // constructor(private _dataService: DataService) {
     // };

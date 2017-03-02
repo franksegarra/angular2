@@ -34,7 +34,6 @@ var VideoService = (function () {
             _this.videoElement.src = config_service_1.Config.VIDEOFOLDER + file[0]['filename'];
             _this.videoElement.pause();
             _this.isPlaying = false;
-            console.log('Video: ' + _this.videoElement.src);
         };
         this.selectedVideo = function (i) {
             _this.currentTitle = _this.playlist[i]['title'];
@@ -42,7 +41,6 @@ var VideoService = (function () {
             _this.videoElement.src = config_service_1.Config.VIDEOFOLDER + _this.playlist[i]['filename'];
             _this.videoElement.pause();
             _this.isPlaying = false;
-            console.log('Video: ' + _this.videoElement.src);
         };
         this.dragStart = function (e) {
             this.isDragging = true;

@@ -7,9 +7,6 @@
             <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
         </div>
         <div class="column col-sm-9 col-xs-9">
-            <!--<div class="embed-responsive embed-responsive-4by3" >
-				<button onclick="resize('img4');">Update Image 4</button>
-            </div>-->
             <div class="embed-responsive embed-responsive-4by3">
                 <img class="img-responsive" id="imageDisplay" alt="No pictures to show" >
             </div>

@@ -23,4 +23,6 @@ export class Profile implements IProfile {
     public zip: string;
     public displayAddrAndPhone: number;
     public highschoolname: string;
+    public profilePictureId: number;
+    public profilepicturefilename: string;
 }

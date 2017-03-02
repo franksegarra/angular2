@@ -14,6 +14,7 @@ namespace webServices.Entities
         public int id { get; set; }
         public int studentid { get; set; }
         public int activityid { get; set; }
+        public string linkName { get; set; }
         public string linkDescription { get; set; }
         public string linkUrl { get; set; }
     }

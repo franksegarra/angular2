@@ -11,8 +11,6 @@ var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var primeng_1 = require("primeng/primeng");
-//Google Maps
-//import { AgmCoreModule } from 'angular2-google-maps/core';
 //Data Services
 var data_service_1 = require("./services/data.service");
 //routing setup
@@ -40,9 +38,11 @@ var grade_component_1 = require("./studentprofile/academics/grade.component");
 var testscores_component_1 = require("./studentprofile/academics/testscores.component");
 var grade_filter_pipe_1 = require("./studentprofile/academics/grade-filter.pipe");
 var schedule_component_1 = require("./studentprofile/schedule/schedule.component");
+var timeFormat_pipe_1 = require("./pipes/timeFormat.pipe");
 var links_component_1 = require("./studentprofile/links/links.component");
 var profile_component_1 = require("./studentprofile/profile/profile.component");
 var contactme_component_1 = require("./studentprofile/contactme/contactme.component");
+var phoneFormat_pipe_1 = require("./pipes/phoneFormat.pipe");
 //Grade Filter
 //Module declaration
 var AppModule = (function () {
@@ -59,7 +59,6 @@ AppModule = __decorate([
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
             primeng_1.AccordionModule,
-            primeng_1.GalleriaModule,
             primeng_1.TreeModule
         ],
         declarations: [
@@ -78,9 +77,11 @@ AppModule = __decorate([
             grade_filter_pipe_1.GradeFilterPipe,
             testscores_component_1.TestScoresComponent,
             schedule_component_1.ScheduleComponent,
+            timeFormat_pipe_1.TimeFormatPipe,
             links_component_1.LinksComponent,
             profile_component_1.ProfileComponent,
-            contactme_component_1.ContactMeComponent
+            contactme_component_1.ContactMeComponent,
+            phoneFormat_pipe_1.PhoneFormatPipe
         ],
         providers: [data_service_1.DataService, video_service_1.VideoService, picture_service_1.PictureService],
         bootstrap: [app_component_1.AppComponent]

@@ -13,8 +13,16 @@ Post-Deployment Script Template
 INSERT INTO highSchool (highSchoolName) VALUES ('Carmel High School')
 GO
 
-INSERT INTO student (lastName, firstName, highSchoolId, profileName, primaryEmail, graduationYear, additionalInfo) VALUES ('Segarra', 'Francis', 1, 'FrancisSegarra', 'segarraf18@gmail.com', 2018, 'I am offspring #2')
-INSERT INTO student (lastName, firstName, highSchoolId, profileName, primaryEmail, graduationYear, additionalInfo) VALUES ('Segarra', 'Katherine', 1, 'KatherineSegarra', 'krsegarra@gmail.com', 2015, 'I am offspring #1')
+INSERT INTO student (profileName, lastName, firstName, primaryEmail, highSchoolId, graduationYear, additionalInfo
+,gpa,satTestDate,satScore,actTestDate,actScore,ncaaid,phone,streetAddress1,streetAddress2,city,state,zip,displayAddrAndPhone, profilePictureId) 
+VALUES ('FrancisSegarra', 'Segarra', 'Francis', 'segarraf18@gmail.com', 1, 2018,
+'Former Red Sox slugger David Ortiz retired last summer, but his legions of fans won’t have to wait long to relive his career, as his book “Papi” will be released May 16. Thanks to Big Papi himself, let’s get a look at the headline and cover:  I like it. Just simple and to the point. There’s no reason to splash a 24-word headline over the entire cover here. Of course, I wouldn’t have argued with a reference to his “This is our f------ city” moment. Something like “This Was My F------ Career” would have been a pretty cool title, and if they censored it like that, the bookstores would surely have been fine with it.',
+3.51, '3/11/2017', 1250, null, null, null, '8453067067', '93 Sparrow Ridge Rd', null, 'Carmel', 'NY', '10512', 1, 4)
+
+INSERT INTO student (profileName, lastName, firstName, primaryEmail, highSchoolId, graduationYear, additionalInfo
+,gpa,satTestDate,satScore,actTestDate,actScore,ncaaid,phone,streetAddress1,streetAddress2,city,state,zip,displayAddrAndPhone, profilePictureId) 
+VALUES ('KatherineSegarra', 'Segarra', 'Katherine', 'krsegarra@gmail.com', 1, 2015, 'I am offspring #1',
+3.51, '3/11/2017', 1250, null, null, null, '8453067067', '93 Sparrow Ridge Rd', null, 'Carmel', 'NY', '10512', 1, null)
 GO
 
 INSERT INTO activity (activity) VALUES ('Baseball')
@@ -58,40 +66,40 @@ insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,c
 insert into studentClasses (studentid,grade,className,finalAverage,letterGrade,collegeCredit) values (1,12,'Health',92,'A', 0)
 GO
 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'03/25/2017','11:00 AM',1,'@Briarcliff High School',1,'Briarcliff High School, 444 Pleasantville Rd, Briarcliff Manor, NY 10510, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'03/31/2017','04:30 PM',1,'@Ramapo High School',1,'Ramapo High School, 400 Viola Rd, Spring Valley, NY 10977, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/03/2017','04:00 PM',1,'@Lakeland High School',1,'Lakeland High School, 1349 E Main St, Shrub Oak, NY 10588, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/04/2017','04:30 PM',1,'New Rochelle',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/06/2017','04:30 PM',1,'@Portchester High School',1,'Port Chester High School, 1 Tamarack Rd, Port Chester, NY 10573, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/08/2017','11:30 AM',1,'@Horace Greely',1,'Horace Greeley High School, 70 Roaring Brook Rd, Chappaqua, NY 10514, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/10/2017','11:00 AM',1,'Mahopac',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/12/2017','11:00 AM',1,'@Mahopac High School',1,'Mahopac High School, 421 Baldwin Place Rd, Mahopac, NY 10541, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/15/2017','11:00 AM',1,'Pawling High School',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/18/2017','04:30 PM',1,'Ketcham',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/20/2017','04:30 PM',1,'@Ketcham',1,'Roy C Ketcham Senior High School, 99 Myers Corners Rd, Wappingers Falls, NY 12590, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/22/2017','02:00 PM',1,'Croton Harmon',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/24/2017','04:00 PM',1,'Yorktown',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/26/2017','04:30 PM',1,'@John Jay East Fishkill',1,'John Jay Senior High School, 2012 NY-52, Hopewell Junction, NY 12533, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'04/28/2017','04:30 PM',1,'John Jay East Fishkill',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'05/02/2017','04:30 PM',1,'Arlington High School',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'05/04/2017','04:30 PM',1,'@Arlington High School',1,'Arlington High School, 1157 State Rte 55, Lagrangeville, NY 12540, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'05/06/2017','01:30 PM',1,'@Fox Lane',1,'Fox Lane High School, Mt Kisco, NY 10549, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'05/08/2017','04:30 PM',1,'@Brewster',1,'Brewster High School, 50 Foggintown Rd, Brewster, NY 10509, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'05/09/2017','04:00 PM',1,'@Somers',1,'Somers High School, 120 Primrose St, Lincolndale, NY 10540, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'05/11/2017','04:00 PM',1,'Walter Panas',1,'Carmel High School, County Center, Carmel, NY 10512, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'06/19/2017', null,1,'Diamond Nation',2,'Diamond Nation, 5 Bartles Corner Rd, Flemington, NJ 08822, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'06/26/2017', null,1,'Diamond Nation',2,'Diamond Nation, 5 Bartles Corner Rd, Flemington, NJ 08822, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'07/10/2017', null,1,'Boston Invitational - NorthBorough MA',2,'New England Baseball Complex, 333 SW Cutoff, Northborough, MA 01532, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'07/13/2017', null,1,'Boston Open Northborough, MA',2,'New England Baseball Complex, 333 SW Cutoff, Northborough, MA 01532, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'07/21/2017', null,1,'Fordham Showcase Camp',2,'Fordham University, Bronx, NY 10458, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'07/31/2017', null,1,'Blue Chip Wood Bat',2,'Diamond Nation, 5 Bartles Corner Rd, Flemington, NJ 08822, USA') 
-Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location) values (1,'08/15/2017', null,1,'Evolution Showcase',3,'TBD') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'03/25/2017','11:00 AM',1,'@Briarcliff High School',1,'Briarcliff High School, 444 Pleasantville Rd, Briarcliff Manor, NY 10510, USA', 'Briarcliff High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'03/31/2017','04:30 PM',1,'@Ramapo High School',1,'Ramapo High School, 400 Viola Rd, Spring Valley, NY 10977, USA', 'Ramapo High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/03/2017','04:00 PM',1,'@Lakeland High School',1,'Lakeland High School, 1349 E Main St, Shrub Oak, NY 10588, USA', 'Lakeland High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/04/2017','04:30 PM',1,'New Rochelle',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/06/2017','04:30 PM',1,'@Portchester High School',1,'Port Chester High School, 1 Tamarack Rd, Port Chester, NY 10573, USA', 'Portchester High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/08/2017','11:30 AM',1,'@Horace Greely',1,'Horace Greeley High School, 70 Roaring Brook Rd, Chappaqua, NY 10514, USA','Horace Greely') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/10/2017','11:00 AM',1,'Mahopac',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/12/2017','11:00 AM',1,'@Mahopac High School',1,'Mahopac High School, 421 Baldwin Place Rd, Mahopac, NY 10541, USA', 'Mahopac High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/15/2017','11:00 AM',1,'Pawling High School',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/18/2017','04:30 PM',1,'Ketcham',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/20/2017','04:30 PM',1,'@Ketcham',1,'Roy C Ketcham Senior High School, 99 Myers Corners Rd, Wappingers Falls, NY 12590, USA', 'Roy C Ketcham Senior High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/22/2017','02:00 PM',1,'Croton Harmon',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/24/2017','04:00 PM',1,'Yorktown',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/26/2017','04:30 PM',1,'@John Jay East Fishkill',1,'John Jay Senior High School, 2012 NY-52, Hopewell Junction, NY 12533, USA','John Jay Senior High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'04/28/2017','04:30 PM',1,'John Jay East Fishkill',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'05/02/2017','04:30 PM',1,'Arlington High School',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'05/04/2017','04:30 PM',1,'@Arlington High School',1,'Arlington High School, 1157 State Rte 55, Lagrangeville, NY 12540, USA', 'Arlington High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'05/06/2017','01:30 PM',1,'@Fox Lane',1,'Fox Lane High School, Mt Kisco, NY 10549, USA','Fox Lane High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'05/08/2017','04:30 PM',1,'@Brewster',1,'Brewster High School, 50 Foggintown Rd, Brewster, NY 10509, USA','Brewster High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'05/09/2017','04:00 PM',1,'@Somers',1,'Somers High School, 120 Primrose St, Lincolndale, NY 10540, USA','Somers High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'05/11/2017','04:00 PM',1,'Walter Panas',1,'Carmel High School, County Center, Carmel, NY 10512, USA', 'Carmel High School') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'06/19/2017', null,1,'Diamond Nation',2,'Diamond Nation, 5 Bartles Corner Rd, Flemington, NJ 08822, USA', 'Diamond Nation') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'06/26/2017', null,1,'Diamond Nation',2,'Diamond Nation, 5 Bartles Corner Rd, Flemington, NJ 08822, USA', 'Diamond Nation') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'07/10/2017', null,1,'Boston Invitational - NorthBorough MA',2,'New England Baseball Complex, 333 SW Cutoff, Northborough, MA 01532, USA','New England Baseball Complex') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'07/13/2017', null,1,'Boston Open Northborough, MA',2,'New England Baseball Complex, 333 SW Cutoff, Northborough, MA 01532, USA','New England Baseball Complex') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'07/21/2017', null,1,'Fordham Showcase Camp',2,'Fordham University, Bronx, NY 10458, USA','Fordham University') 
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'07/31/2017', null,1,'Blue Chip Wood Bat',2,'Diamond Nation, 5 Bartles Corner Rd, Flemington, NJ 08822, USA', 'Diamond Nation')
+Insert into studentSchedules (studentid, activityDate, startTime, activityid, activitydesc,activitytypeid,location, linkText) values (1,'08/15/2017', null,1,'Evolution Showcase',3,'TBD', null) 
 GO
 
-INSERT INTO studentLinks (studentid, activityid, linkDescription, linkUrl) VALUES (1, 1, 'Evolution Baseball', 'http://www.evolutionbaseballny.com')
-INSERT INTO studentLinks (studentid, activityid, linkDescription, linkUrl) VALUES (1, 1, 'Sal Agostinelli', 'http://www.salsbaseball.com/index.html')
-INSERT INTO studentLinks (studentid, activityid, linkDescription, linkUrl) VALUES (1, 1, 'Perfect Game Profile', 'http://www.perfectgame.org/Players/Playerprofile.aspx?ID=504429')
-INSERT INTO studentLinks (studentid, activityid, linkDescription, linkUrl) VALUES (1, 1, 'Carmel High School Varsity Baseball Schedule', 'http://158927.digitalsports.com/pages/schedule/schedule.php?level_id=696828')
+INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Evolution Baseball', 'My Travel Baseball Team', 'http://www.evolutionbaseballny.com')
+INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Sal Agostinelli', 'Dominican Republic Trip Info', 'http://www.salsbaseball.com/index.html')
+INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Perfect Game Profile', 'My Profile on Perfect Game',  'http://www.perfectgame.org/Players/Playerprofile.aspx?ID=504429')
+INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Carmel High School Varsity Baseball Schedule', 'Carmel High School Varsity Baseball Schedule', 'http://158927.digitalsports.com/pages/schedule/schedule.php?level_id=696828')
 GO
 
 insert into studentActivities (studentid, activityid) values (1, 1)

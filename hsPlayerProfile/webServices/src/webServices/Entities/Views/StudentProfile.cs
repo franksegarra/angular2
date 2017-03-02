@@ -32,5 +32,7 @@ namespace webServices.Entities
         public string zip { get; set; }
         public short? displayaddrandphone { get; set; }
         public string highschoolname { get; set; }
+        public int? profilepictureid { get; set; }
+        public string profilepicturefilename { get; set; }
     }
 }

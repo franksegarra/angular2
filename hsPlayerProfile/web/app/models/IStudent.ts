@@ -20,4 +20,5 @@ export interface IStudent {
         state: string;
         zip: string;
         displayAddrAndPhone: number;
+        profilePictureId: number;
 }

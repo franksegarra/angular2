@@ -31,5 +31,6 @@ namespace webServices.Entities
         public string state { get; set; }
         public string zip { get; set; }
         public short? displayaddrandphone { get; set; }
+        public int? profilePictureId { get; set; }
     }
 }

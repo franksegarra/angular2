@@ -22,7 +22,7 @@ var DataService = (function () {
     function DataService(_http) {
         this._http = _http;
         this._classesUrl = config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/'; //'api/classes/classes.json';
-        this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedules/GetByStudentId/'; // 'api/schedule/schedule.json'; 
+        this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/'; // 'api/schedule/schedule.json'; 
         this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/'; //'api/links/links.json';
         this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/'; //'api/profile/profile.json';                           
         this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student/'; //'api/profile/profile.json';                           

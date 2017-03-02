@@ -4,10 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, GalleriaModule, TreeModule, TreeNode } from 'primeng/primeng';
-
-//Google Maps
-//import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AccordionModule, TreeModule, TreeNode } from 'primeng/primeng';
 
 //Data Services
 import { DataService } from './services/data.service';
@@ -44,9 +41,13 @@ import { TestScoresComponent } from './studentprofile/academics/testscores.compo
 import { GradeFilterPipe } from './studentprofile/academics/grade-filter.pipe';
 
 import { ScheduleComponent } from './studentprofile/schedule/schedule.component'
+import { TimeFormatPipe } from './pipes/timeFormat.pipe';
+
 import { LinksComponent } from './studentprofile/links/links.component'
 import { ProfileComponent } from './studentprofile/profile/profile.component'
+
 import { ContactMeComponent } from './studentprofile/contactme/contactme.component'
+import { PhoneFormatPipe } from './pipes/phoneFormat.pipe'
 
 //Grade Filter
 
@@ -59,7 +60,6 @@ import { ContactMeComponent } from './studentprofile/contactme/contactme.compone
       FormsModule, 
       ReactiveFormsModule,
       AccordionModule,
-      GalleriaModule,
       TreeModule
   ],
   declarations: [ 
@@ -78,9 +78,11 @@ import { ContactMeComponent } from './studentprofile/contactme/contactme.compone
       ,GradeFilterPipe
       ,TestScoresComponent
       ,ScheduleComponent
+      ,TimeFormatPipe
       ,LinksComponent
       ,ProfileComponent
       ,ContactMeComponent
+      ,PhoneFormatPipe
   ],
   providers: [ DataService, VideoService, PictureService ],
   bootstrap: [ AppComponent ]

@@ -25,14 +25,12 @@ var PictureService = (function () {
             _this.currentTitle = _this.picturelist[i]['title'];
             _this.currentDesc = _this.picturelist[i]['description'];
             _this.pictureElement.src = config_service_1.Config.PICTUREFOLDER + _this.picturelist[i]['filename'];
-            console.log('Video: ' + _this.pictureElement.src);
         };
         this.selectedPictureById = function (id) {
             var file = _this.picturelist.filter(function (e) { return e.id == id; });
             _this.currentTitle = file[0]['title'];
             _this.currentDesc = file[0]['description'];
             _this.pictureElement.src = config_service_1.Config.PICTUREFOLDER + file[0]['filename'];
-            console.log('Video: ' + _this.pictureElement.src);
         };
     }
     PictureService.prototype.appSetup = function (v) {
@@ -74,7 +72,6 @@ var PictureService = (function () {
             rootnodes.push(parent);
         });
         this.pictureData = rootnodes;
-        console.log(rootnodes);
     };
     PictureService.prototype.uniqueCategories = function () {
         return this.picturelist.map(function (e) { return e['category']; }).filter(function (e, i, a) {

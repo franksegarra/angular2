@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace webServices.Entities
 {
-    public class StudentSchedules : IEntityBase, IStudentEntityBase
+    public class StudentSchedWithActivity : IEntityBase, IStudentEntityBase
     {
-        public StudentSchedules()
+        public StudentSchedWithActivity()
         {
         }
 
@@ -20,5 +20,6 @@ namespace webServices.Entities
         public int activitytypeid { get; set; }
         public string location { get; set; }
         public string linkText { get; set; }
+        public string activitytype { get; set; }
     }
 }
