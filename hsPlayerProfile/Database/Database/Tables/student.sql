@@ -22,6 +22,8 @@
     [zip] VARCHAR(10) NULL, 
     [displayAddrAndPhone] SMALLINT NULL, 
     [profilePictureId] INT NULL, 
+	[height] varchar(10) NULL,
+	[weight] varchar(10) NULL,
     CONSTRAINT [pk_student_id]  PRIMARY KEY CLUSTERED (id),
     CONSTRAINT [CK_profileName] unique (profileName),
 	CONSTRAINT [FK_student_highSchoolId] FOREIGN KEY (highSchoolId) REFERENCES highSchool(id)

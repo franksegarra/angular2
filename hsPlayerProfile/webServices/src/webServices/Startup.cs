@@ -65,14 +65,17 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<HighSchool>, EntityBaseRepository<HighSchool>>();
             services.AddScoped<EntityBaseRepository<Student>, EntityBaseRepository<Student>>();
             services.AddScoped<EntityBaseRepository<StudentClasses>, EntityBaseRepository<StudentClasses>>();
+            services.AddScoped<EntityBaseRepository<StudentExtraCurricular>, EntityBaseRepository<StudentExtraCurricular>>();
             services.AddScoped<EntityBaseRepository<StudentSchedules>, EntityBaseRepository<StudentSchedules>>();
             services.AddScoped<EntityBaseRepository<StudentLinks>, EntityBaseRepository<StudentLinks>>();
-
             services.AddScoped<EntityBaseRepository<StudentActivities>, EntityBaseRepository<StudentActivities>>();
             services.AddScoped<EntityBaseRepository<StudentProfile>, EntityBaseRepository<StudentProfile>>();
             services.AddScoped<EntityBaseRepository<StudentVideos>, EntityBaseRepository<StudentVideos>>();
             services.AddScoped<EntityBaseRepository<StudentPictures>, EntityBaseRepository<StudentPictures>>();
             services.AddScoped<EntityBaseRepository<StudentSchedWithActivity>, EntityBaseRepository<StudentSchedWithActivity>>();
+            services.AddScoped<EntityBaseRepository<StudentBaseball>, EntityBaseRepository<StudentBaseball>>();
+            services.AddScoped<EntityBaseRepository<StudentBaseballProfile>, EntityBaseRepository<StudentBaseballProfile>>();
+            services.AddScoped<EntityBaseRepository<StudentBBHittingStats>, EntityBaseRepository<StudentBBHittingStats>>();
 
             #endregion Repositories
 

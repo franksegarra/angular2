@@ -34,5 +34,7 @@ namespace webServices.Entities
         public string highschoolname { get; set; }
         public int? profilepictureid { get; set; }
         public string profilepicturefilename { get; set; }
+        public string height { get; set; }
+        public string weight { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿CREATE TABLE [dbo].[studentBBHitting]
+(
+	[id] int identity(1,1) not null, 
+    [studentid] int not null, 
+    [category] VARCHAR(50) NOT NULL default 'Other Games Played', 
+	[dateplayed]  DATE NOT NULL, 
+	[teamplayed] varchar(255) not null,
+	[plateappearances] int null default 0,
+	[strikeouts] int null default 0,
+	[walks] int null default 0,
+	[hitbypitch] int null default 0,
+	[sacflys] int null default 0,
+	[sacbunts] int null default 0,
+	[singles] int null default 0,
+	[doubles] int null default 0,
+	[triples] int null default 0,
+	[homeruns] int null default 0,
+	[runsbattediin] int null default 0,
+	[runsscored] int null default 0,
+	[stolenbases] int null default 0,
+    CONSTRAINT [pk_studentBBHitting_id] PRIMARY KEY CLUSTERED (id),
+    CONSTRAINT [FK_studentBBHitting_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
+)

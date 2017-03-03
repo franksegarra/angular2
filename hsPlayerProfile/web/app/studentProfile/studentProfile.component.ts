@@ -17,10 +17,11 @@ export class StudentProfileComponent implements OnInit {
     errorMessage: string;
     myprofile: Profile;
 
-    componentToShow: string = 'contactme';
+    componentToShow: string = 'academics';
 
     constructor(private _dataService: DataService) {
     }
+    
     ngOnInit(): void {
         this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
     }

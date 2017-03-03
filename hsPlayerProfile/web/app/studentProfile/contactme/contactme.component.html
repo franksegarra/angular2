@@ -1,4 +1,4 @@
-<div class="container">
+<!--<div class="container">
     <div class="row main">
         <div class="panel-heading">
             <div class="panel-title text-center">
@@ -7,11 +7,7 @@
             </div>
         </div> 
     </div> 
-</div> 
-
-
-
-
+</div> -->
 
 <div class='panel panel-primary'>
     <div class='panel-heading'>
@@ -34,6 +30,14 @@
                 </tbody>
             </table>
         </div>
+        <div class="table-responsive" *ngIf="myprofile.displayaddrandphone == 0" >
+            <b>Home Address:</b>
+            <table class="table">
+                <tbody>
+                        <tr><td><div class="col-sm-12">For security reasons I chose not to display my home phone and address.  Please use the form below to contact me.</div></td></tr>
+                </tbody>
+            </table>
+        </div>        
         <form #ngIf="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
             <div class="table-responsive">
             <b>Send me a message:</b>

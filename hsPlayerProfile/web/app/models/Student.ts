@@ -23,4 +23,6 @@ export class Student implements IStudent {
     public zip: string;
     public displayAddrAndPhone: number;
     public profilePictureId: number;
+    public height: string;
+    public weight: string;
 }

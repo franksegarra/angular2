@@ -1,2 +1,1 @@
-1.  Add section for extra curricular activities
-2.  Calculate overall average for each grade
+1.  Calculate overall average for each grade

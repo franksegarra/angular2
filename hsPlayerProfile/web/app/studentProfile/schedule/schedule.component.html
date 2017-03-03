@@ -19,10 +19,12 @@
                     <tr *ngFor='let schedItem of schedItems' >   
                         <td>{{ schedItem.activitydate | date: 'EEE' }}</td>
                         <td>{{ schedItem.activitydate | date: 'M/d/yyyy' }}</td>
-                        <td>{{ schedItem.starttime | timeFormat }}</td>
+                        <td>{{ schedItem.starttime | tbdFormat }}</td>
                         <td>{{ schedItem.activitydesc }}</td>
                         <td>{{ schedItem.activitytype }}</td>
-                        <td><a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.linkText }}</a></td>
+                        <td >
+                            <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.linkText | tbdFormat }}</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

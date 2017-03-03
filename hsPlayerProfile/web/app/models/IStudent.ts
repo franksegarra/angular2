@@ -21,4 +21,6 @@ export interface IStudent {
         zip: string;
         displayAddrAndPhone: number;
         profilePictureId: number;
+        height: string;
+        weight: string;
 }

@@ -1,0 +1,10 @@
+atbats = plateappearances - walks - hitbypitch - sacflys - sacbunts
+totalbases = (1 * singles( + (2 * doubles) + (3 * triples) + (4 * homeruns)
+hits = (singles + doubles + triples + homeruns)
+battingaverage = hits/atbats
+onbasepercentage = (hits + walks + hitbypitch) / (atbats + walks + hitbypitch + sacflys)
+slugging = totalbases/atbats
+onbaseplusslugging = onbasepercentage + slugging
+
+
+

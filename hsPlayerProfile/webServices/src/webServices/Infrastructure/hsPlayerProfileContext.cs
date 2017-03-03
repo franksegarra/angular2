@@ -11,6 +11,7 @@ namespace webServices.Infrastructure
         public DbSet<HighSchool> HighSchool { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<StudentClasses> StudentClasses { get; set; }
+        public DbSet<StudentExtraCurricular> StudentExtraCurricular { get; set; }
         public DbSet<StudentSchedules> StudentSchedules { get; set; }
         public DbSet<StudentLinks> StudentLinks { get; set; }
 
@@ -18,8 +19,12 @@ namespace webServices.Infrastructure
         public DbSet<StudentProfile> StudentProfile { get; set; }
         public DbSet<StudentVideos> StudentVideos { get; set; }
         public DbSet<StudentPictures> StudentPictures { get; set; }
-        public DbSet<StudentSchedWithActivity> StudeStudentSchedWithActivityntPictures { get; set; }
-        
+        public DbSet<StudentSchedWithActivity> StudentSchedWithActivity { get; set; }
+
+        public DbSet<StudentBaseball> StudentBaseball { get; set; }
+        public DbSet<StudentBaseballProfile> StudentBaseballProfile { get; set; }
+        public DbSet<StudentBBHittingStats> StudentBBHittingStats { get; set; }
+
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {
         }
@@ -60,6 +65,12 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentClasses>().Property(p => p.id).IsRequired();
             modelBuilder.Entity<StudentClasses>().Property(p => p.studentid).IsRequired();
             modelBuilder.Entity<StudentClasses>().Property(p => p.grade).IsRequired();
+
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.id).IsRequired();
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.studentid).IsRequired();
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecName).IsRequired();
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecDescription).IsRequired();
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecName).HasMaxLength(100);
 
             // StudentSchedules
             modelBuilder.Entity<StudentSchedules>().Property(p => p.activitydesc).HasMaxLength(255);
@@ -109,6 +120,14 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentPictures>().Property(p => p.category).IsRequired();
             modelBuilder.Entity<StudentPictures>().Property(p => p.title).IsRequired();
             modelBuilder.Entity<StudentPictures>().Property(p => p.filename).IsRequired();
+
+            //StudentBaseball
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.id).IsRequired();
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.studentid).IsRequired();
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.bats).HasMaxLength(1);
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.throws).HasMaxLength(1);
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.travelTeam).HasMaxLength(100);
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.travelUrl).HasMaxLength(255);
         }
     }
 }

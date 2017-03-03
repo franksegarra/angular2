@@ -22,17 +22,26 @@ require("rxjs/add/operator/first");
 var DataService = (function () {
     function DataService(_http) {
         this._http = _http;
-        this._classesUrl = config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/'; //'api/classes/classes.json';
-        this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/'; // 'api/schedule/schedule.json'; 
-        this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/'; //'api/links/links.json';
-        this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/'; //'api/profile/profile.json';                           
-        this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student/'; //'api/profile/profile.json';                           
+        this._classesUrl = config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/';
+        this._ecUrl = config_service_1.Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/';
+        this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/';
+        this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/';
+        this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/';
+        this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student/';
+        this._bbprofilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/';
     }
     //Get Classes
     DataService.prototype.getClasses = function (id) {
         return this._http.get(this._classesUrl + id)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('getClasses: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    //Get Extra Curricular
+    DataService.prototype.getExtraCurricular = function (id) {
+        return this._http.get(this._ecUrl + id)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('getExtraCurricular: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     // Get Links
@@ -62,6 +71,14 @@ var DataService = (function () {
             .map(function (response) { return response.json(); })
             .first()
             .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    //Get profile
+    DataService.prototype.getBBProfile = function (id) {
+        return this._http.get(this._bbprofilesUrl + id)
+            .map(function (response) { return response.json(); })
+            .first()
+            .do(function (data) { return console.log('getBBProfile: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     DataService.prototype.handleError = function (error) {

@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 //External Modules
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var primeng_1 = require("primeng/primeng");
-//import { AlertModule } from 'ng2-bootstrap'
 //Data Services
 var data_service_1 = require("./services/data.service");
 //routing setup
@@ -24,26 +24,33 @@ var about_component_1 = require("./about/about.component");
 var home_component_1 = require("./home/home.component");
 //Student Profile Component
 var studentprofile_component_1 = require("./studentprofile/studentprofile.component");
-//Video components
+//Student Profile - Academics
+var academics_component_1 = require("./studentprofile/academics/academics.component");
+var grade_component_1 = require("./studentprofile/academics/grade.component");
+var testscores_component_1 = require("./studentprofile/academics/testscores.component");
+var grade_filter_pipe_1 = require("./studentprofile/academics/grade-filter.pipe");
+var extracurricular_component_1 = require("./studentprofile/academics/extracurricular.component");
+//Student Profile - Video
 var videos_component_1 = require("./studentprofile/videos/videos.component");
 var video_service_1 = require("./studentprofile/videos/video.service");
 var progress_component_1 = require("./studentprofile/videos/progress.component");
 var toolbar_component_1 = require("./studentprofile/videos/toolbar.component");
 var options_component_1 = require("./studentprofile/videos/options.component");
 var timedisplay_pipe_1 = require("./studentprofile/videos//timedisplay.pipe");
-//Picture components
+//Student Profile - Pictures
 var pictures_component_1 = require("./studentprofile/pictures/pictures.component");
 var picture_service_1 = require("./studentprofile/pictures/picture.service");
-//Academic components
-var academics_component_1 = require("./studentprofile/academics/academics.component");
-var grade_component_1 = require("./studentprofile/academics/grade.component");
-var testscores_component_1 = require("./studentprofile/academics/testscores.component");
-var grade_filter_pipe_1 = require("./studentprofile/academics/grade-filter.pipe");
+//Schedule
 var schedule_component_1 = require("./studentprofile/schedule/schedule.component");
-var timeFormat_pipe_1 = require("./pipes/timeFormat.pipe");
+//Links
 var links_component_1 = require("./studentprofile/links/links.component");
-var profile_component_1 = require("./studentprofile/profile/profile.component");
+//Stats
+var stats_component_1 = require("./studentprofile/stats/stats.component");
+var physical_component_1 = require("./studentprofile/stats/physical.component");
+//Contact ME
 var contactme_component_1 = require("./studentprofile/contactme/contactme.component");
+//Pipes
+var tbdFormat_pipe_1 = require("./pipes/tbdFormat.pipe");
 var phoneFormat_pipe_1 = require("./pipes/phoneFormat.pipe");
 //Module declaration
 var AppModule = (function () {
@@ -54,6 +61,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
+            common_1.CommonModule,
             platform_browser_1.BrowserModule,
             http_1.HttpModule,
             app_routes_1.Routing,
@@ -79,10 +87,12 @@ AppModule = __decorate([
             grade_component_1.GradeComponent,
             grade_filter_pipe_1.GradeFilterPipe,
             testscores_component_1.TestScoresComponent,
+            extracurricular_component_1.ExtraCurricularComponent,
             schedule_component_1.ScheduleComponent,
-            timeFormat_pipe_1.TimeFormatPipe,
+            tbdFormat_pipe_1.TBDFormatPipe,
             links_component_1.LinksComponent,
-            profile_component_1.ProfileComponent,
+            stats_component_1.StatsComponent,
+            physical_component_1.PhysicalComponent,
             contactme_component_1.ContactMeComponent,
             phoneFormat_pipe_1.PhoneFormatPipe
         ],

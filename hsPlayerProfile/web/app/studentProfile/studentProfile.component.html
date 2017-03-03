@@ -1,10 +1,15 @@
 <div class="wrapper" *ngIf="myprofile">
-
     <div class="row row-offcanvas row-offcanvas-left">
 
         <!-- sidebar -->
         <div class="column col-sm-1 col-xs-1 sidebar-offcanvas" id="sidebar">
             <ul class="nav" id="menu">
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('academics')">
+                        <i class="fa fa-graduation-cap" pTooltip="Academics"></i> <span class="collapse in hidden-xs">Academics</span>
+                    </button>
+                </li>
 
                 <li>
                     <button type="button" class="btn btn-link" (click)="setVisibleComponent('videos')">
@@ -15,12 +20,6 @@
                 <li>
                     <button type="button" class="btn btn-link" (click)="setVisibleComponent('pictures')">
                         <i class="fa fa-camera" pTooltip="Pictures"></i> <span class="collapse in hidden-xs">Pictures</span>
-                    </button>
-                </li>
-
-                <li>
-                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('academics')">
-                        <i class="fa fa-graduation-cap" pTooltip="Academics"></i> <span class="collapse in hidden-xs">Academics</span>
                     </button>
                 </li>
 
@@ -73,8 +72,8 @@
                 <pp-links [myprofile]='myprofile'>Loading...</pp-links>
             </div>
 
-            <div *ngIf="componentToShow === 'profile'">
-                <pp-profile [myprofile]='myprofile'>Loading...</pp-profile>
+            <div *ngIf="componentToShow === 'stats'">
+                <pp-stats [myprofile]='myprofile'>Loading...</pp-stats>
             </div>
 
             <div *ngIf="componentToShow === 'contactme'">

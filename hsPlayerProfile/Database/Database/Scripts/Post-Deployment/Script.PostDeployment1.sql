@@ -14,15 +14,19 @@ INSERT INTO highSchool (highSchoolName) VALUES ('Carmel High School')
 GO
 
 INSERT INTO student (profileName, lastName, firstName, primaryEmail, highSchoolId, graduationYear, additionalInfo
-,gpa,satTestDate,satScore,actTestDate,actScore,ncaaid,phone,streetAddress1,streetAddress2,city,state,zip,displayAddrAndPhone, profilePictureId) 
+,gpa,satTestDate,satScore,actTestDate,actScore,ncaaid,phone,streetAddress1,streetAddress2,city,state,zip,displayAddrAndPhone, profilePictureId,
+height, weight) 
 VALUES ('FrancisSegarra', 'Segarra', 'Francis', 'segarraf18@gmail.com', 1, 2018,
 'Former Red Sox slugger David Ortiz retired last summer, but his legions of fans won’t have to wait long to relive his career, as his book “Papi” will be released May 16. Thanks to Big Papi himself, let’s get a look at the headline and cover:  I like it. Just simple and to the point. There’s no reason to splash a 24-word headline over the entire cover here. Of course, I wouldn’t have argued with a reference to his “This is our f------ city” moment. Something like “This Was My F------ Career” would have been a pretty cool title, and if they censored it like that, the bookstores would surely have been fine with it.',
-3.51, '3/11/2017', 1250, null, null, null, '8453067067', '93 Sparrow Ridge Rd', null, 'Carmel', 'NY', '10512', 1, 4)
+3.51, '3/11/2017', 1250, null, null, null, '8453067067', '93 Sparrow Ridge Rd', null, 'Carmel', 'NY', '10512', 1, 4,
+'6''', 150)
 
 INSERT INTO student (profileName, lastName, firstName, primaryEmail, highSchoolId, graduationYear, additionalInfo
-,gpa,satTestDate,satScore,actTestDate,actScore,ncaaid,phone,streetAddress1,streetAddress2,city,state,zip,displayAddrAndPhone, profilePictureId) 
+,gpa,satTestDate,satScore,actTestDate,actScore,ncaaid,phone,streetAddress1,streetAddress2,city,state,zip,displayAddrAndPhone, profilePictureId,
+height, weight) 
 VALUES ('KatherineSegarra', 'Segarra', 'Katherine', 'krsegarra@gmail.com', 1, 2015, 'I am offspring #1',
-3.51, '3/11/2017', 1250, null, null, null, '8453067067', '93 Sparrow Ridge Rd', null, 'Carmel', 'NY', '10512', 1, null)
+3.51, '3/11/2017', 1250, null, null, null, '8453067067', '93 Sparrow Ridge Rd', null, 'Carmel', 'NY', '10512', 1, null,
+'5'' 6"', 120)
 GO
 
 INSERT INTO activity (activity) VALUES ('Baseball')
@@ -104,6 +108,7 @@ INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, link
 INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Sal Agostinelli', 'Dominican Republic Trip Info', 'http://www.salsbaseball.com/index.html')
 INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Perfect Game Profile', 'My Profile on Perfect Game',  'http://www.perfectgame.org/Players/Playerprofile.aspx?ID=504429')
 INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Carmel High School Varsity Baseball Schedule', 'Carmel High School Varsity Baseball Schedule', 'http://158927.digitalsports.com/pages/schedule/schedule.php?level_id=696828')
+INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Boy Scout Troop 5', 'Troop 5 Bronxville, my boyscount troop', 'https://troop5.net/')
 GO
 
 insert into studentActivities (studentid, activityid) values (1, 1)
@@ -138,5 +143,42 @@ INSERT INTO studentPictures (studentid,category,title,filename,description) VALU
 INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Pitching', 'Pitching.JPG',	'Pitching.JPG',	'Pitching.JPG')
 INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'On the bases', 'ReadyToSteal.JPG',	'ReadyToSteal.JPG',	'ReadyToSteal.JPG')
 GO
+
+
+INSERT INTO studentExtraCurricular (studentid, ecName, ecDescription) VALUES (1, 'Boy Scouts','I''m a life scout with Troop 5 Bronxville')
+INSERT INTO studentExtraCurricular (studentid, ecName, ecDescription) VALUES (1, 'Bat Making','As part of a project for my AP English class,  I''m learning to make baseball bats on a wood lathe.')
+GO
+
+INSERT INTO studentBaseball (studentid,statsPictureId,runningTime,bats,throws,travelTeam,travelUrl, runningtimelocationUrl)
+VALUES (1, 2, 7.5, 'R', 'R', 'Evolution Baseball', 'http://www.evolutionbaseballny.com', 'NYACK College', 'http://athletics.nyack.edu/sports/bsb/coaches/index')
+GO
+
+INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, '3B', 1)
+INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, 'SS', 0)
+INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, '2B', 0)
+INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, 'OF', 0)
+INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, 'RHP', 0)
+GO
+
+insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases)
+values (1,'Test Data Set 1','6/1/2017','Test Game 1',4,0,1,0,0,0,1,1,0,0,2,2,1)
+
+insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases)
+values (1,'Test Data Set 1','6/1/2017','Test Game 2',4,0,1,0,0,0,1,1,0,0,2,2,1)
+
+insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases)
+values (1,'Test Data Set 1','6/1/2017','Test Game 3',4,0,1,0,0,0,1,1,0,0,2,2,1)
+
+insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases)
+values (1,'Test Data Set 2','6/1/2017','Test Game 4',4,0,1,0,0,0,1,1,0,0,2,2,1)
+
+insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases)
+values (1,'Test Data Set 2','6/1/2017','Test Game 5',4,0,1,0,0,0,1,1,0,0,2,2,1)
+
+insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases)
+values (1,'Test Data Set 2','6/1/2017','Test Game 6',4,0,1,0,0,0,1,1,0,0,2,2,1)
+GO
+
+
 
 */

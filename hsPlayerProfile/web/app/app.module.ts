@@ -1,11 +1,11 @@
 //External Modules
 import { NgModule, ApplicationRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule } from 'primeng/primeng';
-//import { AlertModule } from 'ng2-bootstrap'
 
 //Data Services
 import { DataService } from './services/data.service';
@@ -23,7 +23,14 @@ import { HomeComponent } from './home/home.component';
 //Student Profile Component
 import { StudentProfileComponent } from './studentprofile/studentprofile.component';
 
-//Video components
+//Student Profile - Academics
+import { AcademicsComponent } from './studentprofile/academics/academics.component'
+import { GradeComponent } from './studentprofile/academics/grade.component';
+import { TestScoresComponent } from './studentprofile/academics/testscores.component';
+import { GradeFilterPipe } from './studentprofile/academics/grade-filter.pipe';
+import { ExtraCurricularComponent } from './studentprofile/academics/extracurricular.component';
+
+//Student Profile - Video
 import { VideosComponent } from './studentprofile/videos/videos.component'
 import { VideoService } from './studentprofile/videos/video.service';
 import { ProgressComponent } from './studentprofile/videos/progress.component';
@@ -31,28 +38,31 @@ import { ToolbarComponent } from './studentprofile/videos/toolbar.component';
 import { OptionsComponent } from './studentprofile/videos/options.component';
 import { TimeDisplayPipe } from "./studentprofile/videos//timedisplay.pipe";
 
-//Picture components
+//Student Profile - Pictures
 import { PicturesComponent } from './studentprofile/pictures/pictures.component'
 import { PictureService } from './studentprofile/pictures/picture.service';
 
-//Academic components
-import { AcademicsComponent } from './studentprofile/academics/academics.component'
-import { GradeComponent } from './studentprofile/academics/grade.component';
-import { TestScoresComponent } from './studentprofile/academics/testscores.component';
-import { GradeFilterPipe } from './studentprofile/academics/grade-filter.pipe';
-
+//Schedule
 import { ScheduleComponent } from './studentprofile/schedule/schedule.component'
-import { TimeFormatPipe } from './pipes/timeFormat.pipe';
 
+//Links
 import { LinksComponent } from './studentprofile/links/links.component'
-import { ProfileComponent } from './studentprofile/profile/profile.component'
 
+//Stats
+import { StatsComponent } from './studentprofile/stats/stats.component'
+import { PhysicalComponent } from './studentprofile/stats/physical.component'
+
+//Contact ME
 import { ContactMeComponent } from './studentprofile/contactme/contactme.component'
+
+//Pipes
+import { TBDFormatPipe } from './pipes/tbdFormat.pipe';
 import { PhoneFormatPipe } from './pipes/phoneFormat.pipe'
 
 //Module declaration
 @NgModule({
   imports: [ 
+      CommonModule,
       BrowserModule, 
       HttpModule,
       Routing,
@@ -78,10 +88,12 @@ import { PhoneFormatPipe } from './pipes/phoneFormat.pipe'
       ,GradeComponent
       ,GradeFilterPipe
       ,TestScoresComponent
+      ,ExtraCurricularComponent
       ,ScheduleComponent
-      ,TimeFormatPipe
+      ,TBDFormatPipe
       ,LinksComponent
-      ,ProfileComponent
+      ,StatsComponent
+      ,PhysicalComponent
       ,ContactMeComponent
       ,PhoneFormatPipe
   ],

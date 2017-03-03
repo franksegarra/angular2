@@ -81,6 +81,12 @@
     <Build Include="Tables\studentVideos.sql" />
     <Build Include="Tables\studentPictures.sql" />
     <Build Include="Views\StudentSchedWithActivity.sql" />
+    <Build Include="Tables\studentExtraCurricular.sql" />
+    <Build Include="Tables\studentBaseball.sql" />
+    <Build Include="Tables\studentPositions.sql" />
+    <Build Include="Views\studentBaseballProfile.sql" />
+    <Build Include="Tables\studentBBHitting.sql" />
+    <Build Include="Views\studentBBHittingStats.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment1.sql" />

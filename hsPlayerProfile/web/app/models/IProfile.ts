@@ -23,4 +23,6 @@ export interface IProfile {
         highschoolname: string;
         profilePictureId: number;
         profilepicturefilename: string;
+        height: string;
+        weight: string;
 }
