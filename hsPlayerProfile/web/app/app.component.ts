@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Config } from './config.service';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'pm-app',

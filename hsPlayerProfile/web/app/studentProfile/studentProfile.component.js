@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 //Data service
 var data_service_1 = require("../services/data.service");
@@ -15,7 +16,7 @@ var StudentProfileComponent = (function () {
     function StudentProfileComponent(_dataService) {
         this._dataService = _dataService;
         this.studentId = 1;
-        this.componentToShow = 'videos';
+        this.componentToShow = 'contactme';
     }
     StudentProfileComponent.prototype.ngOnInit = function () {
         var _this = this;

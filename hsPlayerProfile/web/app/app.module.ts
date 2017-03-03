@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, TreeModule, TreeNode } from 'primeng/primeng';
+import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule } from 'primeng/primeng';
+//import { AlertModule } from 'ng2-bootstrap'
 
 //Data Services
 import { DataService } from './services/data.service';
@@ -49,8 +50,6 @@ import { ProfileComponent } from './studentprofile/profile/profile.component'
 import { ContactMeComponent } from './studentprofile/contactme/contactme.component'
 import { PhoneFormatPipe } from './pipes/phoneFormat.pipe'
 
-//Grade Filter
-
 //Module declaration
 @NgModule({
   imports: [ 
@@ -60,7 +59,9 @@ import { PhoneFormatPipe } from './pipes/phoneFormat.pipe'
       FormsModule, 
       ReactiveFormsModule,
       AccordionModule,
-      TreeModule
+      TreeModule,
+      TooltipModule,
+      PanelModule
   ],
   declarations: [ 
       AppComponent

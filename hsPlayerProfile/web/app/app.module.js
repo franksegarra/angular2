@@ -5,12 +5,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 //External Modules
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var primeng_1 = require("primeng/primeng");
+//import { AlertModule } from 'ng2-bootstrap'
 //Data Services
 var data_service_1 = require("./services/data.service");
 //routing setup
@@ -43,7 +45,6 @@ var links_component_1 = require("./studentprofile/links/links.component");
 var profile_component_1 = require("./studentprofile/profile/profile.component");
 var contactme_component_1 = require("./studentprofile/contactme/contactme.component");
 var phoneFormat_pipe_1 = require("./pipes/phoneFormat.pipe");
-//Grade Filter
 //Module declaration
 var AppModule = (function () {
     function AppModule() {
@@ -59,7 +60,9 @@ AppModule = __decorate([
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
             primeng_1.AccordionModule,
-            primeng_1.TreeModule
+            primeng_1.TreeModule,
+            primeng_1.TooltipModule,
+            primeng_1.PanelModule
         ],
         declarations: [
             app_component_1.AppComponent,

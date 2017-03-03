@@ -5,3 +5,9 @@ li {
 div.panel-heading {
    font-size: x-large; 
 }
+
+.panel-heading {
+    background: steelblue;
+    color: white;
+    font-size: x-large; 
+}
