@@ -45,8 +45,11 @@ var schedule_component_1 = require("./studentprofile/schedule/schedule.component
 //Links
 var links_component_1 = require("./studentprofile/links/links.component");
 //Stats
-var stats_component_1 = require("./studentprofile/stats/stats.component");
+var stats_service_1 = require("./studentprofile/stats/stats.service");
 var physical_component_1 = require("./studentprofile/stats/physical.component");
+var stats_component_1 = require("./studentprofile/stats/stats.component");
+var statcategory_component_1 = require("./studentprofile/stats/statcategory.component");
+var statcategoryfilter_pipe_1 = require("./studentprofile/stats/statcategoryfilter.pipe");
 //Contact ME
 var contactme_component_1 = require("./studentprofile/contactme/contactme.component");
 //Pipes
@@ -93,10 +96,12 @@ AppModule = __decorate([
             links_component_1.LinksComponent,
             stats_component_1.StatsComponent,
             physical_component_1.PhysicalComponent,
+            statcategory_component_1.StatCategory,
+            statcategoryfilter_pipe_1.StatCategoryFilterPipe,
             contactme_component_1.ContactMeComponent,
             phoneFormat_pipe_1.PhoneFormatPipe
         ],
-        providers: [data_service_1.DataService, video_service_1.VideoService, picture_service_1.PictureService],
+        providers: [data_service_1.DataService, video_service_1.VideoService, picture_service_1.PictureService, stats_service_1.StatsService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

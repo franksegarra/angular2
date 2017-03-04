@@ -28,7 +28,6 @@ var DataService = (function () {
         this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/';
         this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/';
         this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student/';
-        this._bbprofilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/';
     }
     //Get Classes
     DataService.prototype.getClasses = function (id) {
@@ -71,14 +70,6 @@ var DataService = (function () {
             .map(function (response) { return response.json(); })
             .first()
             .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    //Get profile
-    DataService.prototype.getBBProfile = function (id) {
-        return this._http.get(this._bbprofilesUrl + id)
-            .map(function (response) { return response.json(); })
-            .first()
-            .do(function (data) { return console.log('getBBProfile: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     DataService.prototype.handleError = function (error) {

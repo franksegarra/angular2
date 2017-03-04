@@ -105,7 +105,7 @@ Insert into studentSchedules (studentid, activityDate, startTime, activityid, ac
 GO
 
 INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Evolution Baseball', 'My Travel Baseball Team', 'http://www.evolutionbaseballny.com')
-INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Sal Agostinelli', 'Dominican Republic Trip Info', 'http://www.salsbaseball.com/index.html')
+INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Sal Agostinelli', 'DR Trip - Hitting Info', 'http://www.salsbaseball.com/index.html')
 INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Perfect Game Profile', 'My Profile on Perfect Game',  'http://www.perfectgame.org/Players/Playerprofile.aspx?ID=504429')
 INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Carmel High School Varsity Baseball Schedule', 'Carmel High School Varsity Baseball Schedule', 'http://158927.digitalsports.com/pages/schedule/schedule.php?level_id=696828')
 INSERT INTO studentLinks (studentid, activityid, linkName, linkDescription, linkUrl) VALUES (1, 1, 'Boy Scout Troop 5', 'Troop 5 Bronxville, my boyscount troop', 'https://troop5.net/')
@@ -114,24 +114,24 @@ GO
 insert into studentActivities (studentid, activityid) values (1, 1)
 GO
 
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Backhand.mp4', 'Backhand.mp4', 'Backhand.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day1Ab1.mp4',	'Day1Ab1.mp4',	'Day1Ab1.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day1Ab2.mp4',	'Day1Ab2.mp4',	'Day1Ab2.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day1Ab3.mp4',	'Day1Ab3.mp4',	'Day1Ab3.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab1.mp4',	'Day2Ab1.mp4',	'Day2Ab1.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab2.mp4',	'Day2Ab2.mp4',	'Day2Ab2.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab3.mp4',	'Day2Ab3.mp4',	'Day2Ab3.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day2Ab4.mp4',	'Day2Ab4.mp4',	'Day2Ab4.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab1.mp4',	'Day3Ab1.mp4',	'Day3Ab1.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab2.mp4',	'Day3Ab2.mp4',	'Day3Ab2.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab3.mp4',	'Day3Ab3.mp4',	'Day3Ab3.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day3Ab4.mp4',	'Day3Ab4.mp4',	'Day3Ab4.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day4Ab1.mp4',	'Day4Ab1.mp4',	'Day4Ab1.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day4Ab2.mp4',	'Day4Ab2.mp4',	'Day4Ab2.mp4')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab1.m4v',	'Day5Ab1.m4v',	'Day5Ab1.m4v')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab2.m4v',	'Day5Ab2.m4v',	'Day5Ab2.m4v')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab3.m4v',	'Day5Ab3.m4v',	'Day5Ab3.m4v')
-INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'Dominican Republic Trip', 'Day5Ab4.m4v',	'Day5Ab4.m4v',	'Day5Ab4.m4v')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Fielding', 'Backhand.mp4', 'Backhand.mp4', 'Backhand.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 1', 'Day1Ab1.mp4',	'Day1Ab1.mp4',	'Day1Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 1', 'Day1Ab2.mp4',	'Day1Ab2.mp4',	'Day1Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 1', 'Day1Ab3.mp4',	'Day1Ab3.mp4',	'Day1Ab3.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 2', 'Day2Ab1.mp4',	'Day2Ab1.mp4',	'Day2Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 2', 'Day2Ab2.mp4',	'Day2Ab2.mp4',	'Day2Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 2', 'Day2Ab3.mp4',	'Day2Ab3.mp4',	'Day2Ab3.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 2', 'Day2Ab4.mp4',	'Day2Ab4.mp4',	'Day2Ab4.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 3', 'Day3Ab1.mp4',	'Day3Ab1.mp4',	'Day3Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 3', 'Day3Ab2.mp4',	'Day3Ab2.mp4',	'Day3Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 3', 'Day3Ab3.mp4',	'Day3Ab3.mp4',	'Day3Ab3.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 3', 'Day3Ab4.mp4',	'Day3Ab4.mp4',	'Day3Ab4.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 2', 'Day4Ab1.mp4',	'Day4Ab1.mp4',	'Day4Ab1.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 4', 'Day4Ab2.mp4',	'Day4Ab2.mp4',	'Day4Ab2.mp4')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 5', 'Day5Ab1.m4v',	'Day5Ab1.m4v',	'Day5Ab1.m4v')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 5', 'Day5Ab2.m4v',	'Day5Ab2.m4v',	'Day5Ab2.m4v')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 5', 'Day5Ab3.m4v',	'Day5Ab3.m4v',	'Day5Ab3.m4v')
+INSERT INTO studentVideos (studentid,category,title,filename,description) VALUES (1,'DR Trip - Hitting Day 5', 'Day5Ab4.m4v',	'Day5Ab4.m4v',	'Day5Ab4.m4v')
 GO
 
 INSERT INTO studentPictures (studentid,category,title,filename,description) VALUES (1,'Hitting', 'FrancisAtBat.JPG', 'FrancisAtBat.JPG', 'FrancisAtBat.JPG')
@@ -149,15 +149,15 @@ INSERT INTO studentExtraCurricular (studentid, ecName, ecDescription) VALUES (1,
 INSERT INTO studentExtraCurricular (studentid, ecName, ecDescription) VALUES (1, 'Bat Making','As part of a project for my AP English class,  I''m learning to make baseball bats on a wood lathe.')
 GO
 
-INSERT INTO studentBaseball (studentid,statsPictureId,runningTime,bats,throws,travelTeam,travelUrl, runningtimelocationUrl)
+INSERT INTO studentBaseball (studentid,statsPictureId,runningTime,bats,throws,travelTeam,travelUrl, runningtimelocation, runningtimelocationUrl)
 VALUES (1, 2, 7.5, 'R', 'R', 'Evolution Baseball', 'http://www.evolutionbaseballny.com', 'NYACK College', 'http://athletics.nyack.edu/sports/bsb/coaches/index')
 GO
 
-INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, '3B', 1)
-INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, 'SS', 0)
-INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, '2B', 0)
-INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, 'OF', 0)
-INSERT INTO studentPositions (studentid,activityid,position,[primary]) VALUES (1, 1, 'RHP', 0)
+INSERT INTO studentPositions (studentid,activityid,position,isprimary) VALUES (1, 1, '3B', 1)
+INSERT INTO studentPositions (studentid,activityid,position,isprimary) VALUES (1, 1, 'SS', 0)
+INSERT INTO studentPositions (studentid,activityid,position,isprimary) VALUES (1, 1, '2B', 0)
+INSERT INTO studentPositions (studentid,activityid,position,isprimary) VALUES (1, 1, 'OF', 0)
+INSERT INTO studentPositions (studentid,activityid,position,isprimary) VALUES (1, 1, 'RHP', 0)
 GO
 
 insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases)

@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="bbprofile">
+<div class="wrapper" *ngIf="bbprofile && hittingStats">
     <div class='panel panel-primary'>
         <div class='panel-heading'>
             {{pageTitle}}
@@ -8,7 +8,17 @@
                 <p-accordionTab header="Personal Details" [selected]="true">
                     <pp-physical [myprofile]='myprofile' [bbprofile]='bbprofile'   >Loading...</pp-physical>
                 </p-accordionTab>
+
+                <div *ngIf="_statsService.categories && _statsService.categories.length">
+                    <div *ngFor='let thiscategory of _statsService.categories'>
+                        <p-accordionTab header="{{ thiscategory }}">
+                            <pp-statcategory [category]='thiscategory' [hittinglist]='_statsService.hittinglist'></pp-statcategory>
+                        </p-accordionTab>
+                    </div>
+                </div>
+
             </p-accordion>
+
         </div>
     </div>
 </div>

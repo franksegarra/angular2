@@ -49,8 +49,11 @@ import { ScheduleComponent } from './studentprofile/schedule/schedule.component'
 import { LinksComponent } from './studentprofile/links/links.component'
 
 //Stats
-import { StatsComponent } from './studentprofile/stats/stats.component'
+import { StatsService } from './studentprofile/stats/stats.service'
 import { PhysicalComponent } from './studentprofile/stats/physical.component'
+import { StatsComponent } from './studentprofile/stats/stats.component'
+import { StatCategory } from './studentprofile/stats/statcategory.component'
+import { StatCategoryFilterPipe } from './studentprofile/stats/statcategoryfilter.pipe'
 
 //Contact ME
 import { ContactMeComponent } from './studentprofile/contactme/contactme.component'
@@ -94,10 +97,12 @@ import { PhoneFormatPipe } from './pipes/phoneFormat.pipe'
       ,LinksComponent
       ,StatsComponent
       ,PhysicalComponent
+      ,StatCategory
+      ,StatCategoryFilterPipe
       ,ContactMeComponent
       ,PhoneFormatPipe
   ],
-  providers: [ DataService, VideoService, PictureService ],
+  providers: [ DataService, VideoService, PictureService, StatsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

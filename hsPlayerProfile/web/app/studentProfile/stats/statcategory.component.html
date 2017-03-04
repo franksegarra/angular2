@@ -1,0 +1,20 @@
+<div class="table-responsive">
+    <table class="table" *ngIf="hittinglist && hittinglist.length">
+        <thead>
+            <tr>
+                <th class="col-md-2">Date</th>
+                <th class="col-md-2">Opponent</th>
+                <th class="col-md-2">PA</th>
+                <th class="col-md-2">SO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let hit of hittinglist | statcategoryfilter: {category: category}  ' >
+                <td>{{ hit.dateplayed | date: 'M/d/yyyy' }}</td>
+                <td>{{ hit.teamplayed }}</td>
+                <td>{{ hit.plateappearances }}</td>   
+                <td>{{ hit.strikeouts }}</td>   
+            </tr>
+        </tbody>
+    </table>
+</div>

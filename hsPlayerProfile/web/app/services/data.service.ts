@@ -12,7 +12,6 @@ import { ILink } from '../models/ILink';
 import { IScheduleItem } from '../models/IScheduleItem';
 import { IProfile } from '../models/IProfile';
 import { IStudent } from '../models/IStudent';
-import { IBBProfile } from '../models/IBBProfile';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -28,7 +27,6 @@ export class DataService {
     private _linksUrl: string  = Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/';
     private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile/';
     private _studentsUrl: string  = Config.WEBSERVICESURL + 'student/';
-    private _bbprofilesUrl: string  = Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/';
         
     constructor(private _http: Http) {
     }
@@ -82,15 +80,6 @@ export class DataService {
                     .map((response: Response) => <IProfile>response.json())
                     .first()
                     .do(data => console.log('getProfile: ' + JSON.stringify(data)))
-                    .catch(this.handleError);
-    }
-
-    //Get profile
-    getBBProfile(id:number): Observable<IBBProfile[]> {
-        return this._http.get(this._bbprofilesUrl + id)
-                    .map((response: Response) => <IBBProfile[]>response.json())
-                    .first()
-                    .do(data => console.log('getBBProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 
