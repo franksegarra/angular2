@@ -13,9 +13,6 @@ var core_1 = require("@angular/core");
 var ContactMeComponent = (function () {
     function ContactMeComponent() {
     }
-    // Bring this back when we implement the post
-    // constructor(private _dataService: DataService) {
-    // };
     ContactMeComponent.prototype.ngOnInit = function () {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Contact Me';
     };

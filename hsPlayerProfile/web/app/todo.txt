@@ -1,4 +1,5 @@
 1.  Create studentprofile.module and move appropriate stuff there
 2.  Add breadcrumbs
 3.  Add Login/Register Link
-4.  Make site workon Iphone
+4.  Make site work on Iphone
+5.  Fix routing so that it always goes to francis' profile

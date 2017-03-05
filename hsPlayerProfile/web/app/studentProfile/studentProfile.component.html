@@ -52,6 +52,10 @@
 
         <!-- main right col -->
         <div class="column col-sm-11 col-xs-11" id="main">
+            <div *ngIf="componentToShow === 'academics'">
+                <pp-academics [myprofile]='myprofile' [ec]='ec' [classes]='classes' >Loading...</pp-academics>
+            </div>
+
             <div *ngIf="componentToShow === 'videos'">
                 <pp-videos [myprofile]='myprofile'>Loading...</pp-videos>
             </div>
@@ -60,20 +64,17 @@
                 <pp-pictures [myprofile]='myprofile'>Loading...</pp-pictures>
             </div>
 
-            <div *ngIf="componentToShow === 'academics'">
-                <pp-academics [myprofile]='myprofile'>Loading...</pp-academics>
-            </div>
 
             <div *ngIf="componentToShow === 'schedule'">
-                <pp-schedule [myprofile]='myprofile'>Loading...</pp-schedule>
+                <pp-schedule [myprofile]='myprofile' [schedItems]='schedItems'>Loading...</pp-schedule>
             </div>
 
             <div *ngIf="componentToShow === 'links'">
-                <pp-links [myprofile]='myprofile'>Loading...</pp-links>
+                <pp-links [myprofile]='myprofile' [links]='links'>Loading...</pp-links>
             </div>
 
             <div *ngIf="componentToShow === 'stats'">
-                <pp-stats [myprofile]='myprofile'>Loading...</pp-stats>
+                <pp-stats [myprofile]='myprofile' [bbprofile]='bbprofile' [hittingcategories]='_statsService.hittingcategories'>Loading...</pp-stats>
             </div>
 
             <div *ngIf="componentToShow === 'contactme'">

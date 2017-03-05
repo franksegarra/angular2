@@ -10,18 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var data_service_1 = require("../../services/data.service");
 var LinksComponent = (function () {
-    function LinksComponent(_dataService) {
-        this._dataService = _dataService;
+    function LinksComponent() {
     }
-    ;
     LinksComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        //Set page title
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Links';
-        //Get data
-        this._dataService.getLinks(this.myprofile.id).subscribe(function (links) { return _this.links = links; }, function (error) { return _this.errorMessage = error; });
     };
     ;
     return LinksComponent;
@@ -30,13 +23,16 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], LinksComponent.prototype, "myprofile", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], LinksComponent.prototype, "links", void 0);
 LinksComponent = __decorate([
     core_1.Component({
         selector: 'pp-links',
         moduleId: module.id,
         templateUrl: 'links.component.html'
-    }),
-    __metadata("design:paramtypes", [data_service_1.DataService])
+    })
 ], LinksComponent);
 exports.LinksComponent = LinksComponent;
 //# sourceMappingURL=links.component.js.map

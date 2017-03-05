@@ -23,12 +23,14 @@ var PictureService = (function () {
         this.currentDesc = "A very nice video...";
         this.showDetails = false;
         this.selectedPicture = function (i) {
+            _this.selectedPictureId = _this.picturelist[i]['id'];
             _this.currentTitle = _this.picturelist[i]['title'];
             _this.currentDesc = _this.picturelist[i]['description'];
             _this.pictureElement.src = config_service_1.Config.PICTUREFOLDER + _this.picturelist[i]['filename'];
         };
         this.selectedPictureById = function (id) {
             var file = _this.picturelist.filter(function (e) { return e.id == id; });
+            _this.selectedPictureId = file[0]['id'];
             _this.currentTitle = file[0]['title'];
             _this.currentDesc = file[0]['description'];
             _this.pictureElement.src = config_service_1.Config.PICTUREFOLDER + file[0]['filename'];
@@ -39,11 +41,17 @@ var PictureService = (function () {
     };
     PictureService.prototype.getPlaylist = function (id) {
         var _this = this;
+        //Test to see if we already have data for this object
+        if (this.picturelist.length > 0) {
+            this.selectedPictureById(this.selectedPictureId);
+            return;
+        }
         this.http.get(config_service_1.Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id.toString())
             .map(function (res) { return res.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('getPlaylist: ' + JSON.stringify(data)); })
             .subscribe(function (data) {
             _this.picturelist = data;
+            //this.selectedPictureId = 1;
             _this.selectedPicture(1);
             _this.createPictureCategories();
         });
@@ -78,30 +86,6 @@ var PictureService = (function () {
         return this.picturelist.map(function (e) { return e['category']; }).filter(function (e, i, a) {
             return i === a.indexOf(e);
         });
-    };
-    ;
-    PictureService.prototype.details = function () {
-        if (this.showDetails == false) {
-            this.showDetails = true;
-        }
-        else {
-            this.showDetails = false;
-        }
-    };
-    ;
-    PictureService.prototype.fullScreen = function () {
-        if (this.pictureElement.requestFullscreen) {
-            this.pictureElement.requestFullscreen();
-        }
-        else if (this.pictureElement.mozRequestFullScreen) {
-            this.pictureElement.mozRequestFullScreen();
-        }
-        else if (this.pictureElement.webkitRequestFullscreen) {
-            this.pictureElement.webkitRequestFullscreen();
-        }
-        else if (this.pictureElement.msRequestFullscreen) {
-            this.pictureElement.msRequestFullscreen();
-        }
     };
     ;
     return PictureService;

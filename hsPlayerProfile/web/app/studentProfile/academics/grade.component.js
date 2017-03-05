@@ -13,10 +13,6 @@ var core_1 = require("@angular/core");
 var GradeComponent = (function () {
     function GradeComponent() {
     }
-    GradeComponent.prototype.ngOnInit = function () {
-        //this.calculateAverage();
-    };
-    ;
     return GradeComponent;
 }());
 __decorate([

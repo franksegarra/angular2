@@ -1,19 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
-import { IContactMe } from '../../models/IContactme';
 
 @Component({
     selector: 'pp-contactme',
     moduleId: module.id,
     templateUrl: 'contactme.component.html'
 })
-export class ContactMeComponent { 
+export class ContactMeComponent implements OnInit { 
     @Input() myprofile: IProfile;
     pageTitle: string;
-
-    // Bring this back when we implement the post
-    // constructor(private _dataService: DataService) {
-    // };
 
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Contact Me';

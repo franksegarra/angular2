@@ -49,7 +49,6 @@ var stats_service_1 = require("./studentprofile/stats/stats.service");
 var physical_component_1 = require("./studentprofile/stats/physical.component");
 var stats_component_1 = require("./studentprofile/stats/stats.component");
 var statcategory_component_1 = require("./studentprofile/stats/statcategory.component");
-var statcategoryfilter_pipe_1 = require("./studentprofile/stats/statcategoryfilter.pipe");
 //Contact ME
 var contactme_component_1 = require("./studentprofile/contactme/contactme.component");
 //Pipes
@@ -97,7 +96,6 @@ AppModule = __decorate([
             stats_component_1.StatsComponent,
             physical_component_1.PhysicalComponent,
             statcategory_component_1.StatCategory,
-            statcategoryfilter_pipe_1.StatCategoryFilterPipe,
             contactme_component_1.ContactMeComponent,
             phoneFormat_pipe_1.PhoneFormatPipe
         ],

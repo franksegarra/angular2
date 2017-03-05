@@ -29,6 +29,8 @@ export class VideoService {
   public isDragging:boolean = false;
   public showDetails:boolean = false;
 
+  public selectedVideoId: number;
+
   constructor(private http:Http) {}
 
   appSetup(v:string) {
@@ -39,8 +41,16 @@ export class VideoService {
   }
 
   getPlaylist(id:number) {
+
+        //Test to see if we already have data for this object
+        if (this.playlist.length > 0) {
+            this.selectedVideoById(this.selectedVideoId);
+            return;
+        }
+      
       this.http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id.toString())
           .map((res:Response) => <IVideo[]>res.json())
+            .do(data => console.log('getPlaylist: ' + JSON.stringify(data)))
           .subscribe(
               data => {
                   this.playlist = data;
@@ -87,16 +97,18 @@ export class VideoService {
     });
   };
 
-  selectedVideoById = (id:number) => {
-      var file =  this.playlist.filter(function(e){return e.id == id;}) ;
-      this.currentTitle = file[0]['title'];
-      this.currentDesc = file[0]['description'];
-      this.videoElement.src = Config.VIDEOFOLDER + file[0]['filename'];
-      this.videoElement.pause();
-      this.isPlaying = false;
-  };
+    selectedVideoById = (id:number) => {
+        var file =  this.playlist.filter(function(e){return e.id == id;}) ;
+        this.selectedVideoId = file[0]['id'];
+        this.currentTitle = file[0]['title'];
+        this.currentDesc = file[0]['description'];
+        this.videoElement.src = Config.VIDEOFOLDER + file[0]['filename'];
+        this.videoElement.pause();
+        this.isPlaying = false;
+    };
 
   selectedVideo = (i:number) => {
+      this.selectedVideoId = this.playlist[i]['id'];
       this.currentTitle = this.playlist[i]['title'];
       this.currentDesc = this.playlist[i]['description'];
       this.videoElement.src = Config.VIDEOFOLDER + this.playlist[i]['filename'];

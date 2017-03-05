@@ -6,8 +6,7 @@ import { TreeNode } from 'primeng/primeng';
 @Component({
     selector: 'pp-pictures',
     moduleId: module.id,
-    templateUrl: 'pictures.component.html',
-    styleUrls: ['pictures.component.css']
+    templateUrl: 'pictures.component.html'
 })
 export class PicturesComponent implements OnInit { 
     @Input() myprofile: IProfile;

@@ -34,8 +34,7 @@ PicturesComponent = __decorate([
     core_1.Component({
         selector: 'pp-pictures',
         moduleId: module.id,
-        templateUrl: 'pictures.component.html',
-        styleUrls: ['pictures.component.css']
+        templateUrl: 'pictures.component.html'
     }),
     __metadata("design:paramtypes", [picture_service_1.PictureService])
 ], PicturesComponent);

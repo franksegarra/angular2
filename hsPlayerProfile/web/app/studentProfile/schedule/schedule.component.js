@@ -10,17 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var data_service_1 = require("../../services/data.service");
 var ScheduleComponent = (function () {
-    function ScheduleComponent(_dataService) {
-        this._dataService = _dataService;
+    function ScheduleComponent() {
     }
     ScheduleComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        //Set page title
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + "Where I'll be";
-        //Get data
-        this._dataService.getSchedule(this.myprofile.id).subscribe(function (schedItems) { return _this.schedItems = schedItems; }, function (error) { return _this.errorMessage = error; });
     };
     ;
     return ScheduleComponent;
@@ -29,13 +23,16 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], ScheduleComponent.prototype, "myprofile", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], ScheduleComponent.prototype, "schedItems", void 0);
 ScheduleComponent = __decorate([
     core_1.Component({
         selector: 'pp-schedule',
         moduleId: module.id,
         templateUrl: 'schedule.component.html'
-    }),
-    __metadata("design:paramtypes", [data_service_1.DataService])
+    })
 ], ScheduleComponent);
 exports.ScheduleComponent = ScheduleComponent;
 //# sourceMappingURL=schedule.component.js.map

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { IHittingStats } from '../../models/IHittingStats';
+import { HittingCategory } from '../../models/HittingCategory';
 import { IBBProfile } from '../../models/IBBProfile';
 
 import 'rxjs/add/operator/map';
@@ -18,8 +19,10 @@ export class StatsService {
     private _bbprofilesUrl: string  = Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/';
     private _hittingstatUrl: string  = Config.WEBSERVICESURL + 'StudentBBHittingStats/GetByStudentId/';
 
+    public bbprofile: IBBProfile;
     public hittinglist:Array<IHittingStats> = [];
     public categories:Array<string> = [];
+    public hittingcategories: Array<HittingCategory> = []; 
 
     constructor(private _http:Http) {}
 
@@ -27,17 +30,9 @@ export class StatsService {
     getBBProfile(id:number): Observable<IBBProfile[]> {
         return this._http.get(this._bbprofilesUrl + id)
                     .map((response: Response) => <IBBProfile[]>response.json())
-                    .first()
+                    //.first()
                     .do(data => console.log('getBBProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
-    }
-
-    //Get getHittingStats
-    getHittingStats(id:number): Observable<IHittingStats[]> {
-        return this._http.get(this._hittingstatUrl + id)
-            .map((response: Response) => <IHittingStats[]>response.json())
-            .do(data => console.log('getHittingStats: ' + JSON.stringify(data)))
-            .catch(this.handleError) ;
     }
 
     getHittingList(id:number) {
@@ -47,17 +42,34 @@ export class StatsService {
         .subscribe(
             data => {
                 this.hittinglist = data;
-                this.categories = this.hittinglist.map(function(e) { return e['category']; }).filter(function(e,i,a){
-                    return i === a.indexOf(e);
-                });            
-                console.log(this.categories);
+                this.createStatsCategories();
             }
         );
     };
 
+    createStatsCategories() {
+        //Create local variable
+        var list:Array<IHittingStats> = this.hittinglist;
+        var hctemp = this.hittingcategories;
+
+        //Get list of categories
+        this.categories = this.hittinglist.map(function(e) { return e['category']; }).filter(function(e,i,a){return i === a.indexOf(e);});            
+
+        //For each category create the object and fill the array
+        this.categories.forEach(function(item) {
+            var hc: HittingCategory = new HittingCategory();
+            hc.category = item;
+            hc.categorylist = list.filter(function(e){return e.category == item;});
+            hc.createStatsCategoryTotal();
+
+            //Add to array
+            hctemp.push(hc);
+        });
+    }
+
     private handleError(error: Response) {
-    console.error(error);
-    console.error('error in service');
-    return Observable.throw(error.json().error || 'Server error');
+        console.error(error);
+        console.error('error in service');
+        return Observable.throw(error.json().error || 'Server error');
     }
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IHittingStats } from '../../models/IHittingStats';
+import { Component, Input } from '@angular/core';
+import { HittingCategory } from '../../models/HittingCategory';
 
 @Component({
     selector: 'pp-statcategory',
@@ -7,6 +7,5 @@ import { IHittingStats } from '../../models/IHittingStats';
     templateUrl: 'statcategory.component.html'
 })
 export class StatCategory  { 
-    @Input() category: string;
-    @Input() hittinglist: IHittingStats[];
+    @Input() hittingcategory: HittingCategory;
 }

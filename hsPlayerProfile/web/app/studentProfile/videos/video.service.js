@@ -30,6 +30,7 @@ var VideoService = (function () {
         this.showDetails = false;
         this.selectedVideoById = function (id) {
             var file = _this.playlist.filter(function (e) { return e.id == id; });
+            _this.selectedVideoId = file[0]['id'];
             _this.currentTitle = file[0]['title'];
             _this.currentDesc = file[0]['description'];
             _this.videoElement.src = config_service_1.Config.VIDEOFOLDER + file[0]['filename'];
@@ -37,6 +38,7 @@ var VideoService = (function () {
             _this.isPlaying = false;
         };
         this.selectedVideo = function (i) {
+            _this.selectedVideoId = _this.playlist[i]['id'];
             _this.currentTitle = _this.playlist[i]['title'];
             _this.currentDesc = _this.playlist[i]['description'];
             _this.videoElement.src = config_service_1.Config.VIDEOFOLDER + _this.playlist[i]['filename'];
@@ -80,8 +82,14 @@ var VideoService = (function () {
     };
     VideoService.prototype.getPlaylist = function (id) {
         var _this = this;
+        //Test to see if we already have data for this object
+        if (this.playlist.length > 0) {
+            this.selectedVideoById(this.selectedVideoId);
+            return;
+        }
         this.http.get(config_service_1.Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id.toString())
             .map(function (res) { return res.json(); })
+            .do(function (data) { return console.log('getPlaylist: ' + JSON.stringify(data)); })
             .subscribe(function (data) {
             _this.playlist = data;
             _this.selectedVideo(1);

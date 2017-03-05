@@ -10,16 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var data_service_1 = require("../../services/data.service");
 var AcademicsComponent = (function () {
-    function AcademicsComponent(_dataService) {
-        this._dataService = _dataService;
+    function AcademicsComponent() {
     }
-    ;
     AcademicsComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Academics';
-        this._dataService.getClasses(this.myprofile.id).subscribe(function (classes) { return _this.classes = classes; }, function (error) { return _this.errorMessage = error; });
     };
     return AcademicsComponent;
 }());
@@ -27,14 +22,20 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], AcademicsComponent.prototype, "myprofile", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], AcademicsComponent.prototype, "classes", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], AcademicsComponent.prototype, "ec", void 0);
 AcademicsComponent = __decorate([
     core_1.Component({
         selector: 'pp-academics',
         moduleId: module.id,
-        templateUrl: 'academics.component.html',
-        styleUrls: ['academics.component.css']
-    }),
-    __metadata("design:paramtypes", [data_service_1.DataService])
+        templateUrl: 'academics.component.html'
+    })
 ], AcademicsComponent);
 exports.AcademicsComponent = AcademicsComponent;
 //# sourceMappingURL=academics.component.js.map

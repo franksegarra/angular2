@@ -1,13 +1,13 @@
-li {
+/*li {
     font-size: large;
-}
+}*/
 
 div.panel-heading {
    font-size: x-large; 
 }
 
-.panel-heading {
+/*.panel-heading {
     background: steelblue;
     color: white;
     font-size: x-large; 
-}
+}*/
