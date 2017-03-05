@@ -72,6 +72,13 @@ var DataService = (function () {
             .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    DataService.prototype.getProfileByName = function (profilename) {
+        return this._http.get(this._profilesUrl + profilename)
+            .map(function (response) { return response.json(); })
+            .first()
+            .do(function (data) { return console.log('getProfileByName: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     DataService.prototype.handleError = function (error) {
         console.error(error);
         console.error('error in service');

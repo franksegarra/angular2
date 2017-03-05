@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IProfile } from '../../models/IProfile';
+import { ILink } from '../../models/ILink';
 
 @Component({
     selector: 'pp-links',

@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { IProfile } from '../../models/IProfile';
+import { IExtraCurricular } from '../../models/IExtraCurricular';
 
 @Component({
     selector: 'pp-extracurricular',

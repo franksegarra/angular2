@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IProfile } from '../../models/IProfile';
+import { IClass } from '../../models/IClass';
+import { IExtraCurricular } from '../../models/IExtraCurricular';
 
 @Component({
     selector: 'pp-academics',

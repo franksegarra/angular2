@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IClass } from '../../models/IClass';
 
 @Component({
     selector: 'pp-grade',

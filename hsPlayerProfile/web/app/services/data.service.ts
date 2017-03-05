@@ -83,6 +83,14 @@ export class DataService {
                     .catch(this.handleError);
     }
 
+    getProfileByName(profilename:string): Observable<IProfile> {
+        return this._http.get(this._profilesUrl + profilename)
+                    .map((response: Response) => <IProfile>response.json())
+                    .first()
+                    .do(data => console.log('getProfileByName: ' + JSON.stringify(data)))
+                    .catch(this.handleError);
+    }
+
     private handleError(error: Response) {
         console.error(error);
         console.error('error in service');

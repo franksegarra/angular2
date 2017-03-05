@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IProfile } from '../../models/IProfile';
 
 @Component({
     selector: 'pp-contactme',

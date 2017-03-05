@@ -26,9 +26,9 @@ var StudentProfileComponent = (function () {
         var _this = this;
         // (+) converts string 'id' to a number
         this.sub = this.route.params.subscribe(function (params) { _this.studentId = +params['id']; });
-        console.log(this.studentId);
         //Main Profile
         this._dataService.getProfile(this.studentId).subscribe(function (p) { return _this.myprofile = p; }, function (error) { return _this.errorMessage = error; });
+        //this._dataService.getProfileByName('francissegarra').subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
         //For Academics
         this._dataService.getClasses(this.studentId).subscribe(function (classes) { return _this.classes = classes; }, function (error) { return _this.errorMessage = error; });
         this._dataService.getExtraCurricular(this.studentId).subscribe(function (classes) { return _this.ec = classes; }, function (error) { return _this.errorMessage = error; });
@@ -53,8 +53,7 @@ StudentProfileComponent = __decorate([
     core_1.Component({
         selector: 'pp-studentprofile',
         moduleId: module.id,
-        templateUrl: 'studentprofile.component.html',
-        styleUrls: ['studentprofile.component.css']
+        templateUrl: 'studentprofile.component.html'
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, data_service_1.DataService, stats_service_1.StatsService])
 ], StudentProfileComponent);
