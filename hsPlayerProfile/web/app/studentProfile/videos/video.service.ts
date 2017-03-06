@@ -5,6 +5,7 @@ import { IVideo } from './IVideo';
 import { TreeNode } from 'primeng/primeng';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 //Global settings
 import { Config } from '../../config.service';

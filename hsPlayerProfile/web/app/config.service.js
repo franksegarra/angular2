@@ -6,7 +6,7 @@ var Config = (function () {
     return Config;
 }());
 //    static MAIN_HEADING: string = "Student Profiles";
-Config.MAIN_HEADING = "Francis Segarra - Student Profile";
+Config.MAIN_HEADING = "Student Profile - Francis Segarra - 2018";
 Config.WEBSERVICESURL = 'http://localhost:64425/api/';
 Config.VIDEOFOLDER = 'data/videos/';
 Config.PICTUREFOLDER = 'data/pictures/';

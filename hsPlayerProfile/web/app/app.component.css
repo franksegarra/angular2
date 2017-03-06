@@ -1,6 +1,31 @@
+
+/* Added by me */
 div.panel-heading {
-   font-size: x-large; 
+    font-size: x-large; 
 }
+
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #326eb7;
+    border-color: #326eb7;
+}
+
+.navbar-brand {
+    color:#326eb7;
+    font-size: x-large; 
+}
+
+.btn-link {
+    font-weight: bold;
+    color: #326eb7;
+    border-radius: 0;
+}
+
+ui-tree {
+    border
+}
+
+/* Added by me */
 
 html, body {
    height: 100%;
@@ -49,12 +74,22 @@ html, body {
  * --------------------------------------------------
  */
 @media screen and (max-width: 768px) {
+    /* Added by me */
+    div.panel-heading {
+        font-size: medium; 
+    }
+
+    .navbar-brand {
+        color:#326eb7;
+        font-size: medium; 
+    }
+
     #sidebar {
         min-width: 44px;
     }
     
     #main {
-        width: 1%;
+        width: 85%;
         left: 0;
     }
     
