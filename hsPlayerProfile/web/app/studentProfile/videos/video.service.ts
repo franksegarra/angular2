@@ -12,90 +12,81 @@ import { Config } from '../../config.service';
 @Injectable()
 export class VideoService {
 
-  public playlist:Array<IVideo> = [];
-  public currentTitle:string = "loading...";
-  public currentDesc:string = "A very nice video...";
-  public videoElement:any;
-  public videoData: TreeNode[];
-  public selectedFile: TreeNode;
+    public playlist:Array<IVideo> = [];
+    public currentTitle:string = "loading...";
+    public currentDesc:string = "A very nice video...";
+    public videoElement:any;
+    public videoData: TreeNode[];
+    public selectedFile: TreeNode;
 
-  public currentPath:string = "";
-  public currentTime:number = 0;
-  public totalTime:number = 0;
-  public calculatedWidth:number;
-  public calculatedScrubY:number;
-  public isMuted:boolean = false;
-  public isPlaying:boolean = false;
-  public isDragging:boolean = false;
-  public showDetails:boolean = false;
+    public currentPath:string = "";
+    public currentTime:number = 0;
+    public totalTime:number = 0;
+    public calculatedWidth:number;
+    public calculatedScrubY:number;
+    public isMuted:boolean = false;
+    public isPlaying:boolean = false;
+    public isDragging:boolean = false;
+    public showDetails:boolean = false;
+    public selectedVideoId: number;
 
-  public selectedVideoId: number;
+    constructor(private http:Http) {}
 
-  constructor(private http:Http) {}
+    appSetup(v:string) {
+        this.videoElement = <HTMLVideoElement> document.getElementById(v);
+        this.videoElement.addEventListener("loadedmetadata", this.updateData);
+        this.videoElement.addEventListener("timeupdate", this.updateTime);
+        window.setInterval(this.timerFired, 500);
+    }
 
-  appSetup(v:string) {
-    this.videoElement = <HTMLVideoElement> document.getElementById(v);
-    this.videoElement.addEventListener("loadedmetadata", this.updateData);
-    this.videoElement.addEventListener("timeupdate", this.updateTime);
-    window.setInterval(this.timerFired, 500);
-  }
-
-  getPlaylist(id:number) {
-
+    getPlaylist(id:number) {
         //Test to see if we already have data for this object
         if (this.playlist.length > 0) {
             this.selectedVideoById(this.selectedVideoId);
             return;
         }
       
-      this.http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id.toString())
-          .map((res:Response) => <IVideo[]>res.json())
+        this.http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id.toString())
+            .map((res:Response) => <IVideo[]>res.json())
             .do(data => console.log('getPlaylist: ' + JSON.stringify(data)))
-          .subscribe(
-              data => {
-                  this.playlist = data;
-                  this.selectedVideo(1);
-                  this.createVideoCategories();
-              }
-          );
-  };
+            .subscribe(
+                data => {
+                    this.playlist = data;
+                    this.selectedVideo(1);
+                    this.createVideoCategories();
+                }
+            );
+    };
 
-  createVideoCategories() {
+    createVideoCategories() {
+        var categories:Array<string> = this.playlist.map(function(e) { return e['category']; }).filter(function(e,i,a){return i === a.indexOf(e);});
+        var p:Array<IVideo> = this.playlist;
+        var rootnodes:Array<TreeNode> = [];
 
-    var categories:Array<string> = this.uniqueCategories();
-    var p:Array<IVideo> = this.playlist;
-    var rootnodes:Array<TreeNode> = [];
+        categories.forEach(function(item) {
+            var parent: TreeNode = [];
+            var files = p.filter(function(e){return e.category == item;});
 
-    categories.forEach(function(item) {
-        var parent: TreeNode = [];
-        var files = p.filter(function(e){return e.category == item;});
+            parent.label = item;
+            parent.data = "";
+            parent.expandedIcon = "";
+            parent.collapsedIcon = "";
+            parent.children = [];
 
-        parent.label = item;
-        parent.data = "";
-        parent.expandedIcon = "";
-        parent.collapsedIcon = "";
-        parent.children = [];
+            files.forEach(function(file) {
+                var childnode: TreeNode = [];
+                childnode.label = file.title
+                childnode.data = file.id
+                childnode.expandedIcon = "";
+                childnode.collapsedIcon = "";
+                parent.children.push(childnode);
+            });
 
-        files.forEach(function(file) {
-            var childnode: TreeNode = [];
-            childnode.label = file.title
-            childnode.data = file.id
-            childnode.expandedIcon = "";
-            childnode.collapsedIcon = "";
-            parent.children.push(childnode);
+            rootnodes.push(parent);
         });
 
-        rootnodes.push(parent);
-    });
-
-    this.videoData = rootnodes;
-  }
-
-  uniqueCategories() {
-    return this.playlist.map(function(e) { return e['category']; }).filter(function(e,i,a){
-        return i === a.indexOf(e);
-    });
-  };
+        this.videoData = rootnodes;
+    }
 
     selectedVideoById = (id:number) => {
         var file =  this.playlist.filter(function(e){return e.id == id;}) ;
@@ -107,14 +98,14 @@ export class VideoService {
         this.isPlaying = false;
     };
 
-  selectedVideo = (i:number) => {
-      this.selectedVideoId = this.playlist[i]['id'];
-      this.currentTitle = this.playlist[i]['title'];
-      this.currentDesc = this.playlist[i]['description'];
-      this.videoElement.src = Config.VIDEOFOLDER + this.playlist[i]['filename'];
-      this.videoElement.pause();
-      this.isPlaying = false;
-  };
+    selectedVideo = (i:number) => {
+        this.selectedVideoId = this.playlist[i]['id'];
+        this.currentTitle = this.playlist[i]['title'];
+        this.currentDesc = this.playlist[i]['description'];
+        this.videoElement.src = Config.VIDEOFOLDER + this.playlist[i]['filename'];
+        this.videoElement.pause();
+        this.isPlaying = false;
+    };
 
   seekVideo(e:any) {
       var w = document.getElementById('progressMeterFull').offsetWidth;

@@ -20,7 +20,8 @@
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.0",
     "Microsoft.EntityFrameworkCore.InMemory": "1.1.0",
-    "Microsoft.AspNetCore.Mvc.Formatters.Xml": "1.0.1"
+    "Microsoft.AspNetCore.Mvc.Formatters.Xml": "1.0.1",
+    "NETCore.MailKit": "1.0.1"
   },
   "frameworks": {
     "netcoreapp1.0": {

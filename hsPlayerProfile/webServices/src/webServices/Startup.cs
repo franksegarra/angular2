@@ -10,6 +10,10 @@ using Newtonsoft.Json.Serialization;
 using System.IO;
 using webServices.Entities;
 using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using webServices.Entities.Email;
+using webServices.Infrastructure.EmailService;
 
 namespace webServices
 {
@@ -30,6 +34,18 @@ namespace webServices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
+            #endregion Cors
+
             #region Database Connection
             string sqlConnectionString;
 
@@ -76,6 +92,10 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<StudentBaseball>, EntityBaseRepository<StudentBaseball>>();
             services.AddScoped<EntityBaseRepository<StudentBaseballProfile>, EntityBaseRepository<StudentBaseballProfile>>();
             services.AddScoped<EntityBaseRepository<StudentBBHittingStats>, EntityBaseRepository<StudentBBHittingStats>>();
+            services.AddScoped<EntityBaseRepository<StudentContact>, EntityBaseRepository<StudentContact>>();
+
+            // Register email service 
+            services.AddTransient<IEmailService, EmailService>();
 
             #endregion Repositories
 
@@ -93,6 +113,13 @@ namespace webServices
             });
 
             #endregion MVC
+
+            #region Email
+
+            services.Configure<EmailConfig>(Configuration.GetSection("Email"));
+
+            #endregion Email
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,6 +127,8 @@ namespace webServices
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseCors("CorsPolicy");
 
             app.UseMvc(routes =>
             {

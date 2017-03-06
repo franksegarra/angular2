@@ -1,6 +1,6 @@
 ﻿CREATE VIEW StudentSchedWithActivity
 	AS SELECT s.id, s.studentid, s.activitydate, s.starttime, s.activityid, s.activitydesc, s.activitytypeid, s.location, s.linkText,
-	a.activitytype
+	a.activitytype, s.created
 FROM studentSchedules s	
 	left outer join activityType a on s.activitytypeid = a.id
 	

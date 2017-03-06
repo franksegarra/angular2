@@ -51,14 +51,13 @@ var PictureService = (function () {
             .do(function (data) { return console.log('getPlaylist: ' + JSON.stringify(data)); })
             .subscribe(function (data) {
             _this.picturelist = data;
-            //this.selectedPictureId = 1;
             _this.selectedPicture(1);
             _this.createPictureCategories();
         });
     };
     ;
     PictureService.prototype.createPictureCategories = function () {
-        var categories = this.uniqueCategories();
+        var categories = this.picturelist.map(function (e) { return e['category']; }).filter(function (e, i, a) { return i === a.indexOf(e); });
         var p = this.picturelist;
         var rootnodes = [];
         //For each category
@@ -82,12 +81,6 @@ var PictureService = (function () {
         });
         this.pictureData = rootnodes;
     };
-    PictureService.prototype.uniqueCategories = function () {
-        return this.picturelist.map(function (e) { return e['category']; }).filter(function (e, i, a) {
-            return i === a.indexOf(e);
-        });
-    };
-    ;
     return PictureService;
 }());
 PictureService = __decorate([

@@ -10,7 +10,7 @@ namespace webServices.Entities
         public StudentBaseballProfile()
         {
         }
-        public int id { get; set; }
+        public int? id { get; set; }
         public int studentid { get; set; }
         public int? statspictureid { get; set; }
         public decimal? runningtime { get; set; }
@@ -23,6 +23,6 @@ namespace webServices.Entities
         public string statspicturefilename { get; set; }
         public string runningtimelocation { get; set; }
         public string runningtimelocationurl { get; set; }
-
+        public DateTime? created { get; set; }
     }
 }

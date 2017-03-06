@@ -10,7 +10,7 @@ namespace webServices.Entities
         public Student()
         {
         }
-        public int id { get; set; }
+        public int? id { get; set; }
         public string profileName { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -34,5 +34,6 @@ namespace webServices.Entities
         public int? profilePictureId { get; set; }
         public string height { get; set; }
         public string weight { get; set; }
+        public DateTime? created { get; set; }
     }
 }

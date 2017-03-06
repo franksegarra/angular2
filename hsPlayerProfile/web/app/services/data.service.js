@@ -28,40 +28,37 @@ var DataService = (function () {
         this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/';
         this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/';
         this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student/';
+        this._studentcontactUrl = config_service_1.Config.WEBSERVICESURL + 'studentcontact/';
+        this._emailUrl = config_service_1.Config.WEBSERVICESURL + 'email/';
     }
     //Get Classes
     DataService.prototype.getClasses = function (id) {
         return this._http.get(this._classesUrl + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('getClasses: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get Extra Curricular
     DataService.prototype.getExtraCurricular = function (id) {
         return this._http.get(this._ecUrl + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('getExtraCurricular: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     // Get Links
     DataService.prototype.getLinks = function (id) {
         return this._http.get(this._linksUrl + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('getLinks: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get Schedule
     DataService.prototype.getSchedule = function (id) {
         return this._http.get(this._schedUrl + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('getSchedule: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    //Get Schedule
+    //Get student
     DataService.prototype.getStudent = function (id) {
         return this._http.get(this._studentsUrl + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('getStudent: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get profile
@@ -76,7 +73,29 @@ var DataService = (function () {
         return this._http.get(this._profilesUrl + profilename)
             .map(function (response) { return response.json(); })
             .first()
-            .do(function (data) { return console.log('getProfileByName: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    DataService.prototype.poststudentContact = function (msg) {
+        var body = JSON.stringify(msg);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post(this._studentcontactUrl, body, options)
+            .map(function (res) { return res.json().data; })
+            .catch(this.handleError);
+    };
+    DataService.prototype.sendEMailToStudent = function (msg, studentemail) {
+        var mail = {
+            from: msg.contactemail,
+            to: studentemail,
+            cc: msg.contactemail,
+            subject: msg.contactname + ' has sent you a message.',
+            text: msg.message
+        };
+        var body = JSON.stringify(mail);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post(this._emailUrl, body, options)
+            .map(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
     DataService.prototype.handleError = function (error) {

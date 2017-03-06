@@ -10,14 +10,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+var data_service_1 = require("../../services/data.service");
 var ContactMeComponent = (function () {
-    function ContactMeComponent() {
+    function ContactMeComponent(fb, _dataService) {
+        this.fb = fb;
+        this._dataService = _dataService;
+        this.contactname = new forms_1.FormControl("", forms_1.Validators.required);
+        this.contactphone = new forms_1.FormControl("");
+        this.contactemail = new forms_1.FormControl("", forms_1.Validators.required);
+        this.message = new forms_1.FormControl("", forms_1.Validators.required);
     }
     ContactMeComponent.prototype.ngOnInit = function () {
+        this.form = this.fb.group({
+            "contactname": ["", forms_1.Validators.required],
+            "contactphone": [""],
+            "contactemail": ["", forms_1.Validators.required],
+            "message": ["", forms_1.Validators.required]
+        });
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Contact Me';
     };
-    ContactMeComponent.prototype.onSubmit = function (form) {
-        console.log('you submitted value:', form);
+    ContactMeComponent.prototype.onSubmit = function () {
+        var id = this.myprofile.id;
+        var studentemail = this.myprofile.primaryEmail;
+        var msg = {
+            studentid: id,
+            contactname: this.form.value['contactname'],
+            contactphone: this.form.value['contactphone'],
+            contactemail: this.form.value['contactemail'],
+            message: this.form.value['message']
+        };
+        var ds = this._dataService;
+        var response;
+        ds.poststudentContact(msg)
+            .subscribe(function (response) {
+            /* this function is executed every time there's a new output */
+            console.log("VALUE RECEIVED: " + response);
+        }, function (err) {
+            /* this function is executed when there's an ERROR */
+            console.log("ERROR: " + err);
+        }, function () {
+            /* this function is executed when the observable ends (completes) its stream */
+            console.log("post to database completed");
+            ds.sendEMailToStudent(msg, studentemail)
+                .subscribe(function (response) {
+                /* this function is executed every time there's a new output */
+                console.log("VALUE RECEIVED: " + response);
+            }, function (err) {
+                /* this function is executed when there's an ERROR */
+                console.log("ERROR: " + err);
+            }, function () {
+                /* this function is executed when the observable ends (completes) its stream */
+                console.log("COMPLETED");
+            });
+        });
     };
     ;
     return ContactMeComponent;
@@ -31,7 +77,8 @@ ContactMeComponent = __decorate([
         selector: 'pp-contactme',
         moduleId: module.id,
         templateUrl: 'contactme.component.html'
-    })
+    }),
+    __metadata("design:paramtypes", [forms_1.FormBuilder, data_service_1.DataService])
 ], ContactMeComponent);
 exports.ContactMeComponent = ContactMeComponent;
 //# sourceMappingURL=contactme.component.js.map

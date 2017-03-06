@@ -38,29 +38,29 @@
                 </tbody>
             </table>
         </div>        
-        <form #ngIf="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
             <div class="table-responsive">
             <b>Send me a message:</b>
                 <table class="table">
                     <tbody>
                         <tr><td><div class="col-sm-12">  
-                            <input type="text" id="nameInput" placeholder="Enter Your Name" name="name" required style="width:100%; padding: 6px 12px;" ngModel >  
+                            <b>Name:</b><input type="text" formControlName = 'contactname' placeholder="Enter Your Name (Required)" style="width:100%; padding: 6px 12px;">  
                         </div></td></tr>
 
                         <tr><td><div class="col-sm-12">  
-                                    <input type="text" id="phoneInput" placeholder="Enter Phone Number" name="phone" required style="width:100%; padding: 6px 12px;" ngModel>  
+                            <b>Phone Number:</b><input type="text" formControlName = 'contactphone' placeholder="Enter Phone Number" style="width:100%; padding: 6px 12px;">  
                         </div></td></tr>
 
                         <tr><td><div class="col-sm-12">  
-                                    <input type="text" id="emailInput" placeholder="Enter Email Address" name="email" required style="width:100%; padding: 6px 12px;" ngModel>  
+                            <b>Email:</b><input type="text" formControlName = 'contactemail' placeholder="Enter Email Address (Required)" style="width:100%; padding: 6px 12px;">  
                         </div></td></tr>
 
                         <tr><td><div class="col-sm-12">  
-                            <textarea rows="5" class="form-control" id="messageInput" name="message" placeholder="Type your message here" required style="width:100%; padding: 6px 12px;" ngModel></textarea>	
+                            <b>Message:</b><textarea rows="5" formControlName = 'message' class="form-control" placeholder="Type your message here (Required)" style="width:100%; padding: 6px 12px;"></textarea>	
                         </div></td></tr>
 
                         <tr><td><div class="col-sm-12">
-                                <button type="submit" class="ui button">Submit</button>  
+                                <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>  
                         </div></td></tr>
                     </tbody>
                 </table> 

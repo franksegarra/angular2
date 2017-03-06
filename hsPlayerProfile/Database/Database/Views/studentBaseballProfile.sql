@@ -13,7 +13,8 @@ select
 	op.otherpositions,
 	pics.filename as statspicturefilename,
 	sb.runningtimelocation,
-	sb.runningtimelocationurl
+	sb.runningtimelocationurl,
+	sb.created
 from studentBaseball sb
 left outer join studentPositions sp1 on (sp1.studentid = sb.studentid and sp1.isprimary = 1)
 left outer join studentPictures pics on (sb.statsPictureId = pics.id)

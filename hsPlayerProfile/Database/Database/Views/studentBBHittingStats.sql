@@ -29,6 +29,6 @@ SELECT id,studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,w
 			else (cast(singles as float) + doubles + triples + homeruns + walks + hitbypitch) / (plateappearances - sacbunts) + 
 				((1 * cast(singles as float)) + (2 * doubles) + (3 * triples) + (4 * homeruns))/(plateappearances - walks - hitbypitch - sacflys - sacbunts) 
 			end
-	end as onbaseplusslugging
-
+	end as onbaseplusslugging,
+	created
 FROM studentBBHitting

@@ -1,1 +1,1 @@
-1.  Hook up Email
+1.  fix error when sending email  error.json() and res.json().  I dont' think json is being returned.

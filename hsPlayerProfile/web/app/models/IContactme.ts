@@ -1,6 +1,7 @@
 export interface IContactMe {
-    name: string;
-    phone: string;
-    email: string;
+    studentid: number;
+    contactname: string;
+    contactphone: string;
+    contactemail: string;
     message: string;
 }

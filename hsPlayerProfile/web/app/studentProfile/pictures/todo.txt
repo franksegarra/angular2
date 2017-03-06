@@ -1,2 +1,1 @@
 1.  Size images
-2.  Clean up service

@@ -10,6 +10,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
+import 'rxjs/add/observable/throw';
 
 //Global settings
 import { Config } from '../../config.service';
@@ -31,14 +32,14 @@ export class StatsService {
         return this._http.get(this._bbprofilesUrl + id)
                     .map((response: Response) => <IBBProfile[]>response.json())
                     //.first()
-                    .do(data => console.log('getBBProfile: ' + JSON.stringify(data)))
+                    //.do(data => console.log('getBBProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 
     getHittingList(id:number) {
         this._http.get(this._hittingstatUrl + id)
         .map((res:Response) => <IHittingStats[]>res.json())
-        .do(data => console.log('getHittingList: ' + JSON.stringify(data)))
+        //.do(data => console.log('getHittingList: ' + JSON.stringify(data)))
         .subscribe(
             data => {
                 this.hittinglist = data;

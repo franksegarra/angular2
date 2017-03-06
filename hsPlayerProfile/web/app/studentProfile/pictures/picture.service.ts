@@ -19,7 +19,6 @@ export class PictureService {
     public pictureData: TreeNode[];
     public selectedFile: TreeNode;
     public showDetails:boolean = false;
-
     public selectedPictureId: number;
 
     constructor(private http:Http) {}
@@ -42,64 +41,56 @@ export class PictureService {
         .subscribe(
             data => {
                 this.picturelist = data;
-                //this.selectedPictureId = 1;
                 this.selectedPicture(1);
                 this.createPictureCategories();
             }
         );
     };
 
-  createPictureCategories() {
+    createPictureCategories() {
 
-    var categories:Array<string> = this.uniqueCategories();
-    var p:Array<IPicture> = this.picturelist;
-    var rootnodes:Array<TreeNode> = [];
+        var categories:Array<string> = this.picturelist.map(function(e) { return e['category']; }).filter(function(e,i,a){return i === a.indexOf(e);});
+        var p:Array<IPicture> = this.picturelist;
+        var rootnodes:Array<TreeNode> = [];
 
-    //For each category
-    categories.forEach(function(item) {
-        var parent: TreeNode = [];
-        var files = p.filter(function(e){return e.category == item;});
+        //For each category
+        categories.forEach(function(item) {
+            var parent: TreeNode = [];
+            var files = p.filter(function(e){return e.category == item;});
 
-        parent.label = item;
-        parent.data = "";
-        parent.expandedIcon = "";
-        parent.collapsedIcon = "";
-        parent.children = [];
-    
-        files.forEach(function(file) {
-            var childnode: TreeNode = [];
-            childnode.label = file.title
-            childnode.data = file.id
-            childnode.expandedIcon = "";
-            childnode.collapsedIcon = "";
-            parent.children.push(childnode);
+            parent.label = item;
+            parent.data = "";
+            parent.expandedIcon = "";
+            parent.collapsedIcon = "";
+            parent.children = [];
+        
+            files.forEach(function(file) {
+                var childnode: TreeNode = [];
+                childnode.label = file.title
+                childnode.data = file.id
+                childnode.expandedIcon = "";
+                childnode.collapsedIcon = "";
+                parent.children.push(childnode);
+            });
+
+            rootnodes.push(parent);
         });
 
-        rootnodes.push(parent);
-    });
+        this.pictureData = rootnodes;
+    }
 
-    this.pictureData = rootnodes;
-  }
+    selectedPicture = (i:number) => {
+        this.selectedPictureId = this.picturelist[i]['id']
+        this.currentTitle = this.picturelist[i]['title'];
+        this.currentDesc = this.picturelist[i]['description'];
+        this.pictureElement.src = Config.PICTUREFOLDER + this.picturelist[i]['filename'];
+    };
 
-  selectedPicture = (i:number) => {
-      this.selectedPictureId = this.picturelist[i]['id']
-      this.currentTitle = this.picturelist[i]['title'];
-      this.currentDesc = this.picturelist[i]['description'];
-      this.pictureElement.src = Config.PICTUREFOLDER + this.picturelist[i]['filename'];
-  };
-
-  selectedPictureById = (id:number) => {
-      var file =  this.picturelist.filter(function(e){return e.id == id;}) ;
-      this.selectedPictureId = file[0]['id'];
-      this.currentTitle = file[0]['title'];
-      this.currentDesc = file[0]['description'];
-      this.pictureElement.src = Config.PICTUREFOLDER + file[0]['filename'];
-  };
-
-
-  uniqueCategories() {
-    return this.picturelist.map(function(e) { return e['category']; }).filter(function(e,i,a){
-        return i === a.indexOf(e);
-    });
-  };
+    selectedPictureById = (id:number) => {
+        var file =  this.picturelist.filter(function(e){return e.id == id;}) ;
+        this.selectedPictureId = file[0]['id'];
+        this.currentTitle = file[0]['title'];
+        this.currentDesc = file[0]['description'];
+        this.pictureElement.src = Config.PICTUREFOLDER + file[0]['filename'];
+    };
 }

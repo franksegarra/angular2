@@ -24,8 +24,8 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
       //bootstrap
-//      'moment': 'npm:moment/bundles/moment.umd.js',
-//      'ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
+      //'moment': 'npm:moment/bundles/moment.umd.js',
+      //'ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
 
       // other libraries
       'rxjs': 'npm:rxjs',

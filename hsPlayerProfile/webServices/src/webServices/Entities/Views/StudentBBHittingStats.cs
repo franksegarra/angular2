@@ -10,7 +10,7 @@ namespace webServices.Entities
         public StudentBBHittingStats()
         {
         }
-        public int id { get; set; }
+        public int? id { get; set; }
         public int studentid { get; set; }
         public string category { get; set; }
         public DateTime dateplayed { get; set; }
@@ -35,5 +35,6 @@ namespace webServices.Entities
         public double onbasepercentage { get; set; }
         public double slugging { get; set; }
         public double onbaseplusslugging { get; set; }
+        public DateTime? created { get; set; }
     }
 }

@@ -18,6 +18,7 @@
 	[runsbattediin] int null default 0,
 	[runsscored] int null default 0,
 	[stolenbases] int null default 0,
+    [created] DATETIME NOT NULL default getdate(), 
     CONSTRAINT [pk_studentBBHitting_id] PRIMARY KEY CLUSTERED (id),
     CONSTRAINT [FK_studentBBHitting_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
 )

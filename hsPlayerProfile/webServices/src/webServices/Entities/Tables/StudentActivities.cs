@@ -10,11 +10,12 @@ namespace webServices.Entities
         public StudentActivities()
         {
         }
-        public int id { get; set; }
+        public int? id { get; set; }
         public int studentid { get; set; }
         public int activityid { get; set; }
         public string coachName { get; set; }
         public string coachEmail { get; set; }
         public string coachPhone { get; set; }
+        public DateTime? created { get; set; }
     }
 }

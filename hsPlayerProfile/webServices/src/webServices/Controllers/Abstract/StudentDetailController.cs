@@ -11,7 +11,7 @@ using webServices.Controllers;
 namespace webServices.Controllers
 {
     //[Route("api/[controller]")]
-    public class StudentDetailController<T> : ReadOnlyControllerBase<T>, IStudentDetailController<T>
+    public class StudentDetailController<T> : ReadWriteControllerBase<T>, IStudentDetailController<T>
             where T : class, IEntityBase, IStudentEntityBase, new()
     {
         public StudentDetailController(EntityBaseRepository<T> items) : base(items)

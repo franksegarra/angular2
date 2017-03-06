@@ -10,9 +10,10 @@ namespace webServices.Entities
         public StudentExtraCurricular()
         {
         }
-        public int id { get; set; }
+        public int? id { get; set; }
         public int studentid { get; set; }
         public string ecName { get; set; }
         public string ecDescription { get; set; }
+        public DateTime? created { get; set; }
     }
 }

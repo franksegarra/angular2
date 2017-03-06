@@ -7,6 +7,7 @@
     [finalAverage] SMALLINT NULL, 
     [letterGrade] VARCHAR(2) NULL, 
     [collegeCredit] SMALLINT NULL, 
+    [created] DATETIME NOT NULL default getdate(), 
     CONSTRAINT [pk_studentClasses_id] PRIMARY KEY CLUSTERED (id),
     CONSTRAINT [FK_studentClasses_player] FOREIGN KEY ([studentid]) REFERENCES [student](id), 
     CONSTRAINT [CK_studentClasses_finalAverage] CHECK (finalAverage < 105)

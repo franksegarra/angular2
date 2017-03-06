@@ -98,7 +98,7 @@ var VideoService = (function () {
     };
     ;
     VideoService.prototype.createVideoCategories = function () {
-        var categories = this.uniqueCategories();
+        var categories = this.playlist.map(function (e) { return e['category']; }).filter(function (e, i, a) { return i === a.indexOf(e); });
         var p = this.playlist;
         var rootnodes = [];
         categories.forEach(function (item) {
@@ -121,12 +121,6 @@ var VideoService = (function () {
         });
         this.videoData = rootnodes;
     };
-    VideoService.prototype.uniqueCategories = function () {
-        return this.playlist.map(function (e) { return e['category']; }).filter(function (e, i, a) {
-            return i === a.indexOf(e);
-        });
-    };
-    ;
     VideoService.prototype.seekVideo = function (e) {
         var w = document.getElementById('progressMeterFull').offsetWidth;
         var d = this.videoElement.duration;

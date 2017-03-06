@@ -30,6 +30,8 @@ namespace webServices.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    item.id = null;
+                    item.created = DateTime.Now;
                     _Items.Add(item);
                     return CreatedAtRoute("DefaultApi", new { controller = nameof(T), id = item.id }, item);
                 }

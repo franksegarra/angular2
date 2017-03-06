@@ -10,6 +10,7 @@
 	[travelurl] varchar(255) null,
 	[runningtimelocation] varchar(100) null,
 	[runningtimelocationurl] varchar(255) null,
+    [created] DATETIME NOT NULL default getdate(), 
     CONSTRAINT [pk_studentBaseball_id] PRIMARY KEY CLUSTERED (id),
     CONSTRAINT [FK_studentBaseball_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
 )

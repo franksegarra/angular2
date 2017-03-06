@@ -11,7 +11,7 @@ namespace webServices.Entities
         {
         }
 
-        public int id { get; set; }
+        public int? id { get; set; }
         public int studentid { get; set; }
         public DateTime activitydate { get; set; }
         public string starttime { get; set; }
@@ -21,5 +21,6 @@ namespace webServices.Entities
         public string location { get; set; }
         public string linkText { get; set; }
         public string activitytype { get; set; }
+        public DateTime? created { get; set; }
     }
 }

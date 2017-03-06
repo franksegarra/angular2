@@ -10,7 +10,7 @@ namespace webServices.Entities
         public StudentBaseball()
         {
         }
-        public int id { get; set; }
+        public int? id { get; set; }
         public int studentid { get; set; }
         public int? statsPictureId { get; set; }
         public decimal? runningTime { get; set; }
@@ -20,6 +20,6 @@ namespace webServices.Entities
         public string travelUrl { get; set; }
         public string runningtimelocation { get; set; }
         public string runningtimelocationurl { get; set; }
-
+        public DateTime? created { get; set; }
     }
 }

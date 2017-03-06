@@ -9,6 +9,7 @@
     [activitytypeid] INT NULL, 
     [location] VARCHAR(MAX) NULL, 
     [linkText] VARCHAR(100) NULL, 
+    [created] DATETIME NOT NULL default getdate(), 
     CONSTRAINT [pk_studentSchedules_id] PRIMARY KEY CLUSTERED (id),
     CONSTRAINT [FK_studentSchedules_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
     CONSTRAINT [FK_studentSchedules_activity] FOREIGN KEY (activityid) REFERENCES [activity](id), 
