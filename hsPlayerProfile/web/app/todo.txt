@@ -1,6 +1,7 @@
+TODO:
+
 For now:
 1.  Fix routing so that it always goes to francis' profile
-2.  More stuff to do.
 
 Phase II:
 1.  Add breadcrumbs

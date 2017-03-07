@@ -2,7 +2,7 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule } from 'primeng/primeng';
+import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DialogModule } from 'primeng/primeng';
 
 //Services
 import { DataService } from '../services/data.service';
@@ -47,6 +47,7 @@ import { ContactMeComponent } from './contactme/contactme.component';
 //Pipes
 import { TBDFormatPipe } from '../pipes/tbdFormat.pipe';
 import { PhoneFormatPipe } from '../pipes/phoneFormat.pipe';
+import { UpcomingDatesPipe } from '../pipes/upcomingdates.pipe';
 
 //Module declaration
 @NgModule({
@@ -59,6 +60,7 @@ import { PhoneFormatPipe } from '../pipes/phoneFormat.pipe';
       TreeModule,
       TooltipModule,
       PanelModule,
+      DialogModule
   ],
   declarations: [
       StudentProfileComponent
@@ -81,6 +83,7 @@ import { PhoneFormatPipe } from '../pipes/phoneFormat.pipe';
       ,LinksComponent
       ,ContactMeComponent
       ,PhoneFormatPipe
+      ,UpcomingDatesPipe
   ],  
   providers: [ DataService, VideoService, PictureService, StatsService ],
 })

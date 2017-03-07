@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let schedItem of schedItems' >   
+                    <tr *ngFor='let schedItem of schedItems | upcomingdates: "activitydate"' >   
                         <td >
                             <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.linkText | tbdFormat }}</a>
                         </td>

@@ -20,6 +20,8 @@ var ContactMeComponent = (function () {
         this.contactphone = new forms_1.FormControl("");
         this.contactemail = new forms_1.FormControl("", forms_1.Validators.required);
         this.message = new forms_1.FormControl("", forms_1.Validators.required);
+        this.display = false;
+        this.dialogContent = '';
     }
     ContactMeComponent.prototype.ngOnInit = function () {
         this.form = this.fb.group({
@@ -31,6 +33,7 @@ var ContactMeComponent = (function () {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Contact Me';
     };
     ContactMeComponent.prototype.onSubmit = function () {
+        var _this = this;
         var id = this.myprofile.id;
         var studentemail = this.myprofile.primaryEmail;
         var msg = {
@@ -47,8 +50,8 @@ var ContactMeComponent = (function () {
             /* this function is executed every time there's a new output */
             console.log("VALUE RECEIVED: " + response);
         }, function (err) {
-            /* this function is executed when there's an ERROR */
-            console.log("ERROR: " + err);
+            _this.showDialog("We''re so sorry.  There was an error saving your message information to the database.");
+            console.log("ERROR in component. save to db: " + err);
         }, function () {
             /* this function is executed when the observable ends (completes) its stream */
             console.log("post to database completed");
@@ -57,15 +60,23 @@ var ContactMeComponent = (function () {
                 /* this function is executed every time there's a new output */
                 console.log("VALUE RECEIVED: " + response);
             }, function (err) {
-                /* this function is executed when there's an ERROR */
-                console.log("ERROR: " + err);
+                _this.showDialog("We''re so sorry.  There was an error sending your message.");
+                console.log("ERROR in component. Send email: " + err);
             }, function () {
-                /* this function is executed when the observable ends (completes) its stream */
-                console.log("COMPLETED");
+                _this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
+                console.log("COMPLETED in component");
             });
         });
     };
     ;
+    ContactMeComponent.prototype.showDialog = function (message) {
+        this.dialogContent = message;
+        this.display = true;
+    };
+    ContactMeComponent.prototype.hideDialog = function () {
+        this.dialogContent = '';
+        this.display = false;
+    };
     return ContactMeComponent;
 }());
 __decorate([

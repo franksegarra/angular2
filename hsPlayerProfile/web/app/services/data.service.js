@@ -95,7 +95,7 @@ var DataService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.post(this._emailUrl, body, options)
-            .map(function (res) { return res.json().data; })
+            .map(function (res) { return res; })
             .catch(this.handleError);
     };
     DataService.prototype.handleError = function (error) {

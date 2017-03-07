@@ -3,7 +3,14 @@
         {{pageTitle}}
     </div>
     <div class='panel-body'>
-
+        <p-dialog header="Contact Status" [(visible)]="display" modal="modal" responsive='true'>
+            {{ dialogContent }}
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <button type="button" class="button" pButton icon="fa-close" (click)="hideDialog()" label="Close"></button>
+                </div>
+            </p-footer>
+        </p-dialog>
         <div class="table-responsive" *ngIf="myprofile.displayaddrandphone == 1" >
             <b>Home Address:</b>
             <table class="table">

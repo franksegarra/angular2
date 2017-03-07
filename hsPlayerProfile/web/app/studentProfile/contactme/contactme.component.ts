@@ -20,6 +20,9 @@ export class ContactMeComponent implements OnInit {
     contactemail= new FormControl("", Validators.required);
     message= new FormControl("", Validators.required);
 
+    display: boolean = false;
+    dialogContent: string = '';
+
     constructor(private fb: FormBuilder, private _dataService: DataService) {}
 
     ngOnInit(): void {
@@ -54,8 +57,8 @@ export class ContactMeComponent implements OnInit {
                 console.log("VALUE RECEIVED: "+response);
             },
             (err) => {
-                    /* this function is executed when there's an ERROR */
-                    console.log("ERROR: "+err);
+                    this.showDialog("We''re so sorry.  There was an error saving your message information to the database.");
+                    console.log("ERROR in component. save to db: "+ err);
             },
             () => {
                     /* this function is executed when the observable ends (completes) its stream */
@@ -68,16 +71,25 @@ export class ContactMeComponent implements OnInit {
                             console.log("VALUE RECEIVED: " + response);
                         },
                         (err) => {
-                                /* this function is executed when there's an ERROR */
-                                console.log("ERROR: "+err);
+                                this.showDialog("We''re so sorry.  There was an error sending your message.");
+                                console.log("ERROR in component. Send email: "+err);
                         },
                         () => {
-                                /* this function is executed when the observable ends (completes) its stream */
-                                console.log("COMPLETED");
+                                this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
+                                console.log("COMPLETED in component");
                         }
                     );
             }
         );
     };
 
+    showDialog(message: string) {
+        this.dialogContent = message;
+        this.display = true;
+    }
+
+    hideDialog() {
+        this.dialogContent = '';
+        this.display = false;
+    }
 }

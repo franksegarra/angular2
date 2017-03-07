@@ -121,7 +121,7 @@ export class DataService {
         let options = new RequestOptions({ headers: headers });
 
         return this._http.post(this._emailUrl, body, options)
-            .map(res =>  res.json().data)
+            .map(res =>  res)
             .catch(this.handleError);
     }
 

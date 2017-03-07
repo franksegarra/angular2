@@ -28,7 +28,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     links: ILink[];
     bbprofile: IBBProfile;
 
-    componentToShow: string = 'academics';
+    componentToShow: string = 'schedule';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _statsService: StatsService) {
     }

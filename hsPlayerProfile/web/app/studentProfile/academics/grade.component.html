@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let class of classes | gradeFilter: {grade: grade}  ' >
+            <tr *ngFor='let class of classes | gradeFilter: {grade: grade}' >
                 <td>{{ class.className }}</td>
                 <td>{{ class.finalAverage }}</td>
                 <td>{{ class.letterGrade }}</td>   

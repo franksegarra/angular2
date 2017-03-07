@@ -45,6 +45,7 @@ var contactme_component_1 = require("./contactme/contactme.component");
 //Pipes
 var tbdFormat_pipe_1 = require("../pipes/tbdFormat.pipe");
 var phoneFormat_pipe_1 = require("../pipes/phoneFormat.pipe");
+var upcomingdates_pipe_1 = require("../pipes/upcomingdates.pipe");
 //Module declaration
 var StudentProfileModule = (function () {
     function StudentProfileModule() {
@@ -62,6 +63,7 @@ StudentProfileModule = __decorate([
             primeng_1.TreeModule,
             primeng_1.TooltipModule,
             primeng_1.PanelModule,
+            primeng_1.DialogModule
         ],
         declarations: [
             studentprofile_component_1.StudentProfileComponent,
@@ -83,7 +85,8 @@ StudentProfileModule = __decorate([
             statcategory_component_1.StatCategory,
             links_component_1.LinksComponent,
             contactme_component_1.ContactMeComponent,
-            phoneFormat_pipe_1.PhoneFormatPipe
+            phoneFormat_pipe_1.PhoneFormatPipe,
+            upcomingdates_pipe_1.UpcomingDatesPipe
         ],
         providers: [data_service_1.DataService, video_service_1.VideoService, picture_service_1.PictureService, stats_service_1.StatsService],
     })
