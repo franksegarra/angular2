@@ -20,7 +20,7 @@ var StudentProfileComponent = (function () {
         this._dataService = _dataService;
         this._statsService = _statsService;
         this.studentId = 1;
-        this.componentToShow = 'videos';
+        this.componentToShow = 'academics';
     }
     StudentProfileComponent.prototype.ngOnInit = function () {
         var _this = this;

@@ -7,12 +7,13 @@ import { StudentProfileComponent } from './studentprofile/studentprofile.compone
 import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
-        // {path: 'home', component: StudentProfileComponent},
-        // {path: 'studentprofile', component: StudentProfileComponent},
+        //{path: 'studentprofile', component: StudentProfileComponent},
+        {path: 'home', redirectTo: 'studentprofile', pathMatch: 'full'},
         {path: 'studentprofile/:id', component: StudentProfileComponent},
         // {path: 'about', component: AboutComponent},
         {path: '', redirectTo: 'studentprofile/1', pathMatch: 'full'},
-        {path: '**', redirectTo: 'studentprofile/1', pathMatch: 'full'}
+        {path: '**', redirectTo: 'studentprofile/1', pathMatch: 'full'},
+        {path: 'studentprofile', redirectTo: 'studentprofile/1', pathMatch: 'full'},
 ];
 
 export const Routing: ModuleWithProviders  = RouterModule.forRoot(appRoutes);

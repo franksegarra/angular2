@@ -1,29 +1,25 @@
-<div class="wrapper" *ngIf="bbprofile">
-    <div class="container">
-        <div class='row'>
-            <div class="column col-sm-3">
-                <img class="img-responsive" [src]="statsPicUrl" alt="No pictures to show" >
-            </div>
-            
-            <div class="table-responsive">
-                <table class="table-condensed">
-                    <colgroup>
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 25%;">
-                        <col span="1" style="width: 25%;">
-                    </colgroup>
+<div *ngIf="bbprofile">
+    <div class='row'>
+        <div class="column col-sm-3">
+            <img class="img-responsive" [src]="statsPicUrl" alt="No pictures to show" >
+        </div>
+        <div class="table-responsive">
+            <table class="table-condensed">
+                <colgroup>
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 25%;">
+                </colgroup>
 
-                    <tr><td><b>Student Name:</b></td><td>{{ myprofile.firstName + ' ' + myprofile.lastName }}</td><td></td></tr>
-                    <tr><td><b>High School:</b></td><td>{{ myprofile.highschoolname }}</td><td></td></tr>
-                    <tr><td><b>Graduation Year:</b></td><td>{{ myprofile.graduationYear }}</td><td></td></tr>
-                    <tr><td><b>Height, Weight:</b></td><td>{{ myprofile.height + ', ' + myprofile.weight }}</td><td></td></tr>
-                    <tr><td><b>Best 60 Time:</b></td><td>{{ bbprofile.runningtime }}</td><td><b>Location: </b><a href="{{ bbprofile.runningtimelocationurl }}" target="_blank">{{ bbprofile.runningtimelocation }}</a></td></tr>
-                    <tr><td><b>Primary Position:</b></td><td>{{ bbprofile.position }}</td><td><b>Other Positions: </b>{{ bbprofile.otherpositions }}</td></tr>
-                    <tr><td><b>B/T:</b></td><td>{{ bbprofile.bats }}/{{ bbprofile.throws }}</td><td></td></tr>
-                    <tr><td><b>Travel Team:</b></td><td><a href="{{ bbprofile.travelurl }}" target="_blank">{{ bbprofile.travelteam }}</a></td><td></td></tr>
-                </table>
-            </div>
-            
+                <tr><td><b>Student Name:</b></td><td>{{ myprofile.firstName + ' ' + myprofile.lastName }}</td><td></td></tr>
+                <tr><td><b>High School:</b></td><td>{{ myprofile.highschoolname }}</td><td></td></tr>
+                <tr><td><b>Graduation Year:</b></td><td>{{ myprofile.graduationYear }}</td><td></td></tr>
+                <tr><td><b>Height, Weight:</b></td><td>{{ myprofile.height + ', ' + myprofile.weight }}</td><td></td></tr>
+                <tr><td><b>Best 60 Time:</b></td><td>{{ bbprofile.runningtime }}</td><td><b>Location: </b><a href="{{ bbprofile.runningtimelocationurl }}" target="_blank">{{ bbprofile.runningtimelocation }}</a></td></tr>
+                <tr><td><b>Primary Position:</b></td><td>{{ bbprofile.position }}</td><td><b>Other Positions: </b>{{ bbprofile.otherpositions }}</td></tr>
+                <tr><td><b>B/T:</b></td><td>{{ bbprofile.bats }}/{{ bbprofile.throws }}</td><td></td></tr>
+                <tr><td><b>Travel Team:</b></td><td><a href="{{ bbprofile.travelurl }}" target="_blank">{{ bbprofile.travelteam }}</a></td><td></td></tr>
+            </table>
         </div>
     </div>
 </div>
