@@ -8,7 +8,7 @@ using System.Linq;
 namespace webServices.Controllers
 {
     [Route("api/[controller]")]
-    public class StudentProfileController : ReadOnlyControllerBase<StudentProfile>
+    public class StudentProfileController : StudentViewController<StudentProfile>
     {
         public StudentProfileController(EntityBaseRepository<StudentProfile> items) : base(items)
         {

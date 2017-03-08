@@ -37,8 +37,9 @@ var PictureService = (function () {
             _this.pictureElement.src = config_service_1.Config.PICTUREFOLDER + file[0]['filename'];
         };
     }
-    PictureService.prototype.appSetup = function (v) {
+    PictureService.prototype.appSetup = function (v, _profilepics) {
         this.pictureElement = document.getElementById(v);
+        this.profilepics = _profilepics;
     };
     PictureService.prototype.getPlaylist = function (id) {
         var _this = this;
@@ -52,12 +53,22 @@ var PictureService = (function () {
             .do(function (data) { return console.log('getPlaylist: ' + JSON.stringify(data)); })
             .subscribe(function (data) {
             _this.picturelist = data;
-            _this.selectedPicture(1);
             _this.createPictureCategories();
+            _this.selectedPicture(1);
         });
     };
     ;
     PictureService.prototype.createPictureCategories = function () {
+        //If we use a picture for on the academics or stats pages, don't include them in the list
+        var picstoexclude = this.profilepics;
+        //If we find the items remove them
+        for (var pe = 0; pe < picstoexclude.length; pe++) {
+            var len = this.picturelist.length - 1;
+            for (var i = len; i >= 0; i--) {
+                if (picstoexclude[pe].pictureid === this.picturelist[i].id)
+                    this.picturelist.splice(i, 1);
+            }
+        }
         var categories = this.picturelist.map(function (e) { return e['category']; }).filter(function (e, i, a) { return i === a.indexOf(e); });
         var p = this.picturelist;
         var rootnodes = [];

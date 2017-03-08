@@ -3,6 +3,7 @@ import {Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { IPicture } from './IPicture';
 import { TreeNode } from 'primeng/primeng';
+import { IProfilePictures } from '../../models/IProfilePictures';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -21,11 +22,13 @@ export class PictureService {
     public selectedFile: TreeNode;
     public showDetails:boolean = false;
     public selectedPictureId: number;
+    public profilepics: IProfilePictures[];
 
     constructor(private http:Http) {}
 
-    appSetup(v:string) {
+    appSetup(v:string, _profilepics: IProfilePictures[]) {
         this.pictureElement = <HTMLImageElement> document.getElementById(v);
+        this.profilepics = _profilepics;
     }
 
     getPlaylist(id:number) {
@@ -42,13 +45,25 @@ export class PictureService {
         .subscribe(
             data => {
                 this.picturelist = data;
-                this.selectedPicture(1);
                 this.createPictureCategories();
+                this.selectedPicture(1);
             }
         );
     };
 
     createPictureCategories() {
+
+        //If we use a picture for on the academics or stats pages, don't include them in the list
+        var picstoexclude: IProfilePictures[] = this.profilepics;
+
+        //If we find the items remove them
+        for(var pe = 0; pe < picstoexclude.length;  pe++) {
+            var len:number = this.picturelist.length - 1;
+            for(var i = len; i >= 0; i--) {
+                if (picstoexclude[pe].pictureid === this.picturelist[i].id)
+                    this.picturelist.splice(i, 1);
+            }
+        }
 
         var categories:Array<string> = this.picturelist.map(function(e) { return e['category']; }).filter(function(e,i,a){return i === a.indexOf(e);});
         var p:Array<IPicture> = this.picturelist;

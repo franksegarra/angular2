@@ -14,6 +14,7 @@ import { IProfile } from '../models/IProfile';
 import { IStudent } from '../models/IStudent';
 import { IContactMe } from '../models/IContactMe';
 import { IEmail } from '../models/IEmail';
+import { IProfilePictures } from '../models/IProfilePictures';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -23,22 +24,20 @@ import 'rxjs/add/operator/first';
 
 @Injectable()
 export class DataService {
-    private _classesUrl: string = Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/';
-    private _ecUrl: string = Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/';
-    private _schedUrl: string  = Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/';
-    private _linksUrl: string  = Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/';
-    private _profilesUrl: string  = Config.WEBSERVICESURL + 'studentprofile/';
-    private _studentsUrl: string  = Config.WEBSERVICESURL + 'student/';
-    private _studentcontactUrl: string  = Config.WEBSERVICESURL + 'studentcontact/';
-    private _emailUrl: string  = Config.WEBSERVICESURL + 'email/';
-        
-    constructor(private _http: Http) {
+       
+    constructor(private _http: Http) {}
+
+    //Get List of Profile Pictures to exclude from picture list
+    getProfilePictures(id:number): Observable<IProfilePictures[]> {
+        return this._http.get(Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id)
+                    .map((response: Response) => <IProfilePictures[]>response.json())
+                    .do(data => console.log('getProfilePictures: ' + JSON.stringify(data)))
+                    .catch(this.handleError) ;
     }
 
     //Get Classes
     getClasses(id:number): Observable<IClass[]> {
-
-        return this._http.get(this._classesUrl + id)
+        return this._http.get(Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/' + id)
                     .map((response: Response) => <IClass[]>response.json())
                     //.do(data => console.log('getClasses: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
@@ -47,7 +46,7 @@ export class DataService {
     //Get Extra Curricular
     getExtraCurricular(id:number): Observable<IExtraCurricular[]> {
 
-        return this._http.get(this._ecUrl + id)
+        return this._http.get(Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/' + id)
                     .map((response: Response) => <IExtraCurricular[]>response.json())
                     //.do(data => console.log('getExtraCurricular: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
@@ -56,7 +55,7 @@ export class DataService {
     // Get Links
     getLinks(id:number): Observable<ILink[]> {
 
-        return this._http.get(this._linksUrl + id)
+        return this._http.get(Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/' + id)
                     .map((response: Response) => <ILink[]>response.json())
                     //.do(data => console.log('getLinks: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
@@ -64,7 +63,7 @@ export class DataService {
 
     //Get Schedule
     getSchedule(id:number): Observable<IScheduleItem[]> {
-        return this._http.get(this._schedUrl + id)
+        return this._http.get(Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/' + id)
                     .map((response: Response) => <IScheduleItem[]>response.json())
                     //.do(data => console.log('getSchedule: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
@@ -72,7 +71,7 @@ export class DataService {
 
     //Get student
     getStudent(id:number): Observable<IStudent> {
-        return this._http.get(this._studentsUrl + id)
+        return this._http.get(Config.WEBSERVICESURL + 'student/' + id)
                     .map((response: Response) => <IStudent>response.json())
                     //.do(data => console.log('getStudent: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
@@ -80,7 +79,7 @@ export class DataService {
 
     //Get profile
     getProfile(id:number): Observable<IProfile> {
-        return this._http.get(this._profilesUrl + id)
+        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id)
                     .map((response: Response) => <IProfile>response.json())
                     .first()
                     .do(data => console.log('getProfile: ' + JSON.stringify(data)))
@@ -88,7 +87,7 @@ export class DataService {
     }
 
     getProfileByName(profilename:string): Observable<IProfile> {
-        return this._http.get(this._profilesUrl + profilename)
+        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + profilename)
                     .map((response: Response) => <IProfile>response.json())
                     .first()
                     //.do(data => console.log('getProfileByName: ' + JSON.stringify(data)))
@@ -100,7 +99,7 @@ export class DataService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.post(this._studentcontactUrl, body, options)
+        return this._http.post(Config.WEBSERVICESURL + 'studentcontact/', body, options)
             .map(res =>  res.json().data)
             //.do(data => console.log('poststudentContact: ' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -120,7 +119,7 @@ export class DataService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.post(this._emailUrl, body, options)
+        return this._http.post(Config.WEBSERVICESURL + 'email/', body, options)
             .map(res =>  res)
             .catch(this.handleError);
     }

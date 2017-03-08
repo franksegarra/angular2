@@ -20,14 +20,15 @@ var StudentProfileComponent = (function () {
         this._dataService = _dataService;
         this._statsService = _statsService;
         this.studentId = 1;
-        this.componentToShow = 'schedule';
+        this.componentToShow = 'academics';
     }
     StudentProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         // (+) converts string 'id' to a number
         this.sub = this.route.params.subscribe(function (params) { _this.studentId = +params['id']; });
-        //Main Profile
+        //Main Profile and stats profile.  Get these first
         this._dataService.getProfile(this.studentId).subscribe(function (p) { return _this.myprofile = p; }, function (error) { return _this.errorMessage = error; });
+        this._statsService.getBBProfile(this.studentId).subscribe(function (p) { return _this.bbprofile = p[0]; }, function (error) { return _this.errorMessage = error; });
         //this._dataService.getProfileByName('francissegarra').subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
         //For Academics
         this._dataService.getClasses(this.studentId).subscribe(function (classes) { return _this.classes = classes; }, function (error) { return _this.errorMessage = error; });
@@ -36,9 +37,10 @@ var StudentProfileComponent = (function () {
         this._dataService.getSchedule(this.studentId).subscribe(function (schedItems) { return _this.schedItems = schedItems; }, function (error) { return _this.errorMessage = error; });
         //Links
         this._dataService.getLinks(this.studentId).subscribe(function (links) { return _this.links = links; }, function (error) { return _this.errorMessage = error; });
-        //For Stats
-        this._statsService.getBBProfile(this.studentId).subscribe(function (p) { return _this.bbprofile = p[0]; }, function (error) { return _this.errorMessage = error; });
+        //Stats
         this._statsService.getHittingList(this.studentId);
+        //profilepics
+        this._dataService.getProfilePictures(this.studentId).subscribe(function (pics) { return _this.profilepics = pics; }, function (error) { return _this.errorMessage = error; });
     };
     StudentProfileComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();

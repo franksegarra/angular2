@@ -88,6 +88,8 @@
     <Build Include="Tables\studentBBHitting.sql" />
     <Build Include="Views\studentBBHittingStats.sql" />
     <Build Include="Tables\studentContact.sql" />
+    <Build Include="Views\studentProfilePictures.sql" />
+    <Build Include="Views\StudentProfilePicturesDummy.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment1.sql" />

@@ -93,6 +93,7 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<StudentBaseballProfile>, EntityBaseRepository<StudentBaseballProfile>>();
             services.AddScoped<EntityBaseRepository<StudentBBHittingStats>, EntityBaseRepository<StudentBBHittingStats>>();
             services.AddScoped<EntityBaseRepository<StudentContact>, EntityBaseRepository<StudentContact>>();
+            services.AddScoped<EntityBaseRepository<StudentProfilePictures>, EntityBaseRepository<StudentProfilePictures>>();
 
             // Register email service 
             services.AddTransient<IEmailService, EmailService>();

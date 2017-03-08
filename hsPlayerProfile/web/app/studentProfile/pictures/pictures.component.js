@@ -17,7 +17,7 @@ var PicturesComponent = (function () {
     }
     PicturesComponent.prototype.ngOnInit = function () {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Pictures';
-        this.pictureService.appSetup("imageDisplay");
+        this.pictureService.appSetup("imageDisplay", this.profilepics);
         this.pictureService.getPlaylist(this.myprofile.id);
     };
     PicturesComponent.prototype.nodeSelect = function (event) {
@@ -30,6 +30,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], PicturesComponent.prototype, "myprofile", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], PicturesComponent.prototype, "profilepics", void 0);
 PicturesComponent = __decorate([
     core_1.Component({
         selector: 'pp-pictures',

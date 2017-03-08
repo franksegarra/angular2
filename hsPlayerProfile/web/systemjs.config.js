@@ -47,7 +47,7 @@
       },
       primeng: {
           defaultExtension: 'js'
-      }
+      },
     }
   });
 })(this);

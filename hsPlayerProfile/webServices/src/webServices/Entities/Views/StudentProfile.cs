@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace webServices.Entities
 {
-    public class StudentProfile : IEntityBase
+    public class StudentProfile : IEntityBase, IStudentEntityBase
     {
         public StudentProfile()
         {
         }
         public int? id { get; set; }
+        public int studentid { get; set; }
         public string profileName { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }

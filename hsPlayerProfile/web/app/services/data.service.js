@@ -22,55 +22,54 @@ require("rxjs/add/operator/first");
 var DataService = (function () {
     function DataService(_http) {
         this._http = _http;
-        this._classesUrl = config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/';
-        this._ecUrl = config_service_1.Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/';
-        this._schedUrl = config_service_1.Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/';
-        this._linksUrl = config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/';
-        this._profilesUrl = config_service_1.Config.WEBSERVICESURL + 'studentprofile/';
-        this._studentsUrl = config_service_1.Config.WEBSERVICESURL + 'student/';
-        this._studentcontactUrl = config_service_1.Config.WEBSERVICESURL + 'studentcontact/';
-        this._emailUrl = config_service_1.Config.WEBSERVICESURL + 'email/';
     }
+    //Get List of Profile Pictures to exclude from picture list
+    DataService.prototype.getProfilePictures = function (id) {
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('getProfilePictures: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     //Get Classes
     DataService.prototype.getClasses = function (id) {
-        return this._http.get(this._classesUrl + id)
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/' + id)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     //Get Extra Curricular
     DataService.prototype.getExtraCurricular = function (id) {
-        return this._http.get(this._ecUrl + id)
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/' + id)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     // Get Links
     DataService.prototype.getLinks = function (id) {
-        return this._http.get(this._linksUrl + id)
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/' + id)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     //Get Schedule
     DataService.prototype.getSchedule = function (id) {
-        return this._http.get(this._schedUrl + id)
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/' + id)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     //Get student
     DataService.prototype.getStudent = function (id) {
-        return this._http.get(this._studentsUrl + id)
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'student/' + id)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     //Get profile
     DataService.prototype.getProfile = function (id) {
-        return this._http.get(this._profilesUrl + id)
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofile/' + id)
             .map(function (response) { return response.json(); })
             .first()
             .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     DataService.prototype.getProfileByName = function (profilename) {
-        return this._http.get(this._profilesUrl + profilename)
+        return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofile/' + profilename)
             .map(function (response) { return response.json(); })
             .first()
             .catch(this.handleError);
@@ -79,7 +78,7 @@ var DataService = (function () {
         var body = JSON.stringify(msg);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this._http.post(this._studentcontactUrl, body, options)
+        return this._http.post(config_service_1.Config.WEBSERVICESURL + 'studentcontact/', body, options)
             .map(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
@@ -94,7 +93,7 @@ var DataService = (function () {
         var body = JSON.stringify(mail);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this._http.post(this._emailUrl, body, options)
+        return this._http.post(config_service_1.Config.WEBSERVICESURL + 'email/', body, options)
             .map(function (res) { return res; })
             .catch(this.handleError);
     };

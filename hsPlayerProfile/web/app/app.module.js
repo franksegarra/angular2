@@ -35,7 +35,6 @@ AppModule = __decorate([
             about_component_1.AboutComponent,
             home_component_1.HomeComponent
         ],
-        providers: [],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

@@ -2,4 +2,4 @@ TODO:
 
 1.  Size images
 2.  Fix problem when in iphone mode. Same with pictures.
-3.  Remove profile pic and stats pic from picture list.
+    Update:  Seems to be ok.  Keep an eye on it

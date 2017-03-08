@@ -23,6 +23,7 @@ namespace webServices.Infrastructure
         public DbSet<StudentBaseballProfile> StudentBaseballProfile { get; set; }
         public DbSet<StudentBBHittingStats> StudentBBHittingStats { get; set; }
         public DbSet<StudentContact> StudentContact { get; set; }
+        public DbSet<StudentProfilePictures> StudentProfilePictures { get; set; }
 
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {

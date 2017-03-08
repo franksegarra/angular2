@@ -1,6 +1,7 @@
 ﻿CREATE VIEW [dbo].[StudentProfile] AS
 SELECT 
 	s.id, 
+	s.id as studentid, 
 	s.profileName, 
 	s.firstName, 
 	s.lastName, 
