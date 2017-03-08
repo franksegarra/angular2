@@ -30,7 +30,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private bbprofile: IBBProfile;
     private profilepics: IProfilePictures[];
 
-    componentToShow: string = 'academics';
+    componentToShow: string = 'contactme';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _statsService: StatsService) {
     }

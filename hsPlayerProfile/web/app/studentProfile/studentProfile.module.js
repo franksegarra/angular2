@@ -63,7 +63,8 @@ StudentProfileModule = __decorate([
             primeng_1.TreeModule,
             primeng_1.TooltipModule,
             primeng_1.PanelModule,
-            primeng_1.DialogModule
+            primeng_1.DialogModule,
+            primeng_1.CaptchaModule
         ],
         declarations: [
             studentprofile_component_1.StudentProfileComponent,

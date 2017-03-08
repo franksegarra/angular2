@@ -2,7 +2,7 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DialogModule } from 'primeng/primeng';
+import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DialogModule, CaptchaModule } from 'primeng/primeng';
 
 //Services
 import { DataService } from '../services/data.service';
@@ -60,7 +60,8 @@ import { UpcomingDatesPipe } from '../pipes/upcomingdates.pipe';
       TreeModule,
       TooltipModule,
       PanelModule,
-      DialogModule
+      DialogModule,
+      CaptchaModule
   ],
   declarations: [
       StudentProfileComponent

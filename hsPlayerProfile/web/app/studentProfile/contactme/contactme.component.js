@@ -23,6 +23,9 @@ var ContactMeComponent = (function () {
         this.display = false;
         this.dialogContent = '';
     }
+    // getIPAddress() {
+    //     this._dataService.getClientIPAddress();
+    // }
     ContactMeComponent.prototype.ngOnInit = function () {
         this.form = this.fb.group({
             "contactname": ["", forms_1.Validators.required],
@@ -34,41 +37,50 @@ var ContactMeComponent = (function () {
     };
     ContactMeComponent.prototype.onSubmit = function () {
         var _this = this;
-        var id = this.myprofile.id;
-        var studentemail = this.myprofile.primaryEmail;
-        var msg = {
-            studentid: id,
-            contactname: this.form.value['contactname'],
-            contactphone: this.form.value['contactphone'],
-            contactemail: this.form.value['contactemail'],
-            message: this.form.value['message']
-        };
-        var ds = this._dataService;
-        var response;
-        ds.poststudentContact(msg)
-            .subscribe(function (response) {
-            /* this function is executed every time there's a new output */
-            console.log("VALUE RECEIVED: " + response);
-        }, function (err) {
-            _this.showDialog("We''re so sorry.  There was an error saving your message information to the database.");
-            console.log("ERROR in component. save to db: " + err);
-        }, function () {
-            /* this function is executed when the observable ends (completes) its stream */
-            console.log("post to database completed");
-            ds.sendEMailToStudent(msg, studentemail)
+        //Check reCaptcha
+        var recaptcharesponse = this.form.value['g-recaptcha-response'];
+        var recaptchaOK = ds.verifyRecaptchaResponse(recaptcharesponse);
+        if (recaptchaOK) {
+            var id = this.myprofile.id;
+            var studentemail = this.myprofile.primaryEmail;
+            var msg = {
+                studentid: id,
+                contactname: this.form.value['contactname'],
+                contactphone: this.form.value['contactphone'],
+                contactemail: this.form.value['contactemail'],
+                message: this.form.value['message']
+            };
+            var ds = this._dataService;
+            var response;
+            ds.poststudentContact(msg)
                 .subscribe(function (response) {
                 /* this function is executed every time there's a new output */
                 console.log("VALUE RECEIVED: " + response);
             }, function (err) {
-                _this.showDialog("We''re so sorry.  There was an error sending your message.");
-                console.log("ERROR in component. Send email: " + err);
+                _this.showDialog("We''re so sorry.  There was an error saving your message information to the database.");
+                console.log("ERROR in component. save to db: " + err);
             }, function () {
-                _this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
-                console.log("COMPLETED in component");
+                /* this function is executed when the observable ends (completes) its stream */
+                console.log("post to database completed");
+                ds.sendEMailToStudent(msg, studentemail)
+                    .subscribe(function (response) {
+                    /* this function is executed every time there's a new output */
+                    console.log("VALUE RECEIVED: " + response);
+                }, function (err) {
+                    _this.showDialog("We''re so sorry.  There was an error sending your message.");
+                    console.log("ERROR in component. Send email: " + err);
+                }, function () {
+                    _this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
+                    console.log("COMPLETED in component");
+                });
             });
-        });
+        }
     };
     ;
+    ContactMeComponent.prototype.showResponse = function (event) {
+        var recaptchaOutcome = this._dataService.verifyRecaptchaResponse(event);
+        console.log(recaptchaOutcome);
+    };
     ContactMeComponent.prototype.showDialog = function (message) {
         this.dialogContent = message;
         this.display = true;

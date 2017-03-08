@@ -19,10 +19,42 @@ require("rxjs/add/operator/catch");
 require("rxjs/add/operator/do");
 require("rxjs/add/operator/filter");
 require("rxjs/add/operator/first");
+;
+;
 var DataService = (function () {
     function DataService(_http) {
+        var _this = this;
         this._http = _http;
+        this.getClientIPAddress().subscribe(function (p) { return _this.ipaddress = p; }, function (error) { return _this.errorMessage = error; });
     }
+    DataService.prototype.getClientIPAddress = function () {
+        return this._http.get('https://api.ipify.org?format=json')
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('getClientIPAddress: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    DataService.prototype.verifyRecaptchaResponse = function (event) {
+        console.log('Event');
+        console.log(event);
+        var recaptcharesponse = event;
+        var recaptchaOutcome = { success: null, challenge_ts: null, hostname: '', errorcodes: [] };
+        console.log('recaptcharesponse');
+        console.log(recaptcharesponse);
+        var posturl = config_service_1.Config.GOOGLERECAPTCHAURL +
+            '?secret=' + config_service_1.Config.GOOGLERECAPTCHAKEY +
+            '&response=' + recaptcharesponse.response +
+            '&remoteip=' + this.ipaddress.ip;
+        console.log('posturl');
+        console.log(posturl);
+        this._http.post(config_service_1.Config.GOOGLERECAPTCHAURL, '')
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('verifyRecaptchaResponse: ' + JSON.stringify(data)); })
+            .subscribe(function (data) {
+            recaptchaOutcome = data;
+        });
+        return recaptchaOutcome.success;
+    };
+    //   "https://www.google.com/recaptcha/api/siteverify?secret=<--Your Secret Key-->&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']
     //Get List of Profile Pictures to exclude from picture list
     DataService.prototype.getProfilePictures = function (id) {
         return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id)

@@ -22,11 +22,61 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
 
+interface IIPAddress { ip: string };
+interface IreCaptcha { response: string };
+interface IreCaptchResponse {
+  success: boolean,
+  challenge_ts: Date,       // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
+  hostname: string,         // the hostname of the site where the reCAPTCHA was solved
+  errorcodes: string[]     // optional
+}
+
 @Injectable()
 export class DataService {
-       
-    constructor(private _http: Http) {}
 
+    private ipaddress: IIPAddress;
+    private errorMessage: string;
+
+    constructor(private _http: Http) {
+         this.getClientIPAddress().subscribe(p => this.ipaddress = p, error => this.errorMessage = <any>error);
+    }
+    
+    getClientIPAddress(): Observable<IIPAddress> {
+        return this._http.get('https://api.ipify.org?format=json')
+            .map((response: Response) => <IIPAddress>response.json())
+            .do(data => console.log('getClientIPAddress: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    verifyRecaptchaResponse(event: any): boolean {
+        console.log('Event');
+        console.log(event);
+        
+        var recaptcharesponse: IreCaptcha = event; 
+        var recaptchaOutcome: IreCaptchResponse = { success: null, challenge_ts: null, hostname: '', errorcodes: []};
+
+        console.log('recaptcharesponse');
+        console.log(recaptcharesponse);
+
+        var posturl = Config.GOOGLERECAPTCHAURL + 
+                     '?secret=' + Config.GOOGLERECAPTCHAKEY +
+                     '&response=' + recaptcharesponse.response +
+                     '&remoteip=' + this.ipaddress.ip;
+
+        console.log('posturl');
+        console.log(posturl);
+
+        this._http.post(Config.GOOGLERECAPTCHAURL, '')
+            .map((response: Response) => <IreCaptchResponse>response.json())
+            .do(data => console.log('verifyRecaptchaResponse: ' + JSON.stringify(data)))
+            .subscribe(data => {
+                recaptchaOutcome = data;
+            });
+
+        return recaptchaOutcome.success;
+    }
+
+    //   "https://www.google.com/recaptcha/api/siteverify?secret=<--Your Secret Key-->&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']
     //Get List of Profile Pictures to exclude from picture list
     getProfilePictures(id:number): Observable<IProfilePictures[]> {
         return this._http.get(Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id)

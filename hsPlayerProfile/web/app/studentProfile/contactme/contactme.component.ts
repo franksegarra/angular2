@@ -25,6 +25,10 @@ export class ContactMeComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private _dataService: DataService) {}
 
+    // getIPAddress() {
+    //     this._dataService.getClientIPAddress();
+    // }
+
     ngOnInit(): void {
         this.form = this.fb.group({
             "contactname": ["", Validators.required],
@@ -37,51 +41,63 @@ export class ContactMeComponent implements OnInit {
     }
 
     onSubmit(): void { 
-        var id = this.myprofile.id;
-        var studentemail = this.myprofile.primaryEmail;
-        var msg: IContactMe = {
-            studentid: id,
-            contactname: this.form.value['contactname'],
-            contactphone: this.form.value['contactphone'],
-            contactemail: this.form.value['contactemail'],
-            message: this.form.value['message']
-        }
-
-        var ds: DataService = this._dataService;
-
-        var response;
-        ds.poststudentContact(msg)
-        .subscribe(
-            (response) => {
-                    /* this function is executed every time there's a new output */
-                console.log("VALUE RECEIVED: "+response);
-            },
-            (err) => {
-                    this.showDialog("We''re so sorry.  There was an error saving your message information to the database.");
-                    console.log("ERROR in component. save to db: "+ err);
-            },
-            () => {
-                    /* this function is executed when the observable ends (completes) its stream */
-                    console.log("post to database completed");
-
-                    ds.sendEMailToStudent(msg, studentemail)
-                    .subscribe(
-                        (response) => {
-                                /* this function is executed every time there's a new output */
-                            console.log("VALUE RECEIVED: " + response);
-                        },
-                        (err) => {
-                                this.showDialog("We''re so sorry.  There was an error sending your message.");
-                                console.log("ERROR in component. Send email: "+err);
-                        },
-                        () => {
-                                this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
-                                console.log("COMPLETED in component");
-                        }
-                    );
+        //Check reCaptcha
+        var recaptcharesponse: string = this.form.value['g-recaptcha-response'];
+        var recaptchaOK: boolean = ds.verifyRecaptchaResponse(recaptcharesponse);
+        
+        if (recaptchaOK)
+        {
+            var id = this.myprofile.id;
+            var studentemail = this.myprofile.primaryEmail;
+            var msg: IContactMe = {
+                studentid: id,
+                contactname: this.form.value['contactname'],
+                contactphone: this.form.value['contactphone'],
+                contactemail: this.form.value['contactemail'],
+                message: this.form.value['message']
             }
-        );
+
+            var ds: DataService = this._dataService;
+
+            var response;
+            ds.poststudentContact(msg)
+            .subscribe(
+                (response) => {
+                        /* this function is executed every time there's a new output */
+                    console.log("VALUE RECEIVED: "+response);
+                },
+                (err) => {
+                        this.showDialog("We''re so sorry.  There was an error saving your message information to the database.");
+                        console.log("ERROR in component. save to db: "+ err);
+                },
+                () => {
+                        /* this function is executed when the observable ends (completes) its stream */
+                        console.log("post to database completed");
+
+                        ds.sendEMailToStudent(msg, studentemail)
+                        .subscribe(
+                            (response) => {
+                                    /* this function is executed every time there's a new output */
+                                console.log("VALUE RECEIVED: " + response);
+                            },
+                            (err) => {
+                                    this.showDialog("We''re so sorry.  There was an error sending your message.");
+                                    console.log("ERROR in component. Send email: "+err);
+                            },
+                            () => {
+                                    this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
+                                    console.log("COMPLETED in component");
+                            }
+                        );
+                }
+            );
+        }
     };
+
+    showResponse(event:any) {
+        var recaptchaOutcome = this._dataService.verifyRecaptchaResponse(event);
+        console.log(recaptchaOutcome);
+    }
 
     showDialog(message: string) {
         this.dialogContent = message;
