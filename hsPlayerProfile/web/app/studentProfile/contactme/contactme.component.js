@@ -78,6 +78,7 @@ var ContactMeComponent = (function () {
     };
     ;
     ContactMeComponent.prototype.showResponse = function (event) {
+        console.log(event);
         var recaptchaOutcome = this._dataService.verifyRecaptchaResponse(event);
         console.log(recaptchaOutcome);
     };

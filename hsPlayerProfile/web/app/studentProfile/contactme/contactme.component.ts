@@ -95,6 +95,7 @@ export class ContactMeComponent implements OnInit {
     };
 
     showResponse(event:any) {
+        console.log(event);
         var recaptchaOutcome = this._dataService.verifyRecaptchaResponse(event);
         console.log(recaptchaOutcome);
     }

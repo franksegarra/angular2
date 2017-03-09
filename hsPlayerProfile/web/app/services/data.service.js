@@ -48,10 +48,11 @@ var DataService = (function () {
         console.log(posturl);
         this._http.post(config_service_1.Config.GOOGLERECAPTCHAURL, '')
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('verifyRecaptchaResponse: ' + JSON.stringify(data)); })
             .subscribe(function (data) {
             recaptchaOutcome = data;
         });
+        console.log('recaptchaOutcome');
+        console.log(recaptchaOutcome);
         return recaptchaOutcome.success;
     };
     //   "https://www.google.com/recaptcha/api/siteverify?secret=<--Your Secret Key-->&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']

@@ -68,10 +68,13 @@ export class DataService {
 
         this._http.post(Config.GOOGLERECAPTCHAURL, '')
             .map((response: Response) => <IreCaptchResponse>response.json())
-            .do(data => console.log('verifyRecaptchaResponse: ' + JSON.stringify(data)))
+            //.do(data => console.log('verifyRecaptchaResponse: ' + JSON.stringify(data)))
             .subscribe(data => {
                 recaptchaOutcome = data;
             });
+
+        console.log('recaptchaOutcome');
+        console.log(recaptchaOutcome);
 
         return recaptchaOutcome.success;
     }
