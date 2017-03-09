@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
 import { IContactMe } from '../../models/IContactMe';
-import { IreCaptchResponse } from '../../models/IreCaptchResponse';
+import { IReCAPTCHA } from '../../models/IContactMe';
+import { IreCaptchaResponse } from '../../models/IReCAPTCHA';
+
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 
@@ -27,6 +29,7 @@ export class ContactMeComponent implements OnInit {
     display: boolean = false;
     dialogContent: string = '';
 
+    grecaptcha: IReCAPTCHA;
     reCaptchaValid: boolean = false;
 
     constructor(private fb: FormBuilder, private _dataService: DataService) {}
@@ -83,6 +86,7 @@ export class ContactMeComponent implements OnInit {
                         () => {
                                 this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
                                 this.form.reset();
+                                this.grecaptcha.reset();
                                 console.log("COMPLETED in component");
                         }
                     );
@@ -93,7 +97,7 @@ export class ContactMeComponent implements OnInit {
     showResponse(event:any) {
         this.reCaptchaValid = false;
         console.log(event);
-        var recaptchaOutcome: IreCaptchResponse;
+        var recaptchaOutcome: IreCaptchaResponse;
         this._dataService.verifyRecaptchaResponse(event)
             .subscribe(
                 (response) => {
