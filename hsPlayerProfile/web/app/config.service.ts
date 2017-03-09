@@ -5,5 +5,6 @@ export class Config{
     static VIDEOFOLDER: string = 'data/videos/';
     static PICTUREFOLDER: string = 'data/pictures/';
     static GOOGLERECAPTCHAURL: string = 'https://www.google.com/recaptcha/api/siteverify';
-    static GOOGLERECAPTCHAKEY: string = '6LcyIBgUAAAAABfFkpeZWkpSvewY3OQBZMJ9KMWg';
+    static RECAPTCHAPUBLICKEY: string = '6LcyIBgUAAAAADQIhTzBmP2btfEMrWdabI7AhgJn';
+    static RECAPTCHAPRIVATEKEY: string = '6LcyIBgUAAAAABfFkpeZWkpSvewY3OQBZMJ9KMWg';
 }

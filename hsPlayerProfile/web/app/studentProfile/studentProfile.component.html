@@ -40,6 +40,12 @@
                         <i class="fa fa-list" pTooltip="Stats"></i> <span class="collapse in hidden-xs">Stats</span>
                     </button>
                 </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('comments')">
+                        <i class="fa fa-users" pTooltip="Comments"></i> <span class="collapse in hidden-xs">Comments</span>
+                    </button>
+                </li>
                 
                 <li>
                     <button type="button" class="btn btn-link" (click)="setVisibleComponent('contactme')">
@@ -64,7 +70,6 @@
                 <pp-pictures [myprofile]='myprofile' [profilepics]='profilepics'>Loading...</pp-pictures>
             </div>
 
-
             <div *ngIf="componentToShow === 'schedule'">
                 <pp-schedule [myprofile]='myprofile' [schedItems]='schedItems'>Loading...</pp-schedule>
             </div>
@@ -76,6 +81,8 @@
             <div *ngIf="componentToShow === 'stats'">
                 <pp-stats [myprofile]='myprofile' [bbprofile]='bbprofile' [hittingcategories]='_statsService.hittingcategories'>Loading...</pp-stats>
             </div>
+
+            <!-- Comments will go here -->
 
             <div *ngIf="componentToShow === 'contactme'">
                 <pp-contactme [myprofile]='myprofile'>Loading...</pp-contactme>

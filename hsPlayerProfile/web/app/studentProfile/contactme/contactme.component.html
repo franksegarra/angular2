@@ -3,9 +3,6 @@
         {{pageTitle}}
     </div>
     <div class='panel-body'>
-        <!--<tr><td><div class="col-sm-12">
-                <button type="submit" (click)="getIPAddress()" class="ui button">Submit</button>  
-        </div></td></tr>-->
         <p-dialog header="Contact Status" [(visible)]="display" modal="modal" responsive='true'>
             {{ dialogContent }}
             <p-footer>
@@ -67,10 +64,10 @@
                             <textarea rows="5" formControlName = 'message' class="form-control" placeholder="Type your message here (Required)" style="width:100%; padding: 6px 12px;"></textarea>	
                         </div></td></tr>
                         <tr><td><div class="col-sm-12">
-                            <p-captcha siteKey="6LcyIBgUAAAAADQIhTzBmP2btfEMrWdabI7AhgJn" (onResponse)="showResponse($event)"></p-captcha>
+                            <p-captcha id="captcha" class="g-recaptcha" siteKey="6LcyIBgUAAAAADQIhTzBmP2btfEMrWdabI7AhgJn" (onResponse)="showResponse($event)"></p-captcha>
                         </div></td></tr>
                         <tr><td><div class="col-sm-12">
-                            <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>  
+                            <button type="submit" [disabled]="!(form.valid && reCaptchaValid)" class="ui button">Submit</button>  
                         </div></td></tr>
                     </tbody>
                 </table> 

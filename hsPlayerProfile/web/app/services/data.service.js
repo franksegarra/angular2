@@ -30,37 +30,22 @@ var DataService = (function () {
     DataService.prototype.getClientIPAddress = function () {
         return this._http.get('https://api.ipify.org?format=json')
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('getClientIPAddress: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     DataService.prototype.verifyRecaptchaResponse = function (event) {
-        console.log('Event');
-        console.log(event);
         var recaptcharesponse = event;
-        var recaptchaOutcome = { success: null, challenge_ts: null, hostname: '', errorcodes: [] };
-        console.log('recaptcharesponse');
-        console.log(recaptcharesponse);
-        var posturl = config_service_1.Config.GOOGLERECAPTCHAURL +
-            '?secret=' + config_service_1.Config.GOOGLERECAPTCHAKEY +
-            '&response=' + recaptcharesponse.response +
-            '&remoteip=' + this.ipaddress.ip;
-        console.log('posturl');
-        console.log(posturl);
-        this._http.post(config_service_1.Config.GOOGLERECAPTCHAURL, '')
+        var body = JSON.stringify(recaptcharesponse.response);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post(config_service_1.Config.WEBSERVICESURL + 'StudentContact/ValidateReCaptcha', body, options)
             .map(function (response) { return response.json(); })
-            .subscribe(function (data) {
-            recaptchaOutcome = data;
-        });
-        console.log('recaptchaOutcome');
-        console.log(recaptchaOutcome);
-        return recaptchaOutcome.success;
+            .catch(this.handleError);
     };
     //   "https://www.google.com/recaptcha/api/siteverify?secret=<--Your Secret Key-->&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']
     //Get List of Profile Pictures to exclude from picture list
     DataService.prototype.getProfilePictures = function (id) {
         return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id)
             .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('getProfilePictures: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     //Get Classes
@@ -98,7 +83,6 @@ var DataService = (function () {
         return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofile/' + id)
             .map(function (response) { return response.json(); })
             .first()
-            .do(function (data) { return console.log('getProfile: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     DataService.prototype.getProfileByName = function (profilename) {

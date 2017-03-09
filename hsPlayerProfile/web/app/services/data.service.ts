@@ -15,6 +15,8 @@ import { IStudent } from '../models/IStudent';
 import { IContactMe } from '../models/IContactMe';
 import { IEmail } from '../models/IEmail';
 import { IProfilePictures } from '../models/IProfilePictures';
+import { IreCaptchResponse } from '../models/IreCaptchResponse';
+
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -24,12 +26,6 @@ import 'rxjs/add/operator/first';
 
 interface IIPAddress { ip: string };
 interface IreCaptcha { response: string };
-interface IreCaptchResponse {
-  success: boolean,
-  challenge_ts: Date,       // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
-  hostname: string,         // the hostname of the site where the reCAPTCHA was solved
-  errorcodes: string[]     // optional
-}
 
 @Injectable()
 export class DataService {
@@ -37,46 +33,26 @@ export class DataService {
     private ipaddress: IIPAddress;
     private errorMessage: string;
 
-    constructor(private _http: Http) {
+    constructor(private _http: Http) {        
          this.getClientIPAddress().subscribe(p => this.ipaddress = p, error => this.errorMessage = <any>error);
     }
     
     getClientIPAddress(): Observable<IIPAddress> {
         return this._http.get('https://api.ipify.org?format=json')
             .map((response: Response) => <IIPAddress>response.json())
-            .do(data => console.log('getClientIPAddress: ' + JSON.stringify(data)))
+            //.do(data => console.log('getClientIPAddress: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    verifyRecaptchaResponse(event: any): boolean {
-        console.log('Event');
-        console.log(event);
-        
+    verifyRecaptchaResponse(event: any): Observable<any> {
         var recaptcharesponse: IreCaptcha = event; 
-        var recaptchaOutcome: IreCaptchResponse = { success: null, challenge_ts: null, hostname: '', errorcodes: []};
+        let body = JSON.stringify(recaptcharesponse.response);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
-        console.log('recaptcharesponse');
-        console.log(recaptcharesponse);
-
-        var posturl = Config.GOOGLERECAPTCHAURL + 
-                     '?secret=' + Config.GOOGLERECAPTCHAKEY +
-                     '&response=' + recaptcharesponse.response +
-                     '&remoteip=' + this.ipaddress.ip;
-
-        console.log('posturl');
-        console.log(posturl);
-
-        this._http.post(Config.GOOGLERECAPTCHAURL, '')
+        return this._http.post(Config.WEBSERVICESURL + 'StudentContact/ValidateReCaptcha' , body, options)
             .map((response: Response) => <IreCaptchResponse>response.json())
-            //.do(data => console.log('verifyRecaptchaResponse: ' + JSON.stringify(data)))
-            .subscribe(data => {
-                recaptchaOutcome = data;
-            });
-
-        console.log('recaptchaOutcome');
-        console.log(recaptchaOutcome);
-
-        return recaptchaOutcome.success;
+            .catch(this.handleError);
     }
 
     //   "https://www.google.com/recaptcha/api/siteverify?secret=<--Your Secret Key-->&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']
@@ -84,7 +60,7 @@ export class DataService {
     getProfilePictures(id:number): Observable<IProfilePictures[]> {
         return this._http.get(Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id)
                     .map((response: Response) => <IProfilePictures[]>response.json())
-                    .do(data => console.log('getProfilePictures: ' + JSON.stringify(data)))
+                    //.do(data => console.log('getProfilePictures: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
@@ -135,7 +111,7 @@ export class DataService {
         return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id)
                     .map((response: Response) => <IProfile>response.json())
                     .first()
-                    .do(data => console.log('getProfile: ' + JSON.stringify(data)))
+                    //.do(data => console.log('getProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 
