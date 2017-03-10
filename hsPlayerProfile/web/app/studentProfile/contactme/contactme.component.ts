@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
 import { IContactMe } from '../../models/IContactMe';
-import { IReCAPTCHA } from '../../models/IContactMe';
-import { IreCaptchaResponse } from '../../models/IReCAPTCHA';
+import { IReCAPTCHA } from '../../models/IReCAPTCHA';
+import { IreCaptchaResponse } from '../../models/IreCaptchaResponse';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../../services/data.service';
+// import { MessageFormComponent } from '../../messageform/messageform.component';
 
 //Global settings
 import { Config } from '../../config.service';

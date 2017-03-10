@@ -3,14 +3,6 @@
         {{pageTitle}}
     </div>
     <div class='panel-body'>
-        <p-dialog header="Contact Status" [(visible)]="display" modal="modal" responsive='true'>
-            {{ dialogContent }}
-            <p-footer>
-                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                    <button type="button" class="button" pButton icon="fa-close" (click)="hideDialog()" label="Close"></button>
-                </div>
-            </p-footer>
-        </p-dialog>
         <div class="table-responsive" *ngIf="myprofile.displayaddrandphone == 1" >
             <b>Home Address:</b>
             <table class="table">
@@ -33,7 +25,19 @@
                         <tr><td><div class="col-sm-12">For security reasons I chose not to display my home phone and address.  Please use the form below to contact me.</div></td></tr>
                 </tbody>
             </table>
-        </div>        
+        </div>   
+
+        <!-- Start of contact me form -->
+        <!--<pp-contactform></pp-contactform>-->
+
+        <p-dialog header="Contact Status" [(visible)]="display" modal="modal" responsive='true'>
+            {{ dialogContent }}
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <button type="button" class="button" pButton icon="fa-close" (click)="hideDialog()" label="Close"></button>
+                </div>
+            </p-footer>
+        </p-dialog>
         <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
             <div class="table-responsive">
             <b>Send me a message:</b>
@@ -73,6 +77,8 @@
                 </table> 
             </div> 
         </form>  
+        <!-- End of contact me form -->
+        
     </div>
 </div>
 

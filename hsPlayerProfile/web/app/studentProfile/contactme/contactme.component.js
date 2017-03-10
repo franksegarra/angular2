@@ -66,6 +66,7 @@ var ContactMeComponent = (function () {
             }, function () {
                 _this.showDialog('Your messages was sent.  A copy was also sent to ' + msg.contactemail + '. Please check your email to see this message.');
                 _this.form.reset();
+                _this.grecaptcha.reset();
                 console.log("COMPLETED in component");
             });
         });

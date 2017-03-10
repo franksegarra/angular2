@@ -15,7 +15,7 @@ import { IStudent } from '../models/IStudent';
 import { IContactMe } from '../models/IContactMe';
 import { IEmail } from '../models/IEmail';
 import { IProfilePictures } from '../models/IProfilePictures';
-import { IreCaptchResponse } from '../models/IreCaptchResponse';
+import { IreCaptchaResponse } from '../models/IreCaptchaResponse';
 
 
 import 'rxjs/add/operator/map';
@@ -51,7 +51,7 @@ export class DataService {
         let options = new RequestOptions({ headers: headers });
 
         return this._http.post(Config.WEBSERVICESURL + 'StudentContact/ValidateReCaptcha' , body, options)
-            .map((response: Response) => <IreCaptchResponse>response.json())
+            .map((response: Response) => <IreCaptchaResponse>response.json())
             .catch(this.handleError);
     }
 

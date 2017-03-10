@@ -13,6 +13,7 @@ var http_1 = require("@angular/http");
 var about_component_1 = require("./about/about.component");
 var home_component_1 = require("./home/home.component");
 var studentprofile_module_1 = require("./studentprofile/studentprofile.module");
+var feedback_module_1 = require("./feedback/feedback.module");
 //routing setup
 var app_routes_1 = require("./app.routes");
 //Main startup Component
@@ -29,6 +30,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             app_routes_1.Routing,
             studentprofile_module_1.StudentProfileModule,
+            feedback_module_1.FeedbackModule,
         ],
         declarations: [
             app_component_1.AppComponent,

@@ -9,7 +9,7 @@ import { ElementRef } from '@angular/core';
  * Invisible API
  * @see {@link https://developers.google.com/recaptcha/docs/invisible}
  */
-export interface ReCAPTCHA {
+export interface IReCAPTCHA {
 
   /**
    * Programatically invoke the reCAPTCHA check. Used if the invisible reCAPTCHA is on a div 
@@ -45,3 +45,4 @@ export interface ReCAPTCHA {
    *     unspecified.
    */
   getResponse(opt_widget_id?: string): string;
+}  

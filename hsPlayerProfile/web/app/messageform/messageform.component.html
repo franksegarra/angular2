@@ -1,0 +1,51 @@
+<!-- Start of contact me form -->
+Message Form Component
+<p-dialog header="Message Status" [(visible)]="display" modal="modal" responsive='true'>
+    {{ dialogContent }}
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" class="button" pButton icon="fa-close" (click)="hideDialog()" label="Close"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+    <div class="table-responsive">
+    <b>Send me a message:</b>
+        <table class="table">
+            <tbody>
+                <tr><td><div class="col-sm-12">  
+                    <b>Name:</b>
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">  
+                    <input type="text" formControlName = 'contactname' placeholder="Enter Your Name (Required)" style="width:100%; padding: 6px 12px;">  
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">  
+                    <b>Phone Number:</b>
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">  
+                    <input type="text" formControlName = 'contactphone' placeholder="Enter Phone Number" style="width:100%; padding: 6px 12px;">  
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">  
+                    <b>Email:</b>
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">  
+                    <input type="text" formControlName = 'contactemail' placeholder="Enter Email Address (Required)" style="width:100%; padding: 6px 12px;">  
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">  
+                    <b>Message:</b>
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">  
+                    <textarea rows="5" formControlName = 'message' class="form-control" placeholder="Type your message here (Required)" style="width:100%; padding: 6px 12px;"></textarea>	
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">
+                    <p-captcha id="captcha" class="g-recaptcha" siteKey="6LcyIBgUAAAAADQIhTzBmP2btfEMrWdabI7AhgJn" (onResponse)="showResponse($event)"></p-captcha>
+                </div></td></tr>
+                <tr><td><div class="col-sm-12">
+                    <button type="submit" [disabled]="!(form.valid && reCaptchaValid)" class="ui button">Submit</button>  
+                </div></td></tr>
+            </tbody>
+        </table> 
+    </div> 
+</form>  
+<!-- End of contact me form -->

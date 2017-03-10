@@ -6,7 +6,9 @@ import { RouterModule } from '@angular/router';
 //Main Menu features
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
+
 import { StudentProfileModule } from './studentprofile/studentprofile.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 //routing setup
 import { Routing } from "./app.routes";
@@ -20,6 +22,7 @@ import { AppComponent }  from './app.component';
       HttpModule,
       Routing,
       StudentProfileModule,
+      FeedbackModule,
   ],
   declarations: [ 
       AppComponent
