@@ -1,4 +1,0 @@
-TODO:
-
-1.  Display as calander.  When we do CRUD
-3.  Disable link if value is TBD

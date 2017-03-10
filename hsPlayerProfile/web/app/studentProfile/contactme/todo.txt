@@ -2,6 +2,4 @@ TODO:
 1.  fix error when sending email  error.json() and res.json().  I dont' think json is being returned.
     Update; seems to be ok.  Keep an eye on it
 
-2.  Get IP address on server.  Remove from client side.
-
 

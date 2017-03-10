@@ -11,6 +11,7 @@ var common_1 = require("@angular/common");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var primeng_1 = require("primeng/primeng");
+var messageform_module_1 = require("../shared/messageform/messageform.module");
 //Services
 var data_service_1 = require("../services/data.service");
 var video_service_1 = require("../studentprofile/videos/video.service");
@@ -63,8 +64,7 @@ StudentProfileModule = __decorate([
             primeng_1.TreeModule,
             primeng_1.TooltipModule,
             primeng_1.PanelModule,
-            primeng_1.DialogModule,
-            primeng_1.CaptchaModule
+            messageform_module_1.MessageFormModule
         ],
         declarations: [
             studentprofile_component_1.StudentProfileComponent,
@@ -90,6 +90,7 @@ StudentProfileModule = __decorate([
             upcomingdates_pipe_1.UpcomingDatesPipe
         ],
         providers: [data_service_1.DataService, video_service_1.VideoService, picture_service_1.PictureService, stats_service_1.StatsService],
+        exports: [studentprofile_component_1.StudentProfileComponent]
     })
 ], StudentProfileModule);
 exports.StudentProfileModule = StudentProfileModule;

@@ -1,5 +1,4 @@
 export interface IContactMe {
-    studentid: number;
     contactname: string;
     contactphone: string;
     contactemail: string;

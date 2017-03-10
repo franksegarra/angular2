@@ -1,5 +1,4 @@
 <!-- Start of contact me form -->
-Message Form Component
 <p-dialog header="Message Status" [(visible)]="display" modal="modal" responsive='true'>
     {{ dialogContent }}
     <p-footer>
@@ -11,7 +10,7 @@ Message Form Component
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
     <div class="table-responsive">
-    <b>Send me a message:</b>
+    <b>{{ panelMessage }}</b>
         <table class="table">
             <tbody>
                 <tr><td><div class="col-sm-12">  

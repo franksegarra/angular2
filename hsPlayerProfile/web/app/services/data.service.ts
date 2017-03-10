@@ -15,8 +15,7 @@ import { IStudent } from '../models/IStudent';
 import { IContactMe } from '../models/IContactMe';
 import { IEmail } from '../models/IEmail';
 import { IProfilePictures } from '../models/IProfilePictures';
-import { IreCaptchaResponse } from '../models/IreCaptchaResponse';
-
+import { IFeedback } from '../models/IFeedback';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -25,7 +24,6 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
 
 interface IIPAddress { ip: string };
-interface IreCaptcha { response: string };
 
 @Injectable()
 export class DataService {
@@ -44,27 +42,14 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    verifyRecaptchaResponse(event: any): Observable<any> {
-        var recaptcharesponse: IreCaptcha = event; 
-        let body = JSON.stringify(recaptcharesponse.response);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.post(Config.WEBSERVICESURL + 'StudentContact/ValidateReCaptcha' , body, options)
-            .map((response: Response) => <IreCaptchaResponse>response.json())
-            .catch(this.handleError);
-    }
-
-    //   "https://www.google.com/recaptcha/api/siteverify?secret=<--Your Secret Key-->&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']
-    //Get List of Profile Pictures to exclude from picture list
     getProfilePictures(id:number): Observable<IProfilePictures[]> {
+        //Get List of Profile Pictures.  Used to exclude these from the picture list
         return this._http.get(Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id)
                     .map((response: Response) => <IProfilePictures[]>response.json())
                     //.do(data => console.log('getProfilePictures: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
-    //Get Classes
     getClasses(id:number): Observable<IClass[]> {
         return this._http.get(Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/' + id)
                     .map((response: Response) => <IClass[]>response.json())
@@ -72,7 +57,6 @@ export class DataService {
                     .catch(this.handleError) ;
     }
 
-    //Get Extra Curricular
     getExtraCurricular(id:number): Observable<IExtraCurricular[]> {
 
         return this._http.get(Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/' + id)
@@ -81,7 +65,6 @@ export class DataService {
                     .catch(this.handleError) ;
     }
 
-    // Get Links
     getLinks(id:number): Observable<ILink[]> {
 
         return this._http.get(Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/' + id)
@@ -90,7 +73,6 @@ export class DataService {
                     .catch(this.handleError) ;
     }
 
-    //Get Schedule
     getSchedule(id:number): Observable<IScheduleItem[]> {
         return this._http.get(Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/' + id)
                     .map((response: Response) => <IScheduleItem[]>response.json())
@@ -98,7 +80,6 @@ export class DataService {
                     .catch(this.handleError) ;
     }
 
-    //Get student
     getStudent(id:number): Observable<IStudent> {
         return this._http.get(Config.WEBSERVICESURL + 'student/' + id)
                     .map((response: Response) => <IStudent>response.json())
@@ -106,7 +87,6 @@ export class DataService {
                     .catch(this.handleError) ;
     }
 
-    //Get profile
     getProfile(id:number): Observable<IProfile> {
         return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id)
                     .map((response: Response) => <IProfile>response.json())
@@ -124,11 +104,28 @@ export class DataService {
     }
 
     poststudentContact(msg: IContactMe): Observable<any> {
+        msg.ipaddress = this.ipaddress.ip;
         let body = JSON.stringify(msg);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this._http.post(Config.WEBSERVICESURL + 'studentcontact/', body, options)
+            .map(res =>  res.json().data)
+            //.do(data => console.log('poststudentContact: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    postSiteFeedback(msg: IFeedback): Observable<any> {
+        console.log('postSiteFeedbackmsg');
+
+        msg.ipaddress = this.ipaddress.ip;
+        console.log(msg);
+
+        let body = JSON.stringify(msg);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.post(Config.WEBSERVICESURL + 'sitefeedback/', body, options)
             .map(res =>  res.json().data)
             //.do(data => console.log('poststudentContact: ' + JSON.stringify(data)))
             .catch(this.handleError);

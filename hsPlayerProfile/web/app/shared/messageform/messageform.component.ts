@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IReCAPTCHA } from '../models/IReCAPTCHA';
-import { IreCaptchaResponse } from '../models/IreCaptchaResponse';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { DataService } from '../services/data.service';
+
+import { IReCAPTCHA } from '../../models/IReCAPTCHA';
+import { IreCaptchaResponse } from '../../models/IreCaptchaResponse';
+import { MessageFormService } from './messageform.service';
+import { Message } from './message';
 
 @Component({
     selector: 'pp-messageform',
@@ -10,6 +12,8 @@ import { DataService } from '../services/data.service';
     templateUrl: 'messageform.component.html'
 })
 export class MessageFormComponent implements OnInit { 
+    @Input() panelMessage: string = 'Send me a message';
+    @Output() onFormSubmit = new EventEmitter<Message>();
 
     form: FormGroup;
     contactname = new FormControl("", Validators.required);
@@ -23,7 +27,7 @@ export class MessageFormComponent implements OnInit {
     grecaptcha: IReCAPTCHA;
     reCaptchaValid: boolean = false;
 
-    constructor(private fb: FormBuilder, private _dataService: DataService) {}
+    constructor(private fb: FormBuilder, private _mfService: MessageFormService) {}
 
     ngOnInit(): void {
         this.form = this.fb.group({
@@ -35,14 +39,24 @@ export class MessageFormComponent implements OnInit {
     }
 
     onSubmit(): void { 
-        //Call parent onsubmit
+
+        console.log("On Submit in messageform");
+        
+        var aMessage:Message = {
+            contactname: this.form.value['contactname'],
+            contactphone: this.form.value['contactphone'],
+            contactemail: this.form.value['contactemail'],
+            message: this.form.value['message']
+        };
+
+        this.onFormSubmit.emit(aMessage);
     }
 
     showResponse(event:any) {
         this.reCaptchaValid = false;
         console.log(event);
         var recaptchaOutcome: IreCaptchaResponse;
-        this._dataService.verifyRecaptchaResponse(event)
+        this._mfService.verifyRecaptchaResponse(event)
             .subscribe(
                 (response) => {
                     /* this function is executed every time there's a new output */
@@ -51,7 +65,6 @@ export class MessageFormComponent implements OnInit {
                     console.log("VALUE RECEIVED: " + recaptchaOutcome.success);
                 },
                 (err) => {
-                        this.showDialog("We''re so sorry.  There was an error saving your message information to the database.");
                         console.log("ERROR in component. save to db: "+ err);
                 },
                 () => {
@@ -67,5 +80,9 @@ export class MessageFormComponent implements OnInit {
     hideDialog() {
         this.dialogContent = '';
         this.display = false;
+    }
+
+    reset() {
+        this.form.reset();
     }
 }

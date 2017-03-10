@@ -6,3 +6,9 @@ For now:
 Phase II:
 1.  Add breadcrumbs
 2.  Add Login/Register Link
+3.  Display schedule as calander.  When we do CRUD
+
+When time allows
+1.  Move models, services, and pipes to shared folder
+2.  Make video player a shared component
+

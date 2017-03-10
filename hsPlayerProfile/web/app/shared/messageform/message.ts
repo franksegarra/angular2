@@ -1,8 +1,6 @@
-export interface IContactMe {
-    studentid: number;
+export class Message {
     contactname: string;
     contactphone: string;
     contactemail: string;
     message: string;
-    ipaddress: string;
 }

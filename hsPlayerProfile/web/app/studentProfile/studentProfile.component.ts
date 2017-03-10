@@ -30,7 +30,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private bbprofile: IBBProfile;
     private profilepics: IProfilePictures[];
 
-    componentToShow: string = 'contactme';
+    componentToShow: string = 'academics';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _statsService: StatsService) {
     }
@@ -42,6 +42,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
 
         //Main Profile and stats profile.  Get these first
         this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
+        
         this._statsService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
         //this._dataService.getProfileByName('francissegarra').subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
 
