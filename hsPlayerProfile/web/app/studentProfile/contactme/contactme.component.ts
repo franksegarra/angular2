@@ -37,7 +37,8 @@ export class ContactMeComponent implements OnInit {
             contactname: inputmsg.contactname,
             contactphone: inputmsg.contactphone,
             contactemail: inputmsg.contactemail,
-            message: inputmsg.message
+            message: inputmsg.message,
+            ipaddress: ''
         }
 
         var ds: DataService = this._dataService;
