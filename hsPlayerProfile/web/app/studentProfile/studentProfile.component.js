@@ -14,18 +14,40 @@ var router_1 = require("@angular/router");
 //Data service
 var data_service_1 = require("../services/data.service");
 var stats_service_1 = require("./stats/stats.service");
+require("rxjs/util/isNumeric");
 var StudentProfileComponent = (function () {
     function StudentProfileComponent(route, _dataService, _statsService) {
         this.route = route;
         this._dataService = _dataService;
         this._statsService = _statsService;
-        this.studentId = 1;
         this.componentToShow = 'academics';
     }
     StudentProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // (+) converts string 'id' to a number
-        this.sub = this.route.params.subscribe(function (params) { _this.studentId = +params['id']; });
+        this.sub = this.route.params.subscribe(function (params) { _this.studentInfo = params['id']; });
+        //Main Profile and stats profile.  Get these first
+        if (!isNaN(this.studentInfo)) {
+            this.studentId = this.studentInfo;
+            this._dataService.getProfile(this.studentId).subscribe(function (p) { return _this.myprofile = p; }, function (error) { return _this.errorMessage = error; });
+            this.getRestOfData();
+        }
+        else {
+            this.studentProfileName = this.studentInfo;
+            this._dataService.getProfileByName(this.studentProfileName)
+                .subscribe(function (response) {
+                /* Need to wait for response */
+                _this.myprofile = response;
+                _this.studentId = _this.myprofile.id;
+                _this.getRestOfData();
+            }, function (err) {
+                console.log("ERROR in component. save to db: " + err);
+            }, function () {
+                console.log("Completed");
+            });
+        }
+    };
+    StudentProfileComponent.prototype.getRestOfData = function () {
+        var _this = this;
         //Main Profile and stats profile.  Get these first
         this._dataService.getProfile(this.studentId).subscribe(function (p) { return _this.myprofile = p; }, function (error) { return _this.errorMessage = error; });
         this._statsService.getBBProfile(this.studentId).subscribe(function (p) { return _this.bbprofile = p[0]; }, function (error) { return _this.errorMessage = error; });

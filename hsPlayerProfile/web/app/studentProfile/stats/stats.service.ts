@@ -28,8 +28,7 @@ export class StatsService {
     getBBProfile(id:number): Observable<IBBProfile[]> {
         return this._http.get(Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/' + id)
                     .map((response: Response) => <IBBProfile[]>response.json())
-                    //.first()
-                    .do(data => console.log('getBBProfile: ' + JSON.stringify(data)))
+                    //.do(data => console.log('getBBProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 

@@ -7,7 +7,8 @@ var Config = (function () {
 }());
 //    static MAIN_HEADING: string = "Student Profiles";
 Config.MAIN_HEADING = "Student Profile - Francis Segarra - 2018";
-Config.WEBSERVICESURL = 'http://localhost:64425/api/';
+//static WEBSERVICESURL: string = 'http://localhost:64425/api/';
+Config.WEBSERVICESURL = 'http://localhost:9180/api/';
 Config.VIDEOFOLDER = 'data/videos/';
 Config.PICTUREFOLDER = 'data/pictures/';
 Config.GOOGLERECAPTCHAURL = 'https://www.google.com/recaptcha/api/siteverify';

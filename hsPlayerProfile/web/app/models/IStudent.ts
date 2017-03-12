@@ -23,4 +23,5 @@ export interface IStudent {
         profilePictureId: number;
         height: string;
         weight: string;
+        collegemajor: string;
 }

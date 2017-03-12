@@ -25,4 +25,5 @@ export interface IProfile {
         profilepicturefilename: string;
         height: string;
         weight: string;
+        collegemajor: string;
 }

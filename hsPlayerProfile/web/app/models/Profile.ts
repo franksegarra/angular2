@@ -27,4 +27,5 @@ export class Profile implements IProfile {
     public profilepicturefilename: string;
     public height: string;
     public weight: string;
+    public collegemajor: string;
 }

@@ -65,13 +65,11 @@ var DataService = (function () {
     DataService.prototype.getProfile = function (id) {
         return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofile/' + id)
             .map(function (response) { return response.json(); })
-            .first()
             .catch(this.handleError);
     };
     DataService.prototype.getProfileByName = function (profilename) {
         return this._http.get(config_service_1.Config.WEBSERVICESURL + 'studentprofile/' + profilename)
             .map(function (response) { return response.json(); })
-            .first()
             .catch(this.handleError);
     };
     DataService.prototype.poststudentContact = function (msg) {

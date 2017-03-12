@@ -12,13 +12,18 @@ import { IProfilePictures } from '../models/IProfilePictures';
 import { DataService } from '../services/data.service';
 import { StatsService } from './stats/stats.service';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/util/isNumeric';
+
 @Component({
     selector: 'pp-studentprofile',
     moduleId: module.id,
     templateUrl:  'studentprofile.component.html'
 })
 export class StudentProfileComponent implements OnInit, OnDestroy {
-    private studentId: number = 1;
+    private studentInfo: any;
+    private studentProfileName: string;
+    private studentId: number;
     private sub: any;
     private pageTitle: string;
     private errorMessage: string;
@@ -36,10 +41,38 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     }
     
     ngOnInit(): void {
-        
-        // (+) converts string 'id' to a number
-        this.sub = this.route.params.subscribe(params => {this.studentId = +params['id'];});  
+       
+        this.sub = this.route.params.subscribe(params => {this.studentInfo = params['id'];});  
 
+        //Main Profile and stats profile.  Get these first
+        if (!isNaN(this.studentInfo))
+        {
+            this.studentId = this.studentInfo
+            this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
+            this.getRestOfData();
+        }
+        else
+        {
+            this.studentProfileName = this.studentInfo;
+            this._dataService.getProfileByName(this.studentProfileName)
+                .subscribe(
+                    (response) => {
+                        /* Need to wait for response */
+                        this.myprofile = response;
+                        this.studentId = this.myprofile.id;
+                        this.getRestOfData();
+                    },
+                    (err) => {
+                            console.log("ERROR in component. save to db: "+ err);
+                    },
+                    () => {
+                        console.log("Completed");
+                    })
+        }
+
+    }
+ 
+    getRestOfData() {
         //Main Profile and stats profile.  Get these first
         this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
         
@@ -62,7 +95,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
         //profilepics
         this._dataService.getProfilePictures(this.studentId ).subscribe(pics => this.profilepics = pics, error => this.errorMessage = <any>error);
     }
- 
+
     ngOnDestroy() {
         this.sub.unsubscribe();
     }    

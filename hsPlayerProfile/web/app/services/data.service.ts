@@ -90,7 +90,6 @@ export class DataService {
     getProfile(id:number): Observable<IProfile> {
         return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id)
                     .map((response: Response) => <IProfile>response.json())
-                    .first()
                     //.do(data => console.log('getProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
@@ -98,7 +97,6 @@ export class DataService {
     getProfileByName(profilename:string): Observable<IProfile> {
         return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + profilename)
                     .map((response: Response) => <IProfile>response.json())
-                    .first()
                     //.do(data => console.log('getProfileByName: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }

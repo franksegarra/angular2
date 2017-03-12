@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/35351198/mvc-6-hosted-on-iis-http-error-500-19

@@ -27,7 +27,8 @@ SELECT
 	p.filename as profilePicturefilename,
 	s.height,
 	s.weight,
-	s.created
+	s.created,
+	s.collegemajor
 FROM student s 
 	left outer join highSchool h on s.highSchoolId = h.id
 	left outer join studentPictures p on s.profilePictureId = p.id

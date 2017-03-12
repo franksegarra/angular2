@@ -1,8 +1,5 @@
 TODO:
 
-For now:
-1.  Fix routing so that it always goes to francis' profile
-
 Phase II:
 1.  Add breadcrumbs
 2.  Add Login/Register Link

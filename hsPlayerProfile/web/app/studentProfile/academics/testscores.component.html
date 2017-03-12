@@ -3,7 +3,7 @@
         <img class="img-responsive" [src]="profilePicUrl" alt="No pictures to show" >
     </div>
     
-    <div class="table-responsive">
+    <div class="table-responsive" style="padding-left: 1%">
         <table class="table-condensed">
             <colgroup>
                 <col span="1" style="width: 15%;">
@@ -17,6 +17,7 @@
             <tr><td><b>GPA:</b></td><td>{{ myprofile.gpa }}</td><td></td></tr>
             <tr><td><b>SAT Test Date:</b></td><td>{{ myprofile.sattestdate | date: 'M/d/yyyy' }}</td><td><b>Score:</b> {{ myprofile.satscore }}</td></tr>
             <tr><td><b>ACT Test Date/Score:</b></td><td>{{ myprofile.acttestdate }}</td><td><b>Score:</b> {{ myprofile.actscore }}</td></tr>
+            <tr><td><b>Intended College Major:</b></td><td>{{ myprofile.collegemajor }}</td><td></td></tr>
             <tr><td colspan="3"></td></tr>
             <tr><td colspan="3"><b>Personal Statement</b></td></tr>
             <tr><td colspan="2">{{ myprofile.additionalInfo }}</td></tr>

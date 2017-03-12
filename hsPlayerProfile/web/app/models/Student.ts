@@ -25,4 +25,5 @@ export class Student implements IStudent {
     public profilePictureId: number;
     public height: string;
     public weight: string;
+    public collegemajor: string;
 }

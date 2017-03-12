@@ -25,6 +25,7 @@
 	[height] varchar(10) NULL,
 	[weight] varchar(10) NULL,
     [created] DATETIME NOT NULL default getdate(), 
+	[collegemajor] varchar(100) null,
     CONSTRAINT [pk_student_id]  PRIMARY KEY CLUSTERED (id),
     CONSTRAINT [CK_profileName] unique (profileName),
 	CONSTRAINT [FK_student_highSchoolId] FOREIGN KEY (highSchoolId) REFERENCES highSchool(id)

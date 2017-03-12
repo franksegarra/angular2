@@ -35,5 +35,6 @@ namespace webServices.Entities
         public string height { get; set; }
         public string weight { get; set; }
         public DateTime? created { get; set; }
+        public string collegemajor { get; set; }
     }
 }
