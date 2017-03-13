@@ -1,0 +1,93 @@
+<div class="wrapper" *ngIf="myprofile">
+    <div class="row row-offcanvas row-offcanvas-left">
+
+        <!-- sidebar -->
+        <div class="column col-sm-1 col-xs-1 sidebar-offcanvas" id="sidebar">
+            <ul class="nav" id="menu">
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('academics')">
+                        <i class="fa fa-graduation-cap" pTooltip="Academics"></i> <span class="collapse in hidden-xs">Academics</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('videos')">
+                        <i class="fa fa-video-camera" pTooltip="Videos"></i> <span class="collapse in hidden-xs">Videos</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('pictures')">
+                        <i class="fa fa-camera" pTooltip="Pictures"></i> <span class="collapse in hidden-xs">Pictures</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('schedule')">
+                        <i class="fa fa-calendar" pTooltip="Schedule"></i> <span class="collapse in hidden-xs">Schedule</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('links')">
+                        <i class="fa fa-external-link" pTooltip="Links"></i> <span class="collapse in hidden-xs">Links</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('stats')">
+                        <i class="fa fa-list" pTooltip="Stats"></i> <span class="collapse in hidden-xs">Stats</span>
+                    </button>
+                </li>
+
+                <!--<li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('comments')">
+                        <i class="fa fa-users" pTooltip="Comments"></i> <span class="collapse in hidden-xs">Comments</span>
+                    </button>
+                </li>-->
+                
+                <li>
+                    <button type="button" class="btn btn-link" (click)="setVisibleComponent('contactme')">
+                        <i class="fa fa-phone" pTooltip="Contact Me"></i> <span class="collapse in hidden-xs">Contact Me</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- /sidebar -->
+
+        <!-- main right col -->
+        <div class="column col-sm-11 col-xs-11" id="main">
+            <div *ngIf="componentToShow === 'academics'">
+                <pp-academics [myprofile]='myprofile' [ec]='ec' [classes]='classes' >Loading...</pp-academics>
+            </div>
+
+            <div *ngIf="componentToShow === 'videos'">
+                <pp-videos [myprofile]='myprofile'>Loading...</pp-videos>
+            </div>
+
+            <div *ngIf="componentToShow === 'pictures'">
+                <pp-pictures [myprofile]='myprofile' [profilepics]='profilepics'>Loading...</pp-pictures>
+            </div>
+
+            <div *ngIf="componentToShow === 'schedule'">
+                <pp-schedule [myprofile]='myprofile' [schedItems]='schedItems'>Loading...</pp-schedule>
+            </div>
+
+            <div *ngIf="componentToShow === 'links'">
+                <pp-links [myprofile]='myprofile' [links]='links'>Loading...</pp-links>
+            </div>
+
+            <div *ngIf="componentToShow === 'stats'">
+                <pp-stats [myprofile]='myprofile' [bbprofile]='bbprofile' [hittingcategories]='_statsService.hittingcategories'>Loading...</pp-stats>
+            </div>
+
+            <!-- Comments will go here -->
+
+            <div *ngIf="componentToShow === 'contactme'">
+                <pp-contactme [myprofile]='myprofile'>Loading...</pp-contactme>
+            </div>
+        </div>
+        <!-- /main -->
+    </div>
+</div>

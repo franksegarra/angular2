@@ -1,0 +1,21 @@
+<div class="table-responsive">
+    <table class="table" *ngIf="classes && classes.length">
+        <thead>
+            <tr>
+                <th class="col-md-2">Class</th>
+                <th class="col-md-2">Final Average</th>
+                <th class="col-md-2">Letter Grade</th>
+                <th class="col-md-2">Eligible For College Credit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let class of classes | gradeFilter: {grade: grade}' >
+                <td>{{ class.className }}</td>
+                <td>{{ class.finalAverage }}</td>
+                <td>{{ class.letterGrade }}</td>   
+                <td *ngIf="class.collegeCredit === 1" >Yes</td>   
+                <td *ngIf="class.collegeCredit === 0" ></td>   
+            </tr>
+        </tbody>
+    </table>
+</div>
