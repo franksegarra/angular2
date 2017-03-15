@@ -1,0 +1,22 @@
+<div *ngIf="bbprofile && hittingcategories.length">
+    <div class='panel panel-primary'>
+        <div class='panel-heading'>
+            {{pageTitle}}
+        </div>
+        <div class='panel-body'>
+            <p-accordion [multiple]="true">
+                <p-accordionTab header="Personal Details" [selected]="true" >
+                    <pp-physical [myprofile]='myprofile' [bbprofile]='bbprofile'>Loading...</pp-physical>
+                </p-accordionTab>
+                <div *ngIf="hittingcategories && hittingcategories.length">
+                    <div *ngFor='let thiscategory of hittingcategories'>
+                        <p-accordionTab header="{{ thiscategory.category }}">
+                            <pp-statcategory [hittingcategory]='thiscategory'></pp-statcategory>
+                        </p-accordionTab>
+                    </div>
+                </div>
+            </p-accordion>
+        </div>
+    </div>
+</div>
+    

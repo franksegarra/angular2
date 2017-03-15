@@ -1,0 +1,32 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div class="table-responsive" *ngIf="myprofile.displayaddrandphone == 1" >
+            <b>Home Address:</b>
+            <table class="table">
+                <tbody>
+                        <tr><td><div class="col-sm-12">  
+                            {{ myprofile.firstName + ' ' + myprofile.lastName }}<br>
+                            {{ myprofile.streetaddress1 }}<br>
+                            <div *ngIf="myprofile.streetaddress2">{{ myprofile.streetaddress2 }}<br></div>
+                            {{ myprofile.city + ', ' + myprofile.state + ' ' + myprofile.zip }}<br>
+                            {{ myprofile.phone | phoneFormat }}<br>
+                            {{ myprofile.primaryEmail }}
+                        </div></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive" *ngIf="myprofile.displayaddrandphone == 0" >
+            <b>Home Address:</b>
+            <table class="table">
+                <tbody>
+                        <tr><td><div class="col-sm-12">For security reasons I chose not to display my home phone and address.  Please use the form below to contact me.</div></td></tr>
+                </tbody>
+            </table>
+        </div>   
+        <pp-messageform [panelMessage]='panelMessage' (onFormSubmit)="onSubmit($event)" ></pp-messageform>
+    </div>
+</div>
+

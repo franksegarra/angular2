@@ -1,0 +1,24 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{ pageTitle }}
+    </div>
+    <div class="panel-body" >
+
+            <div class="row">
+
+                <div class="column col-sm-3 topmenu">
+                    <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
+                </div>
+                <div class="column col-sm-9">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <img class="img-responsive" id="imageDisplay" alt="No pictures to show" >
+                    </div>
+                </div>
+                <div class="column col-sm-3 bottommenu">
+                    <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
+                </div>
+
+            </div>
+
+    </div>
+</div>

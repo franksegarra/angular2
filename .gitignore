@@ -9,9 +9,6 @@
 *.mov
 *.mp4
 *.m4v
-*.map
-*.js
-
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -191,7 +188,8 @@ ClientBin/
 *.dbproj.schemaview
 *.pfx
 *.publishsettings
-node_modules/
+**/node_modules/
+
 orleans.codegen.cs
 
 # RIA/Silverlight projects
@@ -248,5 +246,5 @@ ModelManifest.xml
 .fake/
 
 #Typescript
-*.map
-*.js
+**/app/**/*.map
+**/app/**/*.js
