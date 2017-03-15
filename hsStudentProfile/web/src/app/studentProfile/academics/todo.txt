@@ -1,2 +1,0 @@
-1.  Calculate overall average for each grade
-2.  Move grade processing to a service.  Get rid of pipe

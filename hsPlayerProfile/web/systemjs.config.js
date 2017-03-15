@@ -22,19 +22,17 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-
-      //bootstrap
-      //'moment': 'npm:moment/bundles/moment.umd.js',
-      //'ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
-
       // other libraries
       'rxjs': 'npm:rxjs',
+
+      //shims 
+      'core-js-shim':'npm:core-js/client/shim.min.js', 
+      'zone':'npm:zone.js/dist/zone.js', 
+      'reflect':'npm:reflect-metadata/Reflect.js',
 
       //UI Controls
       'primeng': 'npm:primeng',
 
-      //jquery
-      //'jquery': 'npm:@angular/jquery/dist/jquery.min.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
