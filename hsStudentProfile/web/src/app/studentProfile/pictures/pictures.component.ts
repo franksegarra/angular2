@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
 import { IProfilePictures } from '../../models/IProfilePictures';
+import { IPicture } from './IPicture';
 import { PictureService } from './picture.service';
 import { TreeNode } from 'primeng/primeng';
 
@@ -23,7 +24,11 @@ export class PicturesComponent implements OnInit {
     }
 
     nodeSelect(event: any) {
-        if (this.pictureService.selectedFile.data != "")
-            this.pictureService.selectedPictureById(this.pictureService.selectedFile.data);
+        var eventObj: TreeNode = event.node ;
+        var pic: IPicture = eventObj.data;
+        if (pic.id.toString() != "")
+        {
+            this.pictureService.selectedPictureById(pic.id);
+        }
     }
 }

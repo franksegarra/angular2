@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
+import { IVideo } from './IVideo';
 import { VideoService } from './video.service';
 import { TreeNode } from 'primeng/primeng';
 
@@ -22,11 +23,11 @@ export class VideosComponent implements OnInit {
     }
 
     nodeSelect(event: any) {
-        var eventObj: TreeNode = event;
-        console.log(eventObj.data);
-        if (this.videoService.selectedFile.data != "")
+        var eventObj: TreeNode = event.node ;
+        var vid: IVideo = eventObj.data;
+        if (vid.id.toString() != "")
         {
-            this.videoService.selectedVideoById(this.videoService.selectedFile.data);
+            this.videoService.selectedVideoById(vid.id);
         }
     }
 }

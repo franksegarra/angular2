@@ -77,7 +77,7 @@ export class VideoService {
             files.forEach(function(file) {
                 var childnode: TreeNode = [];
                 childnode.label = file.title
-                childnode.data = file.id
+                childnode.data = file
                 childnode.expandedIcon = "";
                 childnode.collapsedIcon = "";
                 parent.children.push(childnode);
@@ -87,6 +87,8 @@ export class VideoService {
         });
 
         this.videoData = rootnodes;
+
+        console.log(this.videoData);
     }
 
     selectedVideoById = (id:number) => {
