@@ -1,3 +1,11 @@
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
 /*  Text at the top of each section of the profile */
 div.panel-heading {
     font-size: large; 
