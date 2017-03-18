@@ -88,6 +88,7 @@ export class DataService {
     }
 
     getProfile(id:number): Observable<IProfile> {
+        console.log(Config.WEBSERVICESURL + 'studentprofile/' + id);
         return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id)
                     .map((response: Response) => <IProfile>response.json())
                     //.do(data => console.log('getProfile: ' + JSON.stringify(data)))
