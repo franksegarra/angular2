@@ -8,7 +8,8 @@ import { AboutComponent } from './about/about.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 
 const appRoutes: Routes = [
-        //{path: 'studentprofile', component: StudentProfileComponent},
+
+        {path: ':id', redirectTo: 'studentprofile/:id', pathMatch: 'full'},
         {path: 'about', component: AboutComponent},
         {path: 'feedback', component: FeedbackComponent},
         {path: 'home', redirectTo: 'studentprofile', pathMatch: 'full'},
