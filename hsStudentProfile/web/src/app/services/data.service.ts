@@ -16,6 +16,7 @@ import { IContactMe } from '../models/IContactMe';
 import { IEmail } from '../models/IEmail';
 import { IProfilePictures } from '../models/IProfilePictures';
 import { IFeedback } from '../models/IFeedback';
+import { IPicture } from '../studentprofile/pictures/IPicture';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -35,6 +36,14 @@ export class DataService {
          this.getClientIPAddress().subscribe(p => this.ipaddress = p, error => this.errorMessage = <any>error);
     }
     
+    getPictures(id:number): Observable<IPicture[]> {
+        //Get List of Pictures for the student.
+        return this._http.get(Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id)
+                    .map((response: Response) => <IPicture[]>response.json())
+                    //.do(data => console.log('getProfilePictures: ' + JSON.stringify(data)))
+                    .catch(this.handleError) ;
+    }
+
     getClientIPAddress(): Observable<IIPAddress> {
         return this._http.get('https://api.ipify.org?format=json')
             .map((response: Response) => <IIPAddress>response.json())

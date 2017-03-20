@@ -26,9 +26,11 @@ export class PictureService {
 
     constructor(private http:Http) {}
 
-    appSetup(v:string, _profilepics: IProfilePictures[]) {
+    appSetup(v:string, _profilepics: IProfilePictures[], _picturelist:Array<IPicture>) {
         this.pictureElement = <HTMLImageElement> document.getElementById(v);
         this.profilepics = _profilepics;
+        this.picturelist = _picturelist;
+        this.createPictureCategories();
     }
 
     getPlaylist(id:number) {

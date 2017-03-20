@@ -7,6 +7,7 @@ import { IScheduleItem } from '../models/IScheduleItem';
 import { ILink } from '../models/ILink';
 import { IBBProfile } from '../models/IBBProfile';
 import { IProfilePictures } from '../models/IProfilePictures';
+import { IPicture } from '../studentprofile/pictures/IPicture';
 
 //Data service
 import { DataService } from '../services/data.service';
@@ -34,6 +35,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private links: ILink[];
     private bbprofile: IBBProfile;
     private profilepics: IProfilePictures[];
+    public picturelist:Array<IPicture> = [];
 
     componentToShow: string = 'academics';
 
@@ -75,13 +77,14 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     getRestOfData() {
         //Main Profile and stats profile.  Get these first
         this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
-        
         this._statsService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
-        //this._dataService.getProfileByName('francissegarra').subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
 
         //For Academics
         this._dataService.getClasses( this.studentId ).subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
         this._dataService.getExtraCurricular( this.studentId ).subscribe(classes => this.ec = classes, error => this.errorMessage = <any>error);
+
+        //Pictures
+        this._dataService.getPictures(this.studentId ).subscribe(pics => this.picturelist = pics, error => this.errorMessage = <any>error);
 
         //For Schedule
         this._dataService.getSchedule(this.studentId).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
@@ -94,6 +97,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
 
         //profilepics
         this._dataService.getProfilePictures(this.studentId ).subscribe(pics => this.profilepics = pics, error => this.errorMessage = <any>error);
+
     }
 
     ngOnDestroy() {
