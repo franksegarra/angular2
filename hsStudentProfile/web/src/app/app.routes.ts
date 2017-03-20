@@ -9,10 +9,10 @@ import { FeedbackComponent } from './feedback/feedback.component';
 
 const appRoutes: Routes = [
 
-        {path: ':id', redirectTo: 'studentprofile/:id', pathMatch: 'full'},
         {path: 'about', component: AboutComponent},
         {path: 'feedback', component: FeedbackComponent},
-        {path: 'home', redirectTo: 'studentprofile', pathMatch: 'full'},
+        {path: 'home', redirectTo: 'studentprofile/1', pathMatch: 'full'},
+        {path: ':id', redirectTo: 'studentprofile/:id', pathMatch: 'full'},
         {path: 'studentprofile', redirectTo: 'studentprofile/1', pathMatch: 'full'},
         {path: 'studentprofile/:id', component: StudentProfileComponent},
         {path: '', redirectTo: 'studentprofile/1', pathMatch: 'full'},
