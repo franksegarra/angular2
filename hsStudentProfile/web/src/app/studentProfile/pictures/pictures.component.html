@@ -11,17 +11,17 @@
                 </div>
                 <div class="column col-sm-9">
 
-                    <div *ngFor='let pic of picturelist'>
+                    <!--<div *ngFor='let pic of picturelist'>
                         <div [hidden]="pic.filename != picToShow">
                             <div class="embed-responsive embed-responsive-4by3" >
                                 <img class="img-responsive" id="imageDisplay" alt="No pictures to show" [src]="picfolder + pic.filename" >
                             </div>
                         </div>
-                    </div>
-
-                    <!--<div class="embed-responsive embed-responsive-4by3" >
-                        <img class="img-responsive" id="imageDisplay" alt="No pictures to show">
                     </div>-->
+
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <img class="img-responsive" id="imageDisplay" alt="No pictures to show">
+                    </div>
 
                 </div>
                 <div class="column col-sm-3 bottommenu">

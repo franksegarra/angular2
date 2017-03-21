@@ -28,6 +28,8 @@ export class VideosComponent implements OnInit {
         if (vid.id.toString() != "")
         {
             this.videoService.selectedVideoById(vid.id);
+            this.videoService.muteVideo();
+            this.videoService.playVideo();
         }
     }
 }

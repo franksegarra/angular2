@@ -18,19 +18,14 @@ export class PicturesComponent implements OnInit {
     @Input() profilepics: IProfilePictures[];
     @Input() picturelist: IPicture[];
     pageTitle: string;
-    picfolder: string = Config.PICTUREFOLDER;
-    picToShow: string = '';
-
+    //picfolder: string = Config.PICTUREFOLDER;
+    //picToShow: string = '';
 
     constructor(public pictureService:PictureService) {}
 
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Pictures';
-        console.log(Config.PICTUREFOLDER);
-        console.log(this.picturelist);
-        this.picToShow = this.picturelist[0].filename;
         this.pictureService.appSetup("imageDisplay", this.profilepics, this.picturelist);
-        //this.pictureService.getPlaylist( this.myprofile.id );       
     }
 
     nodeSelect(event: any) {
@@ -38,9 +33,7 @@ export class PicturesComponent implements OnInit {
         var pic: IPicture = eventObj.data;
         if (pic.id.toString() != "")
         {
-            //this.pictureService.selectedPictureById(pic.id);
-            this.picToShow = pic.filename;
-            //console.log(this.picToShow  + ' - ' + pic.filename);
+            this.pictureService.selectedPictureById(pic.id);
         }
     }
 }
