@@ -38,6 +38,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { PhysicalComponent } from './stats/physical.component';
 import { StatsComponent } from './stats/stats.component';
 import { StatCategory } from './stats/statcategory.component';
+import { CoachesComponent } from './stats/coaches.component';
 
 //Links
 import { LinksComponent } from './links/links.component';
@@ -81,6 +82,7 @@ import { UpcomingDatesPipe } from '../pipes/upcomingdates.pipe';
       ,StatsComponent
       ,PhysicalComponent
       ,StatCategory
+      ,CoachesComponent
       ,LinksComponent
       ,ContactMeComponent
       ,PhoneFormatPipe

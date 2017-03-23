@@ -18,8 +18,6 @@ export class PicturesComponent implements OnInit {
     @Input() profilepics: IProfilePictures[];
     @Input() picturelist: IPicture[];
     pageTitle: string;
-    //picfolder: string = Config.PICTUREFOLDER;
-    //picToShow: string = '';
 
     constructor(public pictureService:PictureService) {}
 
@@ -30,6 +28,13 @@ export class PicturesComponent implements OnInit {
 
     nodeSelect(event: any) {
         var eventObj: TreeNode = event.node ;
+
+        //No data.  Must be a category
+        if (eventObj.data == "") {
+            eventObj.expanded = !eventObj.expanded;
+             return;
+        }
+
         var pic: IPicture = eventObj.data;
         if (pic.id.toString() != "")
         {

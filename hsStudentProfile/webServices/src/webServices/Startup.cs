@@ -101,7 +101,8 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<StudentContact>, EntityBaseRepository<StudentContact>>();
             services.AddScoped<EntityBaseRepository<StudentProfilePictures>, EntityBaseRepository<StudentProfilePictures>>();
             services.AddScoped<EntityBaseRepository<SiteFeedback>, EntityBaseRepository<SiteFeedback>>();
-
+            services.AddScoped<EntityBaseRepository<StudentCoaches>, EntityBaseRepository<StudentCoaches>>();
+            
             // Register email service 
             services.AddTransient<IEmailService, EmailService>();
 

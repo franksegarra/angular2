@@ -25,7 +25,8 @@ namespace webServices.Infrastructure
         public DbSet<StudentContact> StudentContact { get; set; }
         public DbSet<StudentProfilePictures> StudentProfilePictures { get; set; }
         public DbSet<SiteFeedback> SiteFeedback { get; set; }
-       
+        public DbSet<StudentCoaches> StudentCoaches { get; set; }
+        
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {
         }
@@ -135,6 +136,17 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<SiteFeedback>().Property(p => p.contactname).HasMaxLength(100);
             modelBuilder.Entity<SiteFeedback>().Property(p => p.contactphone).HasMaxLength(10);
             modelBuilder.Entity<SiteFeedback>().Property(p => p.contactemail).HasMaxLength(100);
+
+            //StudentCoaches
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.studentid).IsRequired();
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.sortorder).IsRequired();
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.name).IsRequired();
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.email).IsRequired();
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.description).IsRequired();
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.name).HasMaxLength(100);
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.description).HasMaxLength(100);
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.phone).HasMaxLength(10);
+            modelBuilder.Entity<StudentCoaches>().Property(p => p.email).HasMaxLength(100);
         }
     }
 }

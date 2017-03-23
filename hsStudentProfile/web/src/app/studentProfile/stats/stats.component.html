@@ -8,6 +8,11 @@
                 <p-accordionTab header="Personal Details" [selected]="true" >
                     <pp-physical [myprofile]='myprofile' [bbprofile]='bbprofile'>Loading...</pp-physical>
                 </p-accordionTab>
+                <div *ngIf="coaches && coaches.length">
+                    <p-accordionTab header="My coaches">
+                        <pp-coaches [coaches]='coaches'>Loading...</pp-coaches>
+                    </p-accordionTab>
+                </div>
                 <div *ngIf="hittingcategories && hittingcategories.length">
                     <div *ngFor='let thiscategory of hittingcategories'>
                         <p-accordionTab header="{{ thiscategory.category }}">

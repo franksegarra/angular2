@@ -179,6 +179,10 @@ insert into studentBBHitting (studentid,category,dateplayed,teamplayed,plateappe
 values (1,'Test Data Set 2','6/1/2017','Test Game 6',4,0,1,0,0,0,1,1,0,0,2,2,1)
 GO
 
-
+insert into studentCoaches(studentid, sortorder, name, description, email, phone) values (1, 1, 'Joe Hackert', 'Carmel High School Varsity Coach', 'jhackert@carmelta.org', '')
+insert into studentCoaches(studentid, sortorder, name, description, email, phone) values (1, 2, 'John Muller', 'Evolution Baseball 17U Showcase Team Head Coach', 'mullerbaseball@yahoo.com', '')
+insert into studentCoaches(studentid, sortorder, name, description, email, phone) values (1, 3, 'Chris Hayes', 'Hitting Coach', 'chayes44@optonline.net', '')
+insert into studentCoaches(studentid, sortorder, name, description, email, phone) values (1, 4, 'Rafael Rigueiro', 'Pitching Coach', 'rigueiro@gmail.com', '')
+GO
 
 */

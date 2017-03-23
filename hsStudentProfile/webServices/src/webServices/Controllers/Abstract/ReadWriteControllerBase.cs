@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Http;
 using webServices.Repositories;
 using webServices.Entities;
 using webServices.Controllers;
+using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -100,5 +103,37 @@ namespace webServices.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPost("ValidateReCaptcha")]
+        public async Task<IActionResult> ValidateReCaptcha([FromBody] string reCaptchaResponse)
+        {
+            string recaptchaURL = "https://www.google.com/recaptcha/api/siteverify?secret=";
+            string privatekey = "6LcyIBgUAAAAABfFkpeZWkpSvewY3OQBZMJ9KMWg";
+
+            if (reCaptchaResponse == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                string data = await new HttpClient().GetStringAsync(recaptchaURL + privatekey + "&response=" + reCaptchaResponse);
+                JsonResponseObject jobj = JsonConvert.DeserializeObject<JsonResponseObject>(data);
+                return Ok(jobj);
+            }
+            catch (Exception ex)
+            {
+                //logger.Error(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+    }
+
+    public class JsonResponseObject
+    {
+        public bool success { get; set; }
+        [JsonProperty("error-codes")]
+        public List<string> errorcodes { get; set; }
     }
 }

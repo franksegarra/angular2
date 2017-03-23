@@ -12,23 +12,29 @@ import { TreeNode } from 'primeng/primeng';
 })
 export class VideosComponent implements OnInit { 
     @Input() myprofile: IProfile;
+    @Input() videolist:Array<IVideo>;
     pageTitle: string;
 
     constructor(public videoService:VideoService) {}
 
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Videos';
-        this.videoService.appSetup("videoDisplay");
-        this.videoService.getPlaylist( this.myprofile.id );
+        this.videoService.appSetup("videoDisplay", this.videolist);
     }
 
     nodeSelect(event: any) {
         var eventObj: TreeNode = event.node ;
+
+        //No data.  Must be a category
+        if (eventObj.data == "") { 
+            eventObj.expanded = !eventObj.expanded;
+            return;
+        }
+
         var vid: IVideo = eventObj.data;
         if (vid.id.toString() != "")
         {
             this.videoService.selectedVideoById(vid.id);
-            this.videoService.muteVideo();
             this.videoService.playVideo();
         }
     }

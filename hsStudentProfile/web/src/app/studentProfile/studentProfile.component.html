@@ -63,7 +63,7 @@
             </div>
 
             <div *ngIf="componentToShow === 'videos'">
-                <pp-videos [myprofile]='myprofile'>Loading...</pp-videos>
+                <pp-videos [myprofile]='myprofile' [videolist]='videolist'>Loading...</pp-videos>
             </div>
 
             <div *ngIf="componentToShow === 'pictures'">
@@ -79,7 +79,7 @@
             </div>
 
             <div *ngIf="componentToShow === 'stats'">
-                <pp-stats [myprofile]='myprofile' [bbprofile]='bbprofile' [hittingcategories]='_statsService.hittingcategories'>Loading...</pp-stats>
+                <pp-stats [myprofile]='myprofile' [bbprofile]='bbprofile' [coaches]='coaches' [hittingcategories]='_statsService.hittingcategories'>Loading...</pp-stats>
             </div>
 
             <!-- Comments will go here -->

@@ -90,6 +90,7 @@
     <Build Include="Tables\studentContact.sql" />
     <Build Include="Views\studentProfilePictures.sql" />
     <Build Include="Tables\siteFeedback.sql" />
+    <Build Include="Tables\studentCoaches.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment1.sql" />

@@ -2,13 +2,7 @@ import {Injectable} from '@angular/core';
 import { IPicture } from './IPicture';
 import { TreeNode } from 'primeng/primeng';
 import { IProfilePictures } from '../../models/IProfilePictures';
-
 import 'rxjs/add/operator/map';
-
-//To remove
-// import {Http, Response} from '@angular/http';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/operator/do';
 
 //Global settings
 import { Config } from '../../config.service';
@@ -21,13 +15,8 @@ export class PictureService {
     public currentDesc:string = "A very nice video...";
     public pictureElement:any;
     public pictureData: TreeNode[];
-    //public selectedFile: TreeNode;
-    //public showDetails:boolean = false;
     public selectedPictureId: number;
     public profilepics: IProfilePictures[];
-
-    //To remove
-    // constructor(private http:Http) {}
 
     appSetup(v:string, _profilepics: IProfilePictures[], _picturelist:Array<IPicture>) {
         this.pictureElement = <HTMLImageElement> document.getElementById(v);
@@ -95,24 +84,4 @@ export class PictureService {
         this.currentDesc = file[0]['description'];
         this.pictureElement.src = Config.PICTUREFOLDER + file[0]['filename'];
     };
-
-    // getPlaylist(id:number) {
-
-    //     //Test to see if we already have data for this object
-    //     if (this.picturelist.length > 0) {
-    //         this.selectedPictureById(this.selectedPictureId);
-    //         return;
-    //     }
-
-    //     this.http.get(Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id.toString())
-    //     .map((res:Response) => <IPicture[]>res.json())
-    //     .do(data => console.log('getPlaylist: ' + JSON.stringify(data)))
-    //     .subscribe(
-    //         data => {
-    //             this.picturelist = data;
-    //             this.createPictureCategories();
-    //             this.selectedPicture(1);
-    //         }
-    //     );
-    // };
 }

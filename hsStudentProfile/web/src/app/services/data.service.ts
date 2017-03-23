@@ -17,6 +17,8 @@ import { IEmail } from '../models/IEmail';
 import { IProfilePictures } from '../models/IProfilePictures';
 import { IFeedback } from '../models/IFeedback';
 import { IPicture } from '../studentprofile/pictures/IPicture';
+import { IVideo } from '../studentprofile/videos/IVideo';
+import { ICoach } from '../models/ICoach';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -35,12 +37,23 @@ export class DataService {
     constructor(private _http: Http) {        
          this.getClientIPAddress().subscribe(p => this.ipaddress = p, error => this.errorMessage = <any>error);
     }
-    
+
+    getCoaches(id:number): Observable<ICoach[]> {
+        return this._http.get(Config.WEBSERVICESURL + 'studentcoaches/GetByStudentId/' + id)
+                    .map((response: Response) => <ICoach[]>response.json())
+                    .do(data => console.log('getCoaches: ' + JSON.stringify(data)))
+                    .catch(this.handleError) ;
+    }
+
+    getVideos(id:number): Observable<IVideo[]> {
+        return this._http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id)
+                    .map((response: Response) => <IVideo[]>response.json())
+                    .catch(this.handleError) ;
+    }
+
     getPictures(id:number): Observable<IPicture[]> {
-        //Get List of Pictures for the student.
         return this._http.get(Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id)
                     .map((response: Response) => <IPicture[]>response.json())
-                    //.do(data => console.log('getProfilePictures: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
