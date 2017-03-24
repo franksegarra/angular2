@@ -41,7 +41,7 @@ export class DataService {
     getCoaches(id:number): Observable<ICoach[]> {
         return this._http.get(Config.WEBSERVICESURL + 'studentcoaches/GetByStudentId/' + id)
                     .map((response: Response) => <ICoach[]>response.json())
-                    .do(data => console.log('getCoaches: ' + JSON.stringify(data)))
+                    //.do(data => console.log('getCoaches: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 

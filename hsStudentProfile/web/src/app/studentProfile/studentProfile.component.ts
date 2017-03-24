@@ -63,15 +63,18 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
             this.studentProfileName = this.studentInfo;
             this._dataService.getProfileByName(this.studentProfileName)
                 .subscribe(
+                    //For every response
                     (response) => {
                         /* Need to wait for response */
                         this.myprofile = response;
                         this.studentId = this.myprofile.id;
                         this.getRestOfData();
                     },
+                    //On Error
                     (err) => {
                             console.log("ERROR in component. save to db: "+ err);
                     },
+                    //When observable closes
                     () => {
                         console.log("Completed");
                     })

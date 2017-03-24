@@ -2,6 +2,7 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Main Menu features
 import { AboutComponent } from './about/about.component';
@@ -24,6 +25,7 @@ import { AppComponent }  from './app.component';
       Routing,
       StudentProfileModule,
       FeedbackModule,
+      BrowserAnimationsModule
   ],
   declarations: [ 
       AppComponent
