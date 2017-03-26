@@ -77,7 +77,6 @@ export class VideoService {
     };
 
     selectedVideo = (i:number) => {
-        console.log("Selected Video: " + i);
         this.selectedVideoId = this.playlist[i]['id'];
         this.currentTitle = this.playlist[i]['title'];
         this.currentDesc = this.playlist[i]['description'];

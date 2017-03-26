@@ -18,8 +18,6 @@ export class FeedbackComponent {
     constructor(private _dataService: DataService) {}
 
     onSubmit(event:any): void { 
-
-        console.log("On Submit in contactme");
         this.messageFormComponent.reset();
 
         var inputmsg: Message = event;
@@ -30,8 +28,6 @@ export class FeedbackComponent {
             message: inputmsg.message,
             ipaddress: ''
         }
-
-        console.log(msg);
 
         var response;
         this._dataService.postSiteFeedback(msg)

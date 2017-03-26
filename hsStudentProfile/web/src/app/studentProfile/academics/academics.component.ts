@@ -16,7 +16,5 @@ export class AcademicsComponent implements OnInit {
 
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Academics';
-        console.log("this.myprofile.satTestDate.toDateString()");
-        console.log(this.myprofile.sattestdate);
     }
 }
