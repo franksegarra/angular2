@@ -8,7 +8,7 @@ export interface IProfile {
         graduationYear: number;
         additionalInfo: string;
         gpa: number;
-        satTestDate: Date;
+        sattestdate: Date;
         satScore: number;
         actTestDate: Date;
         actScore: number;

@@ -1,0 +1,6 @@
+TODO:
+
+1.  Add table to track visits to a profile
+2.  Add ability to view message sent to me (Contact center)
+3.  Add hit counter
+

@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <tr *ngFor='let hit of hittingcategory.categorylist' >
-                <td>{{ hit.dateplayed | date: 'M/d/yyyy' }}</td>
+                <td>{{ hit.dateplayed | dateFormat }}</td>
                 <td>{{ hit.teamplayed }}</td>
                 <td>{{ hit.plateappearances }}</td>   
                 <td>{{ hit.strikeouts }}</td>   

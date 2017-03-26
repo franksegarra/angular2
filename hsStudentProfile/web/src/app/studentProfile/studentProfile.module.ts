@@ -50,6 +50,9 @@ import { ContactMeComponent } from './contactme/contactme.component';
 import { TBDFormatPipe } from '../pipes/tbdFormat.pipe';
 import { PhoneFormatPipe } from '../pipes/phoneFormat.pipe';
 import { UpcomingDatesPipe } from '../pipes/upcomingdates.pipe';
+import { DateFormatPipe } from '../pipes/dateFormat.pipe';
+import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
+
 
 //Module declaration
 @NgModule({
@@ -87,6 +90,8 @@ import { UpcomingDatesPipe } from '../pipes/upcomingdates.pipe';
       ,ContactMeComponent
       ,PhoneFormatPipe
       ,UpcomingDatesPipe
+      ,DateFormatPipe
+      ,DOWFormatPipe
   ],  
   providers: [ DataService, VideoService, PictureService, StatsService ],
   exports: [ StudentProfileComponent ]

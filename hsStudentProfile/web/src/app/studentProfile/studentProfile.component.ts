@@ -79,7 +79,6 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
                         console.log("Completed");
                     })
         }
-
     }
  
     getRestOfData() {

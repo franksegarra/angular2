@@ -2,7 +2,7 @@
 (
 	[id] int identity(1,1) not null, 
     [studentid] int not null, 
-    [category] VARCHAR(50) NOT NULL default 'Other Games Played', 
+    [category] VARCHAR(100) NOT NULL default 'Other Games Played', 
 	[dateplayed]  DATE NOT NULL, 
 	[teamplayed] varchar(255) not null,
 	[plateappearances] int null default 0,
