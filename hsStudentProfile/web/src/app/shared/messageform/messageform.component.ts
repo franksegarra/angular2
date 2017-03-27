@@ -39,6 +39,9 @@ export class MessageFormComponent implements OnInit {
     }
 
     onSubmit(): void { 
+
+        console.log("On Submit in messageform");
+        
         var aMessage:Message = {
             contactname: this.form.value['contactname'],
             contactphone: this.form.value['contactphone'],
@@ -51,6 +54,7 @@ export class MessageFormComponent implements OnInit {
 
     showResponse(event:any) {
         this.reCaptchaValid = false;
+        console.log(event);
         var recaptchaOutcome: IreCaptchaResponse;
         this._mfService.verifyRecaptchaResponse(event)
             .subscribe(

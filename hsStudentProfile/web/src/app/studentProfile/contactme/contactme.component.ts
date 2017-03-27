@@ -25,6 +25,9 @@ export class ContactMeComponent implements OnInit {
     }
 
     onSubmit(event:any): void { 
+
+        console.log("On Submit in contactme");
+
         var inputmsg: Message = event;
         var id = this.myprofile.id;
         var studentemail = this.myprofile.primaryEmail;
