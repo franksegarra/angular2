@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 const authCheck = jwt({
-  secret: new Buffer('YOUR-AUTH0-CLIENT-SECRET', 'base64'),
-  audience: 'YOUR-AUTH0-CLIENT-ID'
+  secret: new Buffer('gL86uPD4-UooDrpgeIuWk_cA4eVV9X60U0o7io9izyoDH9ji-Tr-2JhHqSpdgCU-', 'base64'),
+  audience: 'UMil2thd7LZHEHAYRhj80ng0FfzPvfmh'
 });
 
 app.get('/api/deals/public', (req, res)=>{
