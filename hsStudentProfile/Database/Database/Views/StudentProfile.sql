@@ -2,7 +2,7 @@
 SELECT 
 	s.id, 
 	s.id as studentid, 
-	s.profileName, 
+	u.profileName, 
 	s.firstName, 
 	s.lastName, 
 	s.primaryEmail, 
@@ -30,5 +30,6 @@ SELECT
 	s.created,
 	s.collegemajor
 FROM student s 
+	left outer join users u on u.id = s.id
 	left outer join highSchool h on s.highSchoolId = h.id
 	left outer join studentPictures p on s.profilePictureId = p.id

@@ -1,0 +1,32 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body" >
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+              
+                        <!-- Email -->
+                        <tr><td><div class="col-sm-12"><b>Email:</b></div></td></tr>
+                        <tr><td><div class="col-sm-12">  
+                            <input type="text" formControlName = 'email' placeholder="Enter your email address (Required)" style="width:100%; padding: 6px 12px;">  
+                        </div></td></tr>
+
+                        <!-- Actions -->
+                        <tr>
+                            <td>
+                                <div class="col-sm-1"><button type="submit" [disabled]="!form.valid" class="ui button">Submit</button></div>  
+                                <div class="col-sm-1"><a [routerLink]="['/login']" class="btn btn-link">Login</a></div>
+                                <div class="col-sm-1"><a [routerLink]="['/register']" class="btn btn-link">Register</a></div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table> 
+            </div> 
+        </form> 
+    </div>
+</div>
+

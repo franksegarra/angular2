@@ -10,10 +10,13 @@ using Newtonsoft.Json.Serialization;
 using System.IO;
 using webServices.Entities;
 using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using webServices.Entities.Email;
 using webServices.Infrastructure.EmailService;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using webServices.Infrastructure.JWT;
 
 namespace webServices
 {
@@ -30,10 +33,17 @@ namespace webServices
         }
 
         public IConfigurationRoot Configuration { get; }
+        
+        //TODO: Replace Secret key
+        private const string SecretKey = "needtogetthisfromenvironment";
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
+            services.AddOptions();
+
             #region Configuration
 
             services.AddSingleton<IConfiguration>(Configuration);
@@ -110,7 +120,13 @@ namespace webServices
 
             #region MVC
 
-            services.AddMvc()
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            })
             .AddJsonOptions(opt =>
             {
                 var resolver = opt.SerializerSettings.ContractResolver;
@@ -123,6 +139,27 @@ namespace webServices
 
             #endregion MVC
 
+            #region Authorization token
+                //TODO: Set up policies
+                // Use policy auth.
+                services.AddAuthorization(options =>
+                {
+                    options.AddPolicy("DisneyUser", policy => policy.RequireClaim("DisneyCharacter", "IAmMickey"));
+                });
+
+                // Get options from app settings
+                var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
+
+                // Configure JwtIssuerOptions
+                services.Configure<JwtIssuerOptions>(options =>
+                {
+                    options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
+                    options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
+                    options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
+                });
+
+            #endregion Authorization token
+
             #region Email
 
             services.Configure<EmailConfig>(Configuration.GetSection("Email"));
@@ -131,7 +168,6 @@ namespace webServices
 
             //services.Configure<IISOptions>(options => {
             //});
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -139,6 +175,31 @@ namespace webServices
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidIssuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)],
+
+                ValidateAudience = true,
+                ValidAudience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)],
+
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = _signingKey,
+
+                RequireExpirationTime = true,
+                ValidateLifetime = true,
+
+                ClockSkew = TimeSpan.Zero
+            };
+
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                TokenValidationParameters = tokenValidationParameters
+            });
 
             app.UseCors("CorsPolicy");
 

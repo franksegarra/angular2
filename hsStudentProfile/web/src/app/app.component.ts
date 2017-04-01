@@ -1,5 +1,7 @@
 import { Component} from '@angular/core';
 import { Config } from './config.service';
+import { AuthService } from './services/auth.service';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -10,4 +12,5 @@ import * as $ from 'jquery';
 })
 export class AppComponent {
     pageTitle: string = Config.MAIN_HEADING;
+    constructor(private authService: AuthService) {}
 }

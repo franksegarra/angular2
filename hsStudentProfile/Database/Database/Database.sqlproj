@@ -91,6 +91,9 @@
     <Build Include="Views\studentProfilePictures.sql" />
     <Build Include="Tables\siteFeedback.sql" />
     <Build Include="Tables\studentCoaches.sql" />
+    <Build Include="Tables\userRoles.sql" />
+    <Build Include="Tables\users.sql" />
+    <Build Include="Tables\userLoginHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment1.sql" />

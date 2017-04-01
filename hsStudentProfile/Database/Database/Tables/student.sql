@@ -1,12 +1,11 @@
 ﻿CREATE TABLE [dbo].[student]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [profileName] VARCHAR(50) NOT NULL, 
-    [firstName] VARCHAR(50) NOT NULL, 
-    [lastName] VARCHAR(50) NOT NULL, 
-    [primaryEmail] VARCHAR(100) NOT NULL, 
-    [highSchoolId] INT NOT NULL, 
-    [graduationYear] INT NOT NULL, 
+	[id] INT NOT NULL, 
+    [firstName] VARCHAR(50) NULL, 
+    [lastName] VARCHAR(50) NULL, 
+    [primaryEmail] VARCHAR(100) NULL, 
+    [highSchoolId] INT NULL, 
+    [graduationYear] INT NULL, 
     [additionalInfo] VARCHAR(MAX) NULL, 
     [gpa] DECIMAL(18, 2) NULL, 
 	[satTestDate] datetime null,
@@ -27,6 +26,6 @@
     [created] DATETIME NOT NULL default getdate(), 
 	[collegemajor] varchar(100) null,
     CONSTRAINT [pk_student_id]  PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [CK_profileName] unique (profileName),
-	CONSTRAINT [FK_student_highSchoolId] FOREIGN KEY (highSchoolId) REFERENCES highSchool(id)
+	CONSTRAINT [FK_student_userid] FOREIGN KEY (id) REFERENCES [users](id),
+	CONSTRAINT [FK_student_highSchoolId] FOREIGN KEY (highSchoolId) REFERENCES [highSchool](id)
 )

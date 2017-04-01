@@ -33,7 +33,7 @@ export class MessageFormComponent implements OnInit {
         this.form = this.fb.group({
             "contactname": ["", Validators.required],
             "contactphone": [""],
-            "contactemail": ["", Validators.required],
+            "contactemail": ["", Validators.required], //, [Validators.pattern(`/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/`)] 
             "message": ["", Validators.required]
         });
     }

@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using webServices.Repositories;
 using webServices.Entities;
-using System.Linq.Expressions;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace webServices.Controllers
 {
     //[Route("api/[controller]")]
+    [Authorize(Policy = "DisneyUser")]
     public class ReadOnlyControllerBase<T> : Controller, IReadOnlyControllerBase<T>
             where T : class, IEntityBase, new()
     {

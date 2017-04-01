@@ -185,4 +185,12 @@ insert into studentCoaches(studentid, sortorder, name, description, email, phone
 insert into studentCoaches(studentid, sortorder, name, description, email, phone) values (1, 4, 'Rafael Rigueiro', 'Pitching Coach', 'rigueiro@gmail.com', '')
 GO
 
+insert into userRoles (role) values ('Guest')
+insert into userRoles (role) values ('Student')
+insert into userRoles (role) values ('Coach')
+insert into userRoles (role) values ('Admin')
+GO
+
+
+
 */

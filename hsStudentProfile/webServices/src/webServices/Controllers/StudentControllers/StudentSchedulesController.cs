@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using webServices.Repositories;
 using webServices.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace webServices.Controllers
 {

@@ -1,0 +1,38 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body" >
+        <form [formGroup]="form" (ngSubmit)="login()" class="ui form">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+               
+                        <!-- User Name -->
+                        <tr><td><div class="col-sm-12"><b>User Name:</b></div></td></tr>
+                        <tr><td><div class="col-sm-12">  
+                            <input type="text" formControlName = 'username' placeholder="Enter Your User Name (Required)" style="width:100%; padding: 6px 12px;">  
+                        </div></td></tr>
+               
+                        <!-- Password -->
+                        <tr><td><div class="col-sm-12"><b>Password:</b></div></td></tr>
+                        <tr><td><div class="col-sm-12">  
+                            <input type="password" formControlName = 'password' placeholder="Enter Your Password (Required)" style="width:100%; padding: 6px 12px;">  
+                        </div></td></tr>
+               
+                        <!-- Actions -->
+                        <tr>
+                            <td>
+                                <div class="col-sm-1"><button type="submit" [disabled]="!form.valid" class="ui button">Login</button></div>  
+                                <div class="col-sm-1"><a [routerLink]="['/register']" class="btn btn-link">Register</a></div>
+                                <div class="col-sm-2"><a [routerLink]="['/forgotpw']" class="btn btn-link">Forgot Password?</a></div>
+                                <div class="col-sm-1"><a [routerLink]="['/forgotusername']" class="btn btn-link">Forgot User Name?</a></div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table> 
+            </div> 
+        </form> 
+    </div>
+</div>
