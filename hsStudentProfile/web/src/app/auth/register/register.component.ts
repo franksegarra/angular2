@@ -18,8 +18,8 @@ export class RegisterComponent {
     roles: SelectItem[];
 
     form: FormGroup;
-    username = new FormControl("", Validators.required);
-    email = new FormControl("", Validators.required);
+    profilename = new FormControl("", Validators.required);
+    primaryemail = new FormControl("", Validators.required);
     password = new FormControl("", Validators.required);
     passwordval = new FormControl("", Validators.required);
     selectedrole = new FormControl("", Validators.required);
@@ -34,8 +34,8 @@ export class RegisterComponent {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            "username": ["", Validators.required],
-            "email": ["", Validators.required],
+            "profilename": ["", Validators.required],
+            "primaryemail": ["", Validators.required],
             "password": ["", Validators.required],
             "passwordval": ["", Validators.required],
             "selectedrole": ["", Validators.required]
@@ -47,10 +47,10 @@ export class RegisterComponent {
 
         var aUser:User = {
             id: 0,
-            username: this.form.value['username'],
-            email: this.form.value['email'],
+            profilename: this.form.value['profilename'],
+            primaryemail: this.form.value['primaryemail'],
             password: this.form.value['password'],
-            role: (this.form.value['selectedrole'] == 'student') ? 2 : 3
+            roleid: (this.form.value['selectedrole'] == 'student') ? 2 : 3
         };
 
         this.userService.create(aUser)

@@ -12,5 +12,6 @@ import * as $ from 'jquery';
 })
 export class AppComponent {
     pageTitle: string = Config.MAIN_HEADING;
+
     constructor(private authService: AuthService) {}
 }

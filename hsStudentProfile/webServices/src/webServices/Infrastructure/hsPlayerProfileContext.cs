@@ -51,16 +51,6 @@ namespace webServices.Infrastructure
             // HighSchool
             modelBuilder.Entity<HighSchool>().Property(p => p.highschoolname).HasMaxLength(100);
 
-            // Student - Moved to user
-            //modelBuilder.Entity<Student>().Property(p => p.firstname).HasMaxLength(50);
-            //modelBuilder.Entity<Student>().Property(p => p.firstname).IsRequired();
-            //modelBuilder.Entity<Student>().Property(p => p.lastname).HasMaxLength(50);
-            //modelBuilder.Entity<Student>().Property(p => p.lastName).IsRequired();
-            //modelBuilder.Entity<Student>().Property(p => p.profileName).HasMaxLength(50);
-            //modelBuilder.Entity<Student>().Property(p => p.profileName).IsRequired();
-            //modelBuilder.Entity<Student>().Property(p => p.primaryEmail).HasMaxLength(100);
-            //modelBuilder.Entity<Student>().Property(p => p.primaryEmail).IsRequired();
-
             // StudentClasses
             modelBuilder.Entity<StudentClasses>().Property(p => p.classname).HasMaxLength(50);
             modelBuilder.Entity<StudentClasses>().Property(p => p.lettergrade).HasMaxLength(2);

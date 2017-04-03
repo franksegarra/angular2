@@ -46,13 +46,13 @@ namespace webServices.Controllers.JWT
             var identity = await GetClaimsIdentity(applicationUser);
             if (identity == null)
             {
-                _logger.LogInformation($"Invalid username ({applicationUser.username}) or password ({applicationUser.password})");
+                _logger.LogInformation($"Invalid username ({applicationUser.profilename}) or password ({applicationUser.password})");
                 return BadRequest("Invalid credentials");
             }
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.username),
+                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.profilename),
                 new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
                     identity.FindFirst("Role")
@@ -109,7 +109,7 @@ namespace webServices.Controllers.JWT
 
         private Task<ClaimsIdentity> GetClaimsIdentity(ApplicationUser user)
         {
-            ClaimsIdentity claim = userval.ValidateUser(user.username, user.password);
+            ClaimsIdentity claim = userval.ValidateUser(user.profilename, user.password);
             return Task.FromResult(claim);
         }
     }

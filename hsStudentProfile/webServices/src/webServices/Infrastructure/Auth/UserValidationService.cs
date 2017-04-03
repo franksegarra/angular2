@@ -4,6 +4,8 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using webServices.Entities;
+using webServices.Entities.Email;
+using webServices.Infrastructure.EmailService;
 using webServices.Repositories;
 
 //To base64 string from bytes
@@ -18,17 +20,88 @@ namespace webServices.Infrastructure.Auth
         private EntityBaseRepository<Guest> _guest { get; set; }
         private EntityBaseRepository<Users> _users { get; set; }
         private EntityBaseRepository<Student> _students { get; set; }
+        private EntityBaseRepository<UserLoginHistory> _loginhistory { get; set; }
+        private readonly IEmailService _emailService;
 
         private const int SaltSize = 16, HashIter = 10000, HashSize = 20;
 
-        public UserValidationService(EntityBaseRepository<Guest> guest, EntityBaseRepository<Users> users, EntityBaseRepository<Student> students)
+        public UserValidationService(
+            EntityBaseRepository<Guest> guest, 
+            EntityBaseRepository<Users> users, 
+            EntityBaseRepository<Student> students,
+            EntityBaseRepository<UserLoginHistory> loginhistory,
+            IEmailService emailService
+            )
         {
             _guest = guest;
             _users = users;
             _students = students;
+            _loginhistory = loginhistory;
+            _emailService = emailService;
         }
 
-        public ClaimsIdentity ValidateUser(string username, string password)
+        public bool AddUser(Users user)
+        {
+            try
+            {
+
+                //User row
+                Users newUser = new Users();
+                newUser.profilename = user.profilename;
+                newUser.primaryemail = user.primaryemail;
+                newUser.roleid = user.roleid;
+                newUser.passwordsalt = CreateSalt();
+                newUser.password = PasswordHash(user.password, newUser.passwordsalt);
+                newUser.passwordfailuressincelastsuccess = 0;
+                newUser.isconfirmed = false;
+                newUser.created = DateTime.Now;
+                _users.Add(newUser);
+
+                if (newUser.roleid == 2)
+                {
+                    Student st = new Student();
+                    st.id = newUser.id;
+                    st.created = newUser.created;
+                    _students.Add(st);
+                }
+                else
+                {
+                    //Coach
+                }
+
+                //Send Activation email
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //Log error here
+                return false;
+            }
+        }
+
+        public bool ActivateUser(Users user)
+        {
+            return true;
+        }
+
+        public bool ForgotPassword(Users user)
+        {
+            return true;
+        }
+
+        public bool ResetForgotPassword(Users user)
+        {
+            return true;
+        }
+
+        public bool ForgotProfileName(Users user)
+        {
+            return true;
+        }
+
+        public ClaimsIdentity ValidateUser(string profilename, string password)
         {
             string passHash;
             string userSalt;
@@ -37,8 +110,8 @@ namespace webServices.Infrastructure.Auth
 
             try
             {
-                //Get username, password, and salt from user table
-                if (username.ToLower() == "guest")
+                //Get profilename, password, and salt from user table
+                if (profilename.ToLower() == "guest")
                 {
                     //Only one row.  Just get it
                     guest = _guest.GetAll().FirstOrDefault();
@@ -47,7 +120,7 @@ namespace webServices.Infrastructure.Auth
                 }
                 else
                 {
-                    user = _users.FindBy(u => u.profilename == username).FirstOrDefault();
+                    user = _users.FindBy(u => u.profilename == profilename).FirstOrDefault();
                     passHash = user.password;
                     userSalt = user.passwordsalt;
                 }
@@ -64,16 +137,22 @@ namespace webServices.Infrastructure.Auth
                 if (VerifyPassword(password, passHash, userSalt))
                 {
                     //If ok, create claim
-                    if (username.ToLower() == "guest")
+                    if (profilename.ToLower() == "guest")
                     {
                         return new ClaimsIdentity
                         (
-                            new GenericIdentity(username, "Token"),
+                            new GenericIdentity(profilename, "Token"),
                             new[] { new Claim("Role", "guest") }
                         );
                     }
                     else
                     {
+                        //Add row to login history
+                        UserLoginHistory ulh = new UserLoginHistory();
+                        ulh.id = user.id;
+                        ulh.created = DateTime.Now;
+                        _loginhistory.Add(ulh);
+
                         string role;
                         switch (user.roleid)
                         {
@@ -89,9 +168,10 @@ namespace webServices.Infrastructure.Auth
 
                         return new ClaimsIdentity
                         (
-                            new GenericIdentity(username, "Token"),
+                            new GenericIdentity(profilename, "Token"),
                             new[] { new Claim("Role", role),
-                                    new Claim("userid", user.id.ToString())
+                                    new Claim("userid", user.id.ToString()),
+                                    new Claim("firstname", user.firstname)
                             }
                         );
                     }
@@ -106,29 +186,8 @@ namespace webServices.Infrastructure.Auth
             return null;
         }
 
-        public bool AddUser(Users user)
-        {
-            try
-            {
-                user.passwordsalt = CreateSalt();
-                user.password = PasswordHash(user.password, user.passwordsalt);
-                user.passwordfailuressincelastsuccess = 0;
-                _users.Add(user);
-                
-                Student st = new Student();
-                st.id = user.id;
-                _students.Add(st);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                //Log error here
-                return false;
-            }
-        }
-
-        public void ChangePassword(string username, string password)
+        //Normal Change Password
+        public void ChangePassword(string profilename, string password)
         { }
 
         public bool VerifyPassword(string password, string passHash, string userSalt)
@@ -163,6 +222,26 @@ namespace webServices.Infrastructure.Auth
             rng.GetBytes(_salt);
             return Convert.ToBase64String(_salt);
         }
-
+        
+        public EmailMessage SendActivationEmail()
+        {
+            EmailMessage newEmail = new EmailMessage();
+            return newEmail;
+        }
+        public EmailMessage SendConfirmationEmail()
+        {
+            EmailMessage newEmail = new EmailMessage();
+            return newEmail;
+        }
+        public EmailMessage SendResetPasswordEmail()
+        {
+            EmailMessage newEmail = new EmailMessage();
+            return newEmail;
+        }
+        public EmailMessage SendUserIdEmail()
+        {
+            EmailMessage newEmail = new EmailMessage();
+            return newEmail;
+        }
     }
 }

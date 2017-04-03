@@ -14,7 +14,7 @@ export class ForgotUserNameComponent {
     public pageTitle: string = 'Forgot User Name';
     
     form: FormGroup;
-    email = new FormControl("", Validators.required);
+    primaryemail = new FormControl("", Validators.required);
 
     loading = false;
 
@@ -27,14 +27,14 @@ export class ForgotUserNameComponent {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            "email": ["", Validators.required]
+            "primaryemail": ["", Validators.required]
         });
     }
 
     onSubmit() {
         this.loading = true;
 
-        this.userService.create(this.form.value['email'])
+        this.userService.create(this.form.value['primaryemail'])
             .subscribe(
                 data => {
                     this.alertService.success('Forgot user name message', true);

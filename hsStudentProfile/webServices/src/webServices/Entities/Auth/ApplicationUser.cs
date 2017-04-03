@@ -7,7 +7,7 @@ namespace webServices.Entities.Auth
 {
     public class ApplicationUser
     {
-        public string username { get; set; }
+        public string profilename { get; set; }
         public string password { get; set; }
     }
 }

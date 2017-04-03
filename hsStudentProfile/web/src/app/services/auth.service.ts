@@ -22,8 +22,8 @@ export class AuthService {
         this.token = currentUser && currentUser.token;
     }
 
-  login(username: string, password: string): Observable<boolean> {
-    let body = JSON.stringify({ username: username, password: password });
+  login(profilename: string, password: string): Observable<boolean> {
+    let body = JSON.stringify({ profilename: profilename, password: password });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -39,8 +39,8 @@ export class AuthService {
                 this.userid = userid;
                 this.role = role;
                 this.loggedIn = true;
-                // store username and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, userid: userid, role: role }));
+                // store profilename and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify({ profilename: profilename, token: token, userid: userid, role: role }));
                 // return true to indicate successful login
                 return true;
             } else {
@@ -80,4 +80,10 @@ export class AuthService {
     return this.options;
   }
 
+  getProfileName(): string {
+    if (this.isLoggedIn()) 
+        return JSON.parse(localStorage.getItem('currentUser')).profilename;
+    else
+        return null;
+  }
 }

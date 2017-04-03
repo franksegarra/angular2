@@ -9,15 +9,16 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class='navbar-brand' routerLink="">{{ pageTitle }}</a>   
+            <a class='navbar-brand' routerLink="">{{ pageTitle }}</a>  
         </div>
 
+        <p class="navbar-text" *ngIf="authService.isLoggedIn()"><b style="color: green; font-size: medium" >Welcome back {{ authService.getProfileName() }}!</b></p>
+
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 1%">
                 <li><a routerLink="register" *ngIf="!authService.isLoggedIn()"><b style="color: red; font-size: medium" >Click here to create your free profile!</b></a></li>
                 <li><a routerLink="login" *ngIf="!authService.isLoggedIn()">Log In</a></li>
                 <li><a routerLink="logout" *ngIf="authService.isLoggedIn()">Log Out</a></li>
-                <!--<li><a (click)=authService.logout() *ngIf="authService.isLoggedIn()">Log Out</a></li>-->
                 <li><a routerLink="feedback">Feedback</a></li>
                 <li><a routerLink="about">About</a></li>
             </ul>

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     public pageTitle: string = 'Login';
 
     form: FormGroup;
-    username = new FormControl("", Validators.required);
+    profilename = new FormControl("", Validators.required);
     password = new FormControl("", Validators.required);
 
     loading = false;
@@ -35,14 +35,14 @@ export class LoginComponent implements OnInit {
         console.log([this.returnUrl]);
 
         this.form = this.fb.group({
-            "username": ["francissegarra", Validators.required],
+            "profilename": ["francissegarra", Validators.required],
             "password": ["", Validators.required]
         });
     }
 
     login(): void {
         this.loading = true;
-        this.authService.login(this.form.value['username'], this.form.value['password'])
+        this.authService.login(this.form.value['profilename'], this.form.value['password'])
             .subscribe(
                 (result)=> {
                     if (result === true) {

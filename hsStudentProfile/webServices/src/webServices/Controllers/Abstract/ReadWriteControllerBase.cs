@@ -22,7 +22,7 @@ namespace webServices.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] T item)
+        public virtual IActionResult Post([FromBody] T item)
         {
             if (item == null)
             {

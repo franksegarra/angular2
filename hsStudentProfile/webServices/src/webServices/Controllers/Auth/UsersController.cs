@@ -18,15 +18,9 @@ namespace webServices.Controllers
             userval = _uv;
         }
 
-        //private readonly IEmailService _emailService;
-        //public EmailController(IEmailService emailService)
-        //{
-        //    _emailService = emailService;
-        //}
-
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Index([FromBody] Users user)
+        public override IActionResult Post([FromBody] Users user)
         {
             if (user == null)
             {
@@ -39,7 +33,12 @@ namespace webServices.Controllers
                 {
                     //create user here
                     if (userval.AddUser(user))
+                    {
+                        //Send Activation Email
+
                         return StatusCode(StatusCodes.Status201Created);
+                    }
+
                     //else
                     //What code should we return if we fail?
                 }
