@@ -1,35 +1,35 @@
-﻿CREATE VIEW [dbo].[StudentProfile] AS
-SELECT 
+﻿create view [dbo].[studentprofile] as
+select 
 	s.id, 
 	s.id as studentid, 
-	u.profileName, 
-	s.firstName, 
-	s.lastName, 
-	s.primaryEmail, 
-	s.highSchoolId,
-	s.graduationYear,
-	s.additionalInfo, 
+	u.profilename, 
+	u.firstname, 
+	u.lastname, 
+	u.primaryemail, 
+	s.highschoolid,
+	s.graduationyear,
+	s.additionalinfo, 
 	s.gpa, 
-	s.satTestDate, 
-	s.satScore, 
-	s.actTestDate, 
-	s.actScore, 
+	s.sattestdate, 
+	s.satscore, 
+	s.acttestdate, 
+	s.actscore, 
 	s.ncaaid, 
-	s.phone, 
-	s.streetAddress1, 
-	s.streetAddress2, 
-	s.city, 
-	s.state, 
-	s.zip, 
-	s.displayAddrAndPhone, 
-	h.highSchoolName,
-	s.profilePictureId,
-	p.filename as profilePicturefilename,
+	u.phone, 
+	u.streetaddress1, 
+	u.streetaddress2, 
+	u.city, 
+	u.state, 
+	u.zip, 
+	u.displayaddrandphone, 
+	h.highschoolname,
+	s.profilepictureid,
+	p.filename as profilepicturefilename,
 	s.height,
 	s.weight,
 	s.created,
 	s.collegemajor
-FROM student s 
+from student s 
 	left outer join users u on u.id = s.id
-	left outer join highSchool h on s.highSchoolId = h.id
-	left outer join studentPictures p on s.profilePictureId = p.id
+	left outer join highschool h on s.highschoolid = h.id
+	left outer join studentpictures p on s.profilepictureid = p.id

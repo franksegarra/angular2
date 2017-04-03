@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace webServices.Controllers
 {
     //[Route("api/[controller]")]
-    [Authorize(Policy = "DisneyUser")]
+    [Authorize(Policy = "student")]
     public class StudentDetailController<T> : ReadWriteControllerBase<T>, IStudentDetailController<T>
             where T : class, IEntityBase, IStudentEntityBase, new()
     {

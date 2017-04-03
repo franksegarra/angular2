@@ -12,7 +12,7 @@ namespace webServices.Entities
         }
 
         public int? id { get; set; }
-        public string highSchoolName { get; set; }
+        public string highschoolname { get; set; }
         public DateTime? created { get; set; }
     }
 }

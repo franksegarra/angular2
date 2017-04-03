@@ -1,13 +1,13 @@
-﻿CREATE TABLE [dbo].[studentVideos]
+﻿create table [dbo].[studentvideos]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [studentid] INT NOT NULL, 
-    [category] VARCHAR(50) NOT NULL default 'Other Student Videos', 
-    [title] VARCHAR(100) NOT NULL, 
-    [filename] VARCHAR(100) NOT NULL,
-	[description] VARCHAR(255) NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_studentVideos_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_studentVideos_student] FOREIGN KEY (studentid) REFERENCES [student](id)
+	[id] int identity(1,1) not null, 
+    [studentid] int not null, 
+    [category] varchar(50) not null default 'other student videos', 
+    [title] varchar(100) not null, 
+    [filename] varchar(100) not null,
+	[description] varchar(255) null, 
+    [created] datetime not null default getdate(), 
+    constraint [pk_studentvideos_id] primary key clustered (id),
+    constraint [fk_studentvideos_student] foreign key (studentid) references [student](id)
 )
 

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectButtonModule } from 'primeng/primeng';
 
 //Main Menu features
 import { AboutComponent } from './about/about.component';
@@ -43,7 +44,8 @@ import { UserService }  from './services/user.service';
       FeedbackModule,
       BrowserAnimationsModule,
       FormsModule, 
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      SelectButtonModule
   ],
   declarations: [ 
       AppComponent

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[studentBaseball]
+﻿create table [dbo].[studentbaseball]
 (
 	[id] int identity(1,1) not null, 
     [studentid] int not null unique, 
@@ -10,7 +10,7 @@
 	[travelurl] varchar(255) null,
 	[runningtimelocation] varchar(100) null,
 	[runningtimelocationurl] varchar(255) null,
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_studentBaseball_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_studentBaseball_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
+    [created] datetime not null default getdate(), 
+    constraint [pk_studentbaseball_id] primary key clustered (id),
+    constraint [fk_studentbaseball_student] foreign key (studentid) references [student](id), 
 )

@@ -26,6 +26,10 @@ namespace webServices.Infrastructure
         public DbSet<StudentProfilePictures> StudentProfilePictures { get; set; }
         public DbSet<SiteFeedback> SiteFeedback { get; set; }
         public DbSet<StudentCoaches> StudentCoaches { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<UserLoginHistory> UserLoginHistory { get; set; }
+        public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<Guest> Guest { get; set; }
         
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {
@@ -45,29 +49,29 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<ActivityType>().Property(p => p.activitytype).HasMaxLength(100);
 
             // HighSchool
-            modelBuilder.Entity<HighSchool>().Property(p => p.highSchoolName).HasMaxLength(100);
+            modelBuilder.Entity<HighSchool>().Property(p => p.highschoolname).HasMaxLength(100);
 
-            // Student
-            modelBuilder.Entity<Student>().Property(p => p.firstName).HasMaxLength(50);
-            modelBuilder.Entity<Student>().Property(p => p.firstName).IsRequired();
-            modelBuilder.Entity<Student>().Property(p => p.lastName).HasMaxLength(50);
-            modelBuilder.Entity<Student>().Property(p => p.lastName).IsRequired();
-            modelBuilder.Entity<Student>().Property(p => p.profileName).HasMaxLength(50);
-            modelBuilder.Entity<Student>().Property(p => p.profileName).IsRequired();
-            modelBuilder.Entity<Student>().Property(p => p.primaryEmail).HasMaxLength(100);
-            modelBuilder.Entity<Student>().Property(p => p.primaryEmail).IsRequired();
+            // Student - Moved to user
+            //modelBuilder.Entity<Student>().Property(p => p.firstname).HasMaxLength(50);
+            //modelBuilder.Entity<Student>().Property(p => p.firstname).IsRequired();
+            //modelBuilder.Entity<Student>().Property(p => p.lastname).HasMaxLength(50);
+            //modelBuilder.Entity<Student>().Property(p => p.lastName).IsRequired();
+            //modelBuilder.Entity<Student>().Property(p => p.profileName).HasMaxLength(50);
+            //modelBuilder.Entity<Student>().Property(p => p.profileName).IsRequired();
+            //modelBuilder.Entity<Student>().Property(p => p.primaryEmail).HasMaxLength(100);
+            //modelBuilder.Entity<Student>().Property(p => p.primaryEmail).IsRequired();
 
             // StudentClasses
-            modelBuilder.Entity<StudentClasses>().Property(p => p.className).HasMaxLength(50);
-            modelBuilder.Entity<StudentClasses>().Property(p => p.letterGrade).HasMaxLength(2);
+            modelBuilder.Entity<StudentClasses>().Property(p => p.classname).HasMaxLength(50);
+            modelBuilder.Entity<StudentClasses>().Property(p => p.lettergrade).HasMaxLength(2);
             modelBuilder.Entity<StudentClasses>().Property(p => p.studentid).IsRequired();
             modelBuilder.Entity<StudentClasses>().Property(p => p.grade).IsRequired();
 
             // StudentExtraCurricular
             modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.studentid).IsRequired();
-            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecName).IsRequired();
-            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecDescription).IsRequired();
-            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecName).HasMaxLength(100);
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecname).IsRequired();
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecdescription).IsRequired();
+            modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.ecname).HasMaxLength(100);
 
             // StudentSchedules
             modelBuilder.Entity<StudentSchedules>().Property(p => p.activitydesc).HasMaxLength(255);
@@ -80,16 +84,16 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentSchedules>().Property(p => p.location).IsRequired();
 
             // StudentLinks
-            modelBuilder.Entity<StudentLinks>().Property(p => p.linkDescription).HasMaxLength(100);
-            modelBuilder.Entity<StudentLinks>().Property(p => p.linkUrl).HasMaxLength(255);
+            modelBuilder.Entity<StudentLinks>().Property(p => p.linkdescription).HasMaxLength(100);
+            modelBuilder.Entity<StudentLinks>().Property(p => p.linkurl).HasMaxLength(255);
             modelBuilder.Entity<StudentLinks>().Property(p => p.studentid).IsRequired();
-            modelBuilder.Entity<StudentLinks>().Property(p => p.linkDescription).IsRequired();
-            modelBuilder.Entity<StudentLinks>().Property(p => p.linkUrl).IsRequired();
+            modelBuilder.Entity<StudentLinks>().Property(p => p.linkdescription).IsRequired();
+            modelBuilder.Entity<StudentLinks>().Property(p => p.linkurl).IsRequired();
 
             // StudentActivities
-            modelBuilder.Entity<StudentActivities>().Property(p => p.coachEmail).HasMaxLength(100);
-            modelBuilder.Entity<StudentActivities>().Property(p => p.coachName).HasMaxLength(255);
-            modelBuilder.Entity<StudentActivities>().Property(p => p.coachPhone).HasMaxLength(50);
+            modelBuilder.Entity<StudentActivities>().Property(p => p.coachemail).HasMaxLength(100);
+            modelBuilder.Entity<StudentActivities>().Property(p => p.coachname).HasMaxLength(255);
+            modelBuilder.Entity<StudentActivities>().Property(p => p.coachphone).HasMaxLength(50);
             modelBuilder.Entity<StudentActivities>().Property(p => p.studentid).IsRequired();
             modelBuilder.Entity<StudentActivities>().Property(p => p.activityid).IsRequired();
 
@@ -117,8 +121,8 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentBaseball>().Property(p => p.studentid).IsRequired();
             modelBuilder.Entity<StudentBaseball>().Property(p => p.bats).HasMaxLength(1);
             modelBuilder.Entity<StudentBaseball>().Property(p => p.throws).HasMaxLength(1);
-            modelBuilder.Entity<StudentBaseball>().Property(p => p.travelTeam).HasMaxLength(100);
-            modelBuilder.Entity<StudentBaseball>().Property(p => p.travelUrl).HasMaxLength(255);
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.travelteam).HasMaxLength(100);
+            modelBuilder.Entity<StudentBaseball>().Property(p => p.travelurl).HasMaxLength(255);
 
             //StudentContact
             modelBuilder.Entity<StudentContact>().Property(p => p.studentid).IsRequired();

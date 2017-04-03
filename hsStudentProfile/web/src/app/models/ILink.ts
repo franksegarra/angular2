@@ -1,6 +1,6 @@
 export interface ILink {
     id: number;
-    linkName: string;
-    linkDescription: string;
-    linkUrl: string;
+    linkname: string;
+    linkdescription: string;
+    linkurl: string;
 }

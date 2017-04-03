@@ -1,13 +1,13 @@
-﻿CREATE TABLE [dbo].[studentCoaches]
+﻿create table [dbo].[studentcoaches]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [studentid] INT NOT NULL, 
-	[sortorder] INT NOT NULL, 
+	[id] int identity(1,1) not null, 
+    [studentid] int not null, 
+	[sortorder] int not null, 
 	[name] varchar(100) not null,
-    [description] VARCHAR(100) NOT NULL, 
-    [email] VARCHAR(100) NULL, 
-    [phone] VARCHAR(10) NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_studentCoaches_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_studentCoaches_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
+    [description] varchar(100) not null, 
+    [email] varchar(100) null, 
+    [phone] varchar(10) null, 
+    [created] datetime not null default getdate(), 
+    constraint [pk_studentcoaches_id] primary key clustered (id),
+    constraint [fk_studentcoaches_student] foreign key (studentid) references [student](id), 
 )

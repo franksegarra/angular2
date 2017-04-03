@@ -18,7 +18,7 @@ export class VideosComponent implements OnInit {
     constructor(public videoService:VideoService) {}
 
     ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Videos';
+        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Videos';
         this.videoService.appSetup("videoDisplay", this.videolist);
     }
 

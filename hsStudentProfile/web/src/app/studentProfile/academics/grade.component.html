@@ -10,11 +10,11 @@
         </thead>
         <tbody>
             <tr *ngFor='let class of classes | gradeFilter: {grade: grade}' >
-                <td>{{ class.className }}</td>
-                <td>{{ class.finalAverage }}</td>
-                <td>{{ class.letterGrade }}</td>   
-                <td *ngIf="class.collegeCredit === 1" >Yes</td>   
-                <td *ngIf="class.collegeCredit === 0" ></td>   
+                <td>{{ class.classname }}</td>
+                <td>{{ class.finalaverage }}</td>
+                <td>{{ class.lettergrade }}</td>   
+                <td *ngIf="class.collegecredit === 1" >Yes</td>   
+                <td *ngIf="class.collegecredit === 0" ></td>   
             </tr>
         </tbody>
     </table>

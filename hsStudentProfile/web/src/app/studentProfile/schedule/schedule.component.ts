@@ -13,6 +13,6 @@ export class ScheduleComponent implements OnInit {
     pageTitle: string;
 
     ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + "Where I'll be";
+        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + "Where I'll be";
     };
 }

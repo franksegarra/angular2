@@ -34,6 +34,30 @@ if exists(select name from sysobjects where name = 'studentActivities')
 drop table [dbo].[studentActivities]
 go
 
+if exists(select name from sysobjects where name = 'studentBBHitting')
+drop table [dbo].[studentBBHitting]
+go
+
+if exists(select name from sysobjects where name = 'studentCoaches')
+drop table [dbo].[studentCoaches]
+go
+
+if exists(select name from sysobjects where name = 'studentBaseball')
+drop table [dbo].[studentBaseball]
+go
+
+if exists(select name from sysobjects where name = 'studentContact')
+drop table [dbo].[studentContact]
+go
+
+if exists(select name from sysobjects where name = 'studentExtracurricular')
+drop table [dbo].[studentExtracurricular]
+go
+
+if exists(select name from sysobjects where name = 'studentPositions')
+drop table [dbo].[studentPositions]
+go
+
 if exists(select name from sysobjects where name = 'student')
 drop table [dbo].[student]
 go
@@ -48,6 +72,10 @@ go
 
 if exists(select name from sysobjects where name = 'activity')
 drop table [dbo].[activity]
+go
+
+if exists(select name from sysobjects where name = 'siteFeedback')
+drop table [dbo].[sitefeedback]
 go
 */
 

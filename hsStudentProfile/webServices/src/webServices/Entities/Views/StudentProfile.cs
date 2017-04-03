@@ -9,13 +9,13 @@ namespace webServices.Entities
         }
         public int? id { get; set; }
         public int studentid { get; set; }
-        public string profileName { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string primaryEmail { get; set; }
-        public int highSchoolId { get; set; }
-        public int graduationYear { get; set; }
-        public string additionalInfo { get; set; }
+        public string profilename { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string primaryemail { get; set; }
+        public int highschoolid { get; set; }
+        public int graduationyear { get; set; }
+        public string additionalinfo { get; set; }
         public decimal? gpa { get; set; }
         public DateTime? sattestdate { get; set; }
         public int? satscore { get; set; }

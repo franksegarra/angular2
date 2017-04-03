@@ -11,16 +11,16 @@
                 <col span="1" style="width: 25%;">
             </colgroup>
 
-            <tr><td><b>Student Name:</b></td><td>{{ myprofile.firstName + ' ' + myprofile.lastName }}</td><td></td></tr>
+            <tr><td><b>Student Name:</b></td><td>{{ myprofile.firstname + ' ' + myprofile.lastname }}</td><td></td></tr>
             <tr><td><b>High School:</b></td><td>{{ myprofile.highschoolname }}</td><td></td></tr>
-            <tr><td><b>Graduation Year:</b></td><td>{{ myprofile.graduationYear }}</td><td></td></tr>
+            <tr><td><b>Graduation Year:</b></td><td>{{ myprofile.graduationyear }}</td><td></td></tr>
             <tr><td><b>GPA:</b></td><td>{{ myprofile.gpa }}</td><td></td></tr>
             <tr><td><b>SAT Test Date:</b></td><td>{{ myprofile.sattestdate | dateFormat }}</td><td><b>Score:</b> {{ myprofile.satscore }}</td></tr>
             <tr><td><b>ACT Test Date/Score:</b></td><td>{{ myprofile.acttestdate | dateFormat }}</td><td><b>Score:</b> {{ myprofile.actscore }}</td></tr>
             <tr><td><b>Intended College Major:</b></td><td>{{ myprofile.collegemajor }}</td><td></td></tr>
             <tr><td colspan="3"></td></tr>
             <tr><td colspan="3"><b>Personal Statement</b></td></tr>
-            <tr><td colspan="2">{{ myprofile.additionalInfo }}</td></tr>
+            <tr><td colspan="2">{{ myprofile.additionalinfo }}</td></tr>
         </table>
     </div>
     

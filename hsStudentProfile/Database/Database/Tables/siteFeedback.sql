@@ -1,11 +1,11 @@
-﻿CREATE TABLE [dbo].[siteFeedback]
+﻿create table [dbo].[sitefeedback]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [contactname] VARCHAR(100) NOT NULL, 
-    [contactemail] VARCHAR(100) NOT NULL, 
-    [contactphone] VARCHAR(10) NULL, 
-    [message] VARCHAR(MAX) NOT NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
+	[id] int identity(1,1) not null, 
+    [contactname] varchar(100) not null, 
+    [contactemail] varchar(100) not null, 
+    [contactphone] varchar(10) null, 
+    [message] varchar(max) not null, 
+    [created] datetime not null default getdate(), 
 	[ipaddress] varchar(20) null,
-    CONSTRAINT [pk_siteFeedback_id] PRIMARY KEY CLUSTERED (id),
+    constraint [pk_sitefeedback_id] primary key clustered (id),
 )

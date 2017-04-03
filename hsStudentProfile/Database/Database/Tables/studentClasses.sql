@@ -1,14 +1,14 @@
-﻿CREATE TABLE [dbo].[studentClasses]
+﻿create table [dbo].[studentclasses]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [studentid] INT NOT NULL, 
-    [grade] INT NOT NULL, 
-    [className] VARCHAR(50) NOT NULL, 
-    [finalAverage] SMALLINT NULL, 
-    [letterGrade] VARCHAR(2) NULL, 
-    [collegeCredit] SMALLINT NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_studentClasses_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_studentClasses_player] FOREIGN KEY ([studentid]) REFERENCES [student](id), 
-    CONSTRAINT [CK_studentClasses_finalAverage] CHECK (finalAverage < 105)
+	[id] int identity(1,1) not null, 
+    [studentid] int not null, 
+    [grade] int not null, 
+    [classname] varchar(50) not null, 
+    [finalaverage] smallint null, 
+    [lettergrade] varchar(2) null, 
+    [collegecredit] smallint null, 
+    [created] datetime not null default getdate(), 
+    constraint [pk_studentclasses_id] primary key clustered (id),
+    constraint [fk_studentclasses_player] foreign key ([studentid]) references [student](id), 
+    constraint [ck_studentclasses_finalaverage] check (finalaverage < 105)
 )

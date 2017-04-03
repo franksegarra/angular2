@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
 import { IBBProfile } from '../../models/IBBProfile';
-import { HittingCategory } from '../../models/HittingCategory';
 import { ICoach } from '../../models/ICoach';
+import { HittingCategory } from '../../models/HittingCategory';
 
 @Component({
     selector: 'pp-stats',
@@ -12,11 +12,11 @@ import { ICoach } from '../../models/ICoach';
 export class StatsComponent { 
     @Input() myprofile: IProfile;
     @Input() bbprofile: IBBProfile;
-    @Input() hittingcategories: Array<HittingCategory>; 
     @Input() coaches: Array<ICoach>; 
+    @Input() hittingcategories: Array<HittingCategory>; 
     pageTitle: string;
-    
+
     ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Stats';
+        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Stats';
     }
 }

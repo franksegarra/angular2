@@ -1,10 +1,10 @@
-﻿CREATE TABLE [dbo].[studentExtraCurricular]
+﻿create table [dbo].[studentextracurricular]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [studentid] INT NOT NULL, 
-    [ecName] VARCHAR(100) NOT NULL, 
-    [ecDescription] VARCHAR(MAX) NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_ec_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_ec_student] FOREIGN KEY (studentid) REFERENCES [student](id)
+	[id] int identity(1,1) not null, 
+    [studentid] int not null, 
+    [ecname] varchar(100) not null, 
+    [ecdescription] varchar(max) null, 
+    [created] datetime not null default getdate(), 
+    constraint [pk_ec_id] primary key clustered (id),
+    constraint [fk_ec_student] foreign key (studentid) references [student](id)
 )

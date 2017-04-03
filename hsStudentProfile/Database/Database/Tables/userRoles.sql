@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[userRoles]
+﻿create table [dbo].[userroles]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [role] VARCHAR(10) NOT NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_userRoles_id] PRIMARY KEY CLUSTERED (id)
+	[id] int identity(1,1) not null, 
+    [role] varchar(10) not null, 
+    [created] datetime not null default getdate(), 
+    constraint [pk_userroles_id] primary key clustered (id)
 )

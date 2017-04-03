@@ -11,9 +11,9 @@
                     <col span="1" style="width: 25%;">
                 </colgroup>
 
-                <tr><td><b>Student Name:</b></td><td>{{ myprofile.firstName + ' ' + myprofile.lastName }}</td><td></td></tr>
+                <tr><td><b>Student Name:</b></td><td>{{ myprofile.firstname + ' ' + myprofile.lastname }}</td><td></td></tr>
                 <tr><td><b>High School:</b></td><td>{{ myprofile.highschoolname }}</td><td></td></tr>
-                <tr><td><b>Graduation Year:</b></td><td>{{ myprofile.graduationYear }}</td><td></td></tr>
+                <tr><td><b>Graduation Year:</b></td><td>{{ myprofile.graduationyear }}</td><td></td></tr>
                 <tr><td><b>Height, Weight:</b></td><td>{{ myprofile.height + ', ' + myprofile.weight }}</td><td></td></tr>
                 <tr><td><b>Best 60 Time:</b></td><td>{{ bbprofile.runningtime }}</td><td><b>Location: </b><a href="{{ bbprofile.runningtimelocationurl }}" target="_blank">{{ bbprofile.runningtimelocation }}</a></td></tr>
                 <tr><td><b>Primary Position:</b></td><td>{{ bbprofile.position }}</td><td><b>Other Positions: </b>{{ bbprofile.otherpositions }}</td></tr>

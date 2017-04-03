@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace webServices.Controllers
 {
     //[Route("api/[controller]")]
-    [Authorize(Policy = "DisneyUser")]
+    //[Authorize(Policy = "student")]
     public class ReadOnlyControllerBase<T> : Controller, IReadOnlyControllerBase<T>
             where T : class, IEntityBase, new()
     {

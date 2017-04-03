@@ -8,8 +8,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using webServices.Entities;
 using webServices.Entities.Auth;
+using webServices.Infrastructure.Auth;
 using webServices.Infrastructure.JWT;
+using webServices.Repositories;
 
 namespace webServices.Controllers.JWT
 {
@@ -19,9 +22,12 @@ namespace webServices.Controllers.JWT
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings;
+        private IUserValidationService userval; 
 
-        public JwtController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory)
+        public JwtController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory, IUserValidationService _uv)
         {
+            userval = _uv;
+
             _jwtOptions = jwtOptions.Value;
             ThrowIfInvalidOptions(_jwtOptions);
 
@@ -35,22 +41,22 @@ namespace webServices.Controllers.JWT
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Get([FromForm] ApplicationUser applicationUser)
+        public async Task<IActionResult> Get([FromBody] ApplicationUser applicationUser)
         {
             var identity = await GetClaimsIdentity(applicationUser);
             if (identity == null)
             {
-                _logger.LogInformation($"Invalid username ({applicationUser.UserName}) or password ({applicationUser.Password})");
+                _logger.LogInformation($"Invalid username ({applicationUser.username}) or password ({applicationUser.password})");
                 return BadRequest("Invalid credentials");
             }
 
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, applicationUser.UserName),
-        new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-        new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-        identity.FindFirst("DisneyCharacter")
-      };
+                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.username),
+                new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
+                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
+                    identity.FindFirst("Role")
+            };
 
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(
@@ -67,7 +73,9 @@ namespace webServices.Controllers.JWT
             var response = new
             {
                 access_token = encodedJwt,
-                expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
+                expires_in = (int)_jwtOptions.ValidFor.TotalSeconds,
+                userid = identity.FindFirst("userid").Value,
+                role = identity.FindFirst("Role").Value
             };
 
             var json = JsonConvert.SerializeObject(response, _serializerSettings);
@@ -98,30 +106,11 @@ namespace webServices.Controllers.JWT
         private static long ToUnixEpochDate(DateTime date)
           => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
 
-        /// <summary>
-        /// IMAGINE BIG RED WARNING SIGNS HERE!
-        /// You'd want to retrieve claims through your claims provider
-        /// in whatever way suits you, the below is purely for demo purposes!
-        /// </summary>
-        private static Task<ClaimsIdentity> GetClaimsIdentity(ApplicationUser user)
+
+        private Task<ClaimsIdentity> GetClaimsIdentity(ApplicationUser user)
         {
-            //TODO: Set up user login validation
-            if (user.UserName == "MickeyMouse" && user.Password == "MickeyMouseIsBoss123")
-            {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.UserName, "Token"),
-                  new[]
-                  { new Claim("DisneyCharacter", "IAmMickey") }));
-            }
-
-            //TODO: Set up Guest login validation
-            if (user.UserName == "NotMickeyMouse" && user.Password == "NotMickeyMouseIsBoss123")
-            {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.UserName, "Token"),
-                  new Claim[] { }));
-            }
-
-            // Credentials are invalid, or account doesn't exist
-            return Task.FromResult<ClaimsIdentity>(null);
+            ClaimsIdentity claim = userval.ValidateUser(user.username, user.password);
+            return Task.FromResult(claim);
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[activityType]
+﻿create table [dbo].[activitytype]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [activitytype] VARCHAR(100) NOT NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_activitytype_id] PRIMARY KEY CLUSTERED (id)
+	[id] int identity(1,1) not null, 
+    [activitytype] varchar(100) not null, 
+    [created] datetime not null default getdate(), 
+    constraint [pk_activitytype_id] primary key clustered (id)
 )

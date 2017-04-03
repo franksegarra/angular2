@@ -1,17 +1,17 @@
-﻿CREATE TABLE [dbo].[studentSchedules]
+﻿create table [dbo].[studentschedules]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [studentid] INT NOT NULL, 
-    [activitydate] DATE NOT NULL, 
-    [starttime] VARCHAR(10) NULL, 
-    [activityid] INT NOT NULL, 
-    [activitydesc] VARCHAR(255) NULL, 
-    [activitytypeid] INT NULL, 
-    [location] VARCHAR(MAX) NULL, 
-    [linkText] VARCHAR(100) NULL, 
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_studentSchedules_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_studentSchedules_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
-    CONSTRAINT [FK_studentSchedules_activity] FOREIGN KEY (activityid) REFERENCES [activity](id), 
-    CONSTRAINT [FK_studentSchedules_activityType] FOREIGN KEY (activityid) REFERENCES [activityType](id)
+	[id] int identity(1,1) not null, 
+    [studentid] int not null, 
+    [activitydate] date not null, 
+    [starttime] varchar(10) null, 
+    [activityid] int not null, 
+    [activitydesc] varchar(255) null, 
+    [activitytypeid] int null, 
+    [location] varchar(max) null, 
+    [linktext] varchar(100) null, 
+    [created] datetime not null default getdate(), 
+    constraint [pk_studentschedules_id] primary key clustered (id),
+    constraint [fk_studentschedules_student] foreign key (studentid) references [student](id), 
+    constraint [fk_studentschedules_activity] foreign key (activityid) references [activity](id), 
+    constraint [fk_studentschedules_activitytype] foreign key (activityid) references [activitytype](id)
 )

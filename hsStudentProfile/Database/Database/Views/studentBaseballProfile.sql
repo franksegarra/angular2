@@ -1,5 +1,5 @@
-﻿CREATE VIEW [dbo].[studentBaseballProfile]
-AS 
+﻿create view [dbo].[studentbaseballprofile]
+as 
 select 
 	sb.id,
 	sb.studentid, 
@@ -15,17 +15,17 @@ select
 	sb.runningtimelocation,
 	sb.runningtimelocationurl,
 	sb.created
-from studentBaseball sb
-left outer join studentPositions sp1 on (sp1.studentid = sb.studentid and sp1.isprimary = 1)
-left outer join studentPictures pics on (sb.statsPictureId = pics.id)
+from studentbaseball sb
+left outer join studentpositions sp1 on (sp1.studentid = sb.studentid and sp1.isprimary = 1)
+left outer join studentpictures pics on (sb.statspictureid = pics.id)
 left outer join
 (
-	SELECT spOuter.studentid, STUFF((SELECT  ',' + position
-				FROM studentPositions spInner
-				WHERE isprimary = 0  
-				and spInner.studentid=spOuter.studentid
-				ORDER BY id
-			FOR XML PATH('')), 1, 1, '') AS otherPositions
-	FROM studentPositions spOuter
-	GROUP BY spOuter.studentid
+	select spouter.studentid, stuff((select  ',' + position
+				from studentpositions spinner
+				where isprimary = 0  
+				and spinner.studentid=spouter.studentid
+				order by id
+			for xml path('')), 1, 1, '') as otherpositions
+	from studentpositions spouter
+	group by spouter.studentid
 ) op on (op.studentid = sb.studentid)

@@ -1,6 +1,6 @@
-﻿CREATE VIEW [dbo].[studentBBHittingStats]
-AS 
-SELECT id,studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch
+﻿create view [dbo].[studentbbhittingstats]
+as 
+select id,studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,walks,hitbypitch
       ,sacflys,sacbunts,singles,doubles,triples,homeruns,runsbattediin,runsscored,stolenbases,
 	(plateappearances - walks - hitbypitch - sacflys - sacbunts) as atbats,
 	((1 * singles) + (2 * doubles) + (3 * triples) + (4 * homeruns)) as totalbases,
@@ -31,4 +31,4 @@ SELECT id,studentid,category,dateplayed,teamplayed,plateappearances,strikeouts,w
 			end
 	end as onbaseplusslugging,
 	created
-FROM studentBBHitting
+from studentbbhitting

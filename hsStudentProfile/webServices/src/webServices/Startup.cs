@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using webServices.Infrastructure.JWT;
+using webServices.Infrastructure.Auth;
 
 namespace webServices
 {
@@ -112,9 +113,16 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<StudentProfilePictures>, EntityBaseRepository<StudentProfilePictures>>();
             services.AddScoped<EntityBaseRepository<SiteFeedback>, EntityBaseRepository<SiteFeedback>>();
             services.AddScoped<EntityBaseRepository<StudentCoaches>, EntityBaseRepository<StudentCoaches>>();
-            
+            services.AddScoped<EntityBaseRepository<Users>, EntityBaseRepository<Users>>();
+            services.AddScoped<EntityBaseRepository<UserLoginHistory>, EntityBaseRepository<UserLoginHistory>>();
+            services.AddScoped<EntityBaseRepository<UserRoles>, EntityBaseRepository<UserRoles>>();
+            services.AddScoped<EntityBaseRepository<Guest>, EntityBaseRepository<Guest>>();
+
             // Register email service 
             services.AddTransient<IEmailService, EmailService>();
+
+            //User service
+            services.AddSingleton<IUserValidationService, UserValidationService>();
 
             #endregion Repositories
 
@@ -144,7 +152,10 @@ namespace webServices
                 // Use policy auth.
                 services.AddAuthorization(options =>
                 {
-                    options.AddPolicy("DisneyUser", policy => policy.RequireClaim("DisneyCharacter", "IAmMickey"));
+                    options.AddPolicy("guest", policy => policy.RequireClaim("Role", "guest"));
+                    options.AddPolicy("student", policy => policy.RequireClaim("Role", "student"));
+                    options.AddPolicy("coach", policy => policy.RequireClaim("Role", "coach"));
+                    options.AddPolicy("admin", policy => policy.RequireClaim("Role", "admin"));
                 });
 
                 // Get options from app settings

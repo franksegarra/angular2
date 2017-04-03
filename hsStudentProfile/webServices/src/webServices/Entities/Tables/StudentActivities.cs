@@ -13,9 +13,9 @@ namespace webServices.Entities
         public int? id { get; set; }
         public int studentid { get; set; }
         public int activityid { get; set; }
-        public string coachName { get; set; }
-        public string coachEmail { get; set; }
-        public string coachPhone { get; set; }
+        public string coachname { get; set; }
+        public string coachemail { get; set; }
+        public string coachphone { get; set; }
         public DateTime? created { get; set; }
     }
 }

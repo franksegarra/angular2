@@ -20,7 +20,7 @@ namespace webServices.Controllers
             StudentProfile item = null;
             try
             {
-                item = _Items.FindBy(s => s.profileName == profilename).FirstOrDefault();
+                item = _Items.FindBy(s => s.profilename == profilename).FirstOrDefault();
                 if (item == null)
                 {
                     return NotFound();

@@ -1,9 +1,9 @@
-﻿CREATE TABLE [dbo].[studentBBHitting]
+﻿create table [dbo].[studentbbhitting]
 (
 	[id] int identity(1,1) not null, 
     [studentid] int not null, 
-    [category] VARCHAR(100) NOT NULL default 'Other Games Played', 
-	[dateplayed]  DATE NOT NULL, 
+    [category] varchar(100) not null default 'other games played', 
+	[dateplayed]  date not null, 
 	[teamplayed] varchar(255) not null,
 	[plateappearances] int null default 0,
 	[strikeouts] int null default 0,
@@ -18,7 +18,7 @@
 	[runsbattediin] int null default 0,
 	[runsscored] int null default 0,
 	[stolenbases] int null default 0,
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_studentBBHitting_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_studentBBHitting_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
+    [created] datetime not null default getdate(), 
+    constraint [pk_studentbbhitting_id] primary key clustered (id),
+    constraint [fk_studentbbhitting_student] foreign key (studentid) references [student](id), 
 )

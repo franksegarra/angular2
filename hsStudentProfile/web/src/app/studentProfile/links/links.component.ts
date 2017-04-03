@@ -13,6 +13,6 @@ export class LinksComponent implements OnInit {
     pageTitle: string;
 
     ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Links';
+        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Links';
     };
 }

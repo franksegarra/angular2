@@ -1,12 +1,12 @@
-﻿CREATE TABLE [dbo].[studentPositions]
+﻿create table [dbo].[studentpositions]
 (
-	[id] INT IDENTITY(1,1) NOT NULL, 
-    [studentid] INT NOT NULL, 
-	[activityid] INT NOT NULL, 
+	[id] int identity(1,1) not null, 
+    [studentid] int not null, 
+	[activityid] int not null, 
 	[position] varchar(30) not null,
-	[isprimary] int NOT NULL default 0,
-    [created] DATETIME NOT NULL default getdate(), 
-    CONSTRAINT [pk_studentPositions_id] PRIMARY KEY CLUSTERED (id),
-    CONSTRAINT [FK_studentPositions_student] FOREIGN KEY (studentid) REFERENCES [student](id), 
-    CONSTRAINT [FK_studentPositions_activity] FOREIGN KEY (activityid) REFERENCES [activity](id), 
+	[isprimary] int not null default 0,
+    [created] datetime not null default getdate(), 
+    constraint [pk_studentpositions_id] primary key clustered (id),
+    constraint [fk_studentpositions_student] foreign key (studentid) references [student](id), 
+    constraint [fk_studentpositions_activity] foreign key (activityid) references [activity](id), 
 )

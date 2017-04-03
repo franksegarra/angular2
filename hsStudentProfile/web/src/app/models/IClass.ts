@@ -1,7 +1,7 @@
 export interface IClass {
     grade: number;
-    className: string;
-    finalAverage: number;
-    letterGrade: string;
-    collegeCredit: number;
+    classname: string;
+    finalaverage: number;
+    lettergrade: string;
+    collegecredit: number;
 }

@@ -22,7 +22,7 @@ export class PicturesComponent implements OnInit {
     constructor(public pictureService:PictureService) {}
 
     ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Pictures';
+        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Pictures';
         this.pictureService.appSetup("imageDisplay", this.profilepics, this.picturelist);
     }
 

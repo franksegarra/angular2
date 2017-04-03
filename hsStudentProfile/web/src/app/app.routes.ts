@@ -13,18 +13,20 @@ import { ForgotUserNameComponent } from './auth/forgotusername/forgotusername.co
 
 const appRoutes: Routes = [
 
+        {path: 'home', component: HomeComponent },
+        {path: 'home/logout', component: HomeComponent },
         {path: 'login', component: LoginComponent },
+        {path: 'logout', redirectTo: 'home/logout', pathMatch: 'full'},
         {path: 'register', component: RegisterComponent },
         {path: 'forgotpw', component: ForgotPWComponent },
         {path: 'forgotusername', component: ForgotUserNameComponent },
         {path: 'about', component: AboutComponent},
         {path: 'feedback', component: FeedbackComponent},
-        {path: 'home', redirectTo: 'studentprofile/1', pathMatch: 'full'},
         {path: ':id', redirectTo: 'studentprofile/:id', pathMatch: 'full'},
         {path: 'studentprofile', redirectTo: 'studentprofile/1', pathMatch: 'full'},
         {path: 'studentprofile/:id', component: StudentProfileComponent},
-        {path: '', redirectTo: 'studentprofile/1', pathMatch: 'full'},
-        {path: '**', redirectTo: 'studentprofile/1', pathMatch: 'full'},
+        {path: '', redirectTo: 'home', pathMatch: 'full'},
+        {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 export const Routing: ModuleWithProviders  = RouterModule.forRoot(appRoutes);

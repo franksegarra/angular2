@@ -9,7 +9,6 @@ import { MessageFormModule } from '../shared/messageform/messageform.module';
 import { DataService } from '../services/data.service';
 import { VideoService } from '../studentprofile/videos/video.service';
 import { PictureService } from '../studentprofile/pictures/picture.service';
-import { StatsService } from '../studentprofile/stats/stats.service';
 
 //Main component for this module
 import { StudentProfileComponent } from './studentprofile.component';
@@ -93,7 +92,7 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       ,DateFormatPipe
       ,DOWFormatPipe
   ],  
-  providers: [ DataService, VideoService, PictureService, StatsService ],
+  providers: [ DataService, VideoService, PictureService],
   exports: [ StudentProfileComponent ]
 })
 export class StudentProfileModule { }  

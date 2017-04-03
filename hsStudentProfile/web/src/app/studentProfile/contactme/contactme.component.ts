@@ -21,7 +21,7 @@ export class ContactMeComponent implements OnInit {
     constructor(private _dataService: DataService) {}
 
     ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstName + ' ' + this.myprofile.lastName + ' - ' + this.myprofile.graduationYear + ' - ' + 'Contact Me';
+        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Contact Me';
     }
 
     onSubmit(event:any): void { 
@@ -30,7 +30,7 @@ export class ContactMeComponent implements OnInit {
 
         var inputmsg: Message = event;
         var id = this.myprofile.id;
-        var studentemail = this.myprofile.primaryEmail;
+        var studentemail = this.myprofile.primaryemail;
 
         var msg: IContactMe = {
             studentid: id,

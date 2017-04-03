@@ -8,12 +8,12 @@
             <table class="table">
                 <tbody>
                         <tr><td><div class="col-sm-12">  
-                            {{ myprofile.firstName + ' ' + myprofile.lastName }}<br>
+                            {{ myprofile.firstname + ' ' + myprofile.lastname }}<br>
                             {{ myprofile.streetaddress1 }}<br>
                             <div *ngIf="myprofile.streetaddress2">{{ myprofile.streetaddress2 }}<br></div>
                             {{ myprofile.city + ', ' + myprofile.state + ' ' + myprofile.zip }}<br>
                             {{ myprofile.phone | phoneFormat }}<br>
-                            {{ myprofile.primaryEmail }}
+                            {{ myprofile.primaryemail }}
                         </div></td></tr>
                 </tbody>
             </table>

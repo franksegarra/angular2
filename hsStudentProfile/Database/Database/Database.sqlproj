@@ -64,6 +64,7 @@
     <Folder Include="Tables" />
     <Folder Include="Views" />
     <Folder Include="Scripts\Pre-Deployment" />
+    <Folder Include="Scripts\Other" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment1.sql" />
@@ -94,11 +95,17 @@
     <Build Include="Tables\userRoles.sql" />
     <Build Include="Tables\users.sql" />
     <Build Include="Tables\userLoginHistory.sql" />
+    <None Include="Scripts\Other\backupdata.sql" />
+    <Build Include="Tables\guest.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment1.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Other\DesignRules.sql" />
+    <None Include="Scripts\Other\RestoreData.sql" />
   </ItemGroup>
 </Project>

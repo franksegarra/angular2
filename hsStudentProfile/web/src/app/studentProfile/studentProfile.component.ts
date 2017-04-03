@@ -10,13 +10,13 @@ import { IProfilePictures } from '../models/IProfilePictures';
 import { IPicture } from '../studentprofile/pictures/IPicture';
 import { IVideo } from '../studentprofile/videos/IVideo';
 import { ICoach } from '../models/ICoach';
+import { IHittingStats } from '../models/IHittingStats';
+import { HittingCategory } from '../models/HittingCategory';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/util/isNumeric';
 
 //Data service
 import { DataService } from '../services/data.service';
-import { StatsService } from './stats/stats.service';
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/util/isNumeric';
 
 @Component({
     selector: 'pp-studentprofile',
@@ -40,11 +40,12 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     public picturelist:Array<IPicture> = [];
     public videolist:Array<IVideo> = [];
     private coaches: ICoach[];
-    
+    private hittingstats: IHittingStats[];
+    public hittingcategories: Array<HittingCategory> = []; 
 
     componentToShow: string = 'academics';
 
-    constructor(private route: ActivatedRoute, private _dataService: DataService, private _statsService: StatsService) {
+    constructor(private route: ActivatedRoute, private _dataService: DataService) {
     }
     
     ngOnInit(): void {
@@ -65,7 +66,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
                 .subscribe(
                     //For every response
                     (response) => {
-                        /* Need to wait for response */
+                        // Need to wait for response
                         this.myprofile = response;
                         this.studentId = this.myprofile.id;
                         this.getRestOfData();
@@ -84,7 +85,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     getRestOfData() {
         //Main Profile and stats profile.  Get these first
         this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
-        this._statsService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
+        this._dataService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
 
         //For Academics
         this._dataService.getClasses(this.studentId).subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
@@ -103,7 +104,24 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
         this._dataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
 
         //Stats
-        this._statsService.getHittingList(this.studentId);
+        this._dataService.getHittingStats(this.studentId)
+                .subscribe(
+                    //For every response
+                    (stats) => {
+                        // Need to wait for response
+                        this.hittingstats = stats;
+                        this.hittingcategories = this._dataService.createStatsCategories(this.hittingstats);
+                    },
+                    //On Error
+                    (err) => {
+                            console.log("ERROR in component. save to db: "+ err);
+                    },
+                    //When observable closes
+                    () => {
+                        console.log("Completed");
+                    })
+        
+        //Coaches
         this._dataService.getCoaches(this.studentId).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);
 
         //profilepics

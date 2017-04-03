@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
@@ -24,32 +23,46 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthService,
+        private authService: AuthService,
         private alertService: AlertService) { }
 
     ngOnInit(): void {
         // reset login status
-        this.authenticationService.logout();
+        this.authService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        console.log([this.returnUrl]);
 
         this.form = this.fb.group({
-            "username": ["", Validators.required],
+            "username": ["francissegarra", Validators.required],
             "password": ["", Validators.required]
         });
     }
 
     login(): void {
         this.loading = true;
-        this.authenticationService.login(this.form.value['username'], this.form.value['password'])
+        this.authService.login(this.form.value['username'], this.form.value['password'])
             .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
+                (result)=> {
+                    if (result === true) {
+                        if (this.authService.role == 'student') {
+                            this.router.navigate(['/' + this.authService.userid]);
+                        }
+                        else {
+                            this.router.navigate([this.returnUrl]);
+                        }
+                    } else {
+                        this.alertService.error('Username or password is incorrect');
+                        this.loading = false;
+                    }
                 },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+                (err) => {
+                    console.log("ERROR in component. save to db: "+ err);
+                },
+                () => {
+                    console.log("Complete");
+                }
+            );
     }
 }

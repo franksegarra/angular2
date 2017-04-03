@@ -35,6 +35,12 @@
                             </small>
                         </div></td></tr>
 
+                        <!-- Role -->
+                        <tr><td><div class="col-sm-12"><b>Are you a student or a coach?</b></div></td></tr>
+                        <tr><td><div class="col-sm-12"> 
+                            <p-selectButton [options]="roles" formControlName='selectedrole'></p-selectButton>
+                        </div></td></tr>
+
                         <!-- Actions -->
                         <tr>
                             <td>
@@ -43,7 +49,7 @@
                                 <div class="col-sm-2"><a [routerLink]="['/forgotpw']" class="btn btn-link">Forgot Password?</a></div>
                                 <div class="col-sm-1"><a [routerLink]="['/forgotusername']" class="btn btn-link">Forgot User Name?</a></div>
                             </td>
-                        </tr>
+                        </tr>           
 
                     </tbody>
                 </table> 

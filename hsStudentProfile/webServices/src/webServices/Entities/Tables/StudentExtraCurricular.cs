@@ -12,8 +12,8 @@ namespace webServices.Entities
         }
         public int? id { get; set; }
         public int studentid { get; set; }
-        public string ecName { get; set; }
-        public string ecDescription { get; set; }
+        public string ecname { get; set; }
+        public string ecdescription { get; set; }
         public DateTime? created { get; set; }
     }
 }
