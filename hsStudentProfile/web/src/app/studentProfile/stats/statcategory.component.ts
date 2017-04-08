@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HittingCategory } from '../../models/HittingCategory';
+import { spEditService } from '../services/spedit.service';
 
 @Component({
     selector: 'pp-statcategory',
@@ -8,4 +9,6 @@ import { HittingCategory } from '../../models/HittingCategory';
 })
 export class StatCategory  { 
     @Input() hittingcategory: HittingCategory;
+
+    constructor(private _spEditService: spEditService) {}
 }

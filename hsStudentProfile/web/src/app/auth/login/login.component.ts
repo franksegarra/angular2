@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
                             this.router.navigate(['/' + this.authService.userid]);
                         }
                         else {
+                            console.log('Error loggin in');
                             this.router.navigate([this.returnUrl]);
                         }
                     } else {
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
                     }
                 },
                 (err) => {
-                    console.log("ERROR in component. save to db: "+ err);
+                    this.alertService.error('Username or password is incorrect', true);
                 },
                 () => {
                     console.log("Complete");

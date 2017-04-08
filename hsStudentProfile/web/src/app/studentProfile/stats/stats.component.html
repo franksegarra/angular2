@@ -1,8 +1,6 @@
 <div *ngIf="bbprofile && hittingcategories.length">
     <div class='panel panel-primary'>
-        <div class='panel-heading'>
-            {{pageTitle}}
-        </div>
+        <pp-header [myprofile]='myprofile' [pageName]="pageName"></pp-header>
         <div class='panel-body'>
             <p-accordion [multiple]="true">
                 <p-accordionTab header="Personal Details" [selected]="true" >

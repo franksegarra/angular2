@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ICoach } from '../../models/ICoach';
+import { spEditService } from '../services/spedit.service';
 
 @Component({
     selector: 'pp-coaches',
@@ -8,4 +9,6 @@ import { ICoach } from '../../models/ICoach';
 })
 export class CoachesComponent  { 
     @Input() coaches: Array<ICoach>;
+
+    constructor(private _spEditService: spEditService) {}
 }

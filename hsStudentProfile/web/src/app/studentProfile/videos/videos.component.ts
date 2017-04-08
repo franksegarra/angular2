@@ -3,6 +3,7 @@ import { IProfile } from '../../models/IProfile';
 import { IVideo } from './IVideo';
 import { VideoService } from './video.service';
 import { TreeNode } from 'primeng/primeng';
+import { spEditService } from '../services/spedit.service';
 
 @Component({
     selector: 'pp-videos',
@@ -13,12 +14,11 @@ import { TreeNode } from 'primeng/primeng';
 export class VideosComponent implements OnInit { 
     @Input() myprofile: IProfile;
     @Input() videolist:Array<IVideo>;
-    pageTitle: string;
+    pageName: string = 'Videos';
 
-    constructor(public videoService:VideoService) {}
+    constructor(public videoService:VideoService, private _spEditService:spEditService) {}
 
     ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Videos';
         this.videoService.appSetup("videoDisplay", this.videolist);
     }
 

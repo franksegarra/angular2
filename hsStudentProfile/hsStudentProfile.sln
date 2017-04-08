@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database\Database.sqlproj", "{2E0EC428-710C-4507-BE0E-04AECEBCA344}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "webServices", "webServices\src\webServices\webServices.xproj", "{C64B3758-990F-4226-B029-A8293A11A16E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webServices", "webServices\src\webServices\webServices.csproj", "{C64B3758-990F-4226-B029-A8293A11A16E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

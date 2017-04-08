@@ -122,7 +122,7 @@ namespace webServices
             services.AddTransient<IEmailService, EmailService>();
 
             //User service
-            services.AddSingleton<IUserValidationService, UserValidationService>();
+            services.AddTransient<IUserValidationService, UserValidationService>();
 
             #endregion Repositories
 

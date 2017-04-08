@@ -3,6 +3,7 @@ import { IProfile } from '../../models/IProfile';
 import { IBBProfile } from '../../models/IBBProfile';
 import { ICoach } from '../../models/ICoach';
 import { HittingCategory } from '../../models/HittingCategory';
+import { spEditService } from '../services/spedit.service';
 
 @Component({
     selector: 'pp-stats',
@@ -14,9 +15,7 @@ export class StatsComponent {
     @Input() bbprofile: IBBProfile;
     @Input() coaches: Array<ICoach>; 
     @Input() hittingcategories: Array<HittingCategory>; 
-    pageTitle: string;
+    pageName: string = 'Stats';
 
-    ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Stats';
-    }
+    constructor(private _spEditService: spEditService) {}
 }

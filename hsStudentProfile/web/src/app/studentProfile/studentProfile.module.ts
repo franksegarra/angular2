@@ -7,13 +7,16 @@ import { MessageFormModule } from '../shared/messageform/messageform.module';
 
 //Services
 import { DataService } from '../services/data.service';
-import { VideoService } from '../studentprofile/videos/video.service';
-import { PictureService } from '../studentprofile/pictures/picture.service';
+import { VideoService } from './videos/video.service';
+import { PictureService } from './pictures/picture.service';
+import { spEditService } from './services/spedit.service';
+
 
 //Main component for this module
 import { StudentProfileComponent } from './studentprofile.component';
 
 //Student Profile - Academics
+import { SpHeaderComponent } from './spheader/spheader.component';
 import { AcademicsComponent } from './academics/academics.component';
 import { GradeComponent } from './academics/grade.component';
 import { TestScoresComponent } from './academics/testscores.component';
@@ -68,6 +71,7 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
   ],
   declarations: [
       StudentProfileComponent
+      ,SpHeaderComponent
       ,AcademicsComponent
       ,GradeComponent
       ,GradeFilterPipe
@@ -92,7 +96,7 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       ,DateFormatPipe
       ,DOWFormatPipe
   ],  
-  providers: [ DataService, VideoService, PictureService],
+  providers: [ DataService, VideoService, PictureService, spEditService],
   exports: [ StudentProfileComponent ]
 })
 export class StudentProfileModule { }  

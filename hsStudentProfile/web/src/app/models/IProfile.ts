@@ -26,4 +26,5 @@ export interface IProfile {
         height: string;
         weight: string;
         collegemajor: string;
+        loggedin: boolean;
 }
