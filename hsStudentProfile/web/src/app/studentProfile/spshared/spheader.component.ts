@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { spEditService } from '../services/spedit.service';
+import { spDataService } from '../services/spdata.service';
 import { IProfile } from '../../models/IProfile';
 
 @Component({
@@ -12,7 +12,7 @@ export class SpHeaderComponent implements OnInit {
     @Input() pageName: string;
     pageTitle: string;
 
-    constructor(private _spEditService: spEditService) {}
+    constructor(private _spDataService: spDataService) {}
 
     ngOnInit(): void {
         this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + this.pageName;

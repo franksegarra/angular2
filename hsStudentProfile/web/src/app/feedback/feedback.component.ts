@@ -19,7 +19,7 @@ export class FeedbackComponent {
 
     onSubmit(event:any): void { 
 
-        console.log("On Submit in contactme");
+        //console.log("On Submit in contactme");
         this.messageFormComponent.reset();
 
         var inputmsg: Message = event;
@@ -31,7 +31,7 @@ export class FeedbackComponent {
             ipaddress: ''
         }
 
-        console.log(msg);
+        //console.log(msg);
 
         var response;
         this._dataService.postSiteFeedback(msg)

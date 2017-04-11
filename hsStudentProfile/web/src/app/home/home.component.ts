@@ -14,7 +14,7 @@ export class HomeComponent {
         private authService: AuthService) { }
 
     ngOnInit(): void {
-        console.log (this.router.url);
+        //console.log (this.router.url);
         if (this.router.url=='/home/logout')
         {
             this.authService.logout();

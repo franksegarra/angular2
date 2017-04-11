@@ -1,3 +1,11 @@
+.addbutton {
+    color: #326eb7;
+}
+
+.rowbutton {
+    padding-right : 10px;
+}
+
 .spheadericon {
     color: white;
     background-color: #326eb7;

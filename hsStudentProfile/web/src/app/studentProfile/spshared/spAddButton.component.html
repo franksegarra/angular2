@@ -1,0 +1,8 @@
+<!-- Add new row button -->
+<div *ngIf="_spDataService.canEdit()">
+    <span class="btn-group">
+        <button type="button" class="btn addbutton">
+            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New {{ itemToAdd }}</i> 
+        </button>
+    </span>
+</div> 

@@ -8,7 +8,7 @@ namespace webServices.Entities
         {
         }
 
-        public int? id { get; set; }
+        public int id { get; set; }
         public DateTime? created { get; set; }
         public DateTime? logouttime { get; set; }
         public string ipaddress { get; set; }

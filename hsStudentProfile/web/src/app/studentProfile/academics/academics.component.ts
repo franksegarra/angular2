@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
 import { IClass } from '../../models/IClass';
 import { IExtraCurricular } from '../../models/IExtraCurricular';
-import { spEditService } from '../services/spedit.service';
+import { spDataService } from '../services/spdata.service';
 
 @Component({
     selector: 'pp-academics',
@@ -15,5 +15,5 @@ export class AcademicsComponent {
     @Input() ec: IExtraCurricular[];
     pageName: string = 'Academics';
 
-    constructor(private _spEditService: spEditService) {}
+    constructor(private _spDataService: spDataService) {}
 }

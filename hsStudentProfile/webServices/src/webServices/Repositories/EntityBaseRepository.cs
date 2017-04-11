@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using webServices.Entities;
 using webServices.Infrastructure;
@@ -60,8 +61,20 @@ namespace webServices.Repositories
 
         public virtual void Edit(T entity)
         {
-            EntityEntry dbEntityEntry = _context.Entry<T>(entity);
-            dbEntityEntry.State = EntityState.Modified;
+            T destitem = _context.Set<T>().Where(i => i.id == entity.id).FirstOrDefault();
+            Type typeDest = destitem.GetType();
+
+            PropertyInfo[] properties = typeof(T).GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.Name != "id" && property.Name != "created")
+                {
+                    PropertyInfo targetProperty = typeDest.GetProperty(property.Name);
+                    targetProperty.SetValue(destitem, property.GetValue(entity, null), null);
+                }
+            }
+
+            _context.Entry<T>(destitem).State = EntityState.Modified;
             _context.SaveChanges();
         }
 

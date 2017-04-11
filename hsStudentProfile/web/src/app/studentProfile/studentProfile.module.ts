@@ -4,19 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule } from 'primeng/primeng';
 import { MessageFormModule } from '../shared/messageform/messageform.module';
+import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
+import { OverlayPanelModule } from 'primeng/primeng';
 
 //Services
 import { DataService } from '../services/data.service';
 import { VideoService } from './videos/video.service';
 import { PictureService } from './pictures/picture.service';
-import { spEditService } from './services/spedit.service';
+import { spDataService } from './services/spdata.service';
 
+//Shared Components
+import { SpHeaderComponent } from './spshared/spheader.component';
+import { EditButtonsComponent } from './spshared/spEditButtons.component';
+import { AddButtonComponent } from './spshared/spAddButton.component';
 
 //Main component for this module
 import { StudentProfileComponent } from './studentprofile.component';
 
 //Student Profile - Academics
-import { SpHeaderComponent } from './spheader/spheader.component';
 import { AcademicsComponent } from './academics/academics.component';
 import { GradeComponent } from './academics/grade.component';
 import { TestScoresComponent } from './academics/testscores.component';
@@ -67,11 +72,15 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       TreeModule,
       TooltipModule,
       PanelModule,
-      MessageFormModule
+      MessageFormModule,
+      ConfirmDialogModule,
+      OverlayPanelModule
   ],
   declarations: [
       StudentProfileComponent
       ,SpHeaderComponent
+      ,EditButtonsComponent
+      ,AddButtonComponent
       ,AcademicsComponent
       ,GradeComponent
       ,GradeFilterPipe
@@ -96,7 +105,7 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       ,DateFormatPipe
       ,DOWFormatPipe
   ],  
-  providers: [ DataService, VideoService, PictureService, spEditService],
+  providers: [ DataService, VideoService, PictureService, spDataService, ConfirmationService],
   exports: [ StudentProfileComponent ]
 })
 export class StudentProfileModule { }  

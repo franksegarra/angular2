@@ -33,7 +33,7 @@ namespace webServices.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    item.id = null;
+                    item.id = 0;
                     item.created = DateTime.Now;
                     _Items.Add(item);
                     return CreatedAtRoute("DefaultApi", new { controller = nameof(T), id = item.id }, item);
@@ -70,7 +70,7 @@ namespace webServices.Controllers
                 if (ModelState.IsValid)
                 {
                     _Items.Edit(updateditem);
-                    return CreatedAtRoute("DefaultApi", new { controller = nameof(T), id = updateditem.id }, updateditem);
+                    return StatusCode(StatusCodes.Status200OK, updateditem);
                 }
 
                 return StatusCode(StatusCodes.Status400BadRequest);

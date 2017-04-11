@@ -10,7 +10,7 @@ namespace webServices.Entities
         public StudentBaseball()
         {
         }
-        public int? id { get; set; }
+        public int id { get; set; }
         public int studentid { get; set; }
         public int? statspictureid { get; set; }
         public decimal? runningtime { get; set; }

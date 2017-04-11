@@ -10,7 +10,7 @@ namespace webServices.Entities
         public Student()
         {
         }
-        public int? id { get; set; }
+        public int id { get; set; }
         public int? highschoolid { get; set; }
         public int? graduationyear { get; set; }
         public string additionalinfo { get; set; }

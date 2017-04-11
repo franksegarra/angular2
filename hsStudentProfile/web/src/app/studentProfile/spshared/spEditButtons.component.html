@@ -1,0 +1,7 @@
+<!-- Delete and edit buttons -->
+<span class="btn-group pull-right" *ngIf="_spDataService.canEdit()">
+    <button type="button" class="btn btn-link rowbutton">
+        <i class="fa fa-pencil fa-lg rowbutton" aria-hidden="true"  (click)="editRow(idField)"></i> 
+        <i class="fa fa-trash-o fa-lg rowbutton" aria-hidden="true" (click)="deleteRow(idField)"></i> 
+    </button>
+</span>

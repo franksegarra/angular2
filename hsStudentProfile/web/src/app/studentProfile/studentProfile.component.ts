@@ -18,6 +18,7 @@ import 'rxjs/util/isNumeric';
 //Data and auth services
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
+import { spDataService } from './services/spdata.service';
 
 @Component({
     selector: 'pp-studentprofile',
@@ -44,15 +45,30 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private hittingstats: IHittingStats[];
     public hittingcategories: Array<HittingCategory> = []; 
 
-    componentToShow: string = 'academics';
+    componentToShow: string = 'links';
 
-    constructor(private route: ActivatedRoute, private _dataService: DataService, private _authService: AuthService) {
+    constructor(private route: ActivatedRoute, private _dataService: DataService, private _authService: AuthService, private _spDataService: spDataService) {
     }
     
     ngOnInit(): void {
-       
         this.sub = this.route.params.subscribe(params => {this.studentInfo = params['id'];});  
 
+        //If we are logged in as a user, get our profile
+        if (this._authService.isLoggedIn()){
+            this.getStudentProfile();
+        }
+        else {
+        //If we are not logged in as a user, then log in as guest and get the profile that was passed in
+            this._authService.login('guest', 'guest')
+                .subscribe(
+                    (result)=> {},
+                    (err) => {},
+                    () => {this.getStudentProfile();}
+                );
+        }
+    }
+
+    getStudentProfile(){
         //Main Profile and stats profile.  Get these first
         if (!isNaN(this.studentInfo))
         {
@@ -66,13 +82,10 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
                         this.getRestOfData();
                     },
                     //On Error
-                    (err) => {
-                            console.log("ERROR in component. save to db: "+ err);
-                    },
+                    (err) => {console.log("ERROR in component. getStudentProfile: "+ err);},
                     //When observable closes
-                    () => {
-                        console.log("Completed");
-                    })
+                    () => {}
+                )
         }
         else
         {
@@ -87,26 +100,20 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
                         this.getRestOfData();
                     },
                     //On Error
-                    (err) => {
-                            console.log("ERROR in component. save to db: "+ err);
-                    },
+                    (err) => {console.log("ERROR in component. getStudentProfile: "+ err);},
                     //When observable closes
-                    () => {
-                        console.log("Completed");
-                    })
+                    () => {})
         }
     }
- 
+
     getRestOfData() {
         //Set logged in flag in profile
         if (this.myprofile.id == this._authService.userid)
             this.myprofile.loggedin = true;
         else
             this.myprofile.loggedin = false;
-        
-        //Main Profile and stats profile.  Get these first
-        //this._dataService.getProfile(this.studentId).subscribe(p => this.myprofile = p, error => this.errorMessage = <any>error);
 
+        //Main Profile and stats profile.  Get these first
         this._dataService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
 
         //For Academics
@@ -123,7 +130,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
         this._dataService.getSchedule(this.studentId).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
 
         //Links
-        this._dataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
+        this._spDataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
 
         //Stats
         this._dataService.getHittingStats(this.studentId)
@@ -135,13 +142,9 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
                         this.hittingcategories = this._dataService.createStatsCategories(this.hittingstats);
                     },
                     //On Error
-                    (err) => {
-                            console.log("ERROR in component. save to db: "+ err);
-                    },
+                    (err) => {console.log("ERROR in component. save to db: "+ err);},
                     //When observable closes
-                    () => {
-                        console.log("Completed");
-                    })
+                    () => {})
         
         //Coaches
         this._dataService.getCoaches(this.studentId).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);

@@ -23,16 +23,16 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authService: AuthService,
+        private _authService: AuthService,
         private alertService: AlertService) { }
 
     ngOnInit(): void {
         // reset login status
-        this.authService.logout();
+        this._authService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log([this.returnUrl]);
+        //console.log([this.returnUrl]);
 
         this.form = this.fb.group({
             "profilename": ["francissegarra", Validators.required],
@@ -42,12 +42,13 @@ export class LoginComponent implements OnInit {
 
     login(): void {
         this.loading = true;
-        this.authService.login(this.form.value['profilename'], this.form.value['password'])
+        
+        this._authService.login(this.form.value['profilename'], this.form.value['password'])
             .subscribe(
                 (result)=> {
                     if (result === true) {
-                        if (this.authService.role == 'student') {
-                            this.router.navigate(['/' + this.authService.userid]);
+                        if (this._authService.role == 'student') {
+                            this.router.navigate(['/' + this._authService.userid]);
                         }
                         else {
                             console.log('Error loggin in');

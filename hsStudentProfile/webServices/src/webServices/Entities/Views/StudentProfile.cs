@@ -7,7 +7,7 @@ namespace webServices.Entities
         public StudentProfile()
         {
         }
-        public int? id { get; set; }
+        public int id { get; set; }
         public int studentid { get; set; }
         public string profilename { get; set; }
         public string firstname { get; set; }

@@ -8,7 +8,7 @@ namespace webServices.Entities
         {
         }
 
-        public int? id { get; set; }
+        public int id { get; set; }
         public string contactname { get; set; }
         public string contactemail { get; set; }
         public string contactphone { get; set; }

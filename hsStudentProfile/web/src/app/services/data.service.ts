@@ -45,80 +45,68 @@ export class DataService {
     }
 
     getProfile(id:number): Observable<IProfile> {
-        this.options = this.authService.getAuthHeader();
-        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IProfile>response.json())
-                    //.do(data => console.log('getProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 
     getProfileByName(profilename:string): Observable<IProfile> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + profilename, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + profilename, this.authService.getAuthHeader())
                     .map((response: Response) => <IProfile>response.json())
-                    //.do(data => console.log('getProfileByName: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 
     getClasses(id:number): Observable<IClass[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IClass[]>response.json())
-                    //.do(data => console.log('getClasses: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
     getExtraCurricular(id:number): Observable<IExtraCurricular[]> {
-
-        return this._http.get(Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IExtraCurricular[]>response.json())
-                    //.do(data => console.log('getExtraCurricular: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
     getVideos(id:number): Observable<IVideo[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IVideo[]>response.json())
                     .catch(this.handleError) ;
     }
 
     getPictures(id:number): Observable<IPicture[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IPicture[]>response.json())
                     .catch(this.handleError) ;
     }
 
     getSchedule(id:number): Observable<IScheduleItem[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IScheduleItem[]>response.json())
-                    //.do(data => console.log('getSchedule: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
-    getLinks(id:number): Observable<ILink[]> {
-
-        return this._http.get(Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/' + id, this.options)
-                    .map((response: Response) => <ILink[]>response.json())
-                    //.do(data => console.log('getLinks: ' + JSON.stringify(data)))
-                    .catch(this.handleError) ;
-    }
+    // getLinks(id:number): Observable<ILink[]> {
+    //     return this._http.get(Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/' + id, this.authService.getAuthHeader())
+    //                 .map((response: Response) => <ILink[]>response.json())
+    //                 .catch(this.handleError) ;
+    // }
 
     getBBProfile(id:number): Observable<IBBProfile[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IBBProfile[]>response.json())
-                    //.do(data => console.log('getBBProfile: ' + JSON.stringify(data)))
                     .catch(this.handleError);
     }
 
     getCoaches(id:number): Observable<ICoach[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentcoaches/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentcoaches/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <ICoach[]>response.json())
-                    //.do(data => console.log('getCoaches: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
     getHittingStats(id:number): Observable<IHittingStats[]> {
-        return this._http.get( Config.WEBSERVICESURL + 'StudentBBHittingStats/GetByStudentId/' + id, this.options)
+        return this._http.get( Config.WEBSERVICESURL + 'StudentBBHittingStats/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((res:Response) => <IHittingStats[]>res.json())
-                    //.do(data => console.log('getHittingList: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     };
 
@@ -148,50 +136,34 @@ export class DataService {
     }
 
     getProfilePictures(id:number): Observable<IProfilePictures[]> {
-        //Get List of Profile Pictures.  Used to exclude these from the picture list
-        return this._http.get(Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IProfilePictures[]>response.json())
-                    //.do(data => console.log('getProfilePictures: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
     getStudent(id:number): Observable<IStudent> {
-        return this._http.get(Config.WEBSERVICESURL + 'student/' + id, this.options)
+        return this._http.get(Config.WEBSERVICESURL + 'student/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IStudent>response.json())
-                    //.do(data => console.log('getStudent: ' + JSON.stringify(data)))
                     .catch(this.handleError) ;
     }
 
     poststudentContact(msg: IContactMe): Observable<any> {
         msg.ipaddress = this.ipaddress.ip;
         let body = JSON.stringify(msg);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.post(Config.WEBSERVICESURL + 'studentcontact/', body, options)
+        return this._http.post(Config.WEBSERVICESURL + 'studentcontact/', body, this.authService.getAuthHeader())
             .map(res =>  res.json().data)
-            //.do(data => console.log('poststudentContact: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     postSiteFeedback(msg: IFeedback): Observable<any> {
-        console.log('postSiteFeedbackmsg');
-
         msg.ipaddress = this.ipaddress.ip;
-        console.log(msg);
-
         let body = JSON.stringify(msg);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.post(Config.WEBSERVICESURL + 'sitefeedback/', body, options)
+        return this._http.post(Config.WEBSERVICESURL + 'sitefeedback/', body, this.authService.getAuthHeader())
             .map(res =>  res.json().data)
-            //.do(data => console.log('poststudentContact: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     sendEMailToStudent(msg: IContactMe, studentemail: string): Observable<any> {
-
         var mail: IEmail = {
             from : msg.contactemail,
             to : studentemail,
@@ -201,10 +173,8 @@ export class DataService {
         };
     
         let body = JSON.stringify(mail);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
 
-        return this._http.post(Config.WEBSERVICESURL + 'email/', body, options)
+        return this._http.post(Config.WEBSERVICESURL + 'email/', body, this.authService.getAuthHeader())
             .map(res =>  res)
             .catch(this.handleError);
     }
@@ -212,7 +182,6 @@ export class DataService {
     getClientIPAddress(): Observable<IIPAddress> {
         return this._http.get('https://api.ipify.org?format=json')
             .map((response: Response) => <IIPAddress>response.json())
-            //.do(data => console.log('getClientIPAddress: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

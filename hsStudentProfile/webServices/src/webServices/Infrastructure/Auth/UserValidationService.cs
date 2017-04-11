@@ -142,7 +142,10 @@ namespace webServices.Infrastructure.Auth
                         return new ClaimsIdentity
                         (
                             new GenericIdentity(profilename, "Token"),
-                            new[] { new Claim("Role", "guest") }
+                            new[] { new Claim("Role", "guest"),
+                            new Claim("userid", "0"),
+                            new Claim("firstname", "guest")
+                            }
                         );
                     }
                     else

@@ -11,7 +11,7 @@ namespace webServices.Entities
         {
         }
 
-        public int? id { get; set; }
+        public int id { get; set; }
         public string highschoolname { get; set; }
         public DateTime? created { get; set; }
     }

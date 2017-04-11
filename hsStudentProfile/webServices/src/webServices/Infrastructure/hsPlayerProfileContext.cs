@@ -74,6 +74,7 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentSchedules>().Property(p => p.location).IsRequired();
 
             // StudentLinks
+            //modelBuilder.Entity<StudentLinks>().HasAlternateKey(p => p.id);
             modelBuilder.Entity<StudentLinks>().Property(p => p.linkdescription).HasMaxLength(100);
             modelBuilder.Entity<StudentLinks>().Property(p => p.linkurl).HasMaxLength(255);
             modelBuilder.Entity<StudentLinks>().Property(p => p.studentid).IsRequired();

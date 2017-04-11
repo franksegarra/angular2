@@ -8,7 +8,7 @@ namespace webServices.Entities
         {
         }
 
-        public int? id { get; set; }
+        public int id { get; set; }
         public int studentid { get; set; }
         public int sortorder { get; set; }
         public string name { get; set; }

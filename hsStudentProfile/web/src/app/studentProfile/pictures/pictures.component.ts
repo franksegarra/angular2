@@ -4,7 +4,7 @@ import { IProfilePictures } from '../../models/IProfilePictures';
 import { IPicture } from './IPicture';
 import { PictureService } from './picture.service';
 import { TreeNode } from 'primeng/primeng';
-import { spEditService } from '../services/spedit.service';
+import { spDataService } from '../services/spdata.service';
 
 //Global settings
 import { Config } from '../../config.service';
@@ -20,7 +20,7 @@ export class PicturesComponent implements OnInit {
     @Input() picturelist: IPicture[];
     pageName: string = 'Pictures';
 
-    constructor(public pictureService:PictureService, private _spEditService:spEditService ) {}
+    constructor(public pictureService:PictureService, private _spDataService:spDataService ) {}
 
     ngOnInit(): void {
         this.pictureService.appSetup("imageDisplay", this.profilepics, this.picturelist);

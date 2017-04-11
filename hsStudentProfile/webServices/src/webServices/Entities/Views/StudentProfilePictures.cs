@@ -7,7 +7,7 @@ namespace webServices.Entities
         public StudentProfilePictures()
         {
         }
-        public int? id { get; set; }
+        public int id { get; set; }
         public int studentid { get; set; }
         public int pictureid { get; set; }
         public string picturetype { get; set; }

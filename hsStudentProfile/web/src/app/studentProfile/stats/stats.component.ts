@@ -3,7 +3,7 @@ import { IProfile } from '../../models/IProfile';
 import { IBBProfile } from '../../models/IBBProfile';
 import { ICoach } from '../../models/ICoach';
 import { HittingCategory } from '../../models/HittingCategory';
-import { spEditService } from '../services/spedit.service';
+import { spDataService } from '../services/spdata.service';
 
 @Component({
     selector: 'pp-stats',
@@ -17,5 +17,5 @@ export class StatsComponent {
     @Input() hittingcategories: Array<HittingCategory>; 
     pageName: string = 'Stats';
 
-    constructor(private _spEditService: spEditService) {}
+    constructor(private _spDataService: spDataService) {}
 }
