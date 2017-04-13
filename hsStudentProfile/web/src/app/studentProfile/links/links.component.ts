@@ -4,9 +4,8 @@ import { IProfile } from '../../models/IProfile';
 import { ILink } from '../../models/ILink';
 import { spDataService } from '../services/spdata.service';
 import { EditButtonsComponent } from '../spshared/spEditButtons.component';
-import { AddButtonComponent } from '../spshared/spAddButton.component';
-import { OverlayPanel } from 'primeng/primeng';
 import { ConfirmationService } from 'primeng/primeng';
+import { Popup } from 'ng2-opd-popup';
 
 @Component({
     selector: 'pp-links',
@@ -18,11 +17,10 @@ export class LinksComponent implements OnInit {
     @Input() links: ILink[];
     private errorMessage: string;
     private pageName: string = 'Links';
-    private ohdrtxt:  string = 'Add a new link to your profile';
     private form: FormGroup;
     private editmode: string = '';
 
-    constructor(private fb: FormBuilder, private _spDataService: spDataService, private confirmationService: ConfirmationService) {}
+    constructor(private fb: FormBuilder, private _spDataService: spDataService, private confirmationService: ConfirmationService, private popup:Popup) {}
 
     ngOnInit(): void {
         this.form = this.fb.group({
@@ -35,33 +33,26 @@ export class LinksComponent implements OnInit {
         });
     }
 
-    addRow(event, overlaypanel: OverlayPanel) {
+    addRow() {
         this.editmode = 'add';
-        this.ohdrtxt = 'Add a new link to your profile';
-
         this.form.get('id').setValue(0);
-        // this.form.get('studentid').setValue(this.myprofile.id);
+        this.form.get('studentid').setValue(this.myprofile.id);
         this.form.get('activityid').setValue((this.links == null) ? null : this.links[0].activityid);
-        
-        overlaypanel.show(event);
+        this.showPopup("Add a new link to your profile");
     }
 
-    editRow(id:number, link: ILink, overlaypanel: OverlayPanel) {
+    editRow(id:number, link: ILink) {
         this.editmode = 'edit';
-        this.ohdrtxt = 'Edit this link:';
-
         this.form.get('id').setValue(link.id);
-        // this.form.get('studentid').setValue(this.myprofile.id);
+        this.form.get('studentid').setValue(this.myprofile.id);
         this.form.get('activityid').setValue((this.links == null) ? null : this.links[0].activityid);
-
         this.form.get('linkname').setValue(link.linkname);
         this.form.get('linkdescription').setValue(link.linkdescription);
         this.form.get('linkurl').setValue(link.linkurl);
-        console.log(this.form);
-        overlaypanel.show(event);
+        this.showPopup("Edit this link:");
     }
 
-    onSubmit(event, overlaypanel: OverlayPanel): void { 
+    onSubmit(): void { 
 
         var aLink:ILink = {
             id: this.form.value['id'],
@@ -72,15 +63,13 @@ export class LinksComponent implements OnInit {
             linkurl: this.form.value['linkurl']
         };
 
-        this.form.get('studentid').setValue(this.myprofile.id);
-
-        console.log(aLink);
+        //this.form.get('studentid').setValue(this.myprofile.id);
         console.log(JSON.stringify(aLink));
 
         //send to edit service to post
         if (this.editmode == 'add')
         {
-            this._spDataService.postStudentLink(aLink)
+            this._spDataService.postLink(aLink)
                 .subscribe(
                     (response) => {},
                     (err) => {console.log("ERROR in onSubmit: Post: "+ err);},
@@ -89,7 +78,7 @@ export class LinksComponent implements OnInit {
         }
         else
         {
-            this._spDataService.putStudentLink(aLink)
+            this._spDataService.putLink(aLink)
                 .subscribe(
                     (response) => {},
                     (err) => {console.log("ERROR in onSubmit: Post: "+ err);},
@@ -99,28 +88,45 @@ export class LinksComponent implements OnInit {
 
         //Hide overlay
         this.form.reset();
-        overlaypanel.hide();
+        this.popup.hide();
     }
 
-    onCancel(event, overlaypanel: OverlayPanel): void { 
+    onCancel(): void { 
         this.confirmationService.confirm({
             message: 'Are you sure  you want to cancel?',
             header: 'Cancel Confirmation',
             icon: 'fa fa-trash',
             accept: () => {
-                overlaypanel.hide();
+                this.popup.hide();
             }
         });
     }
 
-    //This will only get called if the your has already confirmed the delete
     deleteRow(id:number) {
-        this._spDataService.deleteStudentLink(id)
+        this._spDataService.deleteLink(id)
             .subscribe(
                 (response) => {},
                 (err) => {console.log("ERROR in onSubmit: Post: "+ err);},
                 () => {this.refreshData();}
             );
+    }
+
+    showPopup(myheader:string) {
+
+        this.popup.options = {
+            header:myheader,
+            color: "#326eb7", // red, blue.... 
+            widthProsentage: 40, // The with of the popou measured by browser width 
+            animationDuration: 0, // in seconds, 0 = no animation 
+            showButtons: false, // You can hide this in case you want to use custom buttons 
+            confirmBtnContent: "OK", // The text on your confirm button 
+            cancleBtnContent: "Cancel", // the text on your cancel button 
+            confirmBtnClass: "btn btn-default", // your class for styling the confirm button 
+            cancleBtnClass: "btn btn-default", // you class for styling the cancel button 
+            animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown' 
+        };
+    
+        this.popup.show(this.popup.options);
     }
 
     refreshData(){

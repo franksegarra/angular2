@@ -13,7 +13,7 @@ import { Config } from '../config.service';
 //Our Objects
 import { IClass } from '../models/IClass';
 import { IExtraCurricular } from '../models/IExtraCurricular';
-import { ILink } from '../models/ILink';
+//import { ILink } from '../models/ILink';
 import { IScheduleItem } from '../models/IScheduleItem';
 import { IProfile } from '../models/IProfile';
 import { IStudent } from '../models/IStudent';
@@ -79,18 +79,6 @@ export class DataService {
                     .map((response: Response) => <IPicture[]>response.json())
                     .catch(this.handleError) ;
     }
-
-    getSchedule(id:number): Observable<IScheduleItem[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentschedwithactivity/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IScheduleItem[]>response.json())
-                    .catch(this.handleError) ;
-    }
-
-    // getLinks(id:number): Observable<ILink[]> {
-    //     return this._http.get(Config.WEBSERVICESURL + 'studentlinks/GetByStudentId/' + id, this.authService.getAuthHeader())
-    //                 .map((response: Response) => <ILink[]>response.json())
-    //                 .catch(this.handleError) ;
-    // }
 
     getBBProfile(id:number): Observable<IBBProfile[]> {
         return this._http.get(Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/' + id, this.authService.getAuthHeader())

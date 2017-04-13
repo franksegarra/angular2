@@ -1,6 +1,22 @@
 <div class='panel panel-primary'>
+
+    <!-- Header record with icon -->
     <pp-header [myprofile]='myprofile' [pageName]="pageName"></pp-header>
+
     <div class='panel-body'>
+
+        <p-confirmDialog width="425"></p-confirmDialog>
+
+        <!-- Add new row button - This works fine -->
+        <div *ngIf="_spDataService.canEdit()">
+            <span class="btn-group">
+                <button id="popup" type="button" class="btn addbutton">
+                    <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Link</i> 
+                </button>
+            </span>
+        </div> 
+
+        <!-- Data rows -->
         <div class="table-responsive">
             <table class="table" *ngIf="schedItems && schedItems.length">
                 <thead>
@@ -11,6 +27,7 @@
                         <th style="width: 10%">Time</th>
                         <th>Type</th>
                         <th>Location</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,9 +49,54 @@
                         <td *ngIf="schedItem.linkText && schedItem.linkText != ''">
                             <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.linkText | tbdFormat }}</a>
                         </td>
+                        <td> <!-- Delete and edit buttons -->
+                            <pp-editButtons [idField]="schedItem.id" (onEditRow)="editRow(schedItem.id, schedItem)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <!-- Add/Edit Popup -->
+        <popup>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr><td>Event:</td>
+                            <td>
+                            <!--<input type="text" formControlName = 'linkname' placeholder="Enter Link Name (Required)" style="width:100%; padding: 6px 12px;">-->
+                            </td><tr>
+
+                            <tr><td>Date:</td>
+                            <td>
+                                <!--<input type="text" formControlName = 'linkdescription' placeholder="Enter Link Description (Required)" style="width:100%; padding: 6px 12px;">-->
+                            </td><tr>
+
+                            <tr><td>Time:</td>
+                            <td>
+                                <!--<input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;">-->
+                            </td><tr>
+
+                            <tr><td>Type:</td>
+                            <td>
+                                <!--<input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;">-->
+                            </td><tr>
+
+                            <tr><td>Location:</td>
+                            <td>
+                                <!--<input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;">-->
+                            </td><tr>
+
+                            <tr><td colspan="2" style="text-align: center">
+                                <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                                <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                            </td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </popup>
+        
     </div>
 </div>

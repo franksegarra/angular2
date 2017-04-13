@@ -7,6 +7,8 @@ import { MessageFormModule } from '../shared/messageform/messageform.module';
 import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 import { OverlayPanelModule } from 'primeng/primeng';
 
+import { PopupModule } from 'ng2-opd-popup';
+
 //Services
 import { DataService } from '../services/data.service';
 import { VideoService } from './videos/video.service';
@@ -74,7 +76,8 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       PanelModule,
       MessageFormModule,
       ConfirmDialogModule,
-      OverlayPanelModule
+      OverlayPanelModule,
+      PopupModule
   ],
   declarations: [
       StudentProfileComponent

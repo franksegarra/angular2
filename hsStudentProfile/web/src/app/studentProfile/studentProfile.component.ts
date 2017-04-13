@@ -45,7 +45,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private hittingstats: IHittingStats[];
     public hittingcategories: Array<HittingCategory> = []; 
 
-    componentToShow: string = 'links';
+    componentToShow: string = 'schedule';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _authService: AuthService, private _spDataService: spDataService) {
     }
@@ -127,7 +127,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
         this._dataService.getVideos(this.studentId).subscribe(vids => this.videolist = vids, error => this.errorMessage = <any>error);
 
         //For Schedule
-        this._dataService.getSchedule(this.studentId).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
+        this._spDataService.getSchedule(this.studentId).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
 
         //Links
         this._spDataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);

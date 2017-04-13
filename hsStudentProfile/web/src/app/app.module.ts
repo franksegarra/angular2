@@ -8,17 +8,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/primeng';
 
+import { PopupModule } from 'ng2-opd-popup';
+
+
 //Main Menu features
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './home/welcome.component';
-
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPWComponent} from './auth/forgotpw/forgotpw.component';
 import { ForgotUserNameComponent } from './auth/forgotusername/forgotusername.component';
-
-
 import { StudentProfileModule } from './studentprofile/studentprofile.module';
 import { FeedbackModule } from './feedback/feedback.module';
 
@@ -46,6 +46,7 @@ import { UserService }  from './services/user.service';
       FormsModule, 
       ReactiveFormsModule,
       SelectButtonModule
+      ,PopupModule.forRoot()
   ],
   declarations: [ 
       AppComponent

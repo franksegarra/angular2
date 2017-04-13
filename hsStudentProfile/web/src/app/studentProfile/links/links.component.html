@@ -1,63 +1,21 @@
 <div class='panel panel-primary'>  
 
-    <!-- Header record with icon to switch to edit mode-->
+    <!-- Header record with icon -->
     <pp-header [myprofile]='myprofile' [pageName]="pageName"></pp-header>
 
     <div class='panel-body'>
     
         <p-confirmDialog width="425"></p-confirmDialog>
 
-        <!-- Add new row button - For some reason, this does not work -->
-        <!--<pp-addbutton [itemToAdd]="'Link'" (onAddRow)="addRow($event, op)"></pp-addbutton>-->
-
         <!-- Add new row button - This works fine -->
         <div *ngIf="_spDataService.canEdit()">
             <span class="btn-group">
-                <button id="addrowbutton" type="button" class="btn addbutton">
-                    <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow($event, op)">&nbsp;Add New Link</i> 
+                <button id="popup" type="button" class="btn addbutton">
+                    <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Link</i> 
                 </button>
             </span>
         </div> 
 
-        <!-- Overlay panel for editing a row -->
-        <p-overlayPanel #op [showCloseIcon]="false" [dismissable]="false">
-            <div class='panel panel-primary'>  
-                <div class='panel-heading'>{{ ohdrtxt }} </div>
-                <div class='panel-body'>
-                    <form [formGroup]="form" (ngSubmit)="onSubmit($event, op)" class="ui form">
-
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-
-                                    <!-- hidden fields -->
-<!--                                    
-                                    <tr><td></td><td><input type="text" formControlName = 'id'></td><tr>
-                                    <tr><td></td><td><input type="text" formControlName = 'studentid'></td><tr>
-                                    <tr><td></td><td><input type="text" formControlName = 'activityid'></td><tr>
--->
-                                    <tr><td>Link Name</td>
-                                    <td><input type="text" formControlName = 'linkname' placeholder="Enter Link Name (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
-
-                                    <tr><td>Link Descriptions</td>
-                                    <td><input type="text" formControlName = 'linkdescription' placeholder="Enter Link Description (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
-
-                                    <tr><td>Link Url</td>
-                                    <td><input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
-
-                                    <tr><td colspan="2" style="text-align: center">
-                                        <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
-                                        <button type="reset" class="ui button" (click)="onCancel($event, op)">Cancel</button>
-                                    </td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </p-overlayPanel>
-        
         <!-- Data rows -->
         <div class="table-responsive">
             <table class="table" *ngIf="links && links.length">
@@ -70,11 +28,37 @@
                             {{ link.linkdescription }}                            
                         </td>
                         <td> <!-- Delete and edit buttons -->
-                            <pp-editButtons [idField]="link.id" (onEditRow)="editRow($event, link, op)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
+                            <pp-editButtons [idField]="link.id" (onEditRow)="editRow($event, link)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <!-- Add/Edit Popup -->
+        <popup>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr><td>Link Name:</td>
+                            <td><input type="text" formControlName = 'linkname' placeholder="Enter Link Name (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
+
+                            <tr><td>Link Descriptions:</td>
+                            <td><input type="text" formControlName = 'linkdescription' placeholder="Enter Link Description (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
+
+                            <tr><td>Link Ur:</td>
+                            <td><input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
+
+                            <tr><td colspan="2" style="text-align: center">
+                                <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                                <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                            </td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </popup>
+        
     </div>
 </div>
