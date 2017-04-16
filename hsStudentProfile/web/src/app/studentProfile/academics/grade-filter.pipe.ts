@@ -1,5 +1,5 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import { IClass } from '../../models/IClass';
+import { IClass } from '../../models/Class';
 
 @Pipe({
     name: 'gradeFilter'

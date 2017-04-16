@@ -32,23 +32,26 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let schedItem of schedItems | upcomingdates: "activitydate"' >   
-                        <td *ngIf="!schedItem.linkText">
+
+                        <td *ngIf="!schedItem.location">
                             {{ schedItem.activitydesc | tbdFormat }}
                         </td>
-                        <td *ngIf="schedItem.linkText && schedItem.linkText != ''">
+                        <td *ngIf="schedItem.location && schedItem.location != ''">
                             <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.activitydesc | tbdFormat }}</a>
                         </td>
+
                         <td>{{ schedItem.activitydate | dowFormat }}</td>
                         <td>{{ schedItem.activitydate | dateFormat }}</td>
                         <td>{{ schedItem.starttime | tbdFormat }}</td>
                         <td>{{ schedItem.activitytype }}</td>
 
-                        <td *ngIf="!schedItem.linkText">
-                            {{ schedItem.linkText | tbdFormat }}
+                        <td *ngIf="!schedItem.location">
+                            {{ schedItem.venue | tbdFormat }}
                         </td>
-                        <td *ngIf="schedItem.linkText && schedItem.linkText != ''">
-                            <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.linkText | tbdFormat }}</a>
+                        <td *ngIf="schedItem.location && schedItem.location != ''">
+                            <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.venue | tbdFormat }}</a>
                         </td>
+
                         <td> <!-- Delete and edit buttons -->
                             <pp-editButtons [idField]="schedItem.id" (onEditRow)="editRow(schedItem.id, schedItem)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
                         </td>
@@ -59,41 +62,58 @@
 
         <!-- Add/Edit Popup -->
         <popup>
-            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                            <tr><td>Event:</td>
-                            <td>
-                            <!--<input type="text" formControlName = 'linkname' placeholder="Enter Link Name (Required)" style="width:100%; padding: 6px 12px;">-->
-                            </td><tr>
-
-                            <tr><td>Date:</td>
-                            <td>
-                                <!--<input type="text" formControlName = 'linkdescription' placeholder="Enter Link Description (Required)" style="width:100%; padding: 6px 12px;">-->
-                            </td><tr>
-
-                            <tr><td>Time:</td>
-                            <td>
-                                <!--<input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;">-->
-                            </td><tr>
-
-                            <tr><td>Type:</td>
-                            <td>
-                                <!--<input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;">-->
-                            </td><tr>
-
-                            <tr><td>Location:</td>
-                            <td>
-                                <!--<input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;">-->
-                            </td><tr>
-
-                            <tr><td colspan="2" style="text-align: center">
-                                <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
-                                <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
-                            </td></tr>
-                        </tbody>
-                    </table>
+            <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+                <div class="container">
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Activity:</b></div>
+                        <div class="col col-sm-4"><p-dropdown [options]="_spDataService.getActivityList()" formControlName="activityid" [style]="{'width':'100%'}"></p-dropdown></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Type:</b></div>
+                        <div class="col col-sm-4"><p-dropdown [options]="_spDataService.getActivityTypeList()" formControlName="activitytypeid" [style]="{'width':'100%'}"></p-dropdown></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Event:</b></div>
+                        <div class="col col-sm-4"><input type="text" formControlName = 'activitydesc' placeholder="Enter Activity Description (Required)" style="width:100%; padding: 6px;"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Venue:</b></div>
+                        <div class="col col-sm-4"><input type="text" formControlName = 'venue' placeholder="Enter the Venue (Required)" style="width:100%; padding: 6px;"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Address:</b></div>
+                        <div class="col col-sm-4"><input type="text" formControlName = 'address' placeholder="Enter the Venue address" style="width:100%; padding: 6px;"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>City:</b></div>
+                        <div class="col col-sm-4"><input type="text" formControlName = 'city' placeholder="Enter the city" style="width:100%; padding: 6px;"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>State:</b></div>
+                        <div class="col col-sm-4"><p-dropdown [options]="_spDataService.getStatesList()" formControlName="statecode" [style]="{'width':'100%'}"></p-dropdown></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Zipcode:</b></div>
+                        <div class="col col-sm-4"><input type="text" formControlName = 'zipcode' placeholder="Enter the zipcode" style="width:100%; padding: 6px;"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Date:</b></div>
+                        <div class="col col-sm-4"><p-calendar formControlName = 'activitydate' placeholder="Enter the date of the event (Required)" [style]="{'width':'100%'}" [showIcon]="true"></p-calendar></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Time:</b></div>
+                        <div class="col col-sm-4">
+                            <p-dropdown [options]="_dateService.getHours()" formControlName="hours" [style]="{'width':'15%'}"></p-dropdown>
+                            <p-dropdown [options]="_dateService.getMinutes()" formControlName="minutes" [style]="{'width':'15%'}" ></p-dropdown>
+                            <p-dropdown [options]="_dateService.getAMPM()" formControlName="ampm" [style]="{'width':'15%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-5">
+                            <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                            <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </popup>

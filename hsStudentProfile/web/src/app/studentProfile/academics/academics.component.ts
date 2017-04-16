@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
-import { IClass } from '../../models/IClass';
+import { IClass } from '../../models/Class';
 import { IExtraCurricular } from '../../models/IExtraCurricular';
 import { spDataService } from '../services/spdata.service';
 

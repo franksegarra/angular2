@@ -6,7 +6,11 @@ export interface IScheduleItem {
     activityid: number; 
     activitydesc: string;
     activitytypeid: number; 
+    venue: string;
+    address: string;
+    city: string;
+    statecode: string;
+    zipcode: string;
     location: string;
-    linkText: string;
     activitytype: string;
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IClass } from '../../models/IClass';
+import { IClass } from '../../models/Class';
 import { spDataService } from '../services/spdata.service';
 
 @Component({

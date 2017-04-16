@@ -30,7 +30,8 @@ namespace webServices.Infrastructure
         public DbSet<UserLoginHistory> UserLoginHistory { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Guest> Guest { get; set; }
-        
+        public DbSet<States> States { get; set; }
+
         public hsPlayerProfileContext(DbContextOptions<hsPlayerProfileContext> options) : base(options)
         {
         }
@@ -65,13 +66,16 @@ namespace webServices.Infrastructure
 
             // StudentSchedules
             modelBuilder.Entity<StudentSchedules>().Property(p => p.activitydesc).HasMaxLength(255);
+            modelBuilder.Entity<StudentSchedules>().Property(p => p.venue).HasMaxLength(255);
+            modelBuilder.Entity<StudentSchedules>().Property(p => p.address).HasMaxLength(255);
+            modelBuilder.Entity<StudentSchedules>().Property(p => p.city).HasMaxLength(255);
+            modelBuilder.Entity<StudentSchedules>().Property(p => p.statecode).HasMaxLength(2);
+            modelBuilder.Entity<StudentSchedules>().Property(p => p.zipcode).HasMaxLength(5);
             modelBuilder.Entity<StudentSchedules>().Property(p => p.studentid).IsRequired();
-            modelBuilder.Entity<StudentSchedules>().Property(p => p.activitydate).IsRequired();
-            modelBuilder.Entity<StudentSchedules>().Property(p => p.starttime).IsRequired();
             modelBuilder.Entity<StudentSchedules>().Property(p => p.activityid).IsRequired();
-            modelBuilder.Entity<StudentSchedules>().Property(p => p.activitydesc).IsRequired();
             modelBuilder.Entity<StudentSchedules>().Property(p => p.activitytypeid).IsRequired();
-            modelBuilder.Entity<StudentSchedules>().Property(p => p.location).IsRequired();
+            modelBuilder.Entity<StudentSchedules>().Property(p => p.activitydate).IsRequired();
+            modelBuilder.Entity<StudentSchedules>().Property(p => p.activitydesc).IsRequired();
 
             // StudentLinks
             //modelBuilder.Entity<StudentLinks>().HasAlternateKey(p => p.id);

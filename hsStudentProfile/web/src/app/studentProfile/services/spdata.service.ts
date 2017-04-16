@@ -1,22 +1,66 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { SelectItem } from 'primeng/primeng';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 
 //Authorization service
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 
 //Global settings
 import { Config } from '../../config.service';
 
 //Our Objects
-import { IScheduleItem } from '../../models/IScheduleItem';
+import { IScheduleItem } from '../../models/ScheduleItem';
+import { IStudentSchedule } from '../../models/StudentSchedule';
 import { ILink } from '../../models/ILink';
 
 @Injectable()
 export class spDataService {
 
-    constructor(private _http: Http, private _authService: AuthService) {}
+    private states: SelectItem[] = [];
+    private activities: SelectItem[] = [];
+    private activitytypes: SelectItem[] = [];
+
+    constructor(private _http: Http, private _authService: AuthService, private _dataService: DataService) {}
+
+    //Lookup tables
+    getStatesList(): SelectItem[] {
+        var temp = this.states;
+        if (this.states.length == 0)
+        {
+            temp.push({label:'Select State', value:null});
+            this._dataService.states.forEach(function(state) {
+                temp.push({label: state.state, value: state.statecode});
+            });
+        }
+        return this.states;
+    }
+
+    getActivityList(): SelectItem[] {
+        var temp = this.activities;
+        if (this.activities.length == 0)
+        {
+            temp.push({label:'Select Activity', value:null});
+            this._dataService.activities.forEach(function(activity) {
+                temp.push({label: activity.activity, value: activity.id});
+            });
+        }
+        return this.activities;
+    }
+
+    getActivityTypeList(): SelectItem[] {
+        var temp = this.activitytypes;
+        if (this.activitytypes.length == 0)
+        {
+            temp.push({label:'Select Activity Type', value:null});
+            this._dataService.activitytypes.forEach(function(activitytypes) {
+                temp.push({label: activitytypes.activitytype, value: activitytypes.id});
+            });
+        }
+        return this.activitytypes;
+    }    
 
     //Schedule
     getSchedule(id:number): Observable<IScheduleItem[]> {
@@ -25,14 +69,14 @@ export class spDataService {
                     .catch(this.handleError) ;
     }
 
-    postSchedule(link: IScheduleItem): Observable<any> {
+    postSchedule(link: IStudentSchedule): Observable<any> {
         let body = JSON.stringify(link);
         return this._http.post(Config.WEBSERVICESURL + 'studentschedules/', body, this._authService.getAuthHeader())
             .map(res =>  res)
             .catch(this.handleError);
     }
 
-    putSchedule(link: IScheduleItem): Observable<any> {
+    putSchedule(link: IStudentSchedule): Observable<any> {
         let body = JSON.stringify(link);
         return this._http.put(Config.WEBSERVICESURL + 'studentschedules/' + link.id.toString(), body, this._authService.getAuthHeader())
             .map(res =>  res)
@@ -71,10 +115,6 @@ export class spDataService {
             .map(res =>  res)
             .catch(this.handleError);
     }
-
-
-
-
 
     canEdit() {
         return this._authService.isLoggedIn();

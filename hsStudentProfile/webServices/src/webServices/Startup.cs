@@ -117,6 +117,7 @@ namespace webServices
             services.AddScoped<EntityBaseRepository<UserLoginHistory>, EntityBaseRepository<UserLoginHistory>>();
             services.AddScoped<EntityBaseRepository<UserRoles>, EntityBaseRepository<UserRoles>>();
             services.AddScoped<EntityBaseRepository<Guest>, EntityBaseRepository<Guest>>();
+            services.AddScoped<EntityBaseRepository<States>, EntityBaseRepository<States>>();
 
             // Register email service 
             services.AddTransient<IEmailService, EmailService>();

@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProfile } from '../models/IProfile';
-import { IClass } from '../models/IClass';
+import { IClass } from '../models/Class';
 import { IExtraCurricular } from '../models/IExtraCurricular';
-import { IScheduleItem } from '../models/IScheduleItem';
+import { IScheduleItem } from '../models/ScheduleItem';
 import { ILink } from '../models/ILink';
-import { IBBProfile } from '../models/IBBProfile';
+import { IBBProfile } from '../models/BBProfile';
 import { IProfilePictures } from '../models/IProfilePictures';
 import { IPicture } from '../studentprofile/pictures/IPicture';
 import { IVideo } from '../studentprofile/videos/IVideo';
@@ -45,7 +45,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private hittingstats: IHittingStats[];
     public hittingcategories: Array<HittingCategory> = []; 
 
-    componentToShow: string = 'schedule';
+    componentToShow: string = 'links';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _authService: AuthService, private _spDataService: spDataService) {
     }
@@ -151,6 +151,8 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
 
         //profilepics
         this._dataService.getProfilePictures(this.studentId).subscribe(pics => this.profilepics = pics, error => this.errorMessage = <any>error);
+
+        this._dataService.loadLookupData();
     }
 
     ngOnDestroy() {

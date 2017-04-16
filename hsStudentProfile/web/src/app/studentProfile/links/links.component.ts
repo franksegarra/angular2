@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { IProfile } from '../../models/IProfile';
 import { ILink } from '../../models/ILink';
@@ -10,11 +10,13 @@ import { Popup } from 'ng2-opd-popup';
 @Component({
     selector: 'pp-links',
     moduleId: module.id,
-    templateUrl: 'links.component.html'
+    templateUrl: 'links.component.html',
+    providers: [Popup]
 })
 export class LinksComponent implements OnInit { 
     @Input() myprofile: IProfile;
     @Input() links: ILink[];
+    //@ViewChild('popup') popup: Popup;
     private errorMessage: string;
     private pageName: string = 'Links';
     private form: FormGroup;

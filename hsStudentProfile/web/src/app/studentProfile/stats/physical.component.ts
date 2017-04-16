@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../../models/IProfile';
-import { IBBProfile } from '../../models/IBBProfile';
+import { IBBProfile } from '../../models/BBProfile';
 import { Config } from '../../config.service';
 import { spDataService } from '../services/spdata.service';
 

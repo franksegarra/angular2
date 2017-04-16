@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,10 +12,12 @@ import 'rxjs/add/operator/first';
 import { Config } from '../config.service';
 
 //Our Objects
-import { IClass } from '../models/IClass';
+import { IState } from '../models/State';
+import { IActivity } from '../models/activity';
+import { IActivityType } from '../models/activitytype';
+
+import { IClass } from '../models/Class';
 import { IExtraCurricular } from '../models/IExtraCurricular';
-//import { ILink } from '../models/ILink';
-import { IScheduleItem } from '../models/IScheduleItem';
 import { IProfile } from '../models/IProfile';
 import { IStudent } from '../models/IStudent';
 import { IContactMe } from '../models/IContactMe';
@@ -24,7 +27,7 @@ import { IFeedback } from '../models/IFeedback';
 import { IPicture } from '../studentprofile/pictures/IPicture';
 import { IVideo } from '../studentprofile/videos/IVideo';
 import { ICoach } from '../models/ICoach';
-import { IBBProfile } from '../models/IBBProfile';
+import { IBBProfile } from '../models/BBProfile';
 import { IHittingStats } from '../models/IHittingStats';
 import { HittingCategory } from '../models/HittingCategory';
 
@@ -35,14 +38,43 @@ interface IIPAddress { ip: string };
 
 @Injectable()
 export class DataService {
-
-    private ipaddress: IIPAddress;
+    public ipaddress: IIPAddress;
+    public states: IState[];
+    public activities: IActivity[];
+    public activitytypes: IActivityType[];
     private errorMessage: string;
     private options: RequestOptions;
 
-    constructor(private _http: Http, private authService: AuthService) {        
+    constructor(private _http: Http, private authService: AuthService) {
         this.getClientIPAddress().subscribe(p => this.ipaddress = p, error => this.errorMessage = <any>error);
     }
+
+    loadLookupData() {
+        this.getStates().subscribe(s => this.states = s, error => this.errorMessage = <any>error);
+        this.getActivity().subscribe(a => this.activities = a, error => this.errorMessage = <any>error);
+        this.getActivityType().subscribe(a => this.activitytypes = a, error => this.errorMessage = <any>error);
+    }
+
+    getStates() {
+        return this._http.get(Config.WEBSERVICESURL + 'states', this.authService.getAuthHeader())
+                    .map((response: Response) => <IState[]>response.json())
+                    .catch(this.handleError);
+    }
+
+    getActivity() {
+        return this._http.get(Config.WEBSERVICESURL + 'activity', this.authService.getAuthHeader())
+                    .map((response: Response) => <IActivity[]>response.json())
+                    .catch(this.handleError);
+    }
+
+    getActivityType() {
+        return this._http.get(Config.WEBSERVICESURL + 'activitytype', this.authService.getAuthHeader())
+                    .map((response: Response) => <IActivityType[]>response.json())
+                    .catch(this.handleError);
+    }
+
+
+    //To be moved to student profile    
 
     getProfile(id:number): Observable<IProfile> {
         return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id, this.authService.getAuthHeader())

@@ -7,9 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/primeng';
-
 import { PopupModule } from 'ng2-opd-popup';
-
 
 //Main Menu features
 import { AboutComponent } from './about/about.component';
@@ -32,6 +30,7 @@ import { AppComponent }  from './app.component';
 import { AuthService }  from './services/auth.service';
 import { AlertService }  from './services/alert.service';
 import { UserService }  from './services/user.service';
+import { DateService }  from './services/date.service';
 
 //Module declaration
 @NgModule({
@@ -45,8 +44,8 @@ import { UserService }  from './services/user.service';
       BrowserAnimationsModule,
       FormsModule, 
       ReactiveFormsModule,
-      SelectButtonModule
-      ,PopupModule.forRoot()
+      SelectButtonModule,
+      PopupModule.forRoot()
   ],
   declarations: [ 
       AppComponent
@@ -58,7 +57,7 @@ import { UserService }  from './services/user.service';
       ,ForgotPWComponent
       ,ForgotUserNameComponent
   ],  
-  providers: [ AuthService, AlertService, UserService ],
+  providers: [ AuthService, AlertService, UserService, DateService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -97,6 +97,7 @@
     <Build Include="Tables\userLoginHistory.sql" />
     <None Include="Scripts\Other\backupdata.sql" />
     <Build Include="Tables\guest.sql" />
+    <Build Include="Tables\states.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment1.sql" />

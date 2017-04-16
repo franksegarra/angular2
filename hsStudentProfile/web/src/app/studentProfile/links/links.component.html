@@ -37,25 +37,26 @@
 
         <!-- Add/Edit Popup -->
         <popup>
-            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                            <tr><td>Link Name:</td>
-                            <td><input type="text" formControlName = 'linkname' placeholder="Enter Link Name (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
-
-                            <tr><td>Link Descriptions:</td>
-                            <td><input type="text" formControlName = 'linkdescription' placeholder="Enter Link Description (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
-
-                            <tr><td>Link Ur:</td>
-                            <td><input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px 12px;"></td><tr>
-
-                            <tr><td colspan="2" style="text-align: center">
-                                <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
-                                <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
-                            </td></tr>
-                        </tbody>
-                    </table>
+            <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+                <div class="container">
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1"><b>Link Name:</b></div>
+                        <div class="col col-sm-4"><input type="text" formControlName = 'linkname' placeholder="Enter Link Name (Required)" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1" ><b>Link Descriptions:</b></div>
+                        <div class="col col-sm-4" ><input type="text" formControlName = 'linkdescription' placeholder="Enter Link Description (Required)" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-1" ><b>Link Url:</b></div>
+                        <div class="col col-sm-4" ><input type="text" formControlName = 'linkurl' placeholder="Enter the Url for the Link (Required)" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-5">
+                            <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                            <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </popup>
