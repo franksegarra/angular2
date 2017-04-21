@@ -45,7 +45,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private hittingstats: IHittingStats[];
     public hittingcategories: Array<HittingCategory> = []; 
 
-    componentToShow: string = 'links';
+    componentToShow: string = 'stats';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _authService: AuthService, private _spDataService: spDataService) {
     }
@@ -114,7 +114,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
             this.myprofile.loggedin = false;
 
         //Main Profile and stats profile.  Get these first
-        this._dataService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
+        this._spDataService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
 
         //For Academics
         this._dataService.getClasses(this.studentId).subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
@@ -133,21 +133,23 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
         this._spDataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
 
         //Stats
-        this._dataService.getHittingStats(this.studentId)
+        this._spDataService.getHittingStats(this.studentId)
                 .subscribe(
                     //For every response
                     (stats) => {
                         // Need to wait for response
                         this.hittingstats = stats;
-                        this.hittingcategories = this._dataService.createStatsCategories(this.hittingstats);
+                        this.hittingcategories = this._spDataService.createStatsCategories(this.hittingstats);
                     },
                     //On Error
                     (err) => {console.log("ERROR in component. save to db: "+ err);},
                     //When observable closes
-                    () => {})
+                    () => {}
+                )
         
+
         //Coaches
-        this._dataService.getCoaches(this.studentId).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);
+        this._spDataService.getCoaches(this.studentId).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);
 
         //profilepics
         this._dataService.getProfilePictures(this.studentId).subscribe(pics => this.profilepics = pics, error => this.errorMessage = <any>error);

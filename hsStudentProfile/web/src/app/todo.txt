@@ -3,6 +3,9 @@ TODO:
 1.  Add table to track visits to a profile
 2.  Add ability to view message sent to me (Contact center)
 3.  Add hit counter
-4.  Make edit forms more responsive.  Stack Fieldname/value
+4.  Make edit forms more responsive.  Stack Fieldname/value  (I think this is done.  Keep an eye on it)
 5.  Add form validations (email, phone#)
+6.  Add type ahead capability to drop down lists
+7.  Zip code lookup for state and city.
+8.  Add identity server for authentication and authorization
 

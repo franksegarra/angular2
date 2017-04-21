@@ -4,6 +4,7 @@ import { IProfile } from '../../models/IProfile';
 import { IScheduleItem } from '../../models/ScheduleItem';
 import { IStudentSchedule } from '../../models/StudentSchedule';
 import { spDataService } from '../services/spdata.service';
+import { spUtilityService } from '../services/sputility.service';
 import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 import { ConfirmationService } from 'primeng/primeng';
 import { Calendar, Dropdown, SelectItem } from 'primeng/primeng';
@@ -28,6 +29,7 @@ export class ScheduleComponent {
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
+        private _spUtilityService: spUtilityService,
         private _dateService: DateService, 
         private confirmationService: ConfirmationService, 
         private popup:Popup
@@ -56,7 +58,7 @@ export class ScheduleComponent {
         this.editmode = 'add';
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this.myprofile.id);
-        this.showPopup("Add a new date to your schedule");
+        this._spUtilityService.showPopup(this.popup, "Add a new date to your schedule");
     }
 
     editRow(id:number, scheduleItem: IScheduleItem) {
@@ -75,7 +77,7 @@ export class ScheduleComponent {
         this.form.get('hours').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'hr'));
         this.form.get('minutes').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'mn'));
         this.form.get('ampm').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'ampm'));
-        this.showPopup("Change this activity:");
+        this._spUtilityService.showPopup(this.popup, "Edit this activity:");
     }
 
     onSubmit(): void { 
@@ -121,17 +123,6 @@ export class ScheduleComponent {
         this.popup.hide();
     }
 
-    onCancel(): void { 
-        this.confirmationService.confirm({
-            message: 'Are you sure  you want to cancel?',
-            header: 'Cancel Confirmation',
-            icon: 'fa fa-trash',
-            accept: () => {
-                this.popup.hide();
-            }
-        });
-    }
-
     deleteRow(id:number) {
         this._spDataService.deleteSchedule(id)
             .subscribe(
@@ -141,25 +132,12 @@ export class ScheduleComponent {
             );
     }
 
-    showPopup(myheader:string) {
-
-        this.popup.options = {
-            header:myheader,
-            color: "#326eb7", // red, blue.... 
-            widthProsentage: 40, // The with of the popou measured by browser width 
-            animationDuration: 0, // in seconds, 0 = no animation 
-            showButtons: false, // You can hide this in case you want to use custom buttons 
-            confirmBtnContent: "OK", // The text on your confirm button 
-            cancleBtnContent: "Cancel", // the text on your cancel button 
-            confirmBtnClass: "btn btn-default", // your class for styling the confirm button 
-            cancleBtnClass: "btn btn-default", // you class for styling the cancel button 
-            animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown' 
-        };
-    
-        this.popup.show(this.popup.options);
-    }
-
     refreshData(){
         this._spDataService.getSchedule(this.myprofile.id).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
+    }
+
+    //Moved to service
+    onCancel(): void { 
+        this._spUtilityService.Cancel(this.popup);
     }
 }

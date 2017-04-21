@@ -8,9 +8,10 @@
                 </p-accordionTab>
                 <div *ngIf="coaches && coaches.length">
                     <p-accordionTab header="My coaches">
-                        <pp-coaches [coaches]='coaches'>Loading...</pp-coaches>
+                        <pp-coaches [myprofile]='myprofile' [coaches]='coaches'>Loading...</pp-coaches>
                     </p-accordionTab>
                 </div>
+<!--
                 <div *ngIf="hittingcategories && hittingcategories.length">
                     <div *ngFor='let thiscategory of hittingcategories'>
                         <p-accordionTab header="{{ thiscategory.category }}">
@@ -18,6 +19,7 @@
                         </p-accordionTab>
                     </div>
                 </div>
+-->            
             </p-accordion>
         </div>
     </div>

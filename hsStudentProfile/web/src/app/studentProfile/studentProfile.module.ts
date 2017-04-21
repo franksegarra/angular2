@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DropdownModule } from 'primeng/primeng';
-import { ConfirmDialogModule, ConfirmationService, OverlayPanelModule, CalendarModule } from 'primeng/primeng';
+import { ConfirmDialogModule, ConfirmationService, OverlayPanelModule, CalendarModule, MultiSelectModule } from 'primeng/primeng';
 import { MessageFormModule } from '../shared/messageform/messageform.module';
 
 import { PopupModule } from 'ng2-opd-popup';
@@ -14,6 +14,7 @@ import { DataService } from '../services/data.service';
 import { VideoService } from './videos/video.service';
 import { PictureService } from './pictures/picture.service';
 import { spDataService } from './services/spdata.service';
+import { spUtilityService } from './services/sputility.service';
 
 //Shared Components
 import { SpHeaderComponent } from './spshared/spheader.component';
@@ -79,7 +80,8 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       OverlayPanelModule,
       PopupModule,
       CalendarModule,
-      DropdownModule
+      DropdownModule,
+      MultiSelectModule
   ],
   declarations: [
       StudentProfileComponent
@@ -110,7 +112,14 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       ,DateFormatPipe
       ,DOWFormatPipe
   ],  
-  providers: [ DataService, VideoService, PictureService, spDataService, ConfirmationService],
+  providers: [ 
+      DataService, 
+      VideoService, 
+      PictureService, 
+      spDataService, 
+      ConfirmationService,
+      spUtilityService
+  ],
   exports: [ StudentProfileComponent ]
 })
 export class StudentProfileModule { }  

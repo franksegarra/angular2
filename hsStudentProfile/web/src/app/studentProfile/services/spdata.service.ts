@@ -15,6 +15,10 @@ import { Config } from '../../config.service';
 import { IScheduleItem } from '../../models/ScheduleItem';
 import { IStudentSchedule } from '../../models/StudentSchedule';
 import { ILink } from '../../models/ILink';
+import { IBBProfile } from '../../models/BBProfile';
+import { ICoach } from '../../models/ICoach';
+import { IHittingStats } from '../../models/IHittingStats';
+import { HittingCategory } from '../../models/HittingCategory';
 
 @Injectable()
 export class spDataService {
@@ -22,10 +26,22 @@ export class spDataService {
     private states: SelectItem[] = [];
     private activities: SelectItem[] = [];
     private activitytypes: SelectItem[] = [];
+    private rlList: SelectItem[] = [];
 
     constructor(private _http: Http, private _authService: AuthService, private _dataService: DataService) {}
 
     //Lookup tables
+    getRLList(): SelectItem[] {
+        var temp = this.rlList;
+        if (this.rlList.length == 0)
+        {
+            temp.push({label:'Right', value:'R'});
+            temp.push({label:'Left', value:'L'});
+            temp.push({label:'Switch', value:'S'});
+        }
+        return this.rlList;
+    }
+
     getStatesList(): SelectItem[] {
         var temp = this.states;
         if (this.states.length == 0)
@@ -114,6 +130,72 @@ export class spDataService {
         return this._http.delete(Config.WEBSERVICESURL + 'studentlinks/' + id.toString(), this._authService.getAuthHeader())
             .map(res =>  res)
             .catch(this.handleError);
+    }
+
+    //Baseball profile
+    getBBProfile(id:number): Observable<IBBProfile[]> {
+        return this._http.get(Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/' + id, this._authService.getAuthHeader())
+                    .map((response: Response) => <IBBProfile[]>response.json())
+                    .catch(this.handleError);
+    }
+
+    //Coaches
+    getCoaches(id:number): Observable<ICoach[]> {
+        return this._http.get(Config.WEBSERVICESURL + 'studentcoaches/GetByStudentId/' + id, this._authService.getAuthHeader())
+                    .map((response: Response) => <ICoach[]>response.json())
+                    .catch(this.handleError) ;
+    }
+
+    postCoach(coach: ICoach): Observable<any> {
+        let body = JSON.stringify(coach);
+        return this._http.post(Config.WEBSERVICESURL + 'studentcoaches/', body, this._authService.getAuthHeader())
+            .map(res =>  res)
+            .catch(this.handleError);
+    }
+
+    putCoach(coach: ICoach): Observable<any> {
+        let body = JSON.stringify(coach);
+        return this._http.put(Config.WEBSERVICESURL + 'studentcoaches/' + coach.id.toString(), body, this._authService.getAuthHeader())
+            .map(res =>  res)
+            .catch(this.handleError);
+    }
+
+    deleteCoach(id:number): Observable<any> {
+        return this._http.delete(Config.WEBSERVICESURL + 'studentcoaches/' + id.toString(), this._authService.getAuthHeader())
+            .map(res =>  res)
+            .catch(this.handleError);
+    }
+
+    //Baseball Hitting Stats
+    getHittingStats(id:number): Observable<IHittingStats[]> {
+        return this._http.get( Config.WEBSERVICESURL + 'StudentBBHittingStats/GetByStudentId/' + id, this._authService.getAuthHeader())
+                    .map((res:Response) => <IHittingStats[]>res.json())
+                    .catch(this.handleError) ;
+    };
+
+    createStatsCategories( _hittinglist:Array<IHittingStats> ) : Array<HittingCategory> {
+        var categories:Array<string> = [];
+        var hittingcategories: Array<HittingCategory> = []; 
+
+        //Create local variable
+        var list:Array<IHittingStats> = _hittinglist;
+        var hctemp = hittingcategories;
+
+        //Get list of categories
+        categories = _hittinglist.map(function(e) { return e['category']; }).filter(function(e,i,a){return i === a.indexOf(e);});            
+
+        //For each category create the object and fill the array
+        categories.forEach(function(item) {
+            var hc: HittingCategory = new HittingCategory();
+            hc.category = item;
+            hc.categorylist = list.filter(function(e){return e.category == item;});
+            hc.createStatsCategoryTotal();
+
+            //Add to array
+            hctemp.push(hc);
+        });
+
+        return hittingcategories;
     }
 
     canEdit() {

@@ -26,10 +26,6 @@ import { IProfilePictures } from '../models/IProfilePictures';
 import { IFeedback } from '../models/IFeedback';
 import { IPicture } from '../studentprofile/pictures/IPicture';
 import { IVideo } from '../studentprofile/videos/IVideo';
-import { ICoach } from '../models/ICoach';
-import { IBBProfile } from '../models/BBProfile';
-import { IHittingStats } from '../models/IHittingStats';
-import { HittingCategory } from '../models/HittingCategory';
 
 //Auth service
 import { AuthService }  from './auth.service';
@@ -73,7 +69,6 @@ export class DataService {
                     .catch(this.handleError);
     }
 
-
     //To be moved to student profile    
 
     getProfile(id:number): Observable<IProfile> {
@@ -110,49 +105,6 @@ export class DataService {
         return this._http.get(Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id, this.authService.getAuthHeader())
                     .map((response: Response) => <IPicture[]>response.json())
                     .catch(this.handleError) ;
-    }
-
-    getBBProfile(id:number): Observable<IBBProfile[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentbaseballprofile/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IBBProfile[]>response.json())
-                    .catch(this.handleError);
-    }
-
-    getCoaches(id:number): Observable<ICoach[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentcoaches/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <ICoach[]>response.json())
-                    .catch(this.handleError) ;
-    }
-
-    getHittingStats(id:number): Observable<IHittingStats[]> {
-        return this._http.get( Config.WEBSERVICESURL + 'StudentBBHittingStats/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((res:Response) => <IHittingStats[]>res.json())
-                    .catch(this.handleError) ;
-    };
-
-    createStatsCategories( _hittinglist:Array<IHittingStats> ) : Array<HittingCategory> {
-        var categories:Array<string> = [];
-        var hittingcategories: Array<HittingCategory> = []; 
-
-        //Create local variable
-        var list:Array<IHittingStats> = _hittinglist;
-        var hctemp = hittingcategories;
-
-        //Get list of categories
-        categories = _hittinglist.map(function(e) { return e['category']; }).filter(function(e,i,a){return i === a.indexOf(e);});            
-
-        //For each category create the object and fill the array
-        categories.forEach(function(item) {
-            var hc: HittingCategory = new HittingCategory();
-            hc.category = item;
-            hc.categorylist = list.filter(function(e){return e.category == item;});
-            hc.createStatsCategoryTotal();
-
-            //Add to array
-            hctemp.push(hc);
-        });
-
-        return hittingcategories;
     }
 
     getProfilePictures(id:number): Observable<IProfilePictures[]> {

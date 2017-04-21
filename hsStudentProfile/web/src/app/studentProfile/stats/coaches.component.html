@@ -1,10 +1,23 @@
+<p-confirmDialog width="425"></p-confirmDialog>
+
+<!-- Add new row button - This works fine -->
+<div *ngIf="_spDataService.canEdit()">
+    <span class="btn-group">
+        <button id="popup" type="button" class="btn addbutton">
+            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Link</i> 
+        </button>
+    </span>
+</div> 
+
+<!-- Data rows -->
 <div class="table-responsive">
     <table class="table" *ngIf="coaches && coaches.length">
         <thead>
             <tr>
                 <th class="col-md-1">Name</th>
                 <th class="col-md-2">Description</th>
-                <th class="col-md-2">email</th>
+                <th class="col-md-2">Email</th>
+                <th class="col-md-1"></th>
             </tr>
         </thead>
         <tbody>
@@ -12,7 +25,36 @@
                 <td>{{ coach.name }}</td>
                 <td>{{ coach.description }}</td>
                 <td>{{ coach.email }}</td>   
+                <td> <!-- Delete and edit buttons -->
+                    <pp-editButtons [idField]="coach.id" (onEditRow)="editRow($event, coach)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<!-- Add/Edit Popup -->
+<popup>
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+        <div class="container">
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1"><b>Name:</b></div>
+                <div class="col col-sm-4"><input type="text" formControlName = 'name' placeholder="Enter coach's name (Required)" style="width:100%; padding: 6px"></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Description:</b></div>
+                <div class="col col-sm-4" ><input type="text" formControlName = 'description' placeholder="How are you associated with this coach (Required)" style="width:100%; padding: 6px"></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Email:</b></div>
+                <div class="col col-sm-4" ><input type="text" formControlName = 'email' placeholder="Enter the coach's email address (Required)" style="width:100%; padding: 6px"></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-5">
+                    <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                    <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</popup>
