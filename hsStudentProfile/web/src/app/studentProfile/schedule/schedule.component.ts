@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { IProfile } from '../../models/IProfile';
+
 import { IScheduleItem } from '../../models/ScheduleItem';
 import { IStudentSchedule } from '../../models/StudentSchedule';
+
 import { spDataService } from '../services/spdata.service';
 import { spUtilityService } from '../services/sputility.service';
 import { EditButtonsComponent } from '../spshared/spEditButtons.component';
@@ -19,8 +20,8 @@ import { Popup } from 'ng2-opd-popup';
     providers: [Popup]
 })
 export class ScheduleComponent { 
-    @Input() myprofile: IProfile;
-    @Input() schedItems: IScheduleItem[];
+    @ViewChild('schedPopup') popup:Popup;
+    
     private errorMessage: string;
     pageName: string = "Where I'll be";
     private form: FormGroup;
@@ -31,8 +32,7 @@ export class ScheduleComponent {
         private _spDataService: spDataService, 
         private _spUtilityService: spUtilityService,
         private _dateService: DateService, 
-        private confirmationService: ConfirmationService, 
-        private popup:Popup
+        private confirmationService: ConfirmationService
     ) {}
 
     ngOnInit(): void {
@@ -57,14 +57,14 @@ export class ScheduleComponent {
     addRow() {
         this.editmode = 'add';
         this.form.get('id').setValue(0);
-        this.form.get('studentid').setValue(this.myprofile.id);
+        this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this._spUtilityService.showPopup(this.popup, "Add a new date to your schedule");
     }
 
     editRow(id:number, scheduleItem: IScheduleItem) {
         this.editmode = 'edit';
         this.form.get('id').setValue(scheduleItem.id);
-        this.form.get('studentid').setValue(this.myprofile.id);
+        this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('activityid').setValue(scheduleItem.activityid);
         this.form.get('activitytypeid').setValue(scheduleItem.activitytypeid);
         this.form.get('activitydesc').setValue(scheduleItem.activitydesc);
@@ -127,13 +127,13 @@ export class ScheduleComponent {
         this._spDataService.deleteSchedule(id)
             .subscribe(
                 (response) => {},
-                (err) => {console.log("ERROR in onSubmit: Post: "+ err);},
+                (err) => {console.log("ERROR in deleteRow: Delete: "+ err);},
                 () => {this.refreshData();}
             );
     }
 
     refreshData(){
-        this._spDataService.getSchedule(this.myprofile.id).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
+        this._spDataService.setSchedule(this._spDataService.myprofile.id);
     }
 
     //Moved to service

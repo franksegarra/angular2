@@ -8,6 +8,7 @@ using webServices.Controllers;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.JsonPatch;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -96,6 +97,42 @@ namespace webServices.Controllers
 
                 _Items.Delete(item);
                 return new NoContentResult();
+            }
+            catch (Exception ex)
+            {
+                //logger.Error(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPatch("{id:int}")]
+        public IActionResult Patch(int id, [FromBody]JsonPatchDocument<T> updateditem)
+        {
+            try
+            {
+                //Must get something to update
+                if (updateditem == null)
+                {
+                    return BadRequest();
+                }
+
+                //Must be one of ours
+                var item = _Items.GetSingle(id);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+
+                updateditem.ApplyTo(item, ModelState);
+
+                //Must be valid
+                if (ModelState.IsValid)
+                {
+                    _Items.Edit(item);
+                    return StatusCode(StatusCodes.Status200OK, updateditem);
+                }
+
+                return StatusCode(StatusCodes.Status400BadRequest);
             }
             catch (Exception ex)
             {

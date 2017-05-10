@@ -1,4 +1,4 @@
-<div *ngIf="bbprofile">
+<div *ngIf="_spDataService.bbprofile">
     <!-- Buttons -->
     <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
         <div class="col col-sm-5">
@@ -15,45 +15,45 @@
         <div class="column col-sm-9">
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>Student Name:</b></div>
-                    <div class="col col-sm-2">{{ myprofile.firstname + ' ' + myprofile.lastname }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.myprofile.firstname + ' ' + _spDataService.myprofile.lastname }}</div>
                 </div>
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>High School:</b></div>
-                    <div class="col col-sm-2">{{ myprofile.highschoolname }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.myprofile.highschoolname }}</div>
                 </div>
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>Graduation Year:</b></div>
-                    <div class="col col-sm-2">{{ myprofile.graduationyear }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.myprofile.graduationyear }}</div>
                 </div>
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>Height, Weight::</b></div>
-                    <div class="col col-sm-2">{{ myprofile.height + ', ' + myprofile.weight }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.myprofile.height + ', ' + _spDataService.myprofile.weight }}</div>
                 </div>
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>Best 60 Time:</b></div>
-                    <div class="col col-sm-2">{{ bbprofile.runningtime }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.bbprofile.runningtime }}</div>
                     <div class="col col-sm-2"><b>Location:</b></div>
-                    <div class="col col-sm-2"><a href="{{ bbprofile.runningtimelocationurl }}" target="_blank">{{ bbprofile.runningtimelocation }}</a></div>
+                    <div class="col col-sm-2"><a href="{{ _spDataService.bbprofile.runningtimelocationurl }}" target="_blank">{{ _spDataService.bbprofile.runningtimelocation }}</a></div>
                 </div>
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>Primary Position:</b></div>
-                    <div class="col col-sm-2">{{ bbprofile.position }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.bbprofile.position }}</div>
                     <div class="col col-sm-2"><b>Other Positions:</b></div>
-                    <div class="col col-sm-2">{{ bbprofile.otherpositions }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.bbprofile.otherpositions }}</div>
                 </div>
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>B/T:</b></div>
-                    <div class="col col-sm-2">{{ bbprofile.bats }}/{{ bbprofile.throws }}</div>
+                    <div class="col col-sm-2">{{ _spDataService.bbprofile.bats }}/{{ _spDataService.bbprofile.throws }}</div>
                 </div>
                 <div class="row" style="padding: 0px 0px 0px 0px">
                     <div class="col col-sm-2"><b>Travel Team:</b></div>
-                    <div class="col col-sm-2"><a href="{{ bbprofile.travelurl }}" target="_blank">{{ bbprofile.travelteam }}</a></div>
+                    <div class="col col-sm-2"><a href="{{ _spDataService.bbprofile.travelurl }}" target="_blank">{{ _spDataService.bbprofile.travelteam }}</a></div>
                 </div>
         </div>
     </div>
 
     <!-- Add/Edit Popup -->
-    <popup>
+    <popup #physPopup>
         <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
             <div class="container">
                 <div class="row" style="padding: 0px 0px 10px 0px">

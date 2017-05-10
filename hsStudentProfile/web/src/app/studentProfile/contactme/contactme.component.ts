@@ -1,36 +1,31 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
+import { Component, ViewChild } from '@angular/core';
 import { IContactMe } from '../../models/IContactMe';
 import { MessageFormComponent } from '../../shared/messageform/messageform.component';
 import { Message } from '../../shared/messageform/message';
 import { DataService } from '../../services/data.service';
+import { spDataService } from '../services/spdata.service';
 
 @Component({
     selector: 'pp-contactme',
     moduleId: module.id,
     templateUrl: 'contactme.component.html'
 })
-export class ContactMeComponent implements OnInit { 
-    @Input() myprofile: IProfile;
+export class ContactMeComponent { 
     @ViewChild(MessageFormComponent) private messageFormComponent: MessageFormComponent;
    
-    pageTitle: string;
+    pageTitle: string = this._spDataService.myprofile.firstname + ' ' + this._spDataService.myprofile.lastname + ' - ' + this._spDataService.myprofile.graduationyear + ' - ' + 'Contact Me';
     panelMessage: string = 'Send me a message:';
     errorMessage: string;
 
-    constructor(private _dataService: DataService) {}
-
-    ngOnInit(): void {
-        this.pageTitle = this.myprofile.firstname + ' ' + this.myprofile.lastname + ' - ' + this.myprofile.graduationyear + ' - ' + 'Contact Me';
-    }
+    constructor(private _dataService: DataService, private _spDataService: spDataService) {}
 
     onSubmit(event:any): void { 
 
         console.log("On Submit in contactme");
 
         var inputmsg: Message = event;
-        var id = this.myprofile.id;
-        var studentemail = this.myprofile.primaryemail;
+        var id = this._spDataService.myprofile.id;
+        var studentemail = this._spDataService.myprofile.primaryemail;
 
         var msg: IContactMe = {
             studentid: id,

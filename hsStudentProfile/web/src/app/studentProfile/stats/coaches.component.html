@@ -4,14 +4,14 @@
 <div *ngIf="_spDataService.canEdit()">
     <span class="btn-group">
         <button id="popup" type="button" class="btn addbutton">
-            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Link</i> 
+            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Coach</i> 
         </button>
     </span>
 </div> 
 
 <!-- Data rows -->
 <div class="table-responsive">
-    <table class="table" *ngIf="coaches && coaches.length">
+    <table class="table" *ngIf="_spDataService.coaches && _spDataService.coaches.length">
         <thead>
             <tr>
                 <th class="col-md-1">Name</th>
@@ -21,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let coach of coaches' >
+            <tr *ngFor='let coach of _spDataService.coaches' >
                 <td>{{ coach.name }}</td>
                 <td>{{ coach.description }}</td>
                 <td>{{ coach.email }}</td>   
@@ -34,7 +34,7 @@
 </div>
 
 <!-- Add/Edit Popup -->
-<popup>
+<popup #coachesPopup>
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
         <div class="container">
             <div class="row" style="padding: 6px">

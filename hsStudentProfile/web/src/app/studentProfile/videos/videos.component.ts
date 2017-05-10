@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
+import { Component, OnInit } from '@angular/core';
 import { IVideo } from './IVideo';
 import { VideoService } from './video.service';
 import { TreeNode } from 'primeng/primeng';
@@ -12,14 +11,12 @@ import { spDataService } from '../services/spdata.service';
     styleUrls: ['./videos.component.css']
 })
 export class VideosComponent implements OnInit { 
-    @Input() myprofile: IProfile;
-    @Input() videolist:Array<IVideo>;
     pageName: string = 'Videos';
 
     constructor(public videoService:VideoService, private _spDataService:spDataService) {}
 
     ngOnInit(): void {
-        this.videoService.appSetup("videoDisplay", this.videolist);
+        this.videoService.appSetup("videoDisplay", this._spDataService.videolist);
     }
 
     nodeSelect(event: any) {

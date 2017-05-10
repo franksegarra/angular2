@@ -8,6 +8,6 @@
     }, 
     // Controls auto save of dirty files. Accepted values:  "off", "afterDelay", "onFocusChange". If set to "afterDelay" you can configure the delay in "files.autoSaveDelay".
     "files.autoSave": "afterDelay",
-    //"typescript.tsdk": "./node_modules/typescript/lib"
-    "typescript.tsdk": "C:/repos/hsPlayerProfile/web/node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib"
+    //"typescript.tsdk": "C:/repos/hsPlayerProfile/web/node_modules/typescript/lib"
 }

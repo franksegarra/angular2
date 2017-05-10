@@ -1,8 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
-import { IBBProfile } from '../../models/BBProfile';
-import { ICoach } from '../../models/ICoach';
-import { HittingCategory } from '../../models/HittingCategory';
+import { Component } from '@angular/core';
 import { spDataService } from '../services/spdata.service';
 
 @Component({
@@ -11,10 +7,6 @@ import { spDataService } from '../services/spdata.service';
     templateUrl: 'stats.component.html'
 })
 export class StatsComponent { 
-    @Input() myprofile: IProfile;
-    @Input() bbprofile: IBBProfile;
-    @Input() coaches: Array<ICoach>; 
-    @Input() hittingcategories: Array<HittingCategory>; 
     pageName: string = 'Stats';
 
     constructor(private _spDataService: spDataService) {}

@@ -1,7 +1,7 @@
 export interface IBBProfile {
     id: number;
     studentid: number;
-    statspictureId: number;
+    statspictureid: number;
     runningtime: number;
     bats: string;
     throws: string;

@@ -1,16 +1,53 @@
+<p-confirmDialog width="425"></p-confirmDialog>
+
+<!-- Add new row button - This works fine -->
+<div *ngIf="_spDataService.canEdit()">
+    <span class="btn-group">
+        <button id="popup" type="button" class="btn addbutton">
+            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Activity</i> 
+        </button>
+    </span>
+</div> 
+
 <div class="table-responsive">
-    <table class="table" *ngIf="ec && ec.length">
+    <table class="table" *ngIf="_spDataService.ec && _spDataService.ec.length">
         <thead>
             <tr>
                 <th class="col-md-2">Activity</th>
                 <th>Description</th>
+                <th class="col-md-1"></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let e of ec' >
+            <tr *ngFor='let e of _spDataService.ec' >
                 <td>{{ e.ecname }}</td>
                 <td>{{ e.ecdescription }}</td>
+                <td> <!-- Delete and edit buttons -->
+                    <pp-editButtons [idField]="e.id" (onEditRow)="editRow($event, e)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<!-- Add/Edit Popup -->
+<popup #ecPopup>
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+        <div class="container">
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1"><b>Name:</b></div>
+                <div class="col col-sm-4"><input type="text" formControlName = 'ecname' placeholder="Enter activity name (Required)" style="width:100%; padding: 6px"></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Description:</b></div>
+                <div class="col col-sm-4" ><input type="text" formControlName = 'ecdescription' placeholder="How are you associated with this coach (Required)" style="width:100%; padding: 6px"></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-5">
+                    <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                    <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</popup>

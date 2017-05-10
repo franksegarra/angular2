@@ -1,21 +1,67 @@
+<p-confirmDialog width="425"></p-confirmDialog>
+
+<!-- Add new row button - This works fine -->
+<div *ngIf="_spDataService.canEdit()">
+    <span class="btn-group">
+        <button id="popup" type="button" class="btn addbutton">
+            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Class</i> 
+        </button>
+    </span>
+</div> 
+
 <div class="table-responsive">
-    <table class="table" *ngIf="classes && classes.length">
+    <table class="table" *ngIf="_spDataService.classes && _spDataService.classes.length">
         <thead>
             <tr>
                 <th class="col-md-2">Class</th>
                 <th class="col-md-2">Final Average</th>
                 <th class="col-md-2">Letter Grade</th>
                 <th class="col-md-2">Eligible For College Credit</th>
+                <th class="col-md-1"></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let class of classes | gradeFilter: {grade: grade}' >
+            <tr *ngFor='let class of _spDataService.classes | gradeFilter: {grade: grade}' >
                 <td>{{ class.classname }}</td>
                 <td>{{ class.finalaverage }}</td>
                 <td>{{ class.lettergrade }}</td>   
                 <td *ngIf="class.collegecredit === 1" >Yes</td>   
                 <td *ngIf="class.collegecredit === 0" ></td>   
+                <td> <!-- Delete and edit buttons -->
+                    <pp-editButtons [idField]="class.id" (onEditRow)="editRow($event, class)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<!-- Add/Edit Popup -->
+<popup #gradesPopup style="width:100%">
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+        <div class="container">
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-2"><b>Class:</b></div>
+                <div class="col col-sm-3"><input type="text" formControlName = 'classname' placeholder="Enter class name (Required)" style="width:100%; padding: 6px"></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-2" ><b>Final Average:</b></div>
+                <div class="col col-sm-3" ><input type="text" formControlName = 'finalaverage' placeholder="Enter final average" style="width:100%; padding: 6px"></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-2" ><b>Letter Grade:</b></div>
+                <div class="col col-sm-3"><p-dropdown [options]="_spDataService.getGradesList()" formControlName="lettergrade" [style]="{'width':'100%'}"></p-dropdown></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-2" ><b>AP or Eligible for College Credit:</b></div>
+                <div class="col col-sm-3" ><p-selectButton [options]="yesno" formControlName='collegecredit'></p-selectButton>
+                </div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-5">
+                    <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                    <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</popup>

@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ICoach } from '../../models/ICoach';
 
 import { spDataService } from '../services/spdata.service';
@@ -9,7 +8,6 @@ import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 import { ConfirmationService } from 'primeng/primeng';
 import { Popup } from 'ng2-opd-popup';
 
-
 @Component({
     selector: 'pp-coaches',
     moduleId: module.id,
@@ -17,8 +15,8 @@ import { Popup } from 'ng2-opd-popup';
     providers: [Popup]
 })
 export class CoachesComponent implements OnInit { 
-    @Input() myprofile: IProfile;
-    @Input() coaches: Array<ICoach>;
+    @ViewChild('coachesPopup') popup:Popup;
+    
     private errorMessage: string;
     private form: FormGroup;
     private editmode: string = '';
@@ -27,8 +25,7 @@ export class CoachesComponent implements OnInit {
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
         private _spUtilityService: spUtilityService,
-        private confirmationService: ConfirmationService, 
-        private popup:Popup, 
+        private confirmationService: ConfirmationService
     ) {}
 
     ngOnInit(): void {
@@ -46,7 +43,7 @@ export class CoachesComponent implements OnInit {
     addRow() {
         this.editmode = 'add';
         this.form.get('id').setValue(0);
-        this.form.get('studentid').setValue(this.myprofile.id);
+        this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('sortorder').setValue(this.findMaxSortOrder());
         this._spUtilityService.showPopup(this.popup, "Add a new coach to your profile");
     }
@@ -54,7 +51,7 @@ export class CoachesComponent implements OnInit {
     editRow(id:number, coach: ICoach) {
         this.editmode = 'edit';
         this.form.get('id').setValue(coach.id);
-        this.form.get('studentid').setValue(this.myprofile.id);
+        this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('sortorder').setValue(coach.sortorder);
         this.form.get('name').setValue(coach.name);
         this.form.get('description').setValue(coach.description);
@@ -78,8 +75,6 @@ export class CoachesComponent implements OnInit {
         //send to edit service to post
         if (this.editmode == 'add')
         {
-            console.log(JSON.stringify(aCoach));
-
             this._spDataService.postCoach(aCoach)
                 .subscribe(
                     (response) => {},
@@ -106,28 +101,25 @@ export class CoachesComponent implements OnInit {
         this._spDataService.deleteCoach(id)
             .subscribe(
                 (response) => {},
-                (err) => {console.log("ERROR in onSubmit: Post: "+ err);},
+                (err) => {console.log("ERROR in deleteRow: Delete: "+ err);},
                 () => {this.refreshData();}
             );
     }
 
     refreshData(){
-        this._spDataService.getCoaches(this.myprofile.id).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);
+        this._spDataService.setCoaches(this._spDataService.myprofile.id);
     }
 
-    //Moved to service
     onCancel(): void { 
         this._spUtilityService.Cancel(this.popup);
     }
 
     findMaxSortOrder():number {
         let mx = 0;
-        this.coaches.forEach(function(coach) {
+        this._spDataService.coaches.forEach(function(coach) {
             if (coach.sortorder > mx)
                 mx = coach.sortorder;
         });
         return mx+1;
     }
-
-
 }

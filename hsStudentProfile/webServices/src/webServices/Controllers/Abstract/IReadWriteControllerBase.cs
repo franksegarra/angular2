@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq.Expressions;
 using webServices.Entities;
@@ -12,5 +13,6 @@ namespace webServices.Controllers
         IActionResult Post([FromBody] T item);
         IActionResult Put(int id, [FromBody] T updateditem);
         IActionResult Delete(int id);
+        IActionResult Patch(int id, [FromBody]JsonPatchDocument<T> patch);
     }
 }

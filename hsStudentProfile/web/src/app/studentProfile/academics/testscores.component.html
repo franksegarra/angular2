@@ -1,27 +1,96 @@
-<div class='row'>
-    <div class="column col-sm-3">
-        <img class="img-responsive" [src]="profilePicUrl" alt="No pictures to show" >
+<div *ngIf="_spDataService.myprofile">
+    <!-- Buttons -->
+    <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
+        <div class="col col-sm-5">
+            <button type="submit" class="ui button">Change Picture</button>
+            <button type="submit" class="ui button" (click)="onEditClicked()" *ngIf="!editing">Edit Profile</button>
+        </div>
     </div>
-    
-    <div class="table-responsive" style="padding-left: 1%">
-        <table class="table-condensed">
-            <colgroup>
-                <col span="1" style="width: 15%;">
-                <col span="1" style="width: 25%;">
-                <col span="1" style="width: 25%;">
-            </colgroup>
 
-            <tr><td><b>Student Name:</b></td><td>{{ myprofile.firstname + ' ' + myprofile.lastname }}</td><td></td></tr>
-            <tr><td><b>High School:</b></td><td>{{ myprofile.highschoolname }}</td><td></td></tr>
-            <tr><td><b>Graduation Year:</b></td><td>{{ myprofile.graduationyear }}</td><td></td></tr>
-            <tr><td><b>GPA:</b></td><td>{{ myprofile.gpa }}</td><td></td></tr>
-            <tr><td><b>SAT Test Date:</b></td><td>{{ myprofile.sattestdate | dateFormat }}</td><td><b>Score:</b> {{ myprofile.satscore }}</td></tr>
-            <tr><td><b>ACT Test Date/Score:</b></td><td>{{ myprofile.acttestdate | dateFormat }}</td><td><b>Score:</b> {{ myprofile.actscore }}</td></tr>
-            <tr><td><b>Intended College Major:</b></td><td>{{ myprofile.collegemajor }}</td><td></td></tr>
-            <tr><td colspan="3"></td></tr>
-            <tr><td colspan="3"><b>Personal Statement</b></td></tr>
-            <tr><td colspan="2">{{ myprofile.additionalinfo }}</td></tr>
-        </table>
+    <div class='row'>
+        <div class="column col-sm-3">
+            <img class="img-responsive" [src]="profilePicUrl" alt="No pictures to show" >
+        </div>
+        
+        <div class="table-responsive" style="padding-left: 1%">
+            <table class="table-condensed">
+                <colgroup>
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 25%;">
+                </colgroup>
+
+                <tr><td><b>Student Name:</b></td><td>{{ _spDataService.myprofile.firstname + ' ' + _spDataService.myprofile.lastname }}</td><td></td></tr>
+                <tr><td><b>High School:</b></td><td>{{ _spDataService.myprofile.highschoolname }}</td><td></td></tr>
+                <tr><td><b>Graduation Year:</b></td><td>{{ _spDataService.myprofile.graduationyear }}</td><td></td></tr>
+                <tr><td><b>GPA:</b></td><td>{{ _spDataService.myprofile.gpa }}</td><td></td></tr>
+                <tr><td><b>SAT Test Date:</b></td><td>{{ _spDataService.myprofile.sattestdate | dateFormat }}</td><td><b>Score:</b> {{ _spDataService.myprofile.satscore }}</td></tr>
+                <tr><td><b>ACT Test Date/Score:</b></td><td>{{ _spDataService.myprofile.acttestdate | dateFormat }}</td><td><b>Score:</b> {{ _spDataService.myprofile.actscore }}</td></tr>
+                <tr><td><b>Intended College Major:</b></td><td>{{ _spDataService.myprofile.collegemajor }}</td><td></td></tr>
+                <tr><td colspan="3"></td></tr>
+                <tr><td colspan="3"><b>Personal Statement</b></td></tr>
+                <tr><td colspan="2">{{ _spDataService.myprofile.additionalinfo }}</td></tr>
+            </table>
+        </div>
+        
     </div>
-    
+
+    <!-- Add/Edit Popup -->
+    <popup #tsPopup>
+        <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+            <div class="container">
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>First Name:</b></div>
+                    <div class="col col-sm-3"><input type="text" formControlName = 'firstname' placeholder="First Name (Required)" style="width:100%; padding: 6px"></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>Last Name:</b></div>
+                    <div class="col col-sm-3"><input type="text" formControlName = 'lastname' placeholder="Last Name (Required)" style="width:100%; padding: 6px"></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>High School:</b></div>
+                    <div class="col col-sm-3"><input type="text" formControlName = 'highschoolname' placeholder="High School" style="width:100%; padding: 6px"></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>Graduation Year:</b></div>
+                    <div class="col col-sm-3"><p-spinner size="30" formControlName = 'graduationyear' [min]="2017" [max]="2030" [thousandSeparator]="" style="width:100%;" ></p-spinner></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>GPA:</b></div>
+                    <div class="col col-sm-3"><input type="text" formControlName = 'gpa' placeholder="GPA" style="width:100%; padding: 6px"></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>SAT Test Date:</b></div>
+                    <div class="col col-sm-3"><p-calendar formControlName = 'sattestdate' placeholder="SAT Test Date" [style]="{'width':'100%'}" [showIcon]="true"></p-calendar></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>SAT Test Score:</b></div>
+                    <div class="col col-sm-3"><input type="text" formControlName = 'satscore' placeholder="SAT Test Score" style="width:100%; padding: 6px"></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>ACT Test Date:</b></div>
+                    <div class="col col-sm-3"><p-calendar formControlName = 'acttestdate' placeholder="ACT Test Date" [style]="{'width':'100%'}" [showIcon]="true"></p-calendar></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>ACT Test Score:</b></div>
+                    <div class="col col-sm-3"><input type="text" formControlName = 'actscore' placeholder="ACT Test Score" style="width:100%; padding: 6px"></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>Intended College Major:</b></div>
+                    <div class="col col-sm-3"><input type="text" formControlName = 'collegemajor' placeholder="Intended College Major" style="width:100%; padding: 6px"></div>
+                </div>
+                <div class="row" style="padding: 0px 0px 10px 0px">
+                    <div class="col col-sm-2"><b>Personal Statement:</b></div>
+                    <div class="col col-sm-3"><textarea rows="10" pInputTextarea formControlName = 'additionalinfo' autoResize="autoResize" style="width:100%;"></textarea></div>
+                </div>
+                <div class="row" style="padding: 6px">
+                    <div class="col col-sm-5">
+                        <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                        <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </popup>
+
 </div>

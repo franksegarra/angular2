@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="myprofile">
+<div class="wrapper" *ngIf="this._spDataService.myprofile">
     <div class="row row-offcanvas row-offcanvas-left">
 
         <!-- sidebar -->
@@ -59,33 +59,33 @@
         <!-- main right col -->
         <div class="column col-sm-11 col-xs-11" id="main" style="padding-left: 5px" >
             <div *ngIf="componentToShow === 'academics'">
-                <pp-academics [myprofile]='myprofile' [ec]='ec' [classes]='classes' >Loading...</pp-academics>
+                <pp-academics>Loading...</pp-academics>
             </div>
 
             <div *ngIf="componentToShow === 'videos'">
-                <pp-videos [myprofile]='myprofile' [videolist]='videolist'>Loading...</pp-videos>
+                <pp-videos>Loading...</pp-videos>
             </div>
 
             <div *ngIf="componentToShow === 'pictures'">
-                <pp-pictures [myprofile]='myprofile' [profilepics]='profilepics' [picturelist]='picturelist'>Loading...</pp-pictures>
+                <pp-pictures>Loading...</pp-pictures>
             </div>
 
             <div *ngIf="componentToShow === 'schedule'">
-                <pp-schedule [myprofile]='myprofile' [schedItems]='schedItems'>Loading...</pp-schedule>
+                <pp-schedule>Loading...</pp-schedule>
             </div>
 
             <div *ngIf="componentToShow === 'links'">
-                <pp-links [myprofile]='myprofile' [links]='links'>Loading...</pp-links>
+                <pp-links>Loading...</pp-links>
             </div>
 
             <div *ngIf="componentToShow === 'stats'">
-                <pp-stats [myprofile]='myprofile' [bbprofile]='bbprofile' [coaches]='coaches' [hittingcategories]='hittingcategories'>Loading...</pp-stats>
+                <pp-stats>Loading...</pp-stats>
             </div>
 
             <!-- Comments will go here -->
 
             <div *ngIf="componentToShow === 'contactme'">
-                <pp-contactme [myprofile]='myprofile'>Loading...</pp-contactme>
+                <pp-contactme>Loading...</pp-contactme>
             </div>
         </div>
         <!-- /main -->

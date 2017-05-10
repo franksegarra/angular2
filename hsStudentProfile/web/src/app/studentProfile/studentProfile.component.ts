@@ -1,19 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProfile } from '../models/IProfile';
-import { IClass } from '../models/Class';
-import { IExtraCurricular } from '../models/IExtraCurricular';
-import { IScheduleItem } from '../models/ScheduleItem';
-import { ILink } from '../models/ILink';
-import { IBBProfile } from '../models/BBProfile';
-import { IProfilePictures } from '../models/IProfilePictures';
-import { IPicture } from '../studentprofile/pictures/IPicture';
-import { IVideo } from '../studentprofile/videos/IVideo';
-import { ICoach } from '../models/ICoach';
-import { IHittingStats } from '../models/IHittingStats';
-import { HittingCategory } from '../models/HittingCategory';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/util/isNumeric';
+
+//import { IBBProfile } from '../models/BBProfile';
 
 //Data and auth services
 import { DataService } from '../services/data.service';
@@ -32,20 +22,10 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private sub: any;
     private pageTitle: string;
     private errorMessage: string;
-    private myprofile: IProfile;
-    private classes: IClass[];
-    private ec: IExtraCurricular[];
-    private schedItems: IScheduleItem[];
-    private links: ILink[];
-    private bbprofile: IBBProfile;
-    private profilepics: IProfilePictures[];
-    public picturelist:Array<IPicture> = [];
-    public videolist:Array<IVideo> = [];
-    private coaches: ICoach[];
-    private hittingstats: IHittingStats[];
-    public hittingcategories: Array<HittingCategory> = []; 
+    
+    //private bbprofile: IBBProfile;
 
-    componentToShow: string = 'stats';
+    componentToShow: string = 'academics';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _authService: AuthService, private _spDataService: spDataService) {
     }
@@ -73,13 +53,14 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
         if (!isNaN(this.studentInfo))
         {
             this.studentId = this.studentInfo
-            this._dataService.getProfile(this.studentId)
+            this._spDataService.setProfile(this.studentId)
                 .subscribe(
                     //For every response
                     (response) => {
-                        // Need to wait for response
-                        this.myprofile = response;
-                        this.getRestOfData();
+                        if(response==true)
+                        {
+                            this.getRestOfData();
+                        }
                     },
                     //On Error
                     (err) => {console.log("ERROR in component. getStudentProfile: "+ err);},
@@ -90,13 +71,11 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
         else
         {
             this.studentProfileName = this.studentInfo;
-            this._dataService.getProfileByName(this.studentProfileName)
+            this._spDataService.setProfileByName(this.studentProfileName)
                 .subscribe(
                     //For every response
                     (response) => {
-                        // Need to wait for response
-                        this.myprofile = response;
-                        this.studentId = this.myprofile.id;
+                        this.studentId = this._spDataService.myprofile.id;
                         this.getRestOfData();
                     },
                     //On Error
@@ -108,53 +87,38 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
 
     getRestOfData() {
         //Set logged in flag in profile
-        if (this.myprofile.id == this._authService.userid)
-            this.myprofile.loggedin = true;
+        if (this._spDataService.myprofile.id == this._authService.userid)
+            this._spDataService.myprofile.loggedin = true;
         else
-            this.myprofile.loggedin = false;
+            this._spDataService.myprofile.loggedin = false;
+
+        this._spDataService.getStudentData(this.studentId);
+        this._dataService.loadLookupData();
 
         //Main Profile and stats profile.  Get these first
-        this._spDataService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
+        //this._spDataService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
 
-        //For Academics
-        this._dataService.getClasses(this.studentId).subscribe(classes => this.classes = classes, error => this.errorMessage = <any>error);
-        this._dataService.getExtraCurricular(this.studentId).subscribe(classes => this.ec = classes, error => this.errorMessage = <any>error);
+        // //For Schedule
+        // this._spDataService.getSchedule(this.studentId).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
+        // //Links
+        // this._spDataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
+        // //Coaches
+        // this._spDataService.getCoaches(this.studentId).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);
 
-        //Pictures
-        this._dataService.getPictures(this.studentId).subscribe(pics => this.picturelist = pics, error => this.errorMessage = <any>error);
-
-        //Videos
-        this._dataService.getVideos(this.studentId).subscribe(vids => this.videolist = vids, error => this.errorMessage = <any>error);
-
-        //For Schedule
-        this._spDataService.getSchedule(this.studentId).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
-
-        //Links
-        this._spDataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
-
-        //Stats
-        this._spDataService.getHittingStats(this.studentId)
-                .subscribe(
-                    //For every response
-                    (stats) => {
-                        // Need to wait for response
-                        this.hittingstats = stats;
-                        this.hittingcategories = this._spDataService.createStatsCategories(this.hittingstats);
-                    },
-                    //On Error
-                    (err) => {console.log("ERROR in component. save to db: "+ err);},
-                    //When observable closes
-                    () => {}
-                )
-        
-
-        //Coaches
-        this._spDataService.getCoaches(this.studentId).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);
-
-        //profilepics
-        this._dataService.getProfilePictures(this.studentId).subscribe(pics => this.profilepics = pics, error => this.errorMessage = <any>error);
-
-        this._dataService.loadLookupData();
+        // //Stats
+        // this._spDataService.getHittingStats(this.studentId)
+        //         .subscribe(
+        //             //For every response
+        //             (stats) => {
+        //                 // Need to wait for response
+        //                 this.hittingstats = stats;
+        //                 this.hittingcategories = this._spDataService.createStatsCategories(this.hittingstats);
+        //             },
+        //             //On Error
+        //             (err) => {console.log("ERROR in component. save to db: "+ err);},
+        //             //When observable closes
+        //             () => {}
+        //         )
     }
 
     ngOnDestroy() {

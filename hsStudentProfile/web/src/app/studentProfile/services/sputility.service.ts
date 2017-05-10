@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { spDataService } from '../services/spdata.service';
 import { AuthService } from '../../services/auth.service';
 import { ConfirmationService } from 'primeng/primeng';
 import { Popup } from 'ng2-opd-popup';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class spUtilityService {
 
     constructor(
-        private _spDataService: spDataService, 
         private _authService: AuthService,
         private confirmationService: ConfirmationService, 
     ) {}
@@ -24,8 +23,18 @@ export class spUtilityService {
         });
     }
 
-    showPopup(popup: Popup, myheader:string) {
+    sCancel(popup: Popup, cservice: ConfirmationService): void { 
+        cservice.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                popup.hide();
+            }
+        });
+    }
 
+    showPopup(popup: Popup, myheader:string) {
         popup.options = {
             header:myheader,
             color: "#326eb7", // red, blue.... 

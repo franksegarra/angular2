@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ILink } from '../../models/ILink';
 
 import { spDataService } from '../services/spdata.service';
@@ -16,8 +15,7 @@ import { Popup } from 'ng2-opd-popup';
     providers: [Popup]
 })
 export class LinksComponent implements OnInit { 
-    @Input() myprofile: IProfile;
-    @Input() links: ILink[];
+    @ViewChild('linksPopup') popup: Popup;
     private pageName: string = 'Links';
     private errorMessage: string;
     private form: FormGroup;
@@ -27,8 +25,7 @@ export class LinksComponent implements OnInit {
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
         private _spUtilityService: spUtilityService,
-        private confirmationService: ConfirmationService, 
-        private popup:Popup, 
+        private confirmationService: ConfirmationService
     ) {}
 
     ngOnInit(): void {
@@ -45,16 +42,16 @@ export class LinksComponent implements OnInit {
     addRow() {
         this.editmode = 'add';
         this.form.get('id').setValue(0);
-        this.form.get('studentid').setValue(this.myprofile.id);
-        this.form.get('activityid').setValue((this.links == null) ? null : this.links[0].activityid);
+        this.form.get('studentid').setValue(this._spDataService.myprofile.id);
+        this.form.get('activityid').setValue((this._spDataService.links == null) ? null : this._spDataService.links[0].activityid);
         this._spUtilityService.showPopup(this.popup, "Add a new link to your profile");
     }
 
     editRow(id:number, link: ILink) {
         this.editmode = 'edit';
         this.form.get('id').setValue(link.id);
-        this.form.get('studentid').setValue(this.myprofile.id);
-        this.form.get('activityid').setValue((this.links == null) ? null : this.links[0].activityid);
+        this.form.get('studentid').setValue(this._spDataService.myprofile.id);
+        this.form.get('activityid').setValue((this._spDataService.links == null) ? null : this._spDataService.links[0].activityid);
         this.form.get('linkname').setValue(link.linkname);
         this.form.get('linkdescription').setValue(link.linkdescription);
         this.form.get('linkurl').setValue(link.linkurl);
@@ -71,9 +68,6 @@ export class LinksComponent implements OnInit {
             linkdescription: this.form.value['linkdescription'],
             linkurl: this.form.value['linkurl']
         };
-
-        //this.form.get('studentid').setValue(this.myprofile.id);
-        console.log(JSON.stringify(aLink));
 
         //send to edit service to post
         if (this.editmode == 'add')
@@ -104,16 +98,15 @@ export class LinksComponent implements OnInit {
         this._spDataService.deleteLink(id)
             .subscribe(
                 (response) => {},
-                (err) => {console.log("ERROR in onSubmit: Post: "+ err);},
+                (err) => {console.log("ERROR in deleteRow: Delete: "+ err);},
                 () => {this.refreshData();}
             );
     }
 
     refreshData(){
-        this._spDataService.getLinks(this.myprofile.id).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
+        this._spDataService.setLinks(this._spDataService.myprofile.id);
     }
 
-    //Moved to service
     onCancel(): void { 
         this._spUtilityService.Cancel(this.popup);
     }

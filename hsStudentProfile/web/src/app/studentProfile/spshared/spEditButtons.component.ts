@@ -20,7 +20,7 @@ export class EditButtonsComponent {
 
     deleteRow(id:number) {
         this.confirmationService.confirm({
-            message: 'Are you sure  you want to delete this record?',
+            message: 'Are you sure you want to delete this record?',
             header: 'Delete Confirmation',
             icon: 'fa fa-trash',
             accept: () => {

@@ -1,25 +1,23 @@
-<div *ngIf="bbprofile && hittingcategories.length">
+<div *ngIf="_spDataService.bbprofile">
     <div class='panel panel-primary'>
-        <pp-header [myprofile]='myprofile' [pageName]="pageName"></pp-header>
+        <pp-header [pageName]="pageName"></pp-header>
         <div class='panel-body'>
             <p-accordion [multiple]="true">
                 <p-accordionTab header="Personal Details" [selected]="true" >
-                    <pp-physical [myprofile]='myprofile' [bbprofile]='bbprofile'>Loading...</pp-physical>
+                    <pp-physical>Loading...</pp-physical>
                 </p-accordionTab>
-                <div *ngIf="coaches && coaches.length">
+                <div *ngIf="_spDataService.coaches && _spDataService.coaches.length">
                     <p-accordionTab header="My coaches">
-                        <pp-coaches [myprofile]='myprofile' [coaches]='coaches'>Loading...</pp-coaches>
+                        <pp-coaches>Loading...</pp-coaches>
                     </p-accordionTab>
                 </div>
-<!--
-                <div *ngIf="hittingcategories && hittingcategories.length">
-                    <div *ngFor='let thiscategory of hittingcategories'>
+                <div *ngIf="_spDataService.hittingcategories && _spDataService.hittingcategories.length">
+                    <div *ngFor='let thiscategory of _spDataService.hittingcategories'>
                         <p-accordionTab header="{{ thiscategory.category }}">
                             <pp-statcategory [hittingcategory]='thiscategory'></pp-statcategory>
                         </p-accordionTab>
                     </div>
                 </div>
--->            
             </p-accordion>
         </div>
     </div>

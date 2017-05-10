@@ -16,16 +16,9 @@ import { IState } from '../models/State';
 import { IActivity } from '../models/activity';
 import { IActivityType } from '../models/activitytype';
 
-import { IClass } from '../models/Class';
-import { IExtraCurricular } from '../models/IExtraCurricular';
-import { IProfile } from '../models/IProfile';
-import { IStudent } from '../models/IStudent';
 import { IContactMe } from '../models/IContactMe';
 import { IEmail } from '../models/IEmail';
-import { IProfilePictures } from '../models/IProfilePictures';
 import { IFeedback } from '../models/IFeedback';
-import { IPicture } from '../studentprofile/pictures/IPicture';
-import { IVideo } from '../studentprofile/videos/IVideo';
 
 //Auth service
 import { AuthService }  from './auth.service';
@@ -67,56 +60,6 @@ export class DataService {
         return this._http.get(Config.WEBSERVICESURL + 'activitytype', this.authService.getAuthHeader())
                     .map((response: Response) => <IActivityType[]>response.json())
                     .catch(this.handleError);
-    }
-
-    //To be moved to student profile    
-
-    getProfile(id:number): Observable<IProfile> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IProfile>response.json())
-                    .catch(this.handleError);
-    }
-
-    getProfileByName(profilename:string): Observable<IProfile> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentprofile/' + profilename, this.authService.getAuthHeader())
-                    .map((response: Response) => <IProfile>response.json())
-                    .catch(this.handleError);
-    }
-
-    getClasses(id:number): Observable<IClass[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentclasses/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IClass[]>response.json())
-                    .catch(this.handleError) ;
-    }
-
-    getExtraCurricular(id:number): Observable<IExtraCurricular[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentextracurricular/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IExtraCurricular[]>response.json())
-                    .catch(this.handleError) ;
-    }
-
-    getVideos(id:number): Observable<IVideo[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentvideos/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IVideo[]>response.json())
-                    .catch(this.handleError) ;
-    }
-
-    getPictures(id:number): Observable<IPicture[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentpictures/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IPicture[]>response.json())
-                    .catch(this.handleError) ;
-    }
-
-    getProfilePictures(id:number): Observable<IProfilePictures[]> {
-        return this._http.get(Config.WEBSERVICESURL + 'studentprofilepictures/GetByStudentId/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IProfilePictures[]>response.json())
-                    .catch(this.handleError) ;
-    }
-
-    getStudent(id:number): Observable<IStudent> {
-        return this._http.get(Config.WEBSERVICESURL + 'student/' + id, this.authService.getAuthHeader())
-                    .map((response: Response) => <IStudent>response.json())
-                    .catch(this.handleError) ;
     }
 
     poststudentContact(msg: IContactMe): Observable<any> {

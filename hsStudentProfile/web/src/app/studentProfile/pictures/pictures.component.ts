@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
-import { IProfilePictures } from '../../models/IProfilePictures';
+import { Component, OnInit } from '@angular/core';
 import { IPicture } from './IPicture';
 import { PictureService } from './picture.service';
 import { TreeNode } from 'primeng/primeng';
@@ -15,15 +13,12 @@ import { Config } from '../../config.service';
     templateUrl: 'pictures.component.html'
 })
 export class PicturesComponent implements OnInit { 
-    @Input() myprofile: IProfile;
-    @Input() profilepics: IProfilePictures[];
-    @Input() picturelist: IPicture[];
     pageName: string = 'Pictures';
 
     constructor(public pictureService:PictureService, private _spDataService:spDataService ) {}
 
     ngOnInit(): void {
-        this.pictureService.appSetup("imageDisplay", this.profilepics, this.picturelist);
+        this.pictureService.appSetup("imageDisplay", this._spDataService.profilepics, this._spDataService.picturelist);
     }
 
     nodeSelect(event: any) {

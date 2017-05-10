@@ -1,24 +1,24 @@
 <div class='panel panel-primary'>
-    <pp-header [myprofile]='myprofile' [pageName]="pageName"></pp-header>
+    <pp-header [pageName]="pageName"></pp-header>
     <div class='panel-body'>
         <p-accordion [multiple]="true">
             <p-accordionTab header="Test Scores/GPA" [selected]="true">
-                <pp-testscores [myprofile]='myprofile'>Loading...</pp-testscores>
+                <pp-testscores>Loading...</pp-testscores>
             </p-accordionTab>
             <p-accordionTab header="12th Grade">
-                <pp-grade [grade]=12 [classes]='classes'>Loading...</pp-grade>
+                <pp-grade [grade]=12>Loading...</pp-grade>
             </p-accordionTab>
             <p-accordionTab header="11th Grade">
-                <pp-grade [grade]=11 [classes]='classes'>Loading...</pp-grade>
+                <pp-grade [grade]=11>Loading...</pp-grade>
             </p-accordionTab>
             <p-accordionTab header="10th Grade">
-                <pp-grade [grade]=10 [classes]='classes'>Loading...</pp-grade>
+                <pp-grade [grade]=10>Loading...</pp-grade>
             </p-accordionTab>
             <p-accordionTab header="9th Grade">
-                <pp-grade [grade]=9 [classes]='classes'> Loading...</pp-grade>
+                <pp-grade [grade]=9> Loading...</pp-grade>
             </p-accordionTab>
             <p-accordionTab header="Extra Curricular Activities">
-                <pp-extracurricular [myprofile]='myprofile' [ec]='ec'> Loading...</pp-extracurricular>
+                <pp-extracurricular> Loading...</pp-extracurricular>
             </p-accordionTab>
         </p-accordion>
     </div>

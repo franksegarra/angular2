@@ -21,7 +21,7 @@ export interface IProfile {
         zip: string;
         displayaddrandphone: number;
         highschoolname: string;
-        profilepictureId: number;
+        profilepictureid: number;
         profilepicturefilename: string;
         height: string;
         weight: string;

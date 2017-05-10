@@ -49,6 +49,11 @@ export class DateService {
     }
 
     formatDateString(datetime: any):string {
+        if (datetime==null) {
+            console.log("Null value passed to formatDateString");
+            return "";
+        }
+
         let datestr = datetime.toString();
         let yr =  +datestr.substr(0,4);
         let mo = +datestr.substr(5,2);

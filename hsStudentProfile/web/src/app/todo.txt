@@ -8,4 +8,5 @@ TODO:
 6.  Add type ahead capability to drop down lists
 7.  Zip code lookup for state and city.
 8.  Add identity server for authentication and authorization
+9.  Add controls panel so user can choose which pages and sections to show
 

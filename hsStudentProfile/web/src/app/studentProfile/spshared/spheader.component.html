@@ -1,6 +1,38 @@
 <div class='panel-heading'>
-    {{ pageTitle }} 
+    {{ _spDataService.myprofile.firstname + ' ' + _spDataService.myprofile.lastname + ' - ' + _spDataService.myprofile.graduationyear + ' - ' + pageName }} 
     <span class="btn-group pull-right" *ngIf="_spDataService.canEdit()">
-        <i class="fa fa-pencil fa-lg spheadericon" aria-hidden="true"></i> 
+        <i class="fa fa-cog fa-lg spheadericon" aria-hidden="true"  (click)="showPageSettings()"></i> 
     </span>
 </div>
+
+<!-- Add/Edit Popup -->
+<popup #headerPopup>
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+        <div class="container">
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1"><b>Academics:</b></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Videos:</b></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Pictures:</b></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Schedule:</b></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Baseball Stats:</b></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-1" ><b>Links:</b></div>
+            </div>
+            <div class="row" style="padding: 6px">
+                <div class="col col-sm-5">
+                    <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                    <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</popup>

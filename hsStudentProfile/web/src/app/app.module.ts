@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/primeng';
-import { PopupModule } from 'ng2-opd-popup';
+//import { PopupModule } from 'ng2-opd-popup';
 
 //Main Menu features
 import { AboutComponent } from './about/about.component';
@@ -45,7 +45,7 @@ import { DateService }  from './services/date.service';
       FormsModule, 
       ReactiveFormsModule,
       SelectButtonModule,
-      PopupModule.forRoot()
+      //PopupModule.forRoot()
   ],
   declarations: [ 
       AppComponent

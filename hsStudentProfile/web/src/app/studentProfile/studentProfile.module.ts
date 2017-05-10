@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DropdownModule } from 'primeng/primeng';
-import { ConfirmDialogModule, ConfirmationService, OverlayPanelModule, CalendarModule, MultiSelectModule } from 'primeng/primeng';
+import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DropdownModule, SelectButtonModule } from 'primeng/primeng';
+import { ConfirmDialogModule, ConfirmationService, OverlayPanelModule, CalendarModule, MultiSelectModule, SpinnerModule, InputTextareaModule } from 'primeng/primeng';
+
 import { MessageFormModule } from '../shared/messageform/messageform.module';
 
 import { PopupModule } from 'ng2-opd-popup';
@@ -81,7 +82,10 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       PopupModule,
       CalendarModule,
       DropdownModule,
-      MultiSelectModule
+      MultiSelectModule,
+      SelectButtonModule,
+      SpinnerModule,
+      InputTextareaModule
   ],
   declarations: [
       StudentProfileComponent

@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProfile } from '../../models/IProfile';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IBBProfile } from '../../models/BBProfile';
 import { Config } from '../../config.service';
-
 
 import { spDataService } from '../services/spdata.service';
 import { spUtilityService } from '../services/sputility.service';
@@ -13,11 +11,11 @@ import { Popup } from 'ng2-opd-popup';
 @Component({
     selector: 'pp-physical',
     moduleId: module.id,
-    templateUrl: 'physical.component.html'
+    templateUrl: 'physical.component.html',
+    providers: [Popup]
 })
 export class PhysicalComponent implements OnInit { 
-    @Input() myprofile: IProfile;
-    @Input() bbprofile: IBBProfile;
+    @ViewChild('physPopup') popup:Popup;
     statsPicUrl: string; 
     private errorMessage: string;
     private form: FormGroup;
@@ -30,20 +28,19 @@ export class PhysicalComponent implements OnInit {
         private fb: FormBuilder, 
         private _spDataService: spDataService,
         private _spUtilityService: spUtilityService,
-        private confirmationService: ConfirmationService, 
-        private popup:Popup
+        private confirmationService: ConfirmationService
     ) {}
 
     ngOnInit(): void {
-        this.statsPicUrl =  Config.PICTUREFOLDER + this.bbprofile.statspicturefilename; 
+        this.statsPicUrl =  Config.PICTUREFOLDER + this._spDataService.bbprofile.statspicturefilename; 
 
         this.createPositionList();
 
         this.form = this.fb.group({
             "id": [null],
-            "studentid": [""],
-            "statspictureId": [""],
-            "runningtime": [""],
+            "studentid": [null],
+            "statspictureid": [null],
+            "runningtime": [null],
             "bats": [""],
             "throws": [""],
             "travelteam": [""],
@@ -59,24 +56,56 @@ export class PhysicalComponent implements OnInit {
     }    
 
     onEditClicked() {
-
-        this.createOtherPositionList(this.bbprofile.position);
-
+        this.createOtherPositionList(this._spDataService.bbprofile.position);
         this.editing=true;
-        this.form.get('id').setValue(this.bbprofile.id);
-        this.form.get('studentid').setValue(this.bbprofile.studentid);
-        this.form.get('statspictureId').setValue(this.bbprofile.statspictureId);
-        this.form.get('runningtime').setValue(this.bbprofile.runningtime);
-        this.form.get('bats').setValue(this.bbprofile.bats);
-        this.form.get('throws').setValue(this.bbprofile.throws);
-        this.form.get('travelteam').setValue(this.bbprofile.travelteam);
-        this.form.get('travelurl').setValue(this.bbprofile.travelurl);
-        this.form.get('position').setValue(this.bbprofile.position);
-        this.form.get('selectedpositions').setValue(this.bbprofile.otherpositions.split(','));
-        this.form.get('statspicturefilename').setValue(this.bbprofile.statspicturefilename);
-        this.form.get('runningtimelocation').setValue(this.bbprofile.runningtimelocation);
-        this.form.get('runningtimelocationurl').setValue(this.bbprofile.runningtimelocationurl);
+
+        this.form.get('id').setValue(this._spDataService.bbprofile.id);
+        this.form.get('studentid').setValue(this._spDataService.bbprofile.studentid);
+        this.form.get('statspictureid').setValue(this._spDataService.bbprofile.statspictureid);
+        this.form.get('runningtime').setValue(this._spDataService.bbprofile.runningtime);
+        this.form.get('bats').setValue(this._spDataService.bbprofile.bats);
+        this.form.get('throws').setValue(this._spDataService.bbprofile.throws);
+        this.form.get('travelteam').setValue(this._spDataService.bbprofile.travelteam);
+        this.form.get('travelurl').setValue(this._spDataService.bbprofile.travelurl);
+        this.form.get('position').setValue(this._spDataService.bbprofile.position);
+        this.form.get('selectedpositions').setValue(this._spDataService.bbprofile.otherpositions.split(','));
+        this.form.get('statspicturefilename').setValue(this._spDataService.bbprofile.statspicturefilename);
+        this.form.get('runningtimelocation').setValue(this._spDataService.bbprofile.runningtimelocation);
+        this.form.get('runningtimelocationurl').setValue(this._spDataService.bbprofile.runningtimelocationurl);
+
         this._spUtilityService.showPopup(this.popup, "Modify your baseball profile");    
+    }
+
+    onSubmit(): void { 
+
+        var bbProfile:IBBProfile = {
+            id: this.form.value['id'],
+            studentid: this.form.value['studentid'],
+            statspictureid: this.form.value['statspictureid'],
+            runningtime: this.form.value['runningtime'],
+            bats: this.form.value['bats'],
+            throws: this.form.value['throws'],
+            travelteam: this.form.value['travelteam'],
+            travelurl: this.form.value['travelurl'],
+            position: this.form.value['position'],
+            otherpositions: this.form.value['selectedpositions'],
+            statspicturefilename: this.form.value['statspicturefilename'],
+            runningtimelocation: this.form.value['runningtimelocation'],
+            runningtimelocationurl: this.form.value['runningtimelocationurl']
+        };
+
+        console.log(bbProfile);
+
+        // this._spDataService.putCoach(aCoach)
+        //     .subscribe(
+        //         (response) => {},
+        //         (err) => {console.log("ERROR in onSubmit: Post: "+ err);},
+        //         () => {this.refreshData();}
+        //     );
+
+        // //Hide overlay
+        // this.form.reset();
+        // this.popup.hide();
     }
 
     //Lookup tables
@@ -113,7 +142,7 @@ export class PhysicalComponent implements OnInit {
     }
 
     refreshData(){
-        this._spDataService.getBBProfile(this.myprofile.id).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
+        this._spDataService.setBBProfile(this._spDataService.myprofile.id);
     }
 
     onPrimaryPositionChanged() {

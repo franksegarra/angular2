@@ -1,7 +1,7 @@
 <div class='panel panel-primary'>  
 
     <!-- Header record with icon -->
-    <pp-header [myprofile]='myprofile' [pageName]="pageName"></pp-header>
+    <pp-header [pageName]="pageName"></pp-header>
 
     <div class='panel-body'>
     
@@ -18,9 +18,9 @@
 
         <!-- Data rows -->
         <div class="table-responsive">
-            <table class="table" *ngIf="links && links.length">
+            <table class="table" *ngIf="_spDataService.links && _spDataService.links.length">
                 <tbody>
-                    <tr *ngFor='let link of links'>
+                    <tr *ngFor='let link of _spDataService.links'>
                         <td style="width: 30%">
                             <a href="{{ link.linkurl }}" target="_blank">{{ link.linkname }}</a>
                         </td>
@@ -36,7 +36,7 @@
         </div>
 
         <!-- Add/Edit Popup -->
-        <popup>
+        <popup #linksPopup>
             <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
                 <div class="container">
                     <div class="row" style="padding: 6px">
