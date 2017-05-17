@@ -28,4 +28,5 @@ export class Profile implements IProfile {
     height: string;
     weight: string;
     collegemajor: string;
+    loggedin: boolean;
 }

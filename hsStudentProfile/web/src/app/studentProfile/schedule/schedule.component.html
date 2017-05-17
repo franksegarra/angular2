@@ -31,15 +31,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let schedItem of _spDataService.schedItems | upcomingdates: "activitydate"' >   
-
+                    <tr *ngFor='let schedItem of _spDataService.schedItems | upcomingdates: "activitydate"' >   <!-- | upcomingdates: "activitydate" -->
                         <td *ngIf="!schedItem.location">
                             {{ schedItem.activitydesc | tbdFormat }}
                         </td>
                         <td *ngIf="schedItem.location && schedItem.location != ''">
                             <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.activitydesc | tbdFormat }}</a>
                         </td>
-
                         <td>{{ schedItem.activitydate | dowFormat }}</td>
                         <td>{{ schedItem.activitydate | dateFormat }}</td>
                         <td>{{ schedItem.starttime | tbdFormat }}</td>
@@ -52,7 +50,7 @@
                             <a href="https://maps.google.com?q= + {{ schedItem.location }}" target="_blank">{{ schedItem.venue | tbdFormat }}</a>
                         </td>
 
-                        <td> <!-- Delete and edit buttons -->
+                        <td> 
                             <pp-editButtons [idField]="schedItem.id" (onEditRow)="editRow(schedItem.id, schedItem)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
                         </td>
                     </tr>
@@ -61,7 +59,11 @@
         </div>
 
         <!-- Add/Edit Popup -->
-        <popup #schedPopup>
+        <p-dialog [(visible)]="schedpopupvisible" modal="modal" responsive='true' width="550">
+            <p-header style="background-color: #326eb7" >
+                {{ schedpopuphdr }}
+            </p-header>
+
             <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
                 <div class="container">
                     <div class="row" style="padding: 6px">
@@ -116,7 +118,6 @@
                     </div>
                 </div>
             </form>
-        </popup>
-        
+        </p-dialog>
     </div>
 </div>

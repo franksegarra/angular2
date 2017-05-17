@@ -1,32 +1,30 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IStudent } from '../../models/IStudent';
-import { Config } from '../../config.service';
-
-import { spDataService } from '../services/spdata.service';
-import { spUtilityService } from '../services/sputility.service';
-import { DateService } from '../../services/date.service'
-
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ConfirmationService, Calendar, SelectItem, MultiSelect, Spinner, InputTextarea } from 'primeng/primeng';
-import { Popup } from 'ng2-opd-popup';
+
+import { IStudent } from '../../models/IStudent';
+import { spDataService } from '../services/spdata.service';
+import { Config } from '../../config.service';
+import { DateService } from '../../services/date.service'
+
 
 @Component({
     selector: 'pp-testscores',
     moduleId: module.id,
-    templateUrl: 'testscores.component.html',
-    providers: [Popup]
+    templateUrl: 'testscores.component.html'
 })
 export class TestScoresComponent implements OnInit { 
-    @ViewChild('tsPopup') popup:Popup;
     profilePicUrl: string = Config.PICTUREFOLDER + this._spDataService.myprofile.profilepicturefilename; 
     private errorMessage: string;
     private form: FormGroup;
     editing: boolean = false;
 
+    tspopupvisible: boolean = false;
+    tspopuphdr: string = '';
+
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService,
-        private _spUtilityService: spUtilityService,
         private _dateService: DateService, 
         private confirmationService: ConfirmationService
     ) {}
@@ -95,7 +93,8 @@ export class TestScoresComponent implements OnInit {
         this.form.get('weight').setValue(this._spDataService.myprofile.weight);
         this.form.get('collegemajor').setValue(this._spDataService.myprofile.collegemajor);
 
-        this._spUtilityService.showPopup(this.popup, "Modify your academic profile");    
+        this.tspopuphdr = 'Modify your academic profile';
+        this.tspopupvisible = true;
     }
 
     onSubmit(): void { 
@@ -136,13 +135,21 @@ export class TestScoresComponent implements OnInit {
         
         //Hide overlay
         this.form.reset();
-        this.popup.hide();      
+        this.tspopupvisible = false;
         this.editing=false;
     }
 
     onCancel(): void { 
         this.editing=false;
-        this._spUtilityService.Cancel(this.popup);
+
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.tspopupvisible = false;        
+            }
+        });
     }
 
     refreshData(){

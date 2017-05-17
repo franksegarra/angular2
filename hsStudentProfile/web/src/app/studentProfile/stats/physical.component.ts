@@ -1,21 +1,17 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { IBBProfile } from '../../models/BBProfile';
-import { Config } from '../../config.service';
-
-import { spDataService } from '../services/spdata.service';
-import { spUtilityService } from '../services/sputility.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ConfirmationService, SelectItem, MultiSelect } from 'primeng/primeng';
-import { Popup } from 'ng2-opd-popup';
+
+import { IBBProfile } from '../../models/BBProfile';
+import { spDataService } from '../services/spdata.service';
+import { Config } from '../../config.service';
 
 @Component({
     selector: 'pp-physical',
     moduleId: module.id,
-    templateUrl: 'physical.component.html',
-    providers: [Popup]
+    templateUrl: 'physical.component.html'
 })
 export class PhysicalComponent implements OnInit { 
-    @ViewChild('physPopup') popup:Popup;
     statsPicUrl: string; 
     private errorMessage: string;
     private form: FormGroup;
@@ -24,10 +20,12 @@ export class PhysicalComponent implements OnInit {
     otherPositionList: SelectItem[] = [];
     selectedpositions: string[];
 
+    physpopupvisible: boolean = false;
+    physpopuphdr: string = '';
+
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService,
-        private _spUtilityService: spUtilityService,
         private confirmationService: ConfirmationService
     ) {}
 
@@ -51,8 +49,6 @@ export class PhysicalComponent implements OnInit {
             "runningtimelocation": [""],
             "runningtimelocationurl": [""],
         });
-
-
     }    
 
     onEditClicked() {
@@ -73,7 +69,8 @@ export class PhysicalComponent implements OnInit {
         this.form.get('runningtimelocation').setValue(this._spDataService.bbprofile.runningtimelocation);
         this.form.get('runningtimelocationurl').setValue(this._spDataService.bbprofile.runningtimelocationurl);
 
-        this._spUtilityService.showPopup(this.popup, "Modify your baseball profile");    
+        this.physpopuphdr = 'Modify your baseball profile';
+        this.physpopupvisible = true;
     }
 
     onSubmit(): void { 
@@ -138,7 +135,15 @@ export class PhysicalComponent implements OnInit {
     //Moved to service
     onCancel(): void { 
         this.editing=false;
-        this._spUtilityService.Cancel(this.popup);
+
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.physpopupvisible = false;        
+            }
+        });
     }
 
     refreshData(){

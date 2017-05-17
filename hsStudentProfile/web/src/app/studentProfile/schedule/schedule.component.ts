@@ -1,36 +1,31 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ConfirmationService } from 'primeng/primeng';
 
 import { IScheduleItem } from '../../models/ScheduleItem';
 import { IStudentSchedule } from '../../models/StudentSchedule';
-
 import { spDataService } from '../services/spdata.service';
-import { spUtilityService } from '../services/sputility.service';
 import { EditButtonsComponent } from '../spshared/spEditButtons.component';
-import { ConfirmationService } from 'primeng/primeng';
 import { Calendar, Dropdown, SelectItem } from 'primeng/primeng';
 import { DateService } from '../../services/date.service'
-
-import { Popup } from 'ng2-opd-popup';
 
 @Component({
     selector: 'pp-schedule',
     moduleId: module.id,
-    templateUrl: 'schedule.component.html',
-    providers: [Popup]
+    templateUrl: 'schedule.component.html'
 })
 export class ScheduleComponent { 
-    @ViewChild('schedPopup') popup:Popup;
-    
     private errorMessage: string;
     pageName: string = "Where I'll be";
     private form: FormGroup;
     private editmode: string = '';
 
+    schedpopupvisible: boolean = false;
+    schedpopuphdr: string = '';
+
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
-        private _spUtilityService: spUtilityService,
         private _dateService: DateService, 
         private confirmationService: ConfirmationService
     ) {}
@@ -58,7 +53,9 @@ export class ScheduleComponent {
         this.editmode = 'add';
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);
-        this._spUtilityService.showPopup(this.popup, "Add a new date to your schedule");
+
+        this.schedpopuphdr = 'Add a new date to your schedule';
+        this.schedpopupvisible = true;
     }
 
     editRow(id:number, scheduleItem: IScheduleItem) {
@@ -77,7 +74,9 @@ export class ScheduleComponent {
         this.form.get('hours').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'hr'));
         this.form.get('minutes').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'mn'));
         this.form.get('ampm').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'ampm'));
-        this._spUtilityService.showPopup(this.popup, "Edit this activity:");
+
+        this.schedpopuphdr = 'Edit this activity:';
+        this.schedpopupvisible = true;
     }
 
     onSubmit(): void { 
@@ -120,7 +119,7 @@ export class ScheduleComponent {
 
         //Hide overlay
         this.form.reset();
-        this.popup.hide();
+        this.schedpopupvisible = false;
     }
 
     deleteRow(id:number) {
@@ -138,6 +137,13 @@ export class ScheduleComponent {
 
     //Moved to service
     onCancel(): void { 
-        this._spUtilityService.Cancel(this.popup);
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.schedpopupvisible = false;        
+            }
+        });
     }
 }

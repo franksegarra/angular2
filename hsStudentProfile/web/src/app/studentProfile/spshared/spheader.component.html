@@ -1,3 +1,5 @@
+<p-confirmDialog key="headerConfirm" width="425"></p-confirmDialog>
+
 <div class='panel-heading'>
     {{ _spDataService.myprofile.firstname + ' ' + _spDataService.myprofile.lastname + ' - ' + _spDataService.myprofile.graduationyear + ' - ' + pageName }} 
     <span class="btn-group pull-right" *ngIf="_spDataService.canEdit()">
@@ -6,7 +8,11 @@
 </div>
 
 <!-- Add/Edit Popup -->
-<popup #headerPopup>
+<p-dialog [(visible)]="headerpopupvisible" modal="modal" responsive='true' width="550">
+    <p-header style="background-color: #326eb7" >
+        {{ headerpopuphdr }}
+    </p-header>
+
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
         <div class="container">
             <div class="row" style="padding: 6px">
@@ -35,4 +41,4 @@
             </div>
         </div>
     </form>
-</popup>
+</p-dialog>

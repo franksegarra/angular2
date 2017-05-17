@@ -1,4 +1,5 @@
 <div *ngIf="_spDataService.myprofile">
+   
     <!-- Buttons -->
     <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
         <div class="col col-sm-5">
@@ -36,7 +37,11 @@
     </div>
 
     <!-- Add/Edit Popup -->
-    <popup #tsPopup>
+    <p-dialog [(visible)]="tspopupvisible" modal="modal" responsive='true' width="550">
+        <p-header style="background-color: #326eb7" >
+            {{ tspopuphdr }}
+        </p-header>
+
         <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
             <div class="container">
                 <div class="row" style="padding: 0px 0px 10px 0px">
@@ -91,6 +96,6 @@
                 </div>
             </div>
         </form>
-    </popup>
+    </p-dialog>
 
 </div>

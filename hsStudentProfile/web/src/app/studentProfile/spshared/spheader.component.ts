@@ -1,27 +1,25 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ConfirmationService } from 'primeng/primeng';
 
 import { spDataService } from '../services/spdata.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { spUtilityService } from '../services/sputility.service';
-import { ConfirmationService } from 'primeng/primeng';
-import { Popup } from 'ng2-opd-popup';
 
 @Component({
     selector: 'pp-header',
     moduleId: module.id,
-    templateUrl: 'spheader.component.html',
-    providers: [Popup]
+    templateUrl: 'spheader.component.html'
 })
 export class SpHeaderComponent implements OnInit { 
     @Input() pageName: string;
-    @ViewChild('headerPopup') popup: Popup;
     private errorMessage: string;
     private form: FormGroup;
+
+    headerpopupvisible: boolean = false;
+    headerpopuphdr: string = '';
 
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
-        private _spUtilityService: spUtilityService,
         private confirmationService: ConfirmationService
     ) {}
 
@@ -38,11 +36,19 @@ export class SpHeaderComponent implements OnInit {
     };
 
     showPageSettings() {
-        this._spUtilityService.showPopup(this.popup, "Please select the pages you want to include in your profile.");        
+        this.headerpopuphdr = 'Please select the pages you want to include in your profile.';
+        this.headerpopupvisible = true;
     }
 
     onCancel(): void { 
-        this._spUtilityService.sCancel(this.popup, this.confirmationService);
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.headerpopupvisible = false;        
+            }
+        });
     }
 
     onSubmit(): void { 

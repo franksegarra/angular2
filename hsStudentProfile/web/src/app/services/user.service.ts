@@ -17,7 +17,7 @@ export class UserService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         
-        console.log(body);
+        // console.log(body);
 
         return this._http.post(Config.WEBSERVICESURL + 'users/', body, options)
             .map(res =>  res)

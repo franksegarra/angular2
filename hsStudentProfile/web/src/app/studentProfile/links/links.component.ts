@@ -1,30 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ILink } from '../../models/ILink';
-
-import { spDataService } from '../services/spdata.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { spUtilityService } from '../services/sputility.service';
-import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 import { ConfirmationService } from 'primeng/primeng';
-import { Popup } from 'ng2-opd-popup';
+
+import { ILink } from '../../models/ILink';
+import { spDataService } from '../services/spdata.service';
+import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 
 @Component({
     selector: 'pp-links',
     moduleId: module.id,
-    templateUrl: 'links.component.html',
-    providers: [Popup]
+    templateUrl: 'links.component.html'
 })
 export class LinksComponent implements OnInit { 
-    @ViewChild('linksPopup') popup: Popup;
     private pageName: string = 'Links';
     private errorMessage: string;
     private form: FormGroup;
     private editmode: string = '';
 
+    linkpopupvisible: boolean = false;
+    linkpopuphdr: string = '';
+
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
-        private _spUtilityService: spUtilityService,
         private confirmationService: ConfirmationService
     ) {}
 
@@ -44,7 +42,9 @@ export class LinksComponent implements OnInit {
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('activityid').setValue((this._spDataService.links == null) ? null : this._spDataService.links[0].activityid);
-        this._spUtilityService.showPopup(this.popup, "Add a new link to your profile");
+
+        this.linkpopuphdr = 'Add a new link to your profile';
+        this.linkpopupvisible = true;
     }
 
     editRow(id:number, link: ILink) {
@@ -55,7 +55,9 @@ export class LinksComponent implements OnInit {
         this.form.get('linkname').setValue(link.linkname);
         this.form.get('linkdescription').setValue(link.linkdescription);
         this.form.get('linkurl').setValue(link.linkurl);
-        this._spUtilityService.showPopup(this.popup, "Edit this link:");
+
+        this.linkpopuphdr = 'Edit this link:';
+        this.linkpopupvisible = true;
     }
 
     onSubmit(): void { 
@@ -91,7 +93,7 @@ export class LinksComponent implements OnInit {
 
         //Hide overlay
         this.form.reset();
-        this.popup.hide();
+        this.linkpopupvisible = false;
     }
 
     deleteRow(id:number) {
@@ -108,6 +110,13 @@ export class LinksComponent implements OnInit {
     }
 
     onCancel(): void { 
-        this._spUtilityService.Cancel(this.popup);
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.linkpopupvisible = false;        
+            }
+        });
     }
 }

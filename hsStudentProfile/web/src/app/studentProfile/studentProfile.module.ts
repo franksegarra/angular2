@@ -5,17 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DropdownModule, SelectButtonModule } from 'primeng/primeng';
 import { ConfirmDialogModule, ConfirmationService, OverlayPanelModule, CalendarModule, MultiSelectModule, SpinnerModule, InputTextareaModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
 
 import { MessageFormModule } from '../shared/messageform/messageform.module';
-
-import { PopupModule } from 'ng2-opd-popup';
 
 //Services
 import { DataService } from '../services/data.service';
 import { VideoService } from './videos/video.service';
 import { PictureService } from './pictures/picture.service';
 import { spDataService } from './services/spdata.service';
-import { spUtilityService } from './services/sputility.service';
 
 //Shared Components
 import { SpHeaderComponent } from './spshared/spheader.component';
@@ -64,7 +62,6 @@ import { UpcomingDatesPipe } from '../pipes/upcomingdates.pipe';
 import { DateFormatPipe } from '../pipes/dateFormat.pipe';
 import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
 
-
 //Module declaration
 @NgModule({
   imports: [
@@ -79,13 +76,13 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       MessageFormModule,
       ConfirmDialogModule,
       OverlayPanelModule,
-      PopupModule,
       CalendarModule,
       DropdownModule,
       MultiSelectModule,
       SelectButtonModule,
       SpinnerModule,
-      InputTextareaModule
+      InputTextareaModule,
+      DialogModule
   ],
   declarations: [
       StudentProfileComponent
@@ -122,7 +119,6 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       PictureService, 
       spDataService, 
       ConfirmationService,
-      spUtilityService
   ],
   exports: [ StudentProfileComponent ]
 })

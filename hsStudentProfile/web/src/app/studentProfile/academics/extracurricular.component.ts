@@ -1,29 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IExtraCurricular } from '../../models/IExtraCurricular';
-
-import { spDataService } from '../services/spdata.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { spUtilityService } from '../services/sputility.service';
-import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 import { ConfirmationService } from 'primeng/primeng';
-import { Popup } from 'ng2-opd-popup';
+
+import { IExtraCurricular } from '../../models/IExtraCurricular';
+import { spDataService } from '../services/spdata.service';
+import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 
 @Component({
     selector: 'pp-extracurricular',
     moduleId: module.id,
-    templateUrl: 'extracurricular.component.html',
-    providers: [Popup]
+    templateUrl: 'extracurricular.component.html'
 })
 export class ExtraCurricularComponent { 
-    @ViewChild('ecPopup') popup: Popup;
     private errorMessage: string;
     private form: FormGroup;
     private editmode: string = '';
 
+    ecpopupvisible: boolean = false;
+    ecpopuphdr: string = '';
+
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
-        private _spUtilityService: spUtilityService,
         private confirmationService: ConfirmationService
     ) {}
 
@@ -40,7 +38,9 @@ export class ExtraCurricularComponent {
         this.editmode = 'add';
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);
-        this._spUtilityService.showPopup(this.popup, "Add a new activity to your profile");
+
+        this.ecpopuphdr = 'Add a new activity to your profile';
+        this.ecpopupvisible = true;
     }
 
     editRow(id:number, ec: IExtraCurricular) {
@@ -49,7 +49,9 @@ export class ExtraCurricularComponent {
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('ecname').setValue(ec.ecname);
         this.form.get('ecdescription').setValue(ec.ecdescription);
-        this._spUtilityService.showPopup(this.popup, "Edit this activity:");
+
+        this.ecpopuphdr = 'Edit this activity:';
+        this.ecpopupvisible = true;
     }
 
     onSubmit(): void { 
@@ -83,7 +85,7 @@ export class ExtraCurricularComponent {
 
         //Hide overlay
         this.form.reset();
-        this.popup.hide();
+        this.ecpopupvisible = false;
     }
 
     deleteRow(id:number) {
@@ -100,7 +102,14 @@ export class ExtraCurricularComponent {
     }
 
     onCancel(): void { 
-        this._spUtilityService.Cancel(this.popup);
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.ecpopupvisible = false;        
+            }
+        });
     }
 }
 

@@ -1,30 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ICoach } from '../../models/ICoach';
-
-import { spDataService } from '../services/spdata.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { spUtilityService } from '../services/sputility.service';
-import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 import { ConfirmationService } from 'primeng/primeng';
-import { Popup } from 'ng2-opd-popup';
+
+import { ICoach } from '../../models/ICoach';
+import { spDataService } from '../services/spdata.service';
+import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 
 @Component({
     selector: 'pp-coaches',
     moduleId: module.id,
-    templateUrl: 'coaches.component.html',
-    providers: [Popup]
+    templateUrl: 'coaches.component.html'
 })
 export class CoachesComponent implements OnInit { 
-    @ViewChild('coachesPopup') popup:Popup;
-    
     private errorMessage: string;
     private form: FormGroup;
     private editmode: string = '';
 
+    coachespopupvisible: boolean = false;
+    coachespopuphdr: string = '';
+
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
-        private _spUtilityService: spUtilityService,
         private confirmationService: ConfirmationService
     ) {}
 
@@ -45,7 +42,9 @@ export class CoachesComponent implements OnInit {
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('sortorder').setValue(this.findMaxSortOrder());
-        this._spUtilityService.showPopup(this.popup, "Add a new coach to your profile");
+
+        this.coachespopuphdr = 'Add a new coach to your profile';
+        this.coachespopupvisible = true;
     }
 
     editRow(id:number, coach: ICoach) {
@@ -57,7 +56,9 @@ export class CoachesComponent implements OnInit {
         this.form.get('description').setValue(coach.description);
         this.form.get('email').setValue(coach.email);
         this.form.get('phone').setValue(coach.phone);
-        this._spUtilityService.showPopup(this.popup, "Edit this coach:");
+
+        this.coachespopuphdr = 'Edit this coach:';
+        this.coachespopupvisible = true;
     }
 
     onSubmit(): void { 
@@ -94,7 +95,7 @@ export class CoachesComponent implements OnInit {
 
         //Hide overlay
         this.form.reset();
-        this.popup.hide();
+        this.coachespopupvisible = false;
     }
 
     deleteRow(id:number) {
@@ -111,7 +112,14 @@ export class CoachesComponent implements OnInit {
     }
 
     onCancel(): void { 
-        this._spUtilityService.Cancel(this.popup);
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.coachespopupvisible = false;        
+            }
+        });
     }
 
     findMaxSortOrder():number {

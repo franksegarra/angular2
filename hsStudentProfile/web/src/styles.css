@@ -43,6 +43,11 @@ i {
     border-radius: 0;
 }
 
+.ui-dialog-titlebar {
+    color: white;
+    background: #326eb7;
+}
+
 /*
  * off canvas sidebar
  * --------------------------------------------------

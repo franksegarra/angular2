@@ -1,4 +1,7 @@
 <div *ngIf="_spDataService.bbprofile">
+
+    <p-confirmDialog width="425"></p-confirmDialog>
+
     <!-- Buttons -->
     <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
         <div class="col col-sm-5">
@@ -53,7 +56,11 @@
     </div>
 
     <!-- Add/Edit Popup -->
-    <popup #physPopup>
+    <p-dialog [(visible)]="physpopupvisible" modal="modal" responsive='true' width="550">
+        <p-header style="background-color: #326eb7" >
+            {{ physpopuphdr }}
+        </p-header>
+    
         <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
             <div class="container">
                 <div class="row" style="padding: 0px 0px 10px 0px">
@@ -102,6 +109,5 @@
                 </div>
             </div>
         </form>
-    </popup>
-
+    </p-dialog>
 </div>

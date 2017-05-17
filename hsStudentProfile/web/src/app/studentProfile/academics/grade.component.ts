@@ -1,34 +1,31 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { IClass } from '../../models/Class';
-
-import { spDataService } from '../services/spdata.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { spUtilityService } from '../services/sputility.service';
-import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 import { ConfirmationService, SelectButton, SelectItem } from 'primeng/primeng';
-import { Popup } from 'ng2-opd-popup';
+
+import { IClass } from '../../models/Class';
+import { spDataService } from '../services/spdata.service';
+import { EditButtonsComponent } from '../spshared/spEditButtons.component';
 
 @Component({
     selector: 'pp-grade',
     moduleId: module.id,
-    templateUrl: 'grade.component.html',
-    providers: [Popup]
+    templateUrl: 'grade.component.html'
 })
 export class GradeComponent { 
     @Input() grade: number;
-    @ViewChild('gradesPopup') popup:Popup;
     private errorMessage: string;
     private form: FormGroup;
     private editmode: string = '';
-    
+
+    gradespopupvisible: boolean = false;
+    gradespopuphdr: string = '';
+
     yesno: SelectItem[] = [];
-    
     average: number;
 
     constructor(
         private fb: FormBuilder, 
         private _spDataService: spDataService, 
-        private _spUtilityService: spUtilityService,
         private confirmationService: ConfirmationService
     ) {}
 
@@ -53,7 +50,9 @@ export class GradeComponent {
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('grade').setValue(this.grade);
-        this._spUtilityService.showPopup(this.popup, "Add a new class");
+
+        this.gradespopuphdr = 'Add a new class';
+        this.gradespopupvisible = true;
     }
 
     editRow(id:number, aclass: IClass) {
@@ -65,7 +64,9 @@ export class GradeComponent {
         this.form.get('finalaverage').setValue(aclass.finalaverage);
         this.form.get('lettergrade').setValue(aclass.lettergrade);
         this.form.get('collegecredit').setValue(aclass.collegecredit);
-        this._spUtilityService.showPopup(this.popup, "Edit this class:");
+
+        this.gradespopuphdr = 'Edit this class:';
+        this.gradespopupvisible = true;
     }
 
     onSubmit(): void { 
@@ -102,7 +103,7 @@ export class GradeComponent {
 
         //Hide overlay
         this.form.reset();
-        this.popup.hide();
+        this.gradespopupvisible = false;
     }
 
     deleteRow(id:number) {
@@ -119,6 +120,13 @@ export class GradeComponent {
     }
 
     onCancel(): void { 
-        this._spUtilityService.Cancel(this.popup);
+        this.confirmationService.confirm({
+            message: 'Are you sure  you want to cancel?',
+            header: 'Cancel Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.gradespopupvisible = false;        
+            }
+        });
     }
 }

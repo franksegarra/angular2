@@ -187,7 +187,7 @@ export class spDataService {
                                             (hs) => { 
                                                 this.hittingstats = hs; 
                                                 this.createStatsCategories();
-                                                console.log(this.hittingstats);
+                                                // console.log(this.hittingstats);
                                             }, 
                                             (error) => this.handleError(error)
                                         );
@@ -221,7 +221,7 @@ export class spDataService {
         });
 
         this.hittingcategories = hitcat;
-        console.log(this.hittingcategories);
+        // console.log(this.hittingcategories);
     }
 
     canEdit() {

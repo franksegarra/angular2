@@ -5,6 +5,7 @@
 
     <div class='panel-body'>
     
+        <!-- Confirm dialog if user cancels edit -->
         <p-confirmDialog width="425"></p-confirmDialog>
 
         <!-- Add new row button - This works fine -->
@@ -36,7 +37,11 @@
         </div>
 
         <!-- Add/Edit Popup -->
-        <popup #linksPopup>
+        <p-dialog [(visible)]="linkpopupvisible" modal="modal" responsive='true' width="550">
+            <p-header style="background-color: #326eb7" >
+                {{ linkpopuphdr }}
+            </p-header>
+
             <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
                 <div class="container">
                     <div class="row" style="padding: 6px">
@@ -59,7 +64,7 @@
                     </div>
                 </div>
             </form>
-        </popup>
-        
+        </p-dialog>
+
     </div>
 </div>

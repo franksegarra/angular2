@@ -69,7 +69,7 @@ export class DateService {
         if (part == 'hr')
             return time.substr(0, cln);
         else if (part == 'mn') {
-            console.log('|' + time.substr(cln + 1, spc - cln - 1) + '|' );
+            // console.log('|' + time.substr(cln + 1, spc - cln - 1) + '|' );
             return time.substr(cln + 1, spc - cln - 1);
         }
         else if  (part == 'ampm')
