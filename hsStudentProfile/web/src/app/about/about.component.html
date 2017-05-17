@@ -3,7 +3,10 @@
         {{pageTitle}}
     </div>
     <div class="panel-body"  >
-        About Us
-    </div>
 
+    <p-fileUpload name="myfile[]" url="http://localhost:3000/upload" (onUpload)="onUpload($event)" accept="image/*" maxFileSize="1000000">
+        <ng-template pTemplate="toolbar"></ng-template>  
+    </p-fileUpload>
+
+    </div>
 </div>

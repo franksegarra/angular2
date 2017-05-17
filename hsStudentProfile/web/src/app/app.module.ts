@@ -31,9 +31,12 @@ import { AlertService }  from './services/alert.service';
 import { UserService }  from './services/user.service';
 import { DateService }  from './services/date.service';
 
+import {FileUploadModule} from 'primeng/primeng';
+
 //Module declaration
 @NgModule({
   imports: [ 
+      FileUploadModule,
       HttpModule,
       Routing,
       CommonModule,
