@@ -125,6 +125,9 @@ namespace webServices
             //User service
             services.AddTransient<IUserValidationService, UserValidationService>();
 
+            //Picture Upload Service
+            //services.AddTransient<IPictureUploadService, PictureUploadService>();
+
             #endregion Repositories
 
             #region MVC
@@ -178,6 +181,12 @@ namespace webServices
 
             #endregion Email
 
+            #region Storage Config
+
+            services.Configure<StorageConfig>(Configuration.GetSection("Storage"));
+
+            #endregion Storage Config
+            
             //services.Configure<IISOptions>(options => {
             //});
         }

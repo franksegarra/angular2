@@ -7,6 +7,7 @@
     [filename] varchar(100) not null,
 	[description] varchar(255) null, 
     [created] datetime not null default getdate(), 
+    [filesize] BIGINT NULL, 
     constraint [pk_studentpictures_id] primary key clustered (id),
     constraint [fk_studentpictures_student] foreign key (studentid) references [student](id)
 )

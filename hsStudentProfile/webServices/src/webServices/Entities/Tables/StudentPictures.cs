@@ -18,5 +18,6 @@ namespace webServices.Entities
         public string filename { get; set; }
         public string description { get; set; }
         public DateTime? created { get; set; }
+        public long filesize { get; set; }
     }
 }
