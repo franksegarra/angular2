@@ -1,19 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ConfirmationService, Calendar, SelectItem, MultiSelect, Spinner, InputTextarea } from 'primeng/primeng';
+import { ConfirmationService, Calendar, SelectItem, MultiSelect, Spinner, InputTextarea, FileUpload } from 'primeng/primeng';
 
 import { IStudent } from '../../models/IStudent';
 import { spDataService } from '../services/spdata.service';
 import { Config } from '../../config.service';
 import { DateService } from '../../services/date.service'
 
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-    selector: 'pp-testscores',
+    selector: 'pp-profile',
     moduleId: module.id,
-    templateUrl: 'testscores.component.html'
+    templateUrl: 'profile.component.html'
 })
-export class TestScoresComponent implements OnInit { 
+export class ProfileComponent implements OnInit { 
     profilePicUrl: string = Config.PICTUREFOLDER + this._spDataService.myprofile.profilepicturefilename; 
     private errorMessage: string;
     private form: FormGroup;
@@ -22,12 +23,25 @@ export class TestScoresComponent implements OnInit {
     tspopupvisible: boolean = false;
     tspopuphdr: string = '';
 
+    chgpicpopupvisible: boolean = false;
+    chgpicpopuphdr: string = '';
+
     constructor(
         private fb: FormBuilder, 
+        private _authService: AuthService,
         private _spDataService: spDataService,
         private _dateService: DateService, 
         private confirmationService: ConfirmationService
     ) {}
+
+    onChangePicClicked() {
+        this.chgpicpopuphdr = 'Change your profile picture';
+        this.chgpicpopupvisible = true;
+    }
+
+    onBeforeSend(event) {
+        event.xhr.setRequestHeader('Authorization', 'Bearer ' + this._authService.token);
+    }
 
     ngOnInit(): void {
         this.form = this.fb.group({

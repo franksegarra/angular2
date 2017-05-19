@@ -23,9 +23,11 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
 
+/*        
         this.router.navigate(['about']);
+*/
 
-/*        this._authService.login('francissegarra', 'francissegarra')
+        this._authService.login('francissegarra', 'francissegarra')
             .subscribe(
                 (result)=> {
                     if (result === true) {
@@ -43,6 +45,5 @@ export class AppComponent implements OnInit {
                 (err) => {console.log('AppComponent: Error loggin in');},
                 () => {}
             );
-*/
     }
 }

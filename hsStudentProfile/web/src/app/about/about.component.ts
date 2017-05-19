@@ -24,9 +24,6 @@ export class AboutComponent {
     }
 
     onBeforeSend(event) {
-        console.log("onBeforeSend");
-        console.log(event);
-        console.log(this._authService.token);
         event.xhr.setRequestHeader('Authorization', 'Bearer ' + this._authService.token);
     }
 

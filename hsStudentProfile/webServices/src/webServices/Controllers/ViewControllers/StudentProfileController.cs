@@ -11,8 +11,11 @@ namespace webServices.Controllers
     [Route("api/[controller]")]
     public class StudentProfileController : StudentViewController<StudentProfile>
     {
-        public StudentProfileController(EntityBaseRepository<StudentProfile> items) : base(items)
+        IFileUploadService _picSvc;
+
+        public StudentProfileController(EntityBaseRepository<StudentProfile> items, IFileUploadService picSvc) : base(items)
         {
+            _picSvc = picSvc;
         }
 
         [HttpGet("{profilename}")]
@@ -44,40 +47,39 @@ namespace webServices.Controllers
                 return BadRequest();
             }
 
-            var stream = this.Request.Form.Files[0].OpenReadStream();
-            var name = this.Request.Form.Files[0].FileName;
-            var filesize = this.Request.Form.Files[0].Length;
-
-            StudentPictures pic = new StudentPictures()
+            try
             {
-                id = 0,
-                studentid = studentId,
-                category = "Profile Picture",
-                title = name,
-                filename = name,
-                description = name,
-                created = DateTime.Now,
-                filesize = filesize
-            };
 
-            //IPictureUploadService _picSvc = 
+                var stream = this.Request.Form.Files[0].OpenReadStream();
+                var name = this.Request.Form.Files[0].FileName;
+                var filesize = this.Request.Form.Files[0].Length;
 
+                StudentPictures pic = new StudentPictures()
+                {
+                    id = 0,
+                    studentid = studentId,
+                    category = "Profile Picture",
+                    title = name,
+                    filename = name,
+                    description = name,
+                    created = DateTime.Now,
+                    filesize = filesize
+                };
 
+                if (_picSvc.UpdateStudentProfilePicture(pic, stream) > 0)
+                {
+                    return StatusCode(StatusCodes.Status201Created);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-            return null; //null just to make error free
         }
-
-
     }
 }

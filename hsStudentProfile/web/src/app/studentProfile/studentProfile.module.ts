@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DropdownModule, SelectButtonModule } from 'primeng/primeng';
 import { ConfirmDialogModule, ConfirmationService, OverlayPanelModule, CalendarModule, MultiSelectModule, SpinnerModule, InputTextareaModule } from 'primeng/primeng';
-import { DialogModule } from 'primeng/primeng';
+import { DialogModule, FileUploadModule } from 'primeng/primeng';
 
 import { MessageFormModule } from '../shared/messageform/messageform.module';
 
@@ -26,7 +26,7 @@ import { StudentProfileComponent } from './studentprofile.component';
 //Student Profile - Academics
 import { AcademicsComponent } from './academics/academics.component';
 import { GradeComponent } from './academics/grade.component';
-import { TestScoresComponent } from './academics/testscores.component';
+import { ProfileComponent } from './academics/profile.component';
 import { GradeFilterPipe } from './academics/grade-filter.pipe';
 import { ExtraCurricularComponent } from './academics/extracurricular.component';
 
@@ -82,7 +82,8 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       SelectButtonModule,
       SpinnerModule,
       InputTextareaModule,
-      DialogModule
+      DialogModule,
+      FileUploadModule
   ],
   declarations: [
       StudentProfileComponent
@@ -92,7 +93,7 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       ,AcademicsComponent
       ,GradeComponent
       ,GradeFilterPipe
-      ,TestScoresComponent
+      ,ProfileComponent
       ,ExtraCurricularComponent
       ,VideosComponent
       ,ProgressComponent

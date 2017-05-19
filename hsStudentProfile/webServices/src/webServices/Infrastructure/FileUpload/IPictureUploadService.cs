@@ -3,8 +3,9 @@ using webServices.Entities;
 
 namespace webServices.Infrastructure.FileUpload
 {
-    public interface IPictureUploadService
+    public interface IFileUploadService
     {
-        bool AddProfilePicture(StudentPictures pic, Stream stream);
+        int UpdateStudentProfilePicture(StudentPictures pic, Stream stream);
+        int AddPicture(StudentPictures pic, Stream stream);
     }
 }
