@@ -119,12 +119,12 @@ export class spDataService {
     getStudentData(studentid:number) {
         this.setClasses(studentid);
         this.setExtraCurricular(studentid);
-        this.setVideos(studentid);
-        this.setPictures(studentid);
+        // this.setVideos(studentid);
+        // this.setPictures(studentid);
         this.setProfilePictures(studentid);
         this.setSchedule(studentid);
         this.setLinks(studentid);
-        this.setBBProfile(studentid);
+        //this.setBBProfile(studentid);
         this.setCoaches(studentid);
         this.setHittingStats(studentid);
     }

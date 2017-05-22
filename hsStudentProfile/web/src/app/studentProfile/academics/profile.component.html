@@ -37,65 +37,68 @@
     </div>
 
     <!-- Add/Edit Popup -->
-    <p-dialog [(visible)]="tspopupvisible" modal="modal" responsive='true' width="550">
+    <p-dialog [(visible)]="tspopupvisible" modal="modal" responsive='true' width="550" (onHide)="onHide()" >
         <p-header style="background-color: #326eb7" >
             {{ tspopuphdr }}
         </p-header>
 
-        <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
-            <div class="container">
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>First Name:</b></div>
-                    <div class="col col-sm-3"><input type="text" formControlName = 'firstname' placeholder="First Name (Required)" style="width:100%; padding: 6px"></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>Last Name:</b></div>
-                    <div class="col col-sm-3"><input type="text" formControlName = 'lastname' placeholder="Last Name (Required)" style="width:100%; padding: 6px"></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>High School:</b></div>
-                    <div class="col col-sm-3"><input type="text" formControlName = 'highschoolname' placeholder="High School" style="width:100%; padding: 6px"></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>Graduation Year:</b></div>
-                    <div class="col col-sm-3"><p-spinner size="30" formControlName = 'graduationyear' [min]="2017" [max]="2030" [thousandSeparator]="" style="width:100%;" ></p-spinner></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>GPA:</b></div>
-                    <div class="col col-sm-3"><input type="text" formControlName = 'gpa' placeholder="GPA" style="width:100%; padding: 6px"></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>SAT Test Date:</b></div>
-                    <div class="col col-sm-3"><p-calendar formControlName = 'sattestdate' placeholder="SAT Test Date" [style]="{'width':'100%'}" [showIcon]="true"></p-calendar></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>SAT Test Score:</b></div>
-                    <div class="col col-sm-3"><input type="text" formControlName = 'satscore' placeholder="SAT Test Score" style="width:100%; padding: 6px"></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>ACT Test Date:</b></div>
-                    <div class="col col-sm-3"><p-calendar formControlName = 'acttestdate' placeholder="ACT Test Date" [style]="{'width':'100%'}" [showIcon]="true"></p-calendar></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>ACT Test Score:</b></div>
-                    <div class="col col-sm-3"><input type="text" formControlName = 'actscore' placeholder="ACT Test Score" style="width:100%; padding: 6px"></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>Intended College Major:</b></div>
-                    <div class="col col-sm-3"><input type="text" formControlName = 'collegemajor' placeholder="Intended College Major" style="width:100%; padding: 6px"></div>
-                </div>
-                <div class="row" style="padding: 0px 0px 10px 0px">
-                    <div class="col col-sm-2"><b>Personal Statement:</b></div>
-                    <div class="col col-sm-3"><textarea rows="10" pInputTextarea formControlName = 'additionalinfo' autoResize="autoResize" style="width:100%;"></textarea></div>
-                </div>
-                <div class="row" style="padding: 6px">
-                    <div class="col col-sm-5">
-                        <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
-                        <button type="reset" class="ui button" (click)="onCancel()">Cancel</button>
+        <div style="height:600px; overflow-y:scroll">
+            <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+                <div class="container">
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>First Name:</b></div>
+                        <div class="col col-sm-3"><input type="text" formControlName = 'firstname' placeholder="First Name (Required)" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>Last Name:</b></div>
+                        <div class="col col-sm-3"><input type="text" formControlName = 'lastname' placeholder="Last Name (Required)" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>High School:</b></div>
+                        <div class="col col-sm-3"><input type="text" formControlName = 'highschoolname' placeholder="High School" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>Graduation Year:</b></div>
+                        <div class="col col-sm-3"><p-spinner size="30" formControlName = 'graduationyear' [min]="2017" [max]="2030" [thousandSeparator]="" style="width:100%;" ></p-spinner></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>GPA:</b></div>
+                        <div class="col col-sm-3"><input type="text" formControlName = 'gpa' placeholder="GPA" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>SAT Test Date:</b></div>
+                        <div class="col col-sm-3"><p-calendar formControlName = 'sattestdate' placeholder="SAT Test Date" [style]="{'width':'100%'}" [showIcon]="true"></p-calendar></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>SAT Test Score:</b></div>
+                        <div class="col col-sm-3"><input type="text" formControlName = 'satscore' placeholder="SAT Test Score" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>ACT Test Date:</b></div>
+                        <div class="col col-sm-3"><p-calendar formControlName = 'acttestdate' placeholder="ACT Test Date" [style]="{'width':'100%'}" [showIcon]="true"></p-calendar></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>ACT Test Score:</b></div>
+                        <div class="col col-sm-3"><input type="text" formControlName = 'actscore' placeholder="ACT Test Score" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>Intended College Major:</b></div>
+                        <div class="col col-sm-3"><input type="text" formControlName = 'collegemajor' placeholder="Intended College Major" style="width:100%; padding: 6px"></div>
+                    </div>
+                    <div class="row" style="padding: 0px 0px 10px 0px">
+                        <div class="col col-sm-2"><b>Personal Statement:</b></div>
+                        <div class="col col-sm-3"><textarea rows="10" pInputTextarea formControlName = 'additionalinfo' autoResize="autoResize" style="width:100%;"></textarea></div>
+                    </div>
+                    <div class="row" style="padding: 6px">
+                        <div class="col col-sm-5">
+                            <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>
+                            <button type="cancel" class="ui button">Cancel</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+
     </p-dialog>
 
     <p-dialog [(visible)]="chgpicpopupvisible" modal="modal" responsive='true' width="550">
@@ -104,8 +107,9 @@
         </p-header>
 
         <p-fileUpload name="myfile[]" url="http://localhost:64425/api/StudentProfile/PostProfilePicture/1" 
-            (onBeforeSend) ="onBeforeSend($event)"
-            accept="image/*" maxFileSize="1000000">
+            (onBeforeSend)="onBeforeSend($event)"
+            (onUpload)="onUploadComplete($event)"
+            accept="image/*" maxFileSize="5000000">
             <ng-template pTemplate="toolbar"></ng-template>  
         </p-fileUpload>
 

@@ -5,6 +5,7 @@ using System;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 using webServices.Infrastructure.FileUpload;
+using Microsoft.AspNetCore.Authorization;
 
 namespace webServices.Controllers
 {
@@ -40,6 +41,7 @@ namespace webServices.Controllers
         }
 
         [HttpPost("PostProfilePicture/{studentId:int}")]
+        [AllowAnonymous]
         public IActionResult PostProfilePicture(int studentId)
         {
             if (this.Request.Form.Files[0] == null)

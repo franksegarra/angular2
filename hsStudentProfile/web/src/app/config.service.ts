@@ -11,8 +11,8 @@ export class Config{
     //IIS AWS
     //static WEBSERVICESURL: string = 'http://www.hsstudentprofile.com:9180/api/';
     
-    static VIDEOFOLDER: string = 'assets/videos/';
-    static PICTUREFOLDER: string = 'assets/pictures/';
+    static VIDEOFOLDER: string = 'http://localhost:4200/assets/videos/';
+    static PICTUREFOLDER: string = 'http://localhost:4200/assets/pictures/';
     static GOOGLERECAPTCHAURL: string = 'https://www.google.com/recaptcha/api/siteverify';
     static RECAPTCHAPUBLICKEY: string = '6LcyIBgUAAAAADQIhTzBmP2btfEMrWdabI7AhgJn';
     static RECAPTCHAPRIVATEKEY: string = '6LcyIBgUAAAAABfFkpeZWkpSvewY3OQBZMJ9KMWg';

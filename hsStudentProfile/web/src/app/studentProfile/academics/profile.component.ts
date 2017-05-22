@@ -43,7 +43,15 @@ export class ProfileComponent implements OnInit {
         event.xhr.setRequestHeader('Authorization', 'Bearer ' + this._authService.token);
     }
 
+    onUploadComplete(event) {
+        //this.refreshData();
+        //this.profilePicUrl = Config.PICTUREFOLDER + this._spDataService.myprofile.profilepicturefilename;
+    }
+
     ngOnInit(): void {
+        
+        console.log(this.profilePicUrl);
+
         this.form = this.fb.group({
             "id": [null],
             "profilename": [""],
@@ -153,7 +161,7 @@ export class ProfileComponent implements OnInit {
         this.editing=false;
     }
 
-    onCancel(): void { 
+    onHide(): void {
         this.editing=false;
 
         this.confirmationService.confirm({
@@ -163,7 +171,7 @@ export class ProfileComponent implements OnInit {
             accept: () => {
                 this.tspopupvisible = false;        
             }
-        });
+        });        
     }
 
     refreshData(){
