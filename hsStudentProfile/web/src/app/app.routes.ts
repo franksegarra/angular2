@@ -12,7 +12,6 @@ import { ForgotPWComponent} from './auth/forgotpw/forgotpw.component';
 import { ForgotUserNameComponent } from './auth/forgotusername/forgotusername.component';
 
 const appRoutes: Routes = [
-
         {path: 'home', component: HomeComponent },
         {path: 'home/logout', component: HomeComponent },
         {path: 'login', component: LoginComponent },

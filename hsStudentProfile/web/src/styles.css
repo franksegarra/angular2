@@ -1,3 +1,28 @@
+.image-card-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background-color:silver;
+}
+.image-card-aspect-ratio {
+    padding-top: 150%;
+}
+.image-card-image {
+  width: 100%;
+  height:auto;
+}
+.image-card {
+  position:absolute;
+  left:0px;
+  top:0px;  
+  bottom:0px;
+  right:0px;
+  background-color:white;
+  overflow:hidden;
+  text-align:center;
+  box-shadow: 0 0 10px rgba(0,0,0, 0);
+}
+
 .addbutton {
     color: #326eb7;
 }

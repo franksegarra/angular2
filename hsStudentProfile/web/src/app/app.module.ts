@@ -1,9 +1,7 @@
-//External Modules
 import { NgModule, ApplicationRef } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/primeng';
@@ -11,54 +9,51 @@ import { SelectButtonModule } from 'primeng/primeng';
 //Main Menu features
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
-import { WelcomeComponent } from './home/welcome.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPWComponent} from './auth/forgotpw/forgotpw.component';
 import { ForgotUserNameComponent } from './auth/forgotusername/forgotusername.component';
-import { StudentProfileModule } from './studentprofile/studentprofile.module';
+
+//Modules
 import { FeedbackModule } from './feedback/feedback.module';
-
-//routing setup
-import { Routing } from "./app.routes";
-
-//Main startup Component
-import { AppComponent }  from './app.component';
+import { StudentProfileModule } from './studentprofile/studentprofile.module';
 
 //Authorization service
 import { AuthService }  from './services/auth.service';
 import { AlertService }  from './services/alert.service';
+import { DataService } from './services/data.service';
+import { DateService } from './services/date.service';
 import { UserService }  from './services/user.service';
-import { DateService }  from './services/date.service';
+import { UrlHelperService }  from './services/urlhelper.service';
 
-import {FileUploadModule} from 'primeng/primeng';
+//routing setup
+import { Routing } from "./app.routes";
+import { AppComponent } from './app.component';
+import { FileUploadModule } from 'primeng/primeng';
 
-//Module declaration
 @NgModule({
-  imports: [ 
-      FileUploadModule,
-      HttpModule,
-      Routing,
-      CommonModule,
-      BrowserModule,
-      StudentProfileModule,
-      FeedbackModule,
-      BrowserAnimationsModule,
-      FormsModule, 
-      ReactiveFormsModule,
-      SelectButtonModule
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPWComponent,
+    ForgotUserNameComponent,
   ],
-  declarations: [ 
-      AppComponent
-      ,AboutComponent
-      ,HomeComponent
-      ,WelcomeComponent
-      ,LoginComponent
-      ,RegisterComponent
-      ,ForgotPWComponent
-      ,ForgotUserNameComponent
-  ],  
-  providers: [ AuthService, AlertService, UserService, DateService ],
+  imports: [
+    FileUploadModule,
+    HttpModule,
+    Routing,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FeedbackModule,
+    StudentProfileModule,
+    SelectButtonModule
+  ],
+  providers: [ AuthService, AlertService, DataService, DateService, UserService, UrlHelperService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

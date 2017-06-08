@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+//Primeng
 import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DropdownModule, SelectButtonModule } from 'primeng/primeng';
-import { ConfirmDialogModule, ConfirmationService, OverlayPanelModule, CalendarModule, MultiSelectModule, SpinnerModule, InputTextareaModule } from 'primeng/primeng';
-import { DialogModule, FileUploadModule } from 'primeng/primeng';
+import { OverlayPanelModule, CalendarModule, MultiSelectModule, SpinnerModule, InputTextareaModule } from 'primeng/primeng';
+import { ConfirmDialogModule, ConfirmationService, DialogModule, FileUploadModule } from 'primeng/primeng';
 
 import { MessageFormModule } from '../shared/messageform/messageform.module';
+import { ImageModule } from '../shared/image/image.module';
 
 //Services
 import { DataService } from '../services/data.service';
-import { VideoService } from './videos/video.service';
-import { PictureService } from './pictures/picture.service';
 import { spDataService } from './services/spdata.service';
 
 //Shared Components
@@ -36,9 +36,11 @@ import { ProgressComponent } from './videos/progress.component';
 import { ToolbarComponent } from './videos/toolbar.component';
 import { OptionsComponent } from './videos/options.component';
 import { TimeDisplayPipe } from "./videos//timedisplay.pipe";
+import { VideoService } from './videos/video.service';
 
 //Student Profile - Pictures
 import { PicturesComponent } from './pictures/pictures.component';
+import { PictureService } from './pictures/picture.service';
 
 //Schedule
 import { ScheduleComponent } from './schedule/schedule.component';
@@ -83,7 +85,8 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       SpinnerModule,
       InputTextareaModule,
       DialogModule,
-      FileUploadModule
+      FileUploadModule,
+      ImageModule
   ],
   declarations: [
       StudentProfileComponent

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.IO;
 using System.Linq;
@@ -9,13 +10,15 @@ namespace webServices.Infrastructure.FileUpload
 {
     public class FileUploadService : IFileUploadService
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
         EntityBaseRepository<StudentPictures> _pics;
         EntityBaseRepository<StudentVideos> _vids;
         EntityBaseRepository<Student> _students;
         private readonly StorageConfig _storageConfig;
 
-        public FileUploadService(EntityBaseRepository<StudentPictures> pics, EntityBaseRepository<StudentVideos> vids, EntityBaseRepository<Student> students, IOptions<StorageConfig> storageConfig)
+        public FileUploadService(IHostingEnvironment hostingEnvironment, EntityBaseRepository<StudentPictures> pics, EntityBaseRepository<StudentVideos> vids, EntityBaseRepository<Student> students, IOptions<StorageConfig> storageConfig)
         {
+            _hostingEnvironment = hostingEnvironment;
             _pics = pics;
             _vids = vids;
             _students = students;
@@ -64,8 +67,10 @@ namespace webServices.Infrastructure.FileUpload
                 pic.filename = newfilename;
                 _pics.Edit(pic);
 
-                //Write file to storage -  C:\repos\hsStudentProfile\web\src\assets\pictures;
-                using (Stream file = File.Create(_storageConfig.Pictures + newfilename))
+                string webRootPath = _hostingEnvironment.WebRootPath;
+
+                //Write file to storage -  C:\repos\hsStudentProfile\web\src\ + assets\pictures\;
+                using (Stream file = File.Create(webRootPath + _storageConfig.Pictures + newfilename))
                 {
                     CopyStream(stream, file);
                 }

@@ -13,7 +13,7 @@
     <!-- Data in read only state -->
     <div class='row'>
         <div class="column col-sm-3">
-            <img class="img-responsive" [src]="statsPicUrl" alt="No pictures to show" >
+            <pp-image></pp-image>
         </div>
         <div class="column col-sm-9">
                 <div class="row" style="padding: 0px 0px 10px 0px">
@@ -56,11 +56,11 @@
     </div>
 
     <!-- Add/Edit Popup -->
-    <p-dialog [(visible)]="physpopupvisible" modal="modal" responsive='true' width="550">
+    <p-dialog [(visible)]="physpopupvisible" modal="modal" responsive='true' width="550" [draggable]=false>
         <p-header style="background-color: #326eb7" >
             {{ physpopuphdr }}
         </p-header>
-    
+
         <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
             <div class="container">
                 <div class="row" style="padding: 0px 0px 10px 0px">
@@ -90,17 +90,17 @@
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>Other Positions:</b></div>
                     <div class="col col-sm-3">
-                        <p-multiSelect [options]="otherPositionList" formControlName="selectedpositions" [style]="{'width':'100%'}"></p-multiSelect>   
+                        <p-multiSelect [options]="otherPositionList" formControlName="selectedpositions" [style]="{'width':'100%'}"></p-multiSelect>
                     </div>
                 </div>
                 <div class="row" style="padding: 0px 0px 10px 0px">
                     <div class="col col-sm-2"><b>Travel Team:</b></div>
                     <div class="col col-sm-3"><input type="text" formControlName = 'travelteam' placeholder="Travel Team" style="width:100%; padding: 6px"></div>
-                </div>                
+                </div>
                 <div class="row" style="padding: 0px 0px 0px 0px">
                     <div class="col col-sm-2"><b>Travel Team Url:</b></div>
                     <div class="col col-sm-3"><input type="text" formControlName = 'travelurl' placeholder="Travel Team Url" style="width:100%; padding: 6px"></div>
-                </div>                
+                </div>
                 <div class="row" style="padding: 6px">
                     <div class="col col-sm-5">
                         <button type="submit" [disabled]="!form.valid" class="ui button">Submit</button>

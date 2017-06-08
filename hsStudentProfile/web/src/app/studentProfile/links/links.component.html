@@ -1,10 +1,10 @@
-<div class='panel panel-primary'>  
+<div class='panel panel-primary'>
 
     <!-- Header record with icon -->
     <pp-header [pageName]="pageName"></pp-header>
 
     <div class='panel-body'>
-    
+
         <!-- Confirm dialog if user cancels edit -->
         <p-confirmDialog width="425"></p-confirmDialog>
 
@@ -12,10 +12,10 @@
         <div *ngIf="_spDataService.canEdit()">
             <span class="btn-group">
                 <button id="popup" type="button" class="btn addbutton">
-                    <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Link</i> 
+                    <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Link</i>
                 </button>
             </span>
-        </div> 
+        </div>
 
         <!-- Data rows -->
         <div class="table-responsive">
@@ -26,7 +26,7 @@
                             <a href="{{ link.linkurl }}" target="_blank">{{ link.linkname }}</a>
                         </td>
                         <td>
-                            {{ link.linkdescription }}                            
+                            {{ link.linkdescription }}
                         </td>
                         <td> <!-- Delete and edit buttons -->
                             <pp-editButtons [idField]="link.id" (onEditRow)="editRow($event, link)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
@@ -37,7 +37,7 @@
         </div>
 
         <!-- Add/Edit Popup -->
-        <p-dialog [(visible)]="linkpopupvisible" modal="modal" responsive='true' width="550">
+        <p-dialog [(visible)]="linkpopupvisible" modal="modal" responsive='true' width="550" [draggable]=false>
             <p-header style="background-color: #326eb7" >
                 {{ linkpopuphdr }}
             </p-header>

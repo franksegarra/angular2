@@ -1,14 +1,14 @@
 <p-confirmDialog key="headerConfirm" width="425"></p-confirmDialog>
 
 <div class='panel-heading'>
-    {{ _spDataService.myprofile.firstname + ' ' + _spDataService.myprofile.lastname + ' - ' + _spDataService.myprofile.graduationyear + ' - ' + pageName }} 
+    {{ _spDataService.myprofile.firstname + ' ' + _spDataService.myprofile.lastname + ' - ' + _spDataService.myprofile.graduationyear + ' - ' + pageName }}
     <span class="btn-group pull-right" *ngIf="_spDataService.canEdit()">
-        <i class="fa fa-cog fa-lg spheadericon" aria-hidden="true"  (click)="showPageSettings()"></i> 
+        <i class="fa fa-cog fa-lg spheadericon" aria-hidden="true"  (click)="showPageSettings()"></i>
     </span>
 </div>
 
 <!-- Add/Edit Popup -->
-<p-dialog [(visible)]="headerpopupvisible" modal="modal" responsive='true' width="550">
+<p-dialog [(visible)]="headerpopupvisible" modal="modal" responsive='true' width="550" [draggable]=false>
     <p-header style="background-color: #326eb7" >
         {{ headerpopuphdr }}
     </p-header>

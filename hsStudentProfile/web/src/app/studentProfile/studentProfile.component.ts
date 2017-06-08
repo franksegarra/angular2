@@ -22,7 +22,6 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private sub: any;
     private pageTitle: string;
     private errorMessage: string;
-    
     //private bbprofile: IBBProfile;
 
     componentToShow: string = 'academics';

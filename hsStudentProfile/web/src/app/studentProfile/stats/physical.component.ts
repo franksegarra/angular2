@@ -1,18 +1,21 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ConfirmationService, SelectItem, MultiSelect } from 'primeng/primeng';
 
 import { IBBProfile } from '../../models/BBProfile';
 import { spDataService } from '../services/spdata.service';
 import { Config } from '../../config.service';
+import { ImageComponent } from '../../shared/image/image.component';
 
 @Component({
     selector: 'pp-physical',
     moduleId: module.id,
     templateUrl: 'physical.component.html'
 })
-export class PhysicalComponent implements OnInit { 
-    statsPicUrl: string; 
+export class PhysicalComponent implements OnInit, AfterViewInit { 
+
+    @ViewChild(ImageComponent) private imageComponent: ImageComponent;
+    //statsPicUrl: string; 
     private errorMessage: string;
     private form: FormGroup;
     editing: boolean = false;
@@ -30,7 +33,7 @@ export class PhysicalComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.statsPicUrl =  Config.PICTUREFOLDER + this._spDataService.bbprofile.statspicturefilename; 
+        //this.statsPicUrl =  Config.PICTUREFOLDER + this._spDataService.bbprofile.statspicturefilename; 
 
         this.createPositionList();
 
@@ -50,6 +53,10 @@ export class PhysicalComponent implements OnInit {
             "runningtimelocationurl": [""],
         });
     }    
+
+    public ngAfterViewInit(): void {
+        this.imageComponent.setImageId(this._spDataService.bbprofile.statspictureid);
+    }
 
     onEditClicked() {
         this.createOtherPositionList(this._spDataService.bbprofile.position);

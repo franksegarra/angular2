@@ -13,7 +13,6 @@ import { Config } from '../../config.service';
 
 //Our Objects
 import { IProfile } from '../../models/IProfile';
-
 import { IStudent } from '../../models/IStudent';
 import { IScheduleItem } from '../../models/ScheduleItem';
 import { IStudentSchedule } from '../../models/StudentSchedule';
@@ -24,8 +23,8 @@ import { IHittingStats } from '../../models/IHittingStats';
 import { HittingCategory } from '../../models/HittingCategory';
 import { IClass } from '../../models/Class';
 import { IExtraCurricular } from '../../models/IExtraCurricular';
-import { IPicture } from '../pictures/IPicture';
-import { IVideo } from '../videos/IVideo';
+import { IPicture } from '../../models/IPicture';
+import { IVideo } from '../../models/IVideo';
 import { IProfilePictures } from '../../models/IProfilePictures';
 
 
@@ -124,7 +123,7 @@ export class spDataService {
         this.setProfilePictures(studentid);
         this.setSchedule(studentid);
         this.setLinks(studentid);
-        //this.setBBProfile(studentid);
+        this.setBBProfile(studentid);
         this.setCoaches(studentid);
         this.setHittingStats(studentid);
     }
@@ -171,7 +170,8 @@ export class spDataService {
 
     //Baseball profile
     getBBProfile(id:number): Observable<IBBProfile[]> { return this.getDBDataByStudentId<IBBProfile>(id, 'studentbaseballprofile/GetByStudentId/');}
-    setBBProfile(id:number) { return this.getDBDataByStudentId<IBBProfile>(id, 'studentbaseballprofile/GetByStudentId/').subscribe(p => this.bbprofile = p[0], error => this.handleError(error));}
+    setBBProfile(id:number) { return this.getDBDataByStudentId<IBBProfile>(id, 'studentbaseballprofile/GetByStudentId/')
+        .subscribe(p => this.bbprofile = p[0], error => this.handleError(error));}
 
     //Coaches
     getCoaches(id:number): Observable<ICoach[]> { return this.getDBDataByStudentId<ICoach>(id, 'studentcoaches/GetByStudentId/');}

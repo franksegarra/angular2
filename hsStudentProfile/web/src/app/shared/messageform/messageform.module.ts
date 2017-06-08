@@ -14,9 +14,7 @@ import { MessageFormService } from './messageform.service';
     FormsModule, 
     ReactiveFormsModule
   ],
-  declarations: [
-      MessageFormComponent
-  ],
+  declarations: [ MessageFormComponent ],
   providers: [ MessageFormService ],
   exports: [ MessageFormComponent ]
 })

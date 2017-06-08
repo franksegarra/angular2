@@ -1,10 +1,10 @@
-import { CliTestPage } from './app.po';
+import { UploadtestPage } from './app.po';
 
-describe('cli-test App', () => {
-  let page: CliTestPage;
+describe('uploadtest App', () => {
+  let page: UploadtestPage;
 
   beforeEach(() => {
-    page = new CliTestPage();
+    page = new UploadtestPage();
   });
 
   it('should display message saying app works', () => {

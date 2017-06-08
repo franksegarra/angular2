@@ -2,10 +2,10 @@
 <div *ngIf="_spDataService.canEdit()">
     <span class="btn-group">
         <button id="popup" type="button" class="btn addbutton">
-            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Activity</i> 
+            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Activity</i>
         </button>
     </span>
-</div> 
+</div>
 
 <div class="table-responsive">
     <table class="table" *ngIf="_spDataService.ec && _spDataService.ec.length">
@@ -29,7 +29,7 @@
 </div>
 
 <!-- Add/Edit Popup -->
-<p-dialog [(visible)]="ecpopupvisible" modal="modal" responsive='true' width="550">
+<p-dialog [(visible)]="ecpopupvisible" modal="modal" responsive='true' width="550" [draggable]=false>
     <p-header style="background-color: #326eb7" >
         {{ ecpopuphdr }}
     </p-header>

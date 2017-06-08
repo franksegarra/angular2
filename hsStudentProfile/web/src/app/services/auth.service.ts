@@ -92,15 +92,20 @@ export class AuthService {
     }
   }
 
-  getAuthHeader(): RequestOptions {
-    this.setAuthHeader();
-    return this.options;
-  }
+    getAuthHeader(): RequestOptions {
+        this.setAuthHeader();
+        return this.options;
+    }
 
-  getProfileName(): string {
-    if (this.isLoggedIn()) 
-        return JSON.parse(localStorage.getItem('currentUser')).profilename;
-    else
-        return null;
-  }
+    getProfileName(): string {
+        if (this.isLoggedIn()) 
+            return JSON.parse(localStorage.getItem('currentUser')).profilename;
+        else
+            return null;
+    }
+
+    getCurrentToken(): string {
+        return this.token;
+    }
+
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System.Linq;
 using webServices.Infrastructure.FileUpload;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 
 namespace webServices.Controllers
 {
@@ -51,7 +52,6 @@ namespace webServices.Controllers
 
             try
             {
-
                 var stream = this.Request.Form.Files[0].OpenReadStream();
                 var name = this.Request.Form.Files[0].FileName;
                 var filesize = this.Request.Form.Files[0].Length;
@@ -83,5 +83,6 @@ namespace webServices.Controllers
             }
 
         }
+
     }
 }

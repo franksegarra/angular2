@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ConfirmationService, Calendar, SelectItem, MultiSelect, Spinner, InputTextarea, FileUpload } from 'primeng/primeng';
 
@@ -6,6 +6,7 @@ import { IStudent } from '../../models/IStudent';
 import { spDataService } from '../services/spdata.service';
 import { Config } from '../../config.service';
 import { DateService } from '../../services/date.service'
+import { ImageComponent } from '../../shared/image/image.component';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -14,15 +15,14 @@ import { AuthService } from '../../services/auth.service';
     moduleId: module.id,
     templateUrl: 'profile.component.html'
 })
-export class ProfileComponent implements OnInit { 
-    profilePicUrl: string = Config.PICTUREFOLDER + this._spDataService.myprofile.profilepicturefilename; 
+export class ProfileComponent implements OnInit, AfterViewInit { 
+    @ViewChild(ImageComponent) private imageComponent: ImageComponent;
     private errorMessage: string;
     private form: FormGroup;
     editing: boolean = false;
 
     tspopupvisible: boolean = false;
     tspopuphdr: string = '';
-
     chgpicpopupvisible: boolean = false;
     chgpicpopuphdr: string = '';
 
@@ -34,24 +34,7 @@ export class ProfileComponent implements OnInit {
         private confirmationService: ConfirmationService
     ) {}
 
-    onChangePicClicked() {
-        this.chgpicpopuphdr = 'Change your profile picture';
-        this.chgpicpopupvisible = true;
-    }
-
-    onBeforeSend(event) {
-        event.xhr.setRequestHeader('Authorization', 'Bearer ' + this._authService.token);
-    }
-
-    onUploadComplete(event) {
-        //this.refreshData();
-        //this.profilePicUrl = Config.PICTUREFOLDER + this._spDataService.myprofile.profilepicturefilename;
-    }
-
     ngOnInit(): void {
-        
-        console.log(this.profilePicUrl);
-
         this.form = this.fb.group({
             "id": [null],
             "profilename": [""],
@@ -82,7 +65,10 @@ export class ProfileComponent implements OnInit {
             "collegemajor": [""],
             "loggedin": [null]
         });
+    }
 
+    public ngAfterViewInit(): void {
+        this.imageComponent.setImageId(this._spDataService.myprofile.profilepictureid);
     }
 
     onEditClicked() {
@@ -174,12 +160,27 @@ export class ProfileComponent implements OnInit {
         });        
     }
 
+    onChangePicClicked() {
+        this.chgpicpopuphdr = 'Change your profile picture';
+        this.chgpicpopupvisible = true;
+    }
+
+    onBeforeSend(event) {
+        event.xhr.setRequestHeader('Authorization', 'Bearer ' + this._authService.token);
+    }
+
+    onUploadComplete(event) {
+        this.refreshData();
+    }
+
     refreshData(){
         this._spDataService.setProfile(this._spDataService.myprofile.id)
             .subscribe(
                 (response) => {},
                 (err) => {console.log("ERROR in component. getStudentProfile: "+ err);},
-                () => {}
+                () => {
+                    this.imageComponent.setImageId(this._spDataService.myprofile.profilepictureid);                    
+                }
             )
     }
 

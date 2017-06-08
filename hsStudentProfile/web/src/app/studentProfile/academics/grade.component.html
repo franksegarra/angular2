@@ -2,10 +2,10 @@
 <div *ngIf="_spDataService.canEdit()">
     <span class="btn-group">
         <button id="popup" type="button" class="btn addbutton">
-            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Class</i> 
+            <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Class</i>
         </button>
     </span>
-</div> 
+</div>
 
 <div class="table-responsive">
     <table class="table" *ngIf="_spDataService.classes && _spDataService.classes.length">
@@ -22,9 +22,9 @@
             <tr *ngFor='let class of _spDataService.classes | gradeFilter: {grade: grade}' >
                 <td>{{ class.classname }}</td>
                 <td>{{ class.finalaverage }}</td>
-                <td>{{ class.lettergrade }}</td>   
-                <td *ngIf="class.collegecredit === 1" >Yes</td>   
-                <td *ngIf="class.collegecredit === 0" ></td>   
+                <td>{{ class.lettergrade }}</td>
+                <td *ngIf="class.collegecredit === 1" >Yes</td>
+                <td *ngIf="class.collegecredit === 0" ></td>
                 <td> <!-- Delete and edit buttons -->
                     <pp-editButtons [idField]="class.id" (onEditRow)="editRow($event, class)" (onDeleteRow)="deleteRow($event)"></pp-editButtons>
                 </td>
@@ -34,7 +34,7 @@
 </div>
 
 <!-- Add/Edit Popup -->
-<p-dialog [(visible)]="gradespopupvisible" modal="modal" responsive='true' width="550">
+<p-dialog [(visible)]="gradespopupvisible" modal="modal" responsive='true' width="550" [draggable]=false>
     <p-header style="background-color: #326eb7" >
         {{ gradespopuphdr }}
     </p-header>

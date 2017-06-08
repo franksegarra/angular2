@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ConfirmationService } from 'primeng/primeng';
 
@@ -31,6 +31,7 @@ export class ScheduleComponent {
     ) {}
 
     ngOnInit(): void {
+
         this.form = this.fb.group({
             "id": [null],
             "studentid": [""],
