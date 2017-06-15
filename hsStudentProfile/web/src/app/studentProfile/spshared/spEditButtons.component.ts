@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { spDataService } from '../services/spdata.service';
 import { ConfirmationService } from 'primeng/primeng';
 
@@ -15,10 +15,12 @@ export class EditButtonsComponent {
     constructor(private _spDataService: spDataService, private confirmationService: ConfirmationService) {}
 
     editRow(id:number) {
+        console.log("editrow");
         this.onEditRow.emit(id);
     }
 
     deleteRow(id:number) {
+        console.log("deleteRow");
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete this record?',
             header: 'Delete Confirmation',

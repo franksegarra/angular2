@@ -38,6 +38,7 @@ export class LinksComponent implements OnInit {
     }
 
     addRow() {
+        console.log("addRow");
         this.editmode = 'add';
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);

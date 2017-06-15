@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using webServices.Infrastructure.JWT;
 using webServices.Infrastructure.Auth;
-using webServices.Infrastructure.FileUpload;
+using webServices.Infrastructure.FileService;
 
 namespace webServices
 {
@@ -127,7 +127,7 @@ namespace webServices
             services.AddTransient<IUserValidationService, UserValidationService>();
 
             //Picture Upload Service
-            services.AddTransient<IFileUploadService, FileUploadService>();
+            services.AddTransient<IFileService, FileService>();
 
             #endregion Repositories
 

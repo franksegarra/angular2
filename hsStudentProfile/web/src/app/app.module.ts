@@ -6,6 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/primeng';
 
+import { CommonModule } from '@angular/common';  
+
 //Main Menu features
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
@@ -51,7 +53,8 @@ import { FileUploadModule } from 'primeng/primeng';
     ReactiveFormsModule,
     FeedbackModule,
     StudentProfileModule,
-    SelectButtonModule
+    SelectButtonModule,
+    CommonModule
   ],
   providers: [ AuthService, AlertService, DataService, DateService, UserService, UrlHelperService ],
   bootstrap: [ AppComponent ]

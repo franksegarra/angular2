@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;
 using System.IO;
@@ -6,9 +7,9 @@ using System.Linq;
 using webServices.Entities;
 using webServices.Repositories;
 
-namespace webServices.Infrastructure.FileUpload
+namespace webServices.Infrastructure.FileService
 {
-    public class FileUploadService : IFileUploadService
+    public class FileService : IFileService
     {
         private readonly IHostingEnvironment _hostingEnvironment;
         EntityBaseRepository<StudentPictures> _pics;
@@ -16,7 +17,7 @@ namespace webServices.Infrastructure.FileUpload
         EntityBaseRepository<Student> _students;
         private readonly StorageConfig _storageConfig;
 
-        public FileUploadService(IHostingEnvironment hostingEnvironment, EntityBaseRepository<StudentPictures> pics, EntityBaseRepository<StudentVideos> vids, EntityBaseRepository<Student> students, IOptions<StorageConfig> storageConfig)
+        public FileService(IHostingEnvironment hostingEnvironment, EntityBaseRepository<StudentPictures> pics, EntityBaseRepository<StudentVideos> vids, EntityBaseRepository<Student> students, IOptions<StorageConfig> storageConfig)
         {
             _hostingEnvironment = hostingEnvironment;
             _pics = pics;
@@ -81,6 +82,31 @@ namespace webServices.Infrastructure.FileUpload
             {
                 //Log error here
                 return 0;
+            }
+        }
+
+        public int DeletePicture(int id)
+        {
+            try
+            {
+                var pic = _pics.GetSingle(id);
+                if (pic == null)
+                {
+                    return StatusCodes.Status400BadRequest;
+                }
+
+                //Delete file
+                string file2delete = _hostingEnvironment.WebRootPath + _storageConfig.Pictures + pic.filename;
+                File.Delete(file2delete);
+                
+                //Delete row from database
+                _pics.Delete(pic);
+                return StatusCodes.Status204NoContent;
+            }
+            catch (Exception ex)
+            {
+                //logger.Error(ex.Message);
+                return StatusCodes.Status500InternalServerError;
             }
         }
 

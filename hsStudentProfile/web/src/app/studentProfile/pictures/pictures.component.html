@@ -5,6 +5,14 @@
             <div class="row">
 
                 <div class="column col-sm-3 topmenu">
+                    <!-- Buttons -->
+                    <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
+                        <div>
+                            <button type="submit" class="ui button" (click)="onAddPic($event)">Add Picture</button>
+                            <button type="submit" class="ui button" (click)="onDeletePic($event)">Delete Selected</button>
+                        </div>
+                    </div>
+                    
                     <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
                 </div>
                 <div class="column col-sm-9">
@@ -13,6 +21,13 @@
                     </div>
                 </div>
                 <div class="column col-sm-3 bottommenu">
+                    <!-- Buttons -->
+                    <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
+                        <div>
+                            <button type="submit" class="ui button" (click)="onAddPic()">Add Picture</button>
+                            <button type="submit" class="ui button" (click)="onDeletePic()">Delete Selected</button>
+                        </div>
+                    </div>
                     <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
                 </div>
 

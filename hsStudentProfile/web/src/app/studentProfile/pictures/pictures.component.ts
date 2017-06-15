@@ -14,6 +14,7 @@ import { Config } from '../../config.service';
 })
 export class PicturesComponent implements OnInit { 
     pageName: string = 'Pictures';
+    selectedPic: IPicture;
 
     constructor(public pictureService:PictureService, private _spDataService:spDataService ) {}
 
@@ -27,13 +28,35 @@ export class PicturesComponent implements OnInit {
         //No data.  Must be a category
         if (eventObj.data == "") {
             eventObj.expanded = !eventObj.expanded;
+            this.selectedPic = null;
+             return;
+        }
+        
+        this.selectedPic = eventObj.data;
+        console.log(this.selectedPic);
+        if (this.selectedPic.id.toString() != "")
+        {
+            this.pictureService.selectedPictureById(this.selectedPic.id);
+        }
+    }
+
+    onAddPic(event: any){        
+    }
+
+    onDeletePic(){        
+
+        console.log(this.selectedPic);
+
+        //No data.  Must be a category
+        if (this.selectedPic == null) {
              return;
         }
 
-        var pic: IPicture = eventObj.data;
-        if (pic.id.toString() != "")
+        if (this.selectedPic.id.toString() != "")
         {
-            this.pictureService.selectedPictureById(pic.id);
+            this._spDataService.deletePicture(this.selectedPic.id);
+            this.pictureService.removePictureById(this.selectedPic.id);
         }
+       
     }
 }

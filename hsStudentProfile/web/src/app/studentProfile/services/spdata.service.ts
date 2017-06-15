@@ -85,6 +85,7 @@ export class spDataService {
     }
     //DELETE
     deleteDBRow(id:number, dataUrl: string): Observable<any> {
+        console.log("deleteDBRow: " + Config.WEBSERVICESURL + dataUrl + id.toString());
         return this._http.delete(Config.WEBSERVICESURL + dataUrl + id.toString(), this._authService.getAuthHeader())
             .map(res =>  res)
             .catch(this.handleError);
@@ -119,7 +120,7 @@ export class spDataService {
         this.setClasses(studentid);
         this.setExtraCurricular(studentid);
         // this.setVideos(studentid);
-        // this.setPictures(studentid);
+        this.setPictures(studentid);
         this.setProfilePictures(studentid);
         this.setSchedule(studentid);
         this.setLinks(studentid);
@@ -149,6 +150,7 @@ export class spDataService {
     //Pictures
     getPictures(id:number): Observable<IPicture[]> { return this.getDBDataByStudentId<IPicture>(id, 'studentpictures/GetByStudentId/');}
     setPictures(id:number) {this.getDBDataByStudentId<IPicture>(id, 'studentpictures/GetByStudentId/').subscribe(pics => this.picturelist = pics, error => this.handleError(error));}
+    deletePicture(id:number): Observable<any> { return this.deleteDBRow(id, 'studentpictures/DeletePicture/');}
 
     //Profile Pictures
     getProfilePictures(id:number): Observable<IProfilePictures[]> { return this.getDBDataByStudentId<IProfilePictures>(id, 'studentprofilepictures/GetByStudentId/');}

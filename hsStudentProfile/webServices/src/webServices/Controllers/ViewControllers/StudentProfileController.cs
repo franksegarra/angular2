@@ -4,7 +4,7 @@ using webServices.Entities;
 using System;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
-using webServices.Infrastructure.FileUpload;
+using webServices.Infrastructure.FileService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 
@@ -13,9 +13,9 @@ namespace webServices.Controllers
     [Route("api/[controller]")]
     public class StudentProfileController : StudentViewController<StudentProfile>
     {
-        IFileUploadService _picSvc;
+        IFileService _picSvc;
 
-        public StudentProfileController(EntityBaseRepository<StudentProfile> items, IFileUploadService picSvc) : base(items)
+        public StudentProfileController(EntityBaseRepository<StudentProfile> items, IFileService picSvc) : base(items)
         {
             _picSvc = picSvc;
         }
@@ -42,7 +42,6 @@ namespace webServices.Controllers
         }
 
         [HttpPost("PostProfilePicture/{studentId:int}")]
-        [AllowAnonymous]
         public IActionResult PostProfilePicture(int studentId)
         {
             if (this.Request.Form.Files[0] == null)

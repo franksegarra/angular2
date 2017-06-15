@@ -84,4 +84,8 @@ export class PictureService {
         this.currentDesc = file[0]['description'];
         this.pictureElement.src = Config.PICTUREFOLDER + file[0]['filename'];
     };
+
+    removePictureById = (id:number) => {
+        console.log("Picture to remove: " + id);
+    };
 }
