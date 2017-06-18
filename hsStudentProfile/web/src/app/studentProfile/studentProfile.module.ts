@@ -18,7 +18,6 @@ import { spDataService } from './services/spdata.service';
 //Shared Components
 import { SpHeaderComponent } from './spshared/spheader.component';
 import { EditButtonsComponent } from './spshared/spEditButtons.component';
-import { AddButtonComponent } from './spshared/spAddButton.component';
 
 //Main component for this module
 import { StudentProfileComponent } from './studentprofile.component';
@@ -92,7 +91,6 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       StudentProfileComponent
       ,SpHeaderComponent
       ,EditButtonsComponent
-      ,AddButtonComponent
       ,AcademicsComponent
       ,GradeComponent
       ,GradeFilterPipe

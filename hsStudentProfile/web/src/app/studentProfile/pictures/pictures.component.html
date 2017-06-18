@@ -15,11 +15,15 @@
                     
                     <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
                 </div>
-                <div class="column col-sm-9">
+
+                <div class="column col-sm-7">
+                    <!--<pp-image></pp-image>-->
                     <div class="embed-responsive embed-responsive-4by3">
-                        <img class="img-responsive" id="imageDisplay" alt="No pictures to show">
+                        <img class="img-responsive" id="imageDisplay" width="100%" height="auto" alt="No pictures to show">
                     </div>
+
                 </div>
+                
                 <div class="column col-sm-3 bottommenu">
                     <!-- Buttons -->
                     <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">

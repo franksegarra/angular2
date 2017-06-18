@@ -10,9 +10,7 @@
         <!-- Add new row button - This works fine -->
         <div *ngIf="_spDataService.canEdit()">
             <span class="btn-group">
-                <button id="popup" type="button" class="btn addbutton">
-                    <i class="fa fa-plus-circle fa-lg addbutton" aria-hidden="false" (click)="addRow()">&nbsp;Add New Event</i>
-                </button>
+                <button id="popup" type="button" class="btn fa fa-plus-circle fa-lg addbutton" (click)="addRow()">&nbsp;Add New Event</button>
             </span>
         </div>
 

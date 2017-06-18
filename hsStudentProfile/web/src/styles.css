@@ -5,11 +5,11 @@
     background-color:silver;
 }
 .image-card-aspect-ratio {
-    padding-top: 150%;
+    padding-top: 100%;
 }
 .image-card-image {
   width: 100%;
-  height:auto;
+  height: auto;
 }
 .image-card {
   position:absolute;

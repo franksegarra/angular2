@@ -171,6 +171,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
     onUploadComplete(event) {
         this.refreshData();
+        this.chgpicpopuphdr = '';
+        this.chgpicpopupvisible = false;
     }
 
     refreshData(){

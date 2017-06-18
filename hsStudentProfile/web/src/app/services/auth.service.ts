@@ -83,6 +83,9 @@ export class AuthService {
         // add authorization header with jwt token
         this.headers = new Headers({ 'Authorization': 'Bearer ' + this.token });
         this.headers.append('Content-Type', 'application/json');
+        this.headers.append('Cache-Control', 'no-cache');
+        this.headers.append('Pragma', 'no-cache');
+        this.headers.append('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
         this.options = new RequestOptions({ headers: this.headers });
     }
     else

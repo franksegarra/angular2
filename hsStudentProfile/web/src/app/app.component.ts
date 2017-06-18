@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { FileUpload } from 'primeng/primeng';
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

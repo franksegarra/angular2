@@ -4,8 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectButtonModule } from 'primeng/primeng';
-
+import { SelectButtonModule, FileUploadModule } from 'primeng/primeng';
 import { CommonModule } from '@angular/common';  
 
 //Main Menu features
@@ -31,7 +30,6 @@ import { UrlHelperService }  from './services/urlhelper.service';
 //routing setup
 import { Routing } from "./app.routes";
 import { AppComponent } from './app.component';
-import { FileUploadModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -47,14 +45,14 @@ import { FileUploadModule } from 'primeng/primeng';
     FileUploadModule,
     HttpModule,
     Routing,
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     FeedbackModule,
     StudentProfileModule,
-    SelectButtonModule,
-    CommonModule
+    SelectButtonModule
   ],
   providers: [ AuthService, AlertService, DataService, DateService, UserService, UrlHelperService ],
   bootstrap: [ AppComponent ]
