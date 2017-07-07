@@ -40,7 +40,7 @@ export class GradeComponent {
             "grade": [null],
             "classname": ["", Validators.required],
             "finalaverage": [null],
-            "lettergrade": ["", Validators.required],
+            "lettergrade": [""],
             "collegecredit": [null]
         });
     }
@@ -50,7 +50,6 @@ export class GradeComponent {
         this.form.get('id').setValue(0);
         this.form.get('studentid').setValue(this._spDataService.myprofile.id);
         this.form.get('grade').setValue(this.grade);
-
         this.gradespopuphdr = 'Add a new class';
         this.gradespopupvisible = true;
     }
@@ -64,7 +63,6 @@ export class GradeComponent {
         this.form.get('finalaverage').setValue(aclass.finalaverage);
         this.form.get('lettergrade').setValue(aclass.lettergrade);
         this.form.get('collegecredit').setValue(aclass.collegecredit);
-
         this.gradespopuphdr = 'Edit this class:';
         this.gradespopupvisible = true;
     }
@@ -78,7 +76,7 @@ export class GradeComponent {
             classname: this.form.value['classname'],
             finalaverage: this.form.value['finalaverage'],
             lettergrade: this.form.value['lettergrade'],
-            collegecredit: this.form.value['collegecredit'],
+            collegecredit: this.form.value['collegecredit']==null ? 0 : this.form.value['collegecredit'],
         };
 
         //send to edit service to post

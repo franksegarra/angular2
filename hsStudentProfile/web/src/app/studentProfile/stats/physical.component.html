@@ -5,7 +5,7 @@
     <!-- Buttons -->
     <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
         <div class="col col-sm-5">
-            <button type="submit" class="ui button">Change Picture</button>
+            <button type="submit" class="ui button" (click)="onChangePicClicked()">Change Picture</button>
             <button type="submit" class="ui button" (click)="onEditClicked()" *ngIf="!editing">Edit Profile</button>
         </div>
     </div>
@@ -110,4 +110,12 @@
             </div>
         </form>
     </p-dialog>
+
+    <p-dialog [(visible)]="chgpicpopupvisible" modal="modal" responsive='true' width="550" [draggable]=false>
+        <p-header style="background-color: #326eb7" >
+            {{ chgpicpopuphdr }}
+        </p-header>
+        <pictureupload [showfields]=false [picurl]="chgpicurl" (onFormSubmit)="onUploadComplete($event)" ></pictureupload>
+    </p-dialog>
+
 </div>

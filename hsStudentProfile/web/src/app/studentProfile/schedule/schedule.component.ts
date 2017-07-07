@@ -71,10 +71,10 @@ export class ScheduleComponent {
         this.form.get('city').setValue(scheduleItem.city);
         this.form.get('statecode').setValue(scheduleItem.statecode);
         this.form.get('zipcode').setValue(scheduleItem.zipcode);
-        this.form.get('activitydate').setValue(this._dateService.formatDateString(scheduleItem.activitydate));
-        this.form.get('hours').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'hr'));
-        this.form.get('minutes').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'mn'));
-        this.form.get('ampm').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'ampm'));
+        // this.form.get('activitydate').setValue(this._dateService.formatDateString(scheduleItem.activitydate));
+        // this.form.get('hours').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'hr'));
+        // this.form.get('minutes').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'mn'));
+        // this.form.get('ampm').setValue(this._dateService.formatTimePart(scheduleItem.starttime, 'ampm'));
 
         this.schedpopuphdr = 'Edit this activity:';
         this.schedpopupvisible = true;

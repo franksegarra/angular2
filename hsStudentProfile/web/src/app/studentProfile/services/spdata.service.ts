@@ -85,7 +85,6 @@ export class spDataService {
     }
     //DELETE
     deleteDBRow(id:number, dataUrl: string): Observable<any> {
-        console.log("deleteDBRow: " + Config.WEBSERVICESURL + dataUrl + id.toString());
         return this._http.delete(Config.WEBSERVICESURL + dataUrl + id.toString(), this._authService.getAuthHeader())
             .map(res =>  res)
             .catch(this.handleError);
@@ -119,8 +118,6 @@ export class spDataService {
     getStudentData(studentid:number) {
         this.setClasses(studentid);
         this.setExtraCurricular(studentid);
-        // this.setVideos(studentid);
-        this.setPictures(studentid);
         this.setProfilePictures(studentid);
         this.setSchedule(studentid);
         this.setLinks(studentid);
@@ -146,6 +143,7 @@ export class spDataService {
     //Videos
     getVideos(id:number): Observable<IVideo[]> { return this.getDBDataByStudentId<IVideo>(id, 'studentvideos/GetByStudentId/');}
     setVideos(id:number) {this.getDBDataByStudentId<IVideo>(id, 'studentvideos/GetByStudentId/').subscribe(vids => this.videolist = vids, error => this.handleError(error));}
+    deleteVideo(id:number): Observable<any> { return this.deleteDBRow(id, 'studentvideos/DeleteVideo/');}
 
     //Pictures
     getPictures(id:number): Observable<IPicture[]> { return this.getDBDataByStudentId<IPicture>(id, 'studentpictures/GetByStudentId/');}
@@ -189,16 +187,10 @@ export class spDataService {
                                             (hs) => { 
                                                 this.hittingstats = hs; 
                                                 this.createStatsCategories();
-                                                // console.log(this.hittingstats);
                                             }, 
                                             (error) => this.handleError(error)
                                         );
     }
-
-    //Student
-    getStudent(id:number): Observable<IStudent> { return this.getDBDataById<IStudent>(id, 'student/');}
-    postStudent(myclass: IStudent): Observable<any> { return this.postDBRow<IStudent>(myclass, 'student/');}
-    putStudent(myclass: IStudent): Observable<any> { return this.putDBRow<IStudent>(myclass, myclass.id, 'student/');}
 
     createStatsCategories() {
         var categories:Array<string> = [];
@@ -226,6 +218,12 @@ export class spDataService {
         // console.log(this.hittingcategories);
     }
 
+    //Student
+    getStudent(id:number): Observable<IStudent> { return this.getDBDataById<IStudent>(id, 'student/');}
+    postStudent(myclass: IStudent): Observable<any> { return this.postDBRow<IStudent>(myclass, 'student/');}
+    putStudent(myclass: IStudent): Observable<any> { return this.putDBRow<IStudent>(myclass, myclass.id, 'student/');}
+
+
     canEdit() {
         return this._authService.isLoggedIn();
     }
@@ -237,6 +235,7 @@ export class spDataService {
         var temp = this.gradesList;
         if (this.gradesList.length == 0)
         {
+            temp.push({label:'', value:''});
             temp.push({label:'A+', value:'A+'});
             temp.push({label:'A', value:'A'});
             temp.push({label:'A-', value:'A-'});
@@ -298,10 +297,9 @@ export class spDataService {
         return this.activitytypes;
     }    
 
-
     private handleError(error: Response) {
+        console.error('error in spdata.service.ts');
         console.error(error);
-        console.error('error in service');
         return Observable.throw(error.json().error || 'Server error');
     }
 }

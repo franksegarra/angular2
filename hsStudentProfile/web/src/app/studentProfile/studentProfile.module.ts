@@ -6,7 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Primeng
 import { AccordionModule, TreeModule, TreeNode, TooltipModule, PanelModule, DropdownModule, SelectButtonModule } from 'primeng/primeng';
 import { OverlayPanelModule, CalendarModule, MultiSelectModule, SpinnerModule, InputTextareaModule } from 'primeng/primeng';
-import { ConfirmDialogModule, ConfirmationService, DialogModule, FileUploadModule } from 'primeng/primeng';
+import { ConfirmDialogModule, ConfirmationService, DialogModule } from 'primeng/primeng';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { MessageFormModule } from '../shared/messageform/messageform.module';
 import { ImageModule } from '../shared/image/image.module';
@@ -38,6 +39,7 @@ import { TimeDisplayPipe } from "./videos//timedisplay.pipe";
 import { VideoService } from './videos/video.service';
 
 //Student Profile - Pictures
+import { PictureUpload } from '../shared/pictureupload/pictureupload.component';
 import { PicturesComponent } from './pictures/pictures.component';
 import { PictureService } from './pictures/picture.service';
 
@@ -84,7 +86,6 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       SpinnerModule,
       InputTextareaModule,
       DialogModule,
-      FileUploadModule,
       ImageModule
   ],
   declarations: [
@@ -114,6 +115,8 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       ,UpcomingDatesPipe
       ,DateFormatPipe
       ,DOWFormatPipe
+      ,FileSelectDirective
+      ,PictureUpload
   ],  
   providers: [ 
       DataService, 
@@ -122,6 +125,6 @@ import { DOWFormatPipe } from '../pipes/dowFormat.pipe';
       spDataService, 
       ConfirmationService,
   ],
-  exports: [ StudentProfileComponent ]
+  exports: [ StudentProfileComponent, PictureUpload, FileSelectDirective ]
 })
 export class StudentProfileModule { }  

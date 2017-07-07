@@ -6,6 +6,8 @@ import { IBBProfile } from '../../models/BBProfile';
 import { spDataService } from '../services/spdata.service';
 import { Config } from '../../config.service';
 import { ImageComponent } from '../../shared/image/image.component';
+import { PictureUpload } from '../../shared/pictureupload/pictureupload.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'pp-physical',
@@ -13,28 +15,30 @@ import { ImageComponent } from '../../shared/image/image.component';
     templateUrl: 'physical.component.html'
 })
 export class PhysicalComponent implements OnInit, AfterViewInit { 
-
     @ViewChild(ImageComponent) private imageComponent: ImageComponent;
-    //statsPicUrl: string; 
+    @ViewChild(PictureUpload) private picUpload: PictureUpload;
     private errorMessage: string;
     private form: FormGroup;
+
     editing: boolean = false;
+    physpopupvisible: boolean = false;
+    physpopuphdr: string = '';
+    chgpicpopupvisible: boolean = false;
+    chgpicpopuphdr: string = '';
+    chgpicurl = "StudentBaseballProfile/PostProfilePicture/";
+
     private positionList: SelectItem[] = [];
     otherPositionList: SelectItem[] = [];
     selectedpositions: string[];
 
-    physpopupvisible: boolean = false;
-    physpopuphdr: string = '';
-
     constructor(
         private fb: FormBuilder, 
+        private _authService: AuthService,
         private _spDataService: spDataService,
         private confirmationService: ConfirmationService
     ) {}
 
     ngOnInit(): void {
-        //this.statsPicUrl =  Config.PICTUREFOLDER + this._spDataService.bbprofile.statspicturefilename; 
-
         this.createPositionList();
 
         this.form = this.fb.group({
@@ -61,7 +65,6 @@ export class PhysicalComponent implements OnInit, AfterViewInit {
     onEditClicked() {
         this.createOtherPositionList(this._spDataService.bbprofile.position);
         this.editing=true;
-
         this.form.get('id').setValue(this._spDataService.bbprofile.id);
         this.form.get('studentid').setValue(this._spDataService.bbprofile.studentid);
         this.form.get('statspictureid').setValue(this._spDataService.bbprofile.statspictureid);
@@ -153,8 +156,27 @@ export class PhysicalComponent implements OnInit, AfterViewInit {
         });
     }
 
+    onChangePicClicked() {
+        this.chgpicpopupvisible = true;
+        this.picUpload.clearQueue();
+    }
+
+    onUploadComplete(event) {
+        this.refreshData();
+        this.chgpicpopupvisible = false;
+    }
+
     refreshData(){
-        this._spDataService.setBBProfile(this._spDataService.myprofile.id);
+        this._spDataService.getBBProfile(this._spDataService.myprofile.id)
+            .subscribe(
+                (response) => {
+                    this._spDataService.bbprofile = response[0];
+                },
+                (err) => {console.log("ERROR in component. getStudentProfile: "+ err);},
+                () => {
+                    this.imageComponent.setImageId(this._spDataService.bbprofile.statspictureid);                    
+                }
+            )
     }
 
     onPrimaryPositionChanged() {

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IVideo } from './IVideo';
 import { VideoService } from './video.service';
 import { TreeNode } from 'primeng/primeng';
 import { spDataService } from '../services/spdata.service';
+import { SecurePipe } from '../../pipes/secure.pipe';
+import { PictureUpload } from '../../shared/pictureupload/pictureupload.component';
 
 @Component({
     selector: 'pp-videos',
@@ -11,28 +13,78 @@ import { spDataService } from '../services/spdata.service';
     styleUrls: ['./videos.component.css']
 })
 export class VideosComponent implements OnInit { 
+    @ViewChild(PictureUpload) private picUpload: PictureUpload;
     pageName: string = 'Videos';
+    selectedVideo: IVideo;
+    addvideopopupvisible: boolean = false;
+    addvideopopuphdr: string = 'Add a new Video';
+    addvideourl: string = 'StudentVideos/PostVideo/';
 
     constructor(public videoService:VideoService, private _spDataService:spDataService) {}
 
     ngOnInit(): void {
-        this.videoService.appSetup("videoDisplay", this._spDataService.videolist);
+        this.refreshData();
     }
 
     nodeSelect(event: any) {
-        var eventObj: TreeNode = event.node ;
-
         //No data.  Must be a category
-        if (eventObj.data == "") { 
-            eventObj.expanded = !eventObj.expanded;
+        if (this.videoService.selectedFile.data == "") {
             return;
         }
 
-        var vid: IVideo = eventObj.data;
-        if (vid.id.toString() != "")
+        this.selectedVideo = this.videoService.selectedFile.data;
+        if (this.selectedVideo.toString() != "")
         {
-            this.videoService.selectedVideoById(vid.id);
+            this.videoService.selectedVideoById(this.selectedVideo.id);
             this.videoService.playVideo();
         }
     }
+
+    onAddVideo(){        
+        this.addvideopopupvisible = true;       
+        this.picUpload.clearQueue();
+    }
+
+    onUploadComplete(event) {
+        this.refreshData();
+        this.addvideopopupvisible = false;
+    }
+
+    onDeleteVideo(){        
+        //No data.  Must be a category
+        if (this.selectedVideo == null) {
+             return;
+        }
+
+        if (this.selectedVideo.id.toString() != "")
+        {
+            //console.log(this.selectedPic.id);
+            this._spDataService.deleteVideo(this.selectedVideo.id)
+            .subscribe(
+                (response) => {
+                    this.videoService.removeVideoById(this.selectedVideo.id);
+                    this.selectedVideo = this.videoService.selectedFile.data;
+                    this.videoService.selectedVideoById(this.selectedVideo.id);
+                },
+                (err) => {console.log("ERROR in deleteRow: Delete: "+ err);},
+                () => {}
+            );
+        }
+       
+    }
+
+    refreshData(){
+        this._spDataService.getVideos(this._spDataService.myprofile.id)
+            .subscribe(
+                (vidlist) => { 
+                    this._spDataService.videolist = vidlist;
+                    this.videoService.appSetup("videoDisplay", this._spDataService.videolist);
+                }, 
+                (error) => {
+                    console.error('error in video.component.ts');
+                    console.error(error);
+                }
+            );
+    }
+
 }

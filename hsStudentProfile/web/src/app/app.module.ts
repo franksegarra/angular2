@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectButtonModule, FileUploadModule } from 'primeng/primeng';
+import { SelectButtonModule } from 'primeng/primeng';
 import { CommonModule } from '@angular/common';  
 
 //Main Menu features
@@ -39,10 +39,9 @@ import { AppComponent } from './app.component';
     LoginComponent,
     RegisterComponent,
     ForgotPWComponent,
-    ForgotUserNameComponent,
+    ForgotUserNameComponent
   ],
   imports: [
-    FileUploadModule,
     HttpModule,
     Routing,
     CommonModule,

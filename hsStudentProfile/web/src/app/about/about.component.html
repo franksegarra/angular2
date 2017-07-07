@@ -4,35 +4,7 @@
     </div>
 
     <div class="panel-body"  >
-        <p-fileUpload name="myfile[]" url="http://localhost:64425/api/StudentProfile/PostProfilePicture/1" 
-            multiple="multiple" accept="image/*" maxFileSize="5000000">
-            <ng-template pTemplate="toolbar"></ng-template>  
-        </p-fileUpload>
-
-        <div class="column col-sm-3">
-            <!--<pp-image [imageid]="imageid"></pp-image>-->
-        </div>
-
-        <div class="column col-sm-3">
-            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                            <tr><td><div class="col-sm-12">  
-                                <b>Picture Id:</b>
-                            </div></td></tr>
-                            <tr><td><div class="col-sm-12">  
-                                <input type="text" formControlName = 'pictureid' style="width:100%; padding: 6px 12px;">  
-                            </div></td></tr>
-                            <tr><td><div class="col-sm-12">
-                                <button type="submit" class="ui button">Submit</button>  
-                            </div></td></tr>
-                        </tbody>
-                    </table> 
-                </div> 
-            </form>  
-        </div>
-
+        <pictureupload [picurl]="picurl" ></pictureupload>
     </div>
 
 </div>

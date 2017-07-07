@@ -24,19 +24,25 @@ export class VideoService {
     public isDragging:boolean = false;
     public showDetails:boolean = false;
     public selectedVideoId: number;
+    public url: string = Config.WEBSERVICESURL + 'video/0';
+
+    setImageId(id:number) {
+        this.url = Config.WEBSERVICESURL + 'video/' + id;
+        console.log(this.url);
+    }
 
     appSetup(v:string, _videolist:Array<IVideo>) {
         this.videoElement = <HTMLVideoElement> document.getElementById(v);
         this.playlist = _videolist;
         this.selectedVideo(1);
-        this.createVideoCategories();
+        this.reBuildTree();
         this.videoElement.addEventListener("loadedmetadata", this.updateData);
         this.videoElement.addEventListener("timeupdate", this.updateTime);
         window.setInterval(this.timerFired, 500);
         this.soundOff();
     };
 
-    createVideoCategories() {
+    reBuildTree() {
         var categories:Array<string> = this.playlist.map(function(e) { return e['category']; }).filter(function(e,i,a){return i === a.indexOf(e);});
         var p:Array<IVideo> = this.playlist;
         var rootnodes:Array<TreeNode> = [];
@@ -71,7 +77,8 @@ export class VideoService {
         this.selectedVideoId = file[0]['id'];
         this.currentTitle = file[0]['title'];
         this.currentDesc = file[0]['description'];
-        this.videoElement.src = Config.VIDEOFOLDER + file[0]['filename'];
+        this.setImageId(this.selectedVideoId);
+        this.videoElement.src = this.url;
         this.videoElement.pause();
         this.isPlaying = false;
     };
@@ -81,7 +88,8 @@ export class VideoService {
         this.selectedVideoId = this.playlist[i]['id'];
         this.currentTitle = this.playlist[i]['title'];
         this.currentDesc = this.playlist[i]['description'];
-        this.videoElement.src = Config.VIDEOFOLDER + this.playlist[i]['filename'];
+        this.setImageId(this.selectedVideoId);
+        this.videoElement.src = this.url;
         this.videoElement.pause();
         this.isPlaying = false;
     };
@@ -174,5 +182,96 @@ export class VideoService {
             this.videoElement.msRequestFullscreen();
         }
     };
+
+    removeVideoById(id:number) {
+        var file =  this.playlist.filter(function(e){return e.id == id;});
+        let nextpic = this.findNextVideoInTree(file[0]);
+        this.removeItemFromVideoList(id);
+        this.reBuildTree();
+        this.selectVideo(nextpic);
+    }
+
+    findNextVideoInTree(file: IVideo) : number {
+        var cat = file.category;
+        var vidid = file.id;
+        var catlen:number = this.videoData.length - 1;
+
+        for(var clen = 0; clen <= catlen; clen++) {
+            if (this.videoData[clen].label == cat) {
+                var item:TreeNode = this.videoData[clen];
+                var len:number = item.children.length - 1;
+                for(var i = 0; i <= len; i++) {
+
+                    //console.log( i + ':' + len + ':' + item.children.length + ':' + item.children[i].data.id);
+
+                    if (item.children[i].data.id == vidid) {
+                        //We are the only item in the category.  Set node to first picture in tree
+                        if (i==0 && item.children.length == 1) {
+                            //console.log('Case1: ' + (i==0 && item.children.length == 1));
+                            return 0;
+                        }
+                        //There are items after us in tree.  Return the next item
+                        else if(item.children.length != 1 && i < len) {
+                            var retid:number = item.children[i+1].data.id;
+                            //console.log('Case2: ' + retid + ': ' + (item.children.length != 1 && i < len));
+                            return retid;
+                        }
+                        //We must be on last item in list.  Return the previous item
+                        else if(item.children.length != 1 && i == len){
+                            var retid:number = item.children[i-1].data.id;
+                            //console.log('Case3: ' + retid + ': ' + (item.children.length != 1 && i == len));
+                            return retid;
+                        }
+                        else {
+                            //console.log('Case4');
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    removeItemFromVideoList(id:number){
+        var len:number = this.playlist.length - 1;
+        for(var i = len; i >= 0; i--) {
+            if (this.playlist[i].id == id)
+                this.playlist.splice(i, 1);
+        }
+    }
+
+    selectVideo(id:number) {
+        if (id==0){
+            //Get first leaf node
+            var firstPic: TreeNode = this.videoData[0].children[0];
+            this.selectedVideoId = firstPic.data.id; 
+            this.videoData[0].expanded = true;
+            this.selectedFile = this.videoData[0].children[0];
+        }
+        else {
+            var file =  this.playlist.filter(function(e){return e.id == id;});
+            var cat = file[0].category;
+            var catlen:number = this.videoData.length - 1;
+            this.selectedVideoId = file[0].id;
+
+            for(var clen = 0; clen <= catlen; clen++) {
+                if (this.videoData[clen].label == cat) {
+                    //Expand Node
+                    this.videoData[clen].expanded = true;
+
+                    //Find picture
+                    var item:TreeNode = this.videoData[clen];
+                    var len:number = item.children.length - 1;
+                    for(var i = 0; i <= len; i++) {
+                        if (item.children[i].data.id == this.selectedVideoId) {
+                            this.selectedFile = item.children[i];
+                        }
+                    }
+                }
+            }
+        }
+    };
+
 
 }

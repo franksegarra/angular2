@@ -101,8 +101,8 @@ export class DataService {
     }
 
     private handleError(error: Response) {
+        console.error('error in data.service.ts');
         console.error(error);
-        console.error('error in service');
         return Observable.throw(error.json().error || 'Server error');
     }
 }

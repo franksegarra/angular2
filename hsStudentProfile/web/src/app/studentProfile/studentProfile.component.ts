@@ -24,7 +24,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
     private errorMessage: string;
     //private bbprofile: IBBProfile;
 
-    componentToShow: string = 'academics';
+    componentToShow: string = 'videos';
 
     constructor(private route: ActivatedRoute, private _dataService: DataService, private _authService: AuthService, private _spDataService: spDataService) {
     }
@@ -93,31 +93,6 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
 
         this._spDataService.getStudentData(this.studentId);
         this._dataService.loadLookupData();
-
-        //Main Profile and stats profile.  Get these first
-        //this._spDataService.getBBProfile(this.studentId).subscribe(p => this.bbprofile = p[0], error => this.errorMessage = <any>error);
-
-        // //For Schedule
-        // this._spDataService.getSchedule(this.studentId).subscribe(schedItems => this.schedItems = schedItems, error => this.errorMessage = <any>error);
-        // //Links
-        // this._spDataService.getLinks(this.studentId).subscribe(links => this.links = links, error => this.errorMessage = <any>error);
-        // //Coaches
-        // this._spDataService.getCoaches(this.studentId).subscribe(coaches => this.coaches = coaches, error => this.errorMessage = <any>error);
-
-        // //Stats
-        // this._spDataService.getHittingStats(this.studentId)
-        //         .subscribe(
-        //             //For every response
-        //             (stats) => {
-        //                 // Need to wait for response
-        //                 this.hittingstats = stats;
-        //                 this.hittingcategories = this._spDataService.createStatsCategories(this.hittingstats);
-        //             },
-        //             //On Error
-        //             (err) => {console.log("ERROR in component. save to db: "+ err);},
-        //             //When observable closes
-        //             () => {}
-        //         )
     }
 
     ngOnDestroy() {

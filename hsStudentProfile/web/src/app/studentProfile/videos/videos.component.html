@@ -1,11 +1,20 @@
 <div class="panel panel-primary">
     <pp-header [pageName]="pageName"></pp-header>
     <div class="panel-body">
+
         <div class="row">
 
                 <div class="column col-sm-3 topmenu">
-                    <p-tree [value]="videoService.videoData" selectionMode="single" [(selection)]="videoService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
+                   <!-- Buttons -->
+                    <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
+                        <div>
+                            <button type="submit" class="ui button" (click)="onAddVideo($event)">Add Video</button>
+                            <button type="submit" class="ui button" (click)="onDeleteVideo($event)">Delete Selected</button>
+                        </div>
+                    </div>
+                     <p-tree [value]="videoService.videoData" selectionMode="single" [(selection)]="videoService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
                 </div>                    
+
                 <div class="column ol-sm-9">
                     <div id="fullPlayer" (mouseup)="videoService.dragStop($event)" (mousemove)="videoService.dragMove($event)" (mouseleave)="videoService.dragStop($event)">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -22,10 +31,26 @@
                         <video-toolbar></video-toolbar>
                     </div>
                 </div>
+
                 <div class="column col-sm-3 bottommenu" >
+                   <!-- Buttons -->
+                    <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
+                        <div>
+                            <button type="submit" class="ui button" (click)="onAddVideo($event)">Add Video</button>
+                            <button type="submit" class="ui button" (click)="onDeleteVideo($event)">Delete Selected</button>
+                        </div>
+                    </div>
+                    
                     <p-tree [value]="videoService.videoData" selectionMode="single" [(selection)]="videoService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
                 </div>                    
         </div>
         
+        <p-dialog [(visible)]="addvideopopupvisible" modal="modal" responsive='true' width="600" [draggable]=false>
+            <p-header style="background-color: #326eb7" >
+                {{ addvideopopuphdr }}
+            </p-header>
+            <pictureupload [showfields]=true [picurl]="addvideourl" (onFormSubmit)="onUploadComplete($event)" ></pictureupload>
+        </p-dialog>
+
     </div>
 </div>

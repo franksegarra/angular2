@@ -56,7 +56,6 @@ namespace webServices.Infrastructure
             modelBuilder.Entity<StudentClasses>().Property(p => p.classname).HasMaxLength(50);
             modelBuilder.Entity<StudentClasses>().Property(p => p.lettergrade).HasMaxLength(2);
             modelBuilder.Entity<StudentClasses>().Property(p => p.studentid).IsRequired();
-            modelBuilder.Entity<StudentClasses>().Property(p => p.grade).IsRequired();
 
             // StudentExtraCurricular
             modelBuilder.Entity<StudentExtraCurricular>().Property(p => p.studentid).IsRequired();

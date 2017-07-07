@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Config } from '../../config.service';
 import { SecurePipe } from '../../pipes/secure.pipe';
 
@@ -7,14 +7,10 @@ import { SecurePipe } from '../../pipes/secure.pipe';
     moduleId: module.id,
     templateUrl: 'image.component.html'
 })
-export class ImageComponent implements OnInit { 
+export class ImageComponent { 
     public imageid: number;
     public urlStub = Config.WEBSERVICESURL + 'picture/'; 
     public url: string;
-
-    ngOnInit(): void {
-        this.url = this.urlStub + this.imageid;
-    }
 
     setImageId(id:number) {
         this.imageid = id;

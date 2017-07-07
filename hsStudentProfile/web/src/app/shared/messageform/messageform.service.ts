@@ -29,8 +29,8 @@ export class MessageFormService {
     }
 
     private handleError(error: Response) {
+        console.error('error in messageform.service.ts');
         console.error(error);
-        console.error('error in service');
         return Observable.throw(error.json().error || 'Server error');
     }
 }

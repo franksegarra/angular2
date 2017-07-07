@@ -1,13 +1,13 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ConfirmationService, Calendar, SelectItem, MultiSelect, Spinner, InputTextarea, FileUpload } from 'primeng/primeng';
+import { ConfirmationService, Calendar, SelectItem, MultiSelect, Spinner, InputTextarea } from 'primeng/primeng';
 
 import { IStudent } from '../../models/IStudent';
 import { spDataService } from '../services/spdata.service';
 import { Config } from '../../config.service';
 import { DateService } from '../../services/date.service'
 import { ImageComponent } from '../../shared/image/image.component';
-
+import { PictureUpload } from '../../shared/pictureupload/pictureupload.component';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -17,14 +17,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProfileComponent implements OnInit, AfterViewInit { 
     @ViewChild(ImageComponent) private imageComponent: ImageComponent;
+    @ViewChild(PictureUpload) private picUpload: PictureUpload;
     private errorMessage: string;
     private form: FormGroup;
-    editing: boolean = false;
 
+    editing: boolean = false;
     tspopupvisible: boolean = false;
     tspopuphdr: string = '';
     chgpicpopupvisible: boolean = false;
-    chgpicpopuphdr: string = '';
+    chgpicpopuphdr: string = 'Change your profile picture';
+    chgpicurl = "StudentProfile/PostProfilePicture/";
 
     constructor(
         private fb: FormBuilder, 
@@ -148,30 +150,27 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
 
     onHide(): void {
-        this.editing=false;
-
-        this.confirmationService.confirm({
-            message: 'Are you sure  you want to cancel?',
-            header: 'Cancel Confirmation',
-            icon: 'fa fa-trash',
-            accept: () => {
-                this.tspopupvisible = false;        
-            }
-        });        
+        if (this.editing==true)
+        {
+            this.editing=false;
+            this.confirmationService.confirm({
+                message: 'Are you sure  you want to cancel?',
+                header: 'Cancel Confirmation',
+                icon: 'fa fa-trash',
+                accept: () => {
+                    this.tspopupvisible = false;        
+                }
+            });        
+        }
     }
 
     onChangePicClicked() {
-        this.chgpicpopuphdr = 'Change your profile picture';
         this.chgpicpopupvisible = true;
-    }
-
-    onBeforeSend(event) {
-        event.xhr.setRequestHeader('Authorization', 'Bearer ' + this._authService.token);
+        this.picUpload.clearQueue();
     }
 
     onUploadComplete(event) {
         this.refreshData();
-        this.chgpicpopuphdr = '';
         this.chgpicpopupvisible = false;
     }
 

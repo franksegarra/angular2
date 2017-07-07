@@ -2,40 +2,43 @@
     <pp-header [pageName]="pageName"></pp-header>
     <div class="panel-body" >
 
-            <div class="row">
+        <div class="row">
 
-                <div class="column col-sm-3 topmenu">
-                    <!-- Buttons -->
-                    <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
-                        <div>
-                            <button type="submit" class="ui button" (click)="onAddPic($event)">Add Picture</button>
-                            <button type="submit" class="ui button" (click)="onDeletePic($event)">Delete Selected</button>
-                        </div>
+            <div class="column col-sm-3 topmenu">
+                <!-- Buttons -->
+                <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
+                    <div>
+                        <button type="submit" class="ui button" (click)="onAddPic($event)">Add Picture</button>
+                        <button type="submit" class="ui button" (click)="onDeletePic($event)">Delete Selected</button>
                     </div>
-                    
-                    <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
-                </div>
-
-                <div class="column col-sm-7">
-                    <!--<pp-image></pp-image>-->
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <img class="img-responsive" id="imageDisplay" width="100%" height="auto" alt="No pictures to show">
-                    </div>
-
                 </div>
                 
-                <div class="column col-sm-3 bottommenu">
-                    <!-- Buttons -->
-                    <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
-                        <div>
-                            <button type="submit" class="ui button" (click)="onAddPic()">Add Picture</button>
-                            <button type="submit" class="ui button" (click)="onDeletePic()">Delete Selected</button>
-                        </div>
-                    </div>
-                    <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
-                </div>
-
+                <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
             </div>
+
+            <div class="column col-sm-7">
+                <pp-image></pp-image>
+            </div>
+            
+            <div class="column col-sm-3 bottommenu">
+                <!-- Buttons -->
+                <div class="row" style="padding: 0px 0px 10px 0px" *ngIf="_spDataService.canEdit()">
+                    <div>
+                        <button type="submit" class="ui button" (click)="onAddPic()">Add Picture</button>
+                        <button type="submit" class="ui button" (click)="onDeletePic()">Delete Selected</button>
+                    </div>
+                </div>
+                <p-tree [value]="pictureService.pictureData" selectionMode="single" [(selection)]="pictureService.selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
+            </div>
+
+        </div>
+
+        <p-dialog [(visible)]="addpicpopupvisible" modal="modal" responsive='true' width="600" [draggable]=false>
+            <p-header style="background-color: #326eb7" >
+                {{ addpicpopuphdr }}
+            </p-header>
+            <pictureupload [showfields]=true [picurl]="addpicurl" (onFormSubmit)="onUploadComplete($event)" ></pictureupload>
+        </p-dialog>
 
     </div>
 </div>

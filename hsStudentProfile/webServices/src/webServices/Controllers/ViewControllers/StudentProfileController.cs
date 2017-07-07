@@ -7,6 +7,7 @@ using System.Linq;
 using webServices.Infrastructure.FileService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Primitives;
 
 namespace webServices.Controllers
 {
@@ -14,10 +15,12 @@ namespace webServices.Controllers
     public class StudentProfileController : StudentViewController<StudentProfile>
     {
         IFileService _picSvc;
+        EntityBaseRepository<Student> _student;
 
-        public StudentProfileController(EntityBaseRepository<StudentProfile> items, IFileService picSvc) : base(items)
+        public StudentProfileController(EntityBaseRepository<StudentProfile> items, IFileService picSvc, EntityBaseRepository<Student> student) : base(items)
         {
             _picSvc = picSvc;
+            _student = student;
         }
 
         [HttpGet("{profilename}")]
@@ -52,22 +55,28 @@ namespace webServices.Controllers
             try
             {
                 var stream = this.Request.Form.Files[0].OpenReadStream();
+
                 var name = this.Request.Form.Files[0].FileName;
                 var filesize = this.Request.Form.Files[0].Length;
+                string cat = Request.Form.TryGetValue("category", out StringValues categories) == true ? categories[0] : "";
+                string ti = Request.Form.TryGetValue("title", out StringValues titles) == true ? titles[0] : "";
+                string descr = Request.Form.TryGetValue("description", out StringValues descriptions) == true ? descriptions[0] : "";
 
                 StudentPictures pic = new StudentPictures()
                 {
                     id = 0,
                     studentid = studentId,
-                    category = "Profile Picture",
-                    title = name,
                     filename = name,
-                    description = name,
                     created = DateTime.Now,
-                    filesize = filesize
+                    filesize = filesize,
+                    category = cat,
+                    title = ti,
+                    description = descr
                 };
 
-                if (_picSvc.UpdateStudentProfilePicture(pic, stream) > 0)
+                IUpdateProfileId updtProfId = new UpdateStudentProfilePicId(_student);
+
+                if (_picSvc.UpdateProfilePicture(pic, stream, updtProfId) > 0)
                 {
                     return StatusCode(StatusCodes.Status201Created);
                 }

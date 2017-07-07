@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;
 using System.IO;
-using System.Linq;
 using webServices.Entities;
 using webServices.Repositories;
 
@@ -13,20 +12,20 @@ namespace webServices.Infrastructure.FileService
     {
         private readonly IHostingEnvironment _hostingEnvironment;
         EntityBaseRepository<StudentPictures> _pics;
-        EntityBaseRepository<StudentVideos> _vids;
-        EntityBaseRepository<Student> _students;
+        EntityBaseRepository<StudentVideos> _videos;
+        //EntityBaseRepository<Student> _students;
         private readonly StorageConfig _storageConfig;
 
-        public FileService(IHostingEnvironment hostingEnvironment, EntityBaseRepository<StudentPictures> pics, EntityBaseRepository<StudentVideos> vids, EntityBaseRepository<Student> students, IOptions<StorageConfig> storageConfig)
+        public FileService(IHostingEnvironment hostingEnvironment, EntityBaseRepository<StudentPictures> pics, EntityBaseRepository<StudentVideos> videos, IOptions<StorageConfig> storageConfig)
         {
             _hostingEnvironment = hostingEnvironment;
             _pics = pics;
-            _vids = vids;
-            _students = students;
+            _videos = videos;
+            //_students = students;
             _storageConfig = storageConfig.Value;
         }
 
-        public int UpdateStudentProfilePicture(StudentPictures pic, Stream stream)
+        public int UpdateProfilePicture(StudentPictures pic, Stream stream, IUpdateProfileId updtProfId)
         {
             try
             {
@@ -34,12 +33,7 @@ namespace webServices.Infrastructure.FileService
 
                 if (picid > 0)
                 {
-                    var student = _students.FindBy(s => s.id == pic.studentid).FirstOrDefault();
-                    if (student == null)
-                        return 0;
-
-                    student.profilepictureid = picid;
-                    _students.Edit(student);
+                    updtProfId.UpdateID(pic.studentid, picid);
                     return picid;
                 }
                 else
@@ -110,19 +104,19 @@ namespace webServices.Infrastructure.FileService
             }
         }
 
-        public int AddVideo(StudentVideos vid, Stream stream)
+        public int AddVideo(StudentVideos video, Stream stream)
         {
-            string[] filename = vid.filename.Split('.');
+            string[] filename = video.filename.Split('.');
 
             try
             {
                 //Save picture row
-                _vids.Add(vid);
+                _videos.Add(video);
 
                 //Update filename
-                string newfilename = filename[0] + vid.id + "." + filename[1];
-                vid.filename = newfilename;
-                _vids.Edit(vid);
+                string newfilename = filename[0] + video.id + "." + filename[1];
+                video.filename = newfilename;
+                _videos.Edit(video);
 
                 //Write file to storage -  C:\repos\hsStudentProfile\web\src\assets\pictures;
                 using (Stream file = File.Create(_storageConfig.Videos + newfilename))
@@ -130,12 +124,37 @@ namespace webServices.Infrastructure.FileService
                     CopyStream(stream, file);
                 }
 
-                return vid.id;
+                return video.id;
             }
             catch (Exception ex)
             {
                 //Log error here
                 return 0;
+            }
+        }
+
+        public int DeleteVideo(int id)
+        {
+            try
+            {
+                var video = _videos.GetSingle(id);
+                if (video == null)
+                {
+                    return StatusCodes.Status400BadRequest;
+                }
+
+                //Delete file
+                string file2delete = _hostingEnvironment.WebRootPath + _storageConfig.Videos + video.filename;
+                File.Delete(file2delete);
+
+                //Delete row from database
+                _videos.Delete(video);
+                return StatusCodes.Status204NoContent;
+            }
+            catch (Exception ex)
+            {
+                //logger.Error(ex.Message);
+                return StatusCodes.Status500InternalServerError;
             }
         }
 

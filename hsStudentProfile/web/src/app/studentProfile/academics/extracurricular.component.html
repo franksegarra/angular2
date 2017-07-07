@@ -1,7 +1,9 @@
 <!-- Add new row button - This works fine -->
 <div *ngIf="_spDataService.canEdit()">
     <span class="btn-group">
-        <button id="popup" type="button" class="btn fa fa-plus-circle fa-lg addbutton" (click)="addRow()">&nbsp;Add New Activity</button>
+        <button id="popup" type="button" class="btn addbutton">
+            <i class="fa fa-plus-circle fa-lg addbutton" (click)="addRow()"> &nbsp;Add New Activity </i>
+        </button>
     </span>
 </div>
 
@@ -9,8 +11,8 @@
     <table class="table" *ngIf="_spDataService.ec && _spDataService.ec.length">
         <thead>
             <tr>
-                <th class="col-md-2">Activity</th>
-                <th>Description</th>
+                <th class="col-md-1">Activity</th>
+                <th class="col-md-4">Description</th>
                 <th class="col-md-1"></th>
             </tr>
         </thead>

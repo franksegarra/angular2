@@ -4,8 +4,6 @@ import { Config } from './config.service';
 import { AuthService } from './services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { FileUpload } from 'primeng/primeng';
-
 import * as $ from 'jquery';
 
 @Component({
