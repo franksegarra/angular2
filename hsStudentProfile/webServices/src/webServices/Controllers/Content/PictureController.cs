@@ -3,6 +3,7 @@ using webServices.Repositories;
 using webServices.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace webServices.Controllers
 {
@@ -22,21 +23,24 @@ namespace webServices.Controllers
 
         // GET {id}   
         [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             if (id == 0) { return NotFound(); }
 
             //find picture
-            var item = _Items.GetSingle(id);
+            var item = await _Items.GetSingleAsync(id);
             if (item == null)
             {
                 return NotFound();
             }
 
+            //TODO: Read File Async
             string webRootPath = _hostingEnvironment.WebRootPath;
             string filename = webRootPath + _storageConfig.Pictures + item.filename;
-            var image = System.IO.File.OpenRead(filename);
-            return File(image, "image/jpeg");
+            using(var image = System.IO.File.OpenRead(filename))
+            {
+                return File(image, "image/jpeg");
+            }
         }
     }
 }

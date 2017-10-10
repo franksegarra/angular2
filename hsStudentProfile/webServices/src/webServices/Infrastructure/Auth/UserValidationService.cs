@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using webServices.Entities;
 using webServices.Entities.Email;
 using webServices.Infrastructure.EmailService;
@@ -40,7 +41,7 @@ namespace webServices.Infrastructure.Auth
             _emailService = emailService;
         }
 
-        public bool AddUser(Users user)
+        public async Task<bool> AddUserAsync(Users user)
         {
             try
             {
@@ -55,14 +56,14 @@ namespace webServices.Infrastructure.Auth
                 newUser.passwordfailuressincelastsuccess = 0;
                 newUser.isconfirmed = false;
                 newUser.created = DateTime.Now;
-                _users.Add(newUser);
+                await _users.AddAsync(newUser);
 
                 if (newUser.roleid == 2)
                 {
                     Student st = new Student();
                     st.id = newUser.id;
                     st.created = newUser.created;
-                    _students.Add(st);
+                    await _students.AddAsync(st);
                 }
                 else
                 {
@@ -101,7 +102,7 @@ namespace webServices.Infrastructure.Auth
             return true;
         }
 
-        public ClaimsIdentity ValidateUser(string profilename, string password)
+        public async Task<ClaimsIdentity> ValidateUserAsync(string profilename, string password)
         {
             string passHash;
             string userSalt;
@@ -114,13 +115,13 @@ namespace webServices.Infrastructure.Auth
                 if (profilename.ToLower() == "guest")
                 {
                     //Only one row.  Just get it
-                    guest = _guest.GetAll().FirstOrDefault();
+                    guest = (await _guest.GetAllAsync()).FirstOrDefault();
                     passHash = guest.password;
                     userSalt = guest.passwordsalt;
                 }
                 else
                 {
-                    user = _users.FindBy(u => u.profilename == profilename).FirstOrDefault();
+                    user = (await _users.FindByAsync(u => u.profilename == profilename)).FirstOrDefault();
                     passHash = user.password;
                     userSalt = user.passwordsalt;
                 }
@@ -154,7 +155,7 @@ namespace webServices.Infrastructure.Auth
                         UserLoginHistory ulh = new UserLoginHistory();
                         ulh.id = user.id;
                         ulh.created = DateTime.Now;
-                        _loginhistory.Add(ulh);
+                        await _loginhistory.AddAsync(ulh);
 
                         string role;
                         switch (user.roleid)

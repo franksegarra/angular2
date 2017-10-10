@@ -22,7 +22,7 @@ namespace webServices.Controllers
         }
 
         [HttpPost]
-        public virtual IActionResult Post([FromBody] T item)
+        public virtual async Task<IActionResult> Post([FromBody] T item)
         {
             if (item == null)
             {
@@ -35,7 +35,7 @@ namespace webServices.Controllers
                 {
                     item.id = 0;
                     item.created = DateTime.Now;
-                    _Items.Add(item);
+                    await _Items.AddAsync(item);
                     return CreatedAtRoute("DefaultApi", new { controller = nameof(T), id = item.id }, item);
                 }
                 return StatusCode(StatusCodes.Status400BadRequest);
@@ -49,7 +49,7 @@ namespace webServices.Controllers
 
         // PUT {id}
         [HttpPut("{id:int}")]
-        public IActionResult Put(int id, [FromBody] T updateditem)
+        public async Task<IActionResult> Put(int id, [FromBody] T updateditem)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace webServices.Controllers
                 }
 
                 //Must be one of ours
-                var item = _Items.GetSingle(id);
+                var item = await _Items.GetSingleAsync(id);
                 if (item == null)
                 {
                     return NotFound();
@@ -69,7 +69,7 @@ namespace webServices.Controllers
                 //Must be valid
                 if (ModelState.IsValid)
                 {
-                    _Items.Edit(updateditem);
+                    await _Items.EditAsync(updateditem);
                     return StatusCode(StatusCodes.Status200OK, updateditem);
                 }
 
@@ -84,17 +84,17 @@ namespace webServices.Controllers
 
         // DELETE {id}
         [HttpDelete("{id:int}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var item = _Items.GetSingle(id);
+                var item = await _Items.GetSingleAsync(id);
                 if (item == null)
                 {
                     return NotFound();
                 }
 
-                _Items.Delete(item);
+                await _Items.DeleteAsync(item);
                 return new NoContentResult();
             }
             catch (Exception ex)
@@ -105,7 +105,7 @@ namespace webServices.Controllers
         }
 
         [HttpPatch("{id:int}")]
-        public IActionResult Patch(int id, [FromBody]JsonPatchDocument<T> updateditem)
+        public async Task<IActionResult> Patch(int id, [FromBody]JsonPatchDocument<T> updateditem)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace webServices.Controllers
                 }
 
                 //Must be one of ours
-                var item = _Items.GetSingle(id);
+                var item = await _Items.GetSingleAsync(id);
                 if (item == null)
                 {
                     return NotFound();
@@ -127,7 +127,7 @@ namespace webServices.Controllers
                 //Must be valid
                 if (ModelState.IsValid)
                 {
-                    _Items.Edit(item);
+                    await _Items.EditAsync(item);
                     return StatusCode(StatusCodes.Status200OK, updateditem);
                 }
 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using webServices.Repositories;
 using webServices.Entities;
 using webServices.Controllers;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,12 +21,12 @@ namespace webServices.Controllers
 
         // Get classes for a student
         [HttpGet("getbystudentid/{studentid:int}")]
-        public IActionResult GetByStudentId(int studentid)
+        public async Task<IActionResult> GetByStudentId(int studentid)
         {
             IEnumerable<T> items = null;
             try
             {
-                items = _Items.FindBy(s => s.studentid == studentid);
+                items = await _Items.FindByAsync(s => s.studentid == studentid);
                 if (items == null)
                 {
                     return NotFound();

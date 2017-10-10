@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using webServices.Repositories;
 using webServices.Entities;
-using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,12 +24,12 @@ namespace webServices.Controllers
 
         // GET 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             IEnumerable<T> items = null;
             try
             {
-                items = _Items.GetAll();
+                items = await _Items.GetAllAsync();
                 if (items == null)
                 {
                     return NotFound();
@@ -45,12 +45,12 @@ namespace webServices.Controllers
 
         // GET {id}   
         [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             T item = null;
             try
             {
-                item = _Items.GetSingle(id);
+                item = await _Items.GetSingleAsync(id);
                 if (item == null)
                 {
                     return NotFound();

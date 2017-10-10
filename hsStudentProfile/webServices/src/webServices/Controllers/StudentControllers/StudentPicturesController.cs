@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Primitives;
+using System.Threading.Tasks;
 
 namespace webServices.Controllers
 {
@@ -19,6 +20,7 @@ namespace webServices.Controllers
             _picSvc = picSvc;
         }
 
+        //TODO: Delete and Post Files Async
         [HttpDelete("DeletePicture/{id:int}")]
         public IActionResult DeletePicture(int id)
         {
@@ -35,7 +37,7 @@ namespace webServices.Controllers
 
 
         [HttpPost("PostPicture/{studentId:int}")]
-        public IActionResult PostPicture(int studentId)
+        public async Task<IActionResult> PostPicture(int studentId)
         {
             if (Request.Form.Files[0] == null)
             {
@@ -63,7 +65,7 @@ namespace webServices.Controllers
                     description = descr
                 };
 
-                if (_picSvc.AddPicture(pic, stream ) > 0)
+                if (await _picSvc.AddPictureAsync(pic, stream ) > 0)
                 {
                     return StatusCode(StatusCodes.Status201Created);
                 }

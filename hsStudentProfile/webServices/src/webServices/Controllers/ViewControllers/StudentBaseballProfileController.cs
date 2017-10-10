@@ -5,6 +5,7 @@ using webServices.Infrastructure.FileService;
 using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using System.Threading.Tasks;
 
 namespace webServices.Controllers
 {
@@ -20,8 +21,9 @@ namespace webServices.Controllers
             _student = student;
         }
 
+        //TODO: Post File Async
         [HttpPost("PostProfilePicture/{studentId:int}")]
-        public IActionResult PostProfilePicture(int studentId)
+        public async Task<IActionResult> PostProfilePicture(int studentId)
         {
             if (this.Request.Form.Files[0] == null)
             {
@@ -52,7 +54,7 @@ namespace webServices.Controllers
 
                 IUpdateProfileId updtProfId = new UpdateBBProfilePicId(_student);
 
-                if (_picSvc.UpdateProfilePicture(pic, stream, updtProfId) > 0)
+                if (await _picSvc.UpdateProfilePictureAsync(pic, stream, updtProfId) > 0)
                 {
                     return StatusCode(StatusCodes.Status201Created);
                 }
@@ -67,8 +69,6 @@ namespace webServices.Controllers
             }
 
         }
-
-
 
     }
 }

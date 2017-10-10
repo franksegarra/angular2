@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using webServices.Entities;
 using webServices.Repositories;
 
@@ -25,11 +26,11 @@ namespace webServices.Infrastructure.FileService
             _storageConfig = storageConfig.Value;
         }
 
-        public int UpdateProfilePicture(StudentPictures pic, Stream stream, IUpdateProfileId updtProfId)
+        public async Task<int> UpdateProfilePictureAsync(StudentPictures pic, Stream stream, IUpdateProfileId updtProfId)
         {
             try
             {
-                int picid = AddPicture(pic, stream);
+                int picid = await AddPictureAsync(pic, stream);
 
                 if (picid > 0)
                 {
@@ -48,19 +49,19 @@ namespace webServices.Infrastructure.FileService
             }
         }
 
-        public int AddPicture(StudentPictures pic, Stream stream)
+        public async Task<int> AddPictureAsync(StudentPictures pic, Stream stream)
         {
             string[] filename = pic.filename.Split('.');
 
             try
             {
                 //Save picture row
-                _pics.Add(pic);
+                await _pics.AddAsync(pic);
 
                 //Update filename
                 string newfilename = filename[0] + pic.id + "." + filename[1];
                 pic.filename = newfilename;
-                _pics.Edit(pic);
+                await _pics.EditAsync(pic);
 
                 string webRootPath = _hostingEnvironment.WebRootPath;
 
@@ -104,14 +105,14 @@ namespace webServices.Infrastructure.FileService
             }
         }
 
-        public int AddVideo(StudentVideos video, Stream stream)
+        public async Task<int> AddVideoAsync(StudentVideos video, Stream stream)
         {
             string[] filename = video.filename.Split('.');
 
             try
             {
                 //Save picture row
-                _videos.Add(video);
+                await _videos.AddAsync(video);
 
                 //Update filename
                 string newfilename = filename[0] + video.id + "." + filename[1];

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq.Expressions;
+using System.Threading.Tasks;
 using webServices.Entities;
 
 namespace webServices.Controllers
@@ -8,6 +7,6 @@ namespace webServices.Controllers
     public interface IStudentDetailController<T>
         where T : class, IStudentEntityBase, new()
     {
-        IActionResult GetByStudentId(int studentid);
+        Task<IActionResult> GetByStudentId(int studentid);
     }
 }

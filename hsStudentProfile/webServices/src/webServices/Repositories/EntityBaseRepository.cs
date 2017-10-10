@@ -44,12 +44,30 @@ namespace webServices.Repositories
             return await _context.Set<T>().FirstOrDefaultAsync(e => e.id == id);
         }
 
-        public virtual void Add(T entity)
+        public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().Where(predicate);
+        }
+
+        public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().Where(predicate).ToListAsync();
+        }
+
+        //public virtual void Add(T entity)
+        //{
+        //    //Operate on a single row post.  Commit immediately
+        //    EntityEntry dbEntityEntry = _context.Entry<T>(entity);
+        //    _context.Set<T>().Add(entity);
+        //    _context.SaveChanges();
+        //}
+
+        public virtual async Task AddAsync(T entity)
         {
             //Operate on a single row post.  Commit immediately
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             _context.Set<T>().Add(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public virtual void Delete(T entity)
@@ -57,6 +75,13 @@ namespace webServices.Repositories
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             dbEntityEntry.State = EntityState.Deleted;
             _context.SaveChanges();
+        }
+
+        public virtual async Task DeleteAsync(T entity)
+        {
+            EntityEntry dbEntityEntry = _context.Entry<T>(entity);
+            dbEntityEntry.State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
         }
 
         public virtual void Edit(T entity)
@@ -78,19 +103,28 @@ namespace webServices.Repositories
             _context.SaveChanges();
         }
 
+        public virtual async Task EditAsync(T entity)
+        {
+            T destitem = await _context.Set<T>().Where(i => i.id == entity.id).FirstOrDefaultAsync();
+            Type typeDest = destitem.GetType();
+
+            PropertyInfo[] properties = typeof(T).GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.Name != "id" && property.Name != "created")
+                {
+                    PropertyInfo targetProperty = typeDest.GetProperty(property.Name);
+                    targetProperty.SetValue(destitem, property.GetValue(entity, null), null);
+                }
+            }
+
+            _context.Entry<T>(destitem).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
         public virtual void Commit()
         {
             _context.SaveChanges();
-        }
-
-        public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
-        {
-            return _context.Set<T>().Where(predicate);
-        }
-
-        public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
-        {
-            return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
         //Not using

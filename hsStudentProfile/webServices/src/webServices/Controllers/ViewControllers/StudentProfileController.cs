@@ -5,9 +5,9 @@ using System;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 using webServices.Infrastructure.FileService;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Primitives;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace webServices.Controllers
 {
@@ -24,18 +24,18 @@ namespace webServices.Controllers
         }
 
         [HttpGet("{profilename}")]
-        public IActionResult GetByProfileName(string profilename)
+        public async Task<IActionResult> GetByProfileName(string profilename)
         {
-            StudentProfile item = null;
+            IEnumerable<StudentProfile> items = null;
             try
             {
-                item = _Items.FindBy(s => s.profilename == profilename).FirstOrDefault();
-                if (item == null)
+                items = await _Items.FindByAsync(s => s.profilename == profilename);
+                if (items == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(item);
+                return Ok(items.FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -44,8 +44,9 @@ namespace webServices.Controllers
             }
         }
 
+        //TODO: Post File Async
         [HttpPost("PostProfilePicture/{studentId:int}")]
-        public IActionResult PostProfilePicture(int studentId)
+        public async Task<IActionResult> PostProfilePicture(int studentId)
         {
             if (this.Request.Form.Files[0] == null)
             {
@@ -76,7 +77,7 @@ namespace webServices.Controllers
 
                 IUpdateProfileId updtProfId = new UpdateStudentProfilePicId(_student);
 
-                if (_picSvc.UpdateProfilePicture(pic, stream, updtProfId) > 0)
+                if (await _picSvc.UpdateProfilePictureAsync(pic, stream, updtProfId) > 0)
                 {
                     return StatusCode(StatusCodes.Status201Created);
                 }

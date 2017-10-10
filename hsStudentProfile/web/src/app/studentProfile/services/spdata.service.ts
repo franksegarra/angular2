@@ -65,6 +65,9 @@ export class spDataService {
     }
     //GET by student id
     getDBDataByStudentId<T>(studentId:number, dataUrl: string): Observable<T[]> {
+    
+        console.log(Config.WEBSERVICESURL + dataUrl + studentId);
+        
         return this._http.get(Config.WEBSERVICESURL + dataUrl + studentId, this._authService.getAuthHeader())
                     .map((response: Response) => <T[]>response.json())
                     .catch(this.handleError) ;
@@ -146,7 +149,11 @@ export class spDataService {
     deleteVideo(id:number): Observable<any> { return this.deleteDBRow(id, 'studentvideos/DeleteVideo/');}
 
     //Pictures
-    getPictures(id:number): Observable<IPicture[]> { return this.getDBDataByStudentId<IPicture>(id, 'studentpictures/GetByStudentId/');}
+    getPictures(id:number): Observable<IPicture[]> { 
+        console.log("data service: " + id);
+        return this.getDBDataByStudentId<IPicture>(id, 'studentpictures/GetByStudentId/');
+    }
+
     setPictures(id:number) {this.getDBDataByStudentId<IPicture>(id, 'studentpictures/GetByStudentId/').subscribe(pics => this.picturelist = pics, error => this.handleError(error));}
     deletePicture(id:number): Observable<any> { return this.deleteDBRow(id, 'studentpictures/DeletePicture/');}
 

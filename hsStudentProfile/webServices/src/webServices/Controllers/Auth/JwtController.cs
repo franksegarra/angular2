@@ -107,10 +107,12 @@ namespace webServices.Controllers.JWT
           => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
 
 
-        private Task<ClaimsIdentity> GetClaimsIdentity(ApplicationUser user)
+        private async Task<ClaimsIdentity> GetClaimsIdentity(ApplicationUser user)
         {
-            ClaimsIdentity claim = userval.ValidateUser(user.profilename, user.password);
-            return Task.FromResult(claim);
+            //ClaimsIdentity claim = await userval.ValidateUserAsync(user.profilename, user.password);
+            //return FromResult(claim);
+
+            return await userval.ValidateUserAsync(user.profilename, user.password);
         }
     }
 }

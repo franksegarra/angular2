@@ -5,6 +5,7 @@ using webServices.Infrastructure.FileService;
 using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using System.Threading.Tasks;
 
 namespace webServices.Controllers
 {
@@ -17,6 +18,7 @@ namespace webServices.Controllers
         {
         }
 
+        //TODO: Delete and Post Files Async
         [HttpDelete("DeleteVideo/{id:int}")]
         public IActionResult DeleteVideo(int id)
         {
@@ -31,9 +33,8 @@ namespace webServices.Controllers
             }
         }
 
-
         [HttpPost("PostVideo/{studentId:int}")]
-        public IActionResult PostVideo(int studentId)
+        public async Task<IActionResult> PostVideo(int studentId)
         {
             if (Request.Form.Files[0] == null)
             {
@@ -61,7 +62,7 @@ namespace webServices.Controllers
                     description = descr
                 };
 
-                if (_videoSvc.AddVideo(video, stream) > 0)
+                if (await _videoSvc.AddVideoAsync(video, stream) > 0)
                 {
                     return StatusCode(StatusCodes.Status201Created);
                 }

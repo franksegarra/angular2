@@ -51,10 +51,27 @@ namespace webServices.Repositories
             return await DbSet.FindAsync(id);
         }
 
+        public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
+        {
+            return DbSet.Where(predicate);
+        }
+
+        public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+        {
+            //TODO: Convert to dbset
+            return await _context.Set<T>().Where(predicate).ToListAsync();
+        }
+
         public virtual void Add(T entity)
         {
             DbSet.Add(entity);
             _context.SaveChanges();
+        }
+
+        public virtual async Task AddAsync(T entity)
+        {
+            DbSet.Add(entity);
+            await _context.SaveChangesAsync();
         }
 
         public virtual void Delete(int id)
@@ -64,6 +81,13 @@ namespace webServices.Repositories
             _context.SaveChanges();
         }
 
+        public virtual async Task DeleteAsync(int id)
+        {
+            T entityToDelete = DbSet.Find(id);
+            Delete(entityToDelete);
+            await _context.SaveChangesAsync();
+        }
+        
         public virtual void Delete(T entityToDelete)
         {
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
@@ -74,6 +98,16 @@ namespace webServices.Repositories
             _context.SaveChanges();
         }
 
+        public virtual async Task DeleteAsync(T entityToDelete)
+        {
+            if (_context.Entry(entityToDelete).State == EntityState.Detached)
+            {
+                DbSet.Attach(entityToDelete);
+            }
+            DbSet.Remove(entityToDelete);
+            await _context.SaveChangesAsync();
+        }
+
         public virtual void Edit(T entityToUpdate)
         {
             DbSet.Attach(entityToUpdate);
@@ -81,20 +115,16 @@ namespace webServices.Repositories
             _context.SaveChanges();
         }
 
+        public virtual async Task EditAsync(T entityToUpdate)
+        {
+            DbSet.Attach(entityToUpdate);
+            _context.Entry(entityToUpdate).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
         public virtual void Commit()
         {
             _context.SaveChanges();
-        }
-
-        public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
-        {
-            return DbSet.Where(predicate);
-        }
-
-        public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
-        {
-            //TODO: Convert to dbset
-            return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
 

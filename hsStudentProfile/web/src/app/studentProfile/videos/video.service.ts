@@ -14,7 +14,7 @@ export class VideoService {
     public currentDesc:string = "A very nice video...";
     public videoElement:any;
     public videoData: TreeNode[];
-    public selectedFile: TreeNode = [];
+    public selectedFile: TreeNode; // = [];
     public currentTime:number = 0;
     public totalTime:number = 0;
     public calculatedWidth:number;
@@ -48,7 +48,7 @@ export class VideoService {
         var rootnodes:Array<TreeNode> = [];
 
         categories.forEach(function(item) {
-            var parent: TreeNode = [];
+            var parent: TreeNode; // = [];
             var files = p.filter(function(e){return e.category == item;});
 
             parent.label = item;
@@ -58,7 +58,7 @@ export class VideoService {
             parent.children = [];
 
             files.forEach(function(file) {
-                var childnode: TreeNode = [];
+                var childnode: TreeNode; // = [];
                 childnode.label = file.title
                 childnode.data = file
                 childnode.expandedIcon = "";

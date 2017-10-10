@@ -31,6 +31,7 @@ export class PicturesComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        console.log('ngOnInit: userid ' + this._spDataService.myprofile.id);
         this.refreshData();
         this.form = this.fb.group({
             "category": [null]

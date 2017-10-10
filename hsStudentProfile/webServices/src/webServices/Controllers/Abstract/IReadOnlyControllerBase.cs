@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using webServices.Entities;
 using webServices.Repositories;
 
@@ -8,7 +9,7 @@ namespace webServices.Controllers
         where T : class, IEntityBase, new()
     {
         EntityBaseRepository<T> _Items { get; set; }
-        IActionResult Get();
-        IActionResult GetById(int id);
+        Task<IActionResult> Get();
+        Task<IActionResult> GetById(int id);
     }
 }

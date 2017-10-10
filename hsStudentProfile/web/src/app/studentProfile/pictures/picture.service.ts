@@ -43,25 +43,44 @@ export class PictureService {
 
         //For each category
         categories.forEach(function(item) {
-            var parent: TreeNode = [];
-            var files = p.filter(function(e){return e.category == item;});
+            var parent: TreeNode = 
+                {
+                    label: item,
+                    data: "",
+                    expandedIcon: "",
+                    collapsedIcon: "",
+                    children: []
+                };
 
-            parent.label = item;
-            parent.data = "";
-            parent.expandedIcon = "";
-            parent.collapsedIcon = "";
-            parent.children = [];
+            // parent.label = item;
+            // parent.data = "";
+            // parent.expandedIcon = "";
+            // parent.collapsedIcon = "";
+            // parent.children = [];
         
+            var files = p.filter(function(e){return e.category == item;});
             files.forEach(function(file) {
-                var childnode: TreeNode = [];
-                childnode.label = file.title
-                childnode.data = file
-                childnode.expandedIcon = "";
-                childnode.collapsedIcon = "";
-                parent.children.push(childnode);
+                var childnode: TreeNode[] = [
+                    {
+                        label: file.title,
+                        data: file,
+                        expandedIcon: "",
+                        collapsedIcon: "",
+                        children: []
+                    }
+                ];
+
+                parent.children.push(childnode[0]);
+                
+                // ; // = [];
+                // childnode.label = file.title
+                // childnode.data = file
+                // childnode.expandedIcon = "";
+                // childnode.collapsedIcon = "";
+                //parent.children.push(childnode[0]);
             });
 
-            rootnodes.push(parent);
+            rootnodes.push(parent[0]);
         });
 
         this.pictureData = rootnodes;

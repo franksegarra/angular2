@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System;
 using webServices.Infrastructure.Auth;
+using System.Threading.Tasks;
 
 namespace webServices.Controllers
 {
@@ -20,7 +21,7 @@ namespace webServices.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public override IActionResult Post([FromBody] Users user)
+        public override async Task<IActionResult> Post([FromBody] Users user)
         {
             if (user == null)
             {
@@ -32,7 +33,7 @@ namespace webServices.Controllers
                 if (ModelState.IsValid)
                 {
                     //create user here
-                    if (userval.AddUser(user))
+                    if (await userval.AddUserAsync(user))
                     {
                         //Send Activation Email
 
